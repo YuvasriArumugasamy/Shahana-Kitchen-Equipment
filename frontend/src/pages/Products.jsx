@@ -1,22 +1,10 @@
 import React, { useState } from 'react';
-import { PRODUCTS } from '../data/siteData';
 import { Search, SlidersHorizontal, ChevronRight, Phone, MessageSquare, Download } from 'lucide-react';
 
 export default function Products({ setCurrentPage, onOpenQuoteModal, onSelectProduct }) {
-  const [selectedCategory, setSelectedCategory] = useState('All');
-  const [capacityFilter, setCapacityFilter] = useState('All');
-
-  const categories = [
-    { name: 'All Products', count: 35 },
-    { name: 'Wet Grinders', count: 7 },
-    { name: 'Dough Kneaders', count: 4 },
-    { name: 'Vegetable Cutters', count: 3 },
-    { name: 'Pulverizers', count: 3 },
-    { name: 'Coconut Scrapers', count: 2 },
-    { name: 'Mixer Machines', count: 2 },
-    { name: 'Coconut Milk Extractors', count: 2 },
-    { name: 'Spare Parts', count: 6 }
-  ];
+  const [selectedCategory, setSelectedCategory] = useState('All Products');
+  const [capacityFilter, setCapacityFilter] = useState([]);
+  const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
 
   const productsList = [
     { name: "Instant Wet Grinder", category: "Wet Grinders", specs: "10L | 20L | 30L", badge: "Best Seller", img: "/images/instant wet grinder.png" },
@@ -33,58 +21,141 @@ export default function Products({ setCurrentPage, onOpenQuoteModal, onSelectPro
     { name: "Spare Parts", category: "Parts", specs: "All Types Available", badge: "", img: "/images/spare part.png" }
   ];
 
-  return (
-    <div className="pt-20 space-y-12">
+  const categoryMap = {
+    'Wet Grinders': ['Wet Grinders', 'Tilting Wet Grinders'],
+    'Dough Kneaders': ['Dough Kneaders'],
+    'Vegetable Cutters': ['Vegetable Cutters'],
+    'Pulverizers': ['Pulverizers'],
+    'Coconut Scrapers': ['Coconut Scrapers'],
+    'Mixer Machines': ['Mixer Machines', 'Mixers'],
+    'Coconut Milk Extractors': ['Extractors'],
+    'Spare Parts': ['Spare Parts', 'Parts']
+  };
 
-      {/* PRODUCTS HERO BANNER - Exact Reference Match */}
-      <section className="bg-gradient-to-r from-purple-950 via-[#6A1B9A] to-purple-900 text-white py-12">
-        <div className="max-w-container mx-auto px-4 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          <div className="lg:col-span-7 space-y-4">
-            <h1 className="text-4xl sm:text-5xl font-heading font-extrabold tracking-tight">
-              OUR PRODUCTS
+  const getCapacities = (specs) => {
+    const matches = [...specs.matchAll(/(\d+(?:\.\d+)?)(?=\s*(l|kg))/gi)];
+    return matches.map((match) => Number(match[1]));
+  };
+
+  const matchesCategory = (item, category) => {
+    if (category === 'All Products') return true;
+    const allowed = categoryMap[category] || [];
+    return allowed.some((name) => item.category.toLowerCase() === name.toLowerCase());
+  };
+
+  const matchesCapacity = (item) => {
+    if (capacityFilter.length === 0) return true;
+    const capacities = getCapacities(item.specs);
+    if (capacities.length === 0) return false;
+    return capacityFilter.some((filter) => {
+      return capacities.some((value) => {
+        if (filter === '5 Liter & Below') return value <= 5;
+        if (filter === '5L - 10L') return value > 5 && value <= 10;
+        if (filter === '10L - 20L') return value > 10 && value <= 20;
+        if (filter === '20L - 50L') return value > 20 && value <= 50;
+        if (filter === 'Above 50L') return value > 50;
+        return false;
+      });
+    });
+  };
+
+  const filteredProducts = productsList.filter((item) => matchesCategory(item, selectedCategory) && matchesCapacity(item));
+  const categories = [
+    { name: 'All Products', count: productsList.length },
+    { name: 'Wet Grinders', count: productsList.filter((item) => matchesCategory(item, 'Wet Grinders')).length },
+    { name: 'Dough Kneaders', count: productsList.filter((item) => matchesCategory(item, 'Dough Kneaders')).length },
+    { name: 'Vegetable Cutters', count: productsList.filter((item) => matchesCategory(item, 'Vegetable Cutters')).length },
+    { name: 'Pulverizers', count: productsList.filter((item) => matchesCategory(item, 'Pulverizers')).length },
+    { name: 'Coconut Scrapers', count: productsList.filter((item) => matchesCategory(item, 'Coconut Scrapers')).length },
+    { name: 'Mixer Machines', count: productsList.filter((item) => matchesCategory(item, 'Mixer Machines')).length },
+    { name: 'Coconut Milk Extractors', count: productsList.filter((item) => matchesCategory(item, 'Coconut Milk Extractors')).length },
+    { name: 'Spare Parts', count: productsList.filter((item) => matchesCategory(item, 'Spare Parts')).length }
+  ];
+
+  return (
+    <div className="space-y-8 sm:space-y-12">
+
+      {/* PRODUCTS HERO BANNER - STUNNING VIDEO BACKGROUND WITH ANIMATIONS */}
+      <section id="catalog" className="relative text-white py-16 sm:py-20 overflow-hidden min-h-[70vh] sm:min-h-[80vh]">
+        <video
+          className="absolute inset-0 w-full h-full object-cover scale-105 transition-transform duration-1000"
+          src="/images/ithu_yellam_vachi_oru_super_an.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-black/90 via-purple-950/60 to-black/85 pointer-events-none"></div>
+        <div className="max-w-container mx-auto px-4 relative z-10">
+          <div className="max-w-3xl space-y-5 sm:space-y-6">
+            
+            {/* Animated Glowing Badge */}
+            <div className="animate-hero-slide-up animation-delay-100 inline-flex items-center gap-2 bg-[#6A1B9A]/90 border border-purple-400/30 text-white text-[10px] sm:text-xs font-bold uppercase tracking-[0.18em] px-4 py-2 rounded-full shadow-xl backdrop-blur-md">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-200"></span>
+              </span>
+              <span>Trusted Commercial Kitchen Equipment</span>
+            </div>
+
+            {/* Animated Title */}
+            <h1 className="animate-hero-slide-up animation-delay-200 text-4xl sm:text-6xl lg:text-7xl font-heading font-extrabold tracking-tight drop-shadow-[0_25px_40px_rgba(0,0,0,0.55)] leading-tight">
+              OUR <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-200 via-white to-purple-300">PRODUCTS</span>
             </h1>
-            <p className="text-purple-100 text-lg font-semibold">
-              High Quality Commercial Kitchen Equipment for All Your Business Needs
+
+            {/* Description */}
+            <p className="animate-hero-slide-up animation-delay-300 text-purple-100 text-sm sm:text-lg lg:text-xl font-semibold max-w-2xl leading-8 drop-shadow-md">
+              Premium commercial kitchen machines engineered for restaurants, hotels, bakeries, and catering businesses. Built for heavy-duty performance and long-lasting service.
             </p>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs pt-2">
-              <div className="bg-white/10 px-3 py-1.5 rounded-full text-center">✔ Premium Quality</div>
-              <div className="bg-white/10 px-3 py-1.5 rounded-full text-center">✔ Best Performance</div>
-              <div className="bg-white/10 px-3 py-1.5 rounded-full text-center">✔ Long Lasting</div>
-              <div className="bg-white/10 px-3 py-1.5 rounded-full text-center">✔ Easy Maintenance</div>
+            {/* Feature Pills */}
+            <div className="animate-hero-slide-up animation-delay-400 grid grid-cols-2 sm:grid-cols-4 gap-3 text-[11px] sm:text-xs pt-2 max-w-2xl font-bold">
+              <div className="bg-[#6A1B9A]/90 border border-purple-300/50 px-3.5 py-2 rounded-full text-center shadow-lg hover:border-purple-300 transition-all transform hover:-translate-y-0.5">✔ Premium Quality</div>
+              <div className="bg-[#6A1B9A]/90 border border-purple-300/50 px-3.5 py-2 rounded-full text-center shadow-lg hover:border-purple-300 transition-all transform hover:-translate-y-0.5">✔ Best Performance</div>
+              <div className="bg-[#6A1B9A]/90 border border-purple-300/50 px-3.5 py-2 rounded-full text-center shadow-lg hover:border-purple-300 transition-all transform hover:-translate-y-0.5">✔ Long Lasting</div>
+              <div className="bg-[#6A1B9A]/90 border border-purple-300/50 px-3.5 py-2 rounded-full text-center shadow-lg hover:border-purple-300 transition-all transform hover:-translate-y-0.5">✔ Easy Maintenance</div>
             </div>
 
-            <div className="text-xs text-purple-200 pt-2">
-              Home &gt; Products
-            </div>
-          </div>
-
-          <div className="lg:col-span-5">
-            <div className="bg-white/10 rounded-card p-3 border border-white/20">
-              <img src="/images/instant wet grinder.png" alt="Products Range" className="w-full h-64 object-contain rounded-xl" />
+            {/* Breadcrumb */}
+            <div className="animate-hero-slide-up animation-delay-500 flex items-center gap-2 pt-1 text-[11px] sm:text-xs font-medium text-purple-200 drop-shadow">
+              <button onClick={() => { setCurrentPage('home'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:text-white transition-colors">Home</button>
+              <ChevronRight className="w-3.5 h-3.5 text-purple-400" />
+              <span className="text-white font-bold">Products</span>
             </div>
           </div>
         </div>
       </section>
 
       {/* MAIN CATALOG LAYOUT - Sidebar Filters + Product Cards Grid */}
-      <section className="max-w-container mx-auto px-4 pb-16">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <section className="max-w-container mx-auto px-4 pb-12 sm:pb-16">
+        
+        {/* Mobile Filter Toggle Button */}
+        <div className="lg:hidden mb-4">
+          <button
+            onClick={() => setMobileFilterOpen(!mobileFilterOpen)}
+            className="w-full flex items-center justify-between bg-white px-4 py-3 rounded-xl border border-gray-200 shadow-sm font-bold text-xs text-[#6A1B9A]"
+          >
+            <span className="flex items-center gap-2"><SlidersHorizontal className="w-4 h-4" /> Filter Categories ({selectedCategory})</span>
+            <span>{mobileFilterOpen ? 'Hide Filters ▲' : 'Show Filters ▼'}</span>
+          </button>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8">
           
           {/* Left Sidebar Filter Column */}
-          <div className="lg:col-span-3 space-y-6">
+          <div className={`lg:col-span-3 space-y-6 ${mobileFilterOpen ? 'block' : 'hidden lg:block'}`}>
             
             {/* Product Categories Box */}
-            <div className="bg-white rounded-card overflow-hidden border border-gray-200 shadow-sm">
-              <div className="bg-[#6A1B9A] text-white px-5 py-3.5 font-heading font-bold text-sm uppercase">
+            <div className="bg-white/95 backdrop-blur-xl rounded-3xl overflow-hidden border border-gray-200 shadow-2xl shadow-black/5">
+              <div className="bg-[#6A1B9A] text-white px-4 py-3 font-heading font-bold text-xs sm:text-sm uppercase">
                 PRODUCT CATEGORIES
               </div>
               <div className="divide-y divide-gray-100">
                 {categories.map((cat, i) => (
                   <button
                     key={i}
-                    onClick={() => setSelectedCategory(cat.name)}
-                    className={`w-full flex items-center justify-between px-5 py-3 text-xs font-semibold transition-colors ${
+                    onClick={() => { setSelectedCategory(cat.name); setMobileFilterOpen(false); }}
+                    className={`w-full flex items-center justify-between px-4 py-2.5 text-xs font-semibold transition-colors ${
                       selectedCategory === cat.name ? 'bg-purple-50 text-[#6A1B9A] font-bold border-l-4 border-[#6A1B9A]' : 'text-gray-700 hover:bg-gray-50'
                     }`}
                   >
@@ -96,36 +167,98 @@ export default function Products({ setCurrentPage, onOpenQuoteModal, onSelectPro
             </div>
 
             {/* Filter By Capacity */}
-            <div className="bg-white rounded-card overflow-hidden border border-gray-200 shadow-sm p-5 space-y-3">
+            <div className="bg-white/95 backdrop-blur-xl rounded-3xl overflow-hidden border border-gray-200 shadow-2xl shadow-black/5 p-4 space-y-3">
               <h3 className="font-heading font-bold text-xs uppercase text-gray-900 pb-2 border-b border-gray-100">
                 FILTER BY CAPACITY
               </h3>
               <div className="space-y-2 text-xs text-gray-700">
                 {['5 Liter & Below', '5L - 10L', '10L - 20L', '20L - 50L', 'Above 50L'].map((cap, idx) => (
-                  <label key={idx} className="flex items-center gap-2 cursor-pointer hover:text-[#6A1B9A]">
-                    <input type="checkbox" className="accent-[#6A1B9A]" />
+                  <label key={idx} className="flex items-center gap-2 cursor-pointer hover:text-[#6A1B9A] text-gray-700">
+                    <input
+                      type="checkbox"
+                      className="accent-[#6A1B9A]"
+                      checked={capacityFilter.includes(cap)}
+                      onChange={() => {
+                        if (capacityFilter.includes(cap)) {
+                          setCapacityFilter(capacityFilter.filter((item) => item !== cap));
+                        } else {
+                          setCapacityFilter([...capacityFilter, cap]);
+                        }
+                      }}
+                    />
                     <span>{cap}</span>
                   </label>
                 ))}
               </div>
-              <button className="btn-purple w-full py-2 text-xs uppercase font-bold mt-2">APPLY FILTER</button>
+              <button
+                onClick={() => {
+                  /* no-op: filtering applies automatically */
+                }}
+                className="btn-purple w-full py-2 text-xs uppercase font-bold mt-2"
+              >
+                APPLY FILTER
+              </button>
             </div>
 
-            {/* Need Help Box */}
-            <div className="bg-[#1A0B2E] text-white rounded-card p-6 text-center space-y-3 shadow-lg">
-              <h4 className="font-heading font-bold text-sm">NEED HELP?</h4>
-              <p className="text-xs text-purple-200">Call us for expert guidance</p>
-              <a href="tel:+918675767640" className="btn-purple w-full py-2.5 text-xs font-bold block">+91 86757 67640</a>
-              <a href="https://wa.me/918675767640" target="_blank" rel="noreferrer" className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 text-xs rounded-full block">WHATSAPP US</a>
+            {/* Need Help Sidebar Card - Exact Reference Design Match */}
+            <div className="relative rounded-2xl overflow-hidden shadow-xl bg-gradient-to-r from-[#4C1282] via-[#521882] to-[#5D1E99] border border-purple-700/50 p-4 sm:p-5 text-white min-h-[165px] flex items-center group">
+              
+              {/* Right Side Image (Man with Headset) */}
+              <div className="absolute right-0 bottom-0 top-0 h-full w-[45%] sm:w-[48%] overflow-hidden pointer-events-none">
+                <img 
+                  src="/images/ChatGPT Image Jul 27, 2026, 03_41_42 PM.png" 
+                  alt="Customer Support Representative" 
+                  className="w-full h-full object-cover object-top sm:object-center transform group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+
+              {/* Left Side Content */}
+              <div className="relative z-10 w-[60%] sm:w-[58%] space-y-2.5 text-left">
+                <div>
+                  <h4 className="font-heading font-extrabold text-sm sm:text-base tracking-tight text-white uppercase leading-none drop-shadow-sm">
+                    NEED HELP?
+                  </h4>
+                  <p className="text-[11px] sm:text-xs text-purple-200 mt-1 leading-tight font-medium">
+                    Call us for expert guidance
+                  </p>
+                </div>
+
+                {/* Direct Phone Number */}
+                <div className="flex items-center gap-2 pt-0.5">
+                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/15 border border-white/20 flex items-center justify-center shrink-0">
+                    <Phone className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
+                  </div>
+                  <a 
+                    href="tel:+919994944123" 
+                    className="font-extrabold text-xs sm:text-sm md:text-base text-white hover:text-purple-200 transition-colors tracking-tight drop-shadow-xs"
+                  >
+                    +91 99949 44123
+                  </a>
+                </div>
+
+                {/* White WhatsApp Button */}
+                <div className="pt-1">
+                  <a 
+                    href="https://wa.me/919994944123" 
+                    target="_blank" 
+                    rel="noreferrer" 
+                    className="bg-white hover:bg-purple-50 text-[#4C1282] font-extrabold text-[11px] sm:text-xs py-2 px-3 sm:px-4 rounded-xl shadow-lg border border-white flex items-center justify-center gap-1.5 transition-all active:scale-95 inline-flex w-full"
+                  >
+                    <MessageSquare className="w-3.5 h-3.5 text-[#25D366] fill-[#25D366] shrink-0" />
+                    <span>WHATSAPP US</span>
+                  </a>
+                </div>
+              </div>
+
             </div>
 
           </div>
 
           {/* Right Product Grid */}
-          <div className="lg:col-span-9 space-y-6">
+          <div className="lg:col-span-9 space-y-4 sm:space-y-6">
             
-            <div className="flex items-center justify-between text-xs text-gray-600 bg-white p-4 rounded-card border border-gray-200">
-              <span>Showing 1-12 of 35 products</span>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-gray-600 bg-white p-3.5 sm:p-4 rounded-xl border border-gray-200">
+              <span>Showing {filteredProducts.length} of {productsList.length} products</span>
               <div className="flex items-center gap-2">
                 <span>Sort by:</span>
                 <select className="border border-gray-300 rounded-lg px-2.5 py-1 text-xs outline-none bg-white font-semibold">
@@ -135,33 +268,41 @@ export default function Products({ setCurrentPage, onOpenQuoteModal, onSelectPro
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {productsList.map((item, idx) => (
-                <div key={idx} className="bg-white rounded-card overflow-hidden border border-gray-200 shadow-sm hover:shadow-xl transition-all p-4 flex flex-col justify-between group">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+              {filteredProducts.length > 0 ? filteredProducts.map((item, idx) => (
+                <div key={idx} className="bg-white/95 rounded-3xl overflow-hidden border border-gray-200/90 shadow-xl hover:shadow-[0_35px_80px_-35px_rgba(106,27,154,0.45)] hover:-translate-y-1.5 transition-all duration-300 p-4 flex flex-col justify-between group relative border-t-4 border-t-[#6A1B9A]">
                   <div>
-                    <div className="w-full aspect-square bg-gray-50 rounded-xl overflow-hidden p-4 flex items-center justify-center mb-3 relative">
-                      {item.badge && (
-                        <span className="absolute top-2 left-2 bg-[#6A1B9A] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                    <div className="w-full aspect-square bg-gradient-to-b from-purple-50/60 to-gray-50 rounded-3xl overflow-hidden pt-8 pb-3 px-3 flex items-center justify-center mb-3.5 relative border border-gray-100">
+                      {item.badge ? (
+                        <span className="absolute top-2 left-2 z-20 bg-gradient-to-r from-[#6A1B9A] to-purple-900 text-white text-[10px] font-extrabold px-2.5 py-1 rounded-full shadow-lg tracking-wider uppercase">
                           {item.badge}
                         </span>
+                      ) : (
+                        <span className="absolute top-2 left-2 z-20 bg-purple-100/90 text-[#6A1B9A] text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-purple-200">
+                          304 SS Food Grade
+                        </span>
                       )}
-                      <img src={item.img} alt={item.name} className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform" />
+                      <img src={item.img} alt={item.name} className="max-h-full max-w-full object-contain group-hover:scale-108 transition-transform duration-300 drop-shadow-sm relative z-10" />
                     </div>
 
-                    <h3 className="font-heading font-bold text-gray-900 text-sm text-center mb-1">{item.name}</h3>
-                    <p className="text-[11px] text-gray-500 text-center mb-4">{item.specs}</p>
+                    <h3 className="font-heading font-extrabold text-gray-900 text-sm text-center mb-1 group-hover:text-[#6A1B9A] transition-colors">{item.name}</h3>
+                    <p className="text-[11px] font-medium text-gray-500 text-center mb-4 bg-white/80 py-1 px-2 rounded-full border border-gray-100">{item.specs}</p>
                   </div>
 
-                  <div className="space-y-2">
-                    <button onClick={() => onOpenQuoteModal({ name: item.name })} className="w-full py-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold text-xs transition-colors">
-                      VIEW DETAILS
-                    </button>
-                    <button onClick={() => onOpenQuoteModal({ name: item.name })} className="btn-purple w-full py-2 text-xs font-bold">
-                      GET QUOTE
+                  <div className="space-y-2 pt-1">
+                    <button 
+                      onClick={() => onOpenQuoteModal({ name: item.name })} 
+                      className="btn-purple w-full py-2.5 text-xs font-bold shadow-md shadow-purple-900/10 hover:shadow-purple-900/25 flex items-center justify-center gap-1.5"
+                    >
+                      <span>GET FREE QUOTE</span>
                     </button>
                   </div>
                 </div>
-              ))}
+              )) : (
+                <div className="lg:col-span-3 col-span-1 p-6 bg-white rounded-3xl border border-gray-200 text-center text-gray-600">
+                  No products match the selected category or capacity filters.
+                </div>
+              )}
             </div>
 
           </div>

@@ -1,9 +1,42 @@
 import React, { useState, useEffect } from 'react';
-import { Phone, Mail, MapPin, Clock, Menu, X, ChevronDown, ArrowRight } from 'lucide-react';
+import { 
+  Phone, Mail, MapPin, Clock, Menu, X, ChevronDown, ArrowRight,
+  Home, Building2, Package, Wrench, Settings, Image, Factory, Star, PhoneCall, ShieldCheck, ChevronRight 
+} from 'lucide-react';
 
 export default function Header({ currentPage, setCurrentPage, onOpenQuoteModal }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Top bar rotating items state for clean automatic transition
+  const topBarItems = [
+    {
+      id: 'address',
+      icon: MapPin,
+      label: 'Location',
+      text: '5/120 G, Sankaran Kovil Road, Ramayanpatti, Tirunelveli - 627358',
+      link: 'https://maps.google.com/?q=5/120+G,+Sankaran+Kovil+Road,+Ramayanpatti,+Tirunelveli+-+627358',
+      badge: 'Location'
+    },
+    {
+      id: 'phone',
+      icon: Phone,
+      label: 'Call Direct',
+      text: '+91 99949 44123',
+      link: 'tel:+919994944123',
+      badge: 'Call Us'
+    },
+    {
+      id: 'support',
+      icon: Clock,
+      label: 'Service',
+      text: '24h Support Available',
+      link: null,
+      badge: '24/7 Service'
+    }
+  ];
+
+  const [currentTopIndex, setCurrentTopIndex] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -13,16 +46,23 @@ export default function Header({ currentPage, setCurrentPage, onOpenQuoteModal }
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTopIndex((prev) => (prev + 1) % topBarItems.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, [topBarItems.length]);
+
   const navItems = [
-    { label: 'Home', id: 'home' },
-    { label: 'About', id: 'about' },
-    { label: 'Products', id: 'products' },
-    { label: 'Services', id: 'services' },
-    { label: 'Spare Parts', id: 'spare-parts' },
-    { label: 'Gallery', id: 'gallery' },
-    { label: 'Industries', id: 'industries' },
-    { label: 'Reviews', id: 'reviews' },
-    { label: 'Contact', id: 'contact' },
+    { label: 'Home', id: 'home', icon: Home },
+    { label: 'About Us', id: 'about', icon: Building2 },
+    { label: 'Products Catalog', id: 'products', icon: Package },
+    { label: 'Equipment Services', id: 'services', icon: Wrench },
+    { label: 'Spare Parts', id: 'spare-parts', icon: Settings },
+    { label: 'Gallery', id: 'gallery', icon: Image },
+    { label: 'Industries We Serve', id: 'industries', icon: Factory },
+    { label: 'Client Reviews', id: 'reviews', icon: Star },
+    { label: 'Contact Us', id: 'contact', icon: PhoneCall },
   ];
 
   const handleNavClick = (id) => {
@@ -32,74 +72,80 @@ export default function Header({ currentPage, setCurrentPage, onOpenQuoteModal }
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+    <header className="relative w-full z-50">
       {/* Top bar */}
-      <div className="bg-[#581C87] text-white text-xs py-2 px-4 border-b border-purple-800/40">
-        <div className="max-w-container mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
-          <div className="flex items-center space-x-6">
-            <span className="flex items-center gap-1.5 opacity-90 hover:opacity-100 transition-opacity">
-              <Phone className="w-3.5 h-3.5 text-purple-300" />
-              <a href="tel:+918675767640" className="hover:underline font-medium">+91 86757 67640</a>
-            </span>
-            <span className="flex items-center gap-1.5 opacity-90 hover:opacity-100 transition-opacity">
-              <Mail className="w-3.5 h-3.5 text-purple-300" />
-              <a href="mailto:info@shahanakitchen.com" className="hover:underline">info@shahanakitchen.com</a>
-            </span>
-            <span className="hidden lg:flex items-center gap-1.5 opacity-80">
-              <MapPin className="w-3.5 h-3.5 text-purple-300" />
-              <span>Tamil Nadu, India</span>
-            </span>
-          </div>
-          <div className="flex items-center space-x-4">
-            <span className="bg-purple-900/60 text-purple-200 px-2.5 py-0.5 rounded-full font-medium border border-purple-700/50">
-              GST Registered Manufacturer
-            </span>
-            <button 
-              onClick={() => handleNavClick('admin')} 
-              className="text-purple-200 hover:text-white transition-colors underline text-xs font-semibold"
+      <div className="bg-[#581C87] text-white text-[11px] sm:text-xs py-2 px-3 sm:px-4 border-b border-purple-800/40 relative select-none overflow-hidden">
+        <div className="max-w-7xl mx-auto flex items-center justify-center relative min-h-[24px]">
+          
+          {/* Automatic Rotating Item (One by One Animation) */}
+          <div className="overflow-hidden h-6 flex items-center justify-center w-full">
+            <div 
+              key={currentTopIndex}
+              className="animate-slide-up-fade flex items-center justify-center gap-2 text-center"
             >
-              Admin Portal
-            </button>
+              <span className="hidden sm:inline-block bg-purple-900/80 text-purple-200 px-2 py-0.5 rounded-full text-[10px] font-semibold border border-purple-700/60 uppercase tracking-wider">
+                {topBarItems[currentTopIndex].badge}
+              </span>
+
+              {React.createElement(topBarItems[currentTopIndex].icon, { className: "w-4 h-4 text-purple-300 shrink-0" })}
+              
+              {topBarItems[currentTopIndex].link ? (
+                <a 
+                  href={topBarItems[currentTopIndex].link} 
+                  className="hover:underline font-bold text-white text-[11px] sm:text-xs tracking-wide"
+                >
+                  {topBarItems[currentTopIndex].text}
+                </a>
+              ) : (
+                <span className="font-medium text-purple-100 text-[11px] sm:text-xs tracking-wide">
+                  {topBarItems[currentTopIndex].text}
+                </span>
+              )}
+            </div>
           </div>
+
         </div>
       </div>
 
-      {/* Main Navigation */}
-      <div className={`transition-all duration-300 ${isScrolled ? 'glass-nav py-2 shadow-md' : 'bg-white/95 py-3 border-b border-gray-200'}`}>
-        <div className="max-w-container mx-auto px-4 flex items-center justify-between">
+      {/* Main Navigation - STICKY / FIXED AT TOP 0 WHEN SCROLLED */}
+      <div className={`w-full transition-all duration-300 bg-white ${
+        isScrolled 
+          ? 'fixed top-0 left-0 right-0 z-50 py-3 sm:py-3.5 shadow-lg border-b border-purple-200' 
+          : 'relative py-3.5 sm:py-4.5 border-b border-gray-200'
+      }`}>
+        <div className="w-full mx-auto px-3.5 sm:px-5 flex items-center justify-between gap-3 sm:gap-5">
           
-          {/* Circular Reference Logo */}
+          {/* Logo Brand Group */}
           <div 
             onClick={() => handleNavClick('home')}
-            className="cursor-pointer flex items-center gap-3 group"
+            className="cursor-pointer flex items-center gap-2 sm:gap-3 shrink-0 min-w-0"
           >
-            <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-[#6A1B9A] shadow-md bg-white flex items-center justify-center p-0.5 group-hover:scale-105 transition-transform">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full border-2 border-[#6A1B9A] shadow-md bg-white flex items-center justify-center p-0.5 scale-105 shrink-0">
               <img 
                 src="/images/logo.png" 
-                alt="Shahana Kitchen Equipment Logo" 
+                alt="Shahana Icon Logo" 
                 className="w-full h-full object-cover rounded-full"
               />
             </div>
-            <div>
-              <span className="block font-heading font-extrabold text-lg tracking-tight text-gray-900 group-hover:text-[#6A1B9A] transition-colors leading-none">
-                SHAHANA
-              </span>
-              <span className="text-[9px] font-bold tracking-widest text-[#6A1B9A] uppercase block mt-1">
-                Kitchen Equipment
-              </span>
+            <div className="flex items-center shrink-0 pr-4">
+              <img 
+                src="/images/ChatGPT Image Jul 28, 2026, 01_18_49 PM.png" 
+                alt="Shahana Kitchen Equipment" 
+                className="h-10 xs:h-12 sm:h-14 md:h-16 lg:h-18 w-auto object-contain mix-blend-multiply scale-[1.28] sm:scale-[1.38] origin-left" 
+              />
             </div>
           </div>
 
-          {/* Desktop Nav */}
-          <nav className="hidden xl:flex items-center space-x-1">
+          {/* Desktop Nav Items - Super Clean Row */}
+          <nav className="hidden lg:flex items-center justify-center flex-1 space-x-1 font-heading">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
-                className={`px-3.5 py-2 rounded-lg text-xs font-bold uppercase transition-all ${
+                className={`px-3.5 py-2 rounded-full text-[11px] xl:text-xs font-bold uppercase tracking-wider transition-all duration-200 ${
                   currentPage === item.id 
-                    ? 'text-[#6A1B9A] bg-purple-50 font-extrabold' 
-                    : 'text-gray-700 hover:text-[#6A1B9A] hover:bg-gray-50'
+                    ? 'text-[#6A1B9A] bg-purple-100/80 font-extrabold shadow-sm' 
+                    : 'text-gray-700 hover:text-[#6A1B9A] hover:bg-purple-50/60'
                 }`}
               >
                 {item.label}
@@ -108,65 +154,85 @@ export default function Header({ currentPage, setCurrentPage, onOpenQuoteModal }
           </nav>
 
           {/* Actions */}
-          <div className="hidden lg:flex items-center space-x-3">
+          <div className="hidden sm:flex items-center space-x-3 shrink-0">
             <button
               onClick={onOpenQuoteModal}
-              className="btn-purple px-5 py-2.5 text-xs font-bold flex items-center gap-2"
+              className="btn-purple px-5 py-2.5 text-xs font-bold tracking-wide flex items-center gap-1.5 shadow-lg shadow-purple-900/10 hover:shadow-purple-900/25 active:scale-95 transition-all"
             >
               <span>GET QUOTE</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>
 
           {/* Mobile menu trigger */}
-          <div className="xl:hidden flex items-center gap-2">
-            <button
-              onClick={onOpenQuoteModal}
-              className="btn-purple px-3 py-1.5 text-xs font-semibold"
-            >
-              Quote
-            </button>
+          <div className="lg:hidden flex items-center shrink-0">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-gray-700 hover:bg-gray-100"
+              className="p-2 sm:p-2.5 rounded-2xl text-gray-700 bg-purple-50 hover:bg-purple-100 transition-colors border border-purple-200/80 shadow-xs"
               aria-label="Toggle Navigation Menu"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-6 h-6 text-[#6A1B9A]" /> : <Menu className="w-6 h-6 text-[#6A1B9A]" />}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Spacer to prevent layout jump when navbar is fixed */}
+      {isScrolled && <div className="h-[64px] sm:h-[72px]" />}
+
+      {/* FULL-WIDTH PROFESSIONAL MOBILE NAVIGATION MENU (NATURAL SCROLL, NO FIXED BOTTOM BAR) */}
       {mobileMenuOpen && (
-        <div className="xl:hidden bg-white border-b border-gray-200 px-4 py-6 space-y-2 shadow-2xl animate-fade-in">
-          {navItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => handleNavClick(item.id)}
-              className={`block w-full text-left px-4 py-3 rounded-xl font-medium text-base transition-colors ${
-                currentPage === item.id 
-                  ? 'bg-purple-50 text-[#6A1B9A] font-bold border-l-4 border-[#6A1B9A]' 
-                  : 'text-gray-800 hover:bg-gray-50'
-              }`}
-            >
-              {item.label}
-            </button>
-          ))}
-          <div className="pt-4 border-t border-gray-100 flex flex-col gap-3">
-            <button
-              onClick={() => { setMobileMenuOpen(false); onOpenQuoteModal(); }}
-              className="btn-purple w-full py-3 text-center text-sm"
-            >
-              Request Quick Quote
-            </button>
-            <a
-              href="tel:+918675767640"
-              className="btn-secondary w-full py-2.5 text-center text-sm block"
-            >
-              Call +91 86757 67640
-            </a>
+        <div className={`lg:hidden fixed left-0 right-0 w-full bottom-0 z-[100] bg-white flex flex-col justify-between overflow-hidden animate-fade-in ${
+          isScrolled ? 'top-[60px] sm:top-[68px]' : 'top-[102px] sm:top-[112px]'
+        }`}>
+          
+          {/* Full Scrollable Nav List Items */}
+          <div className="flex-1 overflow-y-auto p-3.5 sm:p-4 space-y-2 pb-8 bg-gray-50/50">
+            {navItems.map((item) => {
+              const IconComponent = item.icon;
+              const isActive = currentPage === item.id;
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => handleNavClick(item.id)}
+                  className={`w-full p-3.5 rounded-xl flex items-center justify-between transition-all duration-200 text-left border ${
+                    isActive 
+                      ? 'bg-gradient-to-r from-[#6A1B9A] to-purple-900 text-white font-extrabold shadow-md border-purple-800' 
+                      : 'bg-white text-gray-800 border-gray-200/80 hover:border-purple-300 hover:bg-purple-50/50'
+                  }`}
+                >
+                  <div className="flex items-center gap-3.5">
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${
+                      isActive ? 'bg-white/20 text-white' : 'bg-purple-50 text-[#6A1B9A]'
+                    }`}>
+                      <IconComponent className="w-5 h-5" />
+                    </div>
+                    <span className="text-sm font-bold">{item.label}</span>
+                  </div>
+                  <ChevronRight className={`w-5 h-5 shrink-0 ${isActive ? 'text-white' : 'text-gray-400'}`} />
+                </button>
+              );
+            })}
+
+            {/* In-List Action Buttons (Scrolls Naturally at Bottom) */}
+            <div className="pt-4 space-y-2.5">
+              <button
+                onClick={() => { setMobileMenuOpen(false); onOpenQuoteModal(); }}
+                className="btn-purple w-full py-3.5 text-center text-xs font-bold uppercase tracking-wider rounded-xl shadow-md flex items-center justify-center gap-2"
+              >
+                <span>REQUEST FREE QUOTATION</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+              <a
+                href="tel:+919994944123"
+                className="w-full py-3 px-4 bg-white hover:bg-purple-50 text-[#6A1B9A] rounded-xl text-center text-xs font-extrabold flex items-center justify-center gap-2 transition-colors border border-purple-200/80 shadow-xs block"
+              >
+                <Phone className="w-4 h-4" />
+                <span>Call Us +91 99949 44123</span>
+              </a>
+            </div>
           </div>
+
         </div>
       )}
     </header>

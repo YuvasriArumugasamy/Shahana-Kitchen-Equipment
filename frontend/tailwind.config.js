@@ -26,8 +26,8 @@ export default {
         }
       },
       fontFamily: {
-        heading: ['Poppins', 'sans-serif'],
-        body: ['Inter', 'sans-serif'],
+        heading: ['Outfit', 'Plus Jakarta Sans', 'Poppins', 'sans-serif'],
+        body: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
       },
       borderRadius: {
         'card': '18px',

@@ -19,8 +19,22 @@ import FAQ from './pages/FAQ';
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminDashboard from './pages/admin/AdminDashboard';
 
+const getInitialPage = () => {
+  if (typeof window === 'undefined') return 'home';
+  const path = window.location.pathname.toLowerCase();
+  if (path.includes('/admin')) {
+    return 'admin';
+  }
+  const validPages = [
+    'home', 'about', 'products', 'product-detail', 'services',
+    'spare-parts', 'gallery', 'industries', 'reviews', 'contact', 'faq'
+  ];
+  const route = path.replace(/^\//, '').split('/')[0];
+  return validPages.includes(route) ? route : 'home';
+};
+
 export default function App() {
-  const [currentPage, setCurrentPage] = useState('home');
+  const [currentPage, setCurrentPage] = useState(getInitialPage);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [quoteModalOpen, setQuoteModalOpen] = useState(false);
   const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
@@ -47,8 +61,7 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#F7F7F7] flex flex-col justify-between selection:bg-[#6A1B9A] selection:text-white">
-      
+    <div className="min-h-screen bg-[#F7F7F7] flex flex-col justify-between selection:bg-[#6A1B9A] selection:text-white overflow-x-hidden w-full max-w-full">
       {/* Dynamic Header Navbar */}
       <Header 
         currentPage={currentPage} 

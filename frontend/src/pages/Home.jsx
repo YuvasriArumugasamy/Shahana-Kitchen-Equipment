@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { PRODUCTS, REVIEWS } from '../data/siteData';
 import { 
   ShieldCheck, Wrench, Award, Truck, Clock, Phone, 
-  ArrowRight, CheckCircle2, Star, Zap, ChevronRight, Settings, Sparkles, Building2
+  ArrowRight, CheckCircle2, Star, Zap, ChevronRight, Settings, Sparkles, Building2, Package, Image 
 } from 'lucide-react';
 
 export default function Home({ setCurrentPage, onOpenQuoteModal, onSelectProduct }) {
@@ -15,81 +15,89 @@ export default function Home({ setCurrentPage, onOpenQuoteModal, onSelectProduct
     : PRODUCTS.filter(p => p.category.toLowerCase().includes(activeTab.toLowerCase()) || activeTab.includes(p.category));
 
   return (
-    <div className="pt-20 space-y-20">
+    <div className="space-y-12 sm:space-y-16 md:space-y-20 pb-12">
 
-      {/* HERO SECTION - Matching Reference Design */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-purple-50/60 via-white to-gray-50 py-12">
-        <div className="max-w-container mx-auto px-4 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+      {/* HERO SECTION - VIDEO BACKGROUND WITH STUNNING ANIMATIONS */}
+      <section className="relative min-h-[70vh] sm:min-h-[85vh] flex items-center justify-center overflow-hidden py-12 sm:py-16 md:py-20">
+        <video
+          className="absolute inset-0 w-full h-full object-cover scale-105 transition-transform duration-1000"
+          src="/images/ithu_yellam_vachi_oru_video_pa.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+        />
+        
+        {/* Rich gradient fade for maximum text contrast & elegance */}
+        <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 sm:via-white/60 to-transparent pointer-events-none"></div>
+
+        <div className="max-w-container mx-auto px-4 relative z-10 w-full">
           
-          {/* Left Column Text */}
-          <div className="lg:col-span-6 space-y-6 text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 bg-purple-100/80 border border-purple-200 text-[#6A1B9A] px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">
-              <Sparkles className="w-4 h-4 text-[#6A1B9A]" />
+          {/* Main Text Content */}
+          <div className="max-w-2xl space-y-4 sm:space-y-6 text-left">
+            
+            {/* Animated Glowing Badge */}
+            <div className="animate-hero-slide-up animation-delay-100 inline-flex items-center gap-2 bg-[#6A1B9A] text-white px-3.5 sm:px-4 py-1.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider shadow-lg hover:shadow-purple-500/30 transition-all duration-300 transform hover:-translate-y-0.5">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-300 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-100"></span>
+              </span>
+              <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-purple-200 shrink-0 animate-pulse" />
               <span>Commercial Kitchen Equipment Manufacturer</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-extrabold text-gray-900 tracking-tight leading-[1.15]">
+            {/* Heading with Animation & Gradient Touch */}
+            <h1 className="animate-hero-slide-up animation-delay-200 text-2xl sm:text-4xl lg:text-5xl xl:text-6xl font-heading font-extrabold text-gray-900 tracking-tight leading-[1.15]">
               COMMERCIAL KITCHEN <br/>
-              <span className="text-[#6A1B9A]">EQUIPMENT</span>
+              <span className="text-[#6A1B9A] bg-clip-text text-transparent bg-gradient-to-r from-[#6A1B9A] via-purple-700 to-indigo-900">EQUIPMENT</span>
             </h1>
 
-            <p className="text-[#6A1B9A] text-xl font-bold tracking-wide uppercase">
-              SALES | SERVICE | SPARE PARTS
+            {/* Subheading */}
+            <p className="animate-hero-slide-up animation-delay-300 text-[#6A1B9A] text-base sm:text-xl lg:text-2xl font-extrabold tracking-wide uppercase flex items-center gap-2">
+              <span className="h-0.5 w-6 bg-[#6A1B9A] rounded-full inline-block"></span>
+              <span>SALES | SERVICE | SPARE PARTS</span>
             </p>
 
-            <p className="text-gray-600 text-base font-normal leading-relaxed max-w-xl mx-auto lg:mx-0">
+            {/* Description */}
+            <p className="animate-hero-slide-up animation-delay-400 text-gray-800 text-xs sm:text-base lg:text-lg font-semibold leading-relaxed">
               We provide high quality commercial kitchen equipment with best service and support for hotels, restaurants, cloud kitchens, marriage halls, hospitals, and industrial caterers across Tamil Nadu.
             </p>
 
             {/* Value Checkmark Bullets */}
-            <div className="space-y-2.5 pt-2 max-w-xl mx-auto lg:mx-0 text-left text-sm font-semibold text-gray-800">
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-5 h-5 text-[#6A1B9A] fill-purple-100" />
-                <span>Premium Quality Machines</span>
+            <div className="animate-hero-slide-up animation-delay-500 grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 pt-1 text-xs sm:text-sm font-bold text-gray-900">
+              <div className="flex items-center gap-2 group">
+                <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-[#6A1B9A] fill-purple-100 shrink-0 transition-transform duration-300 group-hover:scale-110" />
+                <span className="group-hover:text-[#6A1B9A] transition-colors">Premium Quality Machines</span>
               </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-5 h-5 text-[#6A1B9A] fill-purple-100" />
-                <span>Installation & Demonstration</span>
+              <div className="flex items-center gap-2 group">
+                <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-[#6A1B9A] fill-purple-100 shrink-0 transition-transform duration-300 group-hover:scale-110" />
+                <span className="group-hover:text-[#6A1B9A] transition-colors">Installation & Demonstration</span>
               </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-5 h-5 text-[#6A1B9A] fill-purple-100" />
-                <span>Spare Parts Available</span>
+              <div className="flex items-center gap-2 group">
+                <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-[#6A1B9A] fill-purple-100 shrink-0 transition-transform duration-300 group-hover:scale-110" />
+                <span className="group-hover:text-[#6A1B9A] transition-colors">Spare Parts Available</span>
               </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-5 h-5 text-[#6A1B9A] fill-purple-100" />
-                <span>After Sales Support</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-5 h-5 text-[#6A1B9A] fill-purple-100" />
-                <span>GST Billing</span>
+              <div className="flex items-center gap-2 group">
+                <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-[#6A1B9A] fill-purple-100 shrink-0 transition-transform duration-300 group-hover:scale-110" />
+                <span className="group-hover:text-[#6A1B9A] transition-colors">After Sales Support</span>
               </div>
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4">
+            <div className="animate-hero-slide-up animation-delay-600 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-3">
               <button
                 onClick={() => { setCurrentPage('products'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                className="btn-purple px-8 py-3.5 text-sm shadow-xl flex items-center gap-2"
+                className="btn-purple px-6 sm:px-8 py-3 sm:py-3.5 text-xs sm:text-sm shadow-xl flex items-center justify-center gap-2 w-full sm:w-auto transform hover:scale-[1.03] transition-all duration-300 active:scale-95"
               >
                 <span>VIEW PRODUCTS</span>
+                <ArrowRight className="w-4 h-4" />
               </button>
               <button
                 onClick={onOpenQuoteModal}
-                className="btn-secondary px-8 py-3.5 text-sm flex items-center gap-2"
+                className="btn-secondary px-6 sm:px-8 py-3 sm:py-3.5 text-xs sm:text-sm flex items-center justify-center gap-2 bg-white/90 backdrop-blur-sm w-full sm:w-auto transform hover:scale-[1.03] transition-all duration-300 active:scale-95 shadow-md"
               >
                 <span>REQUEST QUOTE</span>
               </button>
-            </div>
-          </div>
-
-          {/* Right Column Reference Studio Montage Image */}
-          <div className="lg:col-span-6 relative">
-            <div className="bg-white rounded-card p-4 shadow-2xl border border-gray-200 overflow-hidden group">
-              <img 
-                src="/images/instant wet grinder.png" 
-                alt="Shahana Commercial Kitchen Machinery Range"
-                className="w-full h-[420px] object-contain group-hover:scale-105 transition-transform duration-700" 
-              />
             </div>
           </div>
 
@@ -98,13 +106,16 @@ export default function Home({ setCurrentPage, onOpenQuoteModal, onSelectProduct
 
       {/* PRODUCT CATEGORIES GRID - Matching Reference Layout */}
       <section className="max-w-container mx-auto px-4">
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <h2 className="text-2xl sm:text-3xl font-heading font-extrabold text-[#6A1B9A] uppercase tracking-wider border-b-2 border-purple-200 inline-block pb-2">
+        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12 space-y-2">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl section-title-styled block">
             PRODUCT CATEGORIES
           </h2>
+          <div className="section-line-accent">
+            <div className="section-line-dot"></div>
+          </div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4 text-center">
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 sm:gap-4 text-center">
           {[
             { name: "Coconut Scraper", img: "/images/coconut scraper.png" },
             { name: "Wet Grinder", img: "/images/instant wet grinder.png" },
@@ -118,12 +129,12 @@ export default function Home({ setCurrentPage, onOpenQuoteModal, onSelectProduct
             <div 
               key={idx} 
               onClick={() => { setCurrentPage('products'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-              className="bg-white p-4 rounded-card border border-gray-200 shadow-sm hover:shadow-xl transition-all cursor-pointer hover:-translate-y-1 group"
+              className="bg-white p-3 sm:p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-xl transition-all cursor-pointer hover:-translate-y-1 group"
             >
-              <div className="w-full aspect-square bg-gray-50 rounded-xl overflow-hidden mb-3 p-2 flex items-center justify-center">
+              <div className="w-full aspect-square bg-gray-50 rounded-lg overflow-hidden mb-2 sm:mb-3 p-1.5 flex items-center justify-center">
                 <img src={cat.img} alt={cat.name} className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform" />
               </div>
-              <h3 className="font-heading font-bold text-gray-900 text-xs">{cat.name}</h3>
+              <h3 className="font-heading font-bold text-gray-900 text-[11px] sm:text-xs leading-tight">{cat.name}</h3>
             </div>
           ))}
         </div>
@@ -131,13 +142,16 @@ export default function Home({ setCurrentPage, onOpenQuoteModal, onSelectProduct
 
       {/* WHY CHOOSE US - Matching Reference Grid */}
       <section className="max-w-container mx-auto px-4">
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <h2 className="text-2xl sm:text-3xl font-heading font-extrabold text-[#6A1B9A] uppercase tracking-wider border-b-2 border-purple-200 inline-block pb-2">
+        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12 space-y-2">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl section-title-styled block">
             WHY CHOOSE US
           </h2>
+          <div className="section-line-accent">
+            <div className="section-line-dot"></div>
+          </div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 text-center">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-6 text-center">
           {[
             { icon: Award, title: "Premium Quality", desc: "Best quality stainless steel machines." },
             { icon: Truck, title: "Fast Delivery", desc: "On time delivery across Tamil Nadu." },
@@ -148,12 +162,12 @@ export default function Home({ setCurrentPage, onOpenQuoteModal, onSelectProduct
           ].map((item, idx) => {
             const IconComp = item.icon;
             return (
-              <div key={idx} className="bg-white rounded-card p-6 border border-gray-200 shadow-sm hover:shadow-lg transition-all text-center">
-                <div className="w-12 h-12 bg-purple-50 text-[#6A1B9A] rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <IconComp className="w-6 h-6" />
+              <div key={idx} className="bg-white rounded-2xl p-4 sm:p-5 border border-gray-200/90 shadow-sm hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 text-center border-t-4 border-t-[#6A1B9A] group">
+                <div className="w-11 h-11 sm:w-13 sm:h-13 bg-gradient-to-br from-purple-100 to-purple-50 text-[#6A1B9A] rounded-2xl flex items-center justify-center mx-auto mb-3 shrink-0 group-hover:bg-[#6A1B9A] group-hover:text-white transition-all duration-300 shadow-sm">
+                  <IconComp className="w-5.5 h-5.5 sm:w-6 sm:h-6" />
                 </div>
-                <h3 className="font-heading font-bold text-gray-900 text-sm mb-1">{item.title}</h3>
-                <p className="text-gray-500 text-xs">{item.desc}</p>
+                <h3 className="font-heading font-extrabold text-gray-900 text-xs sm:text-sm mb-1 group-hover:text-[#6A1B9A] transition-colors">{item.title}</h3>
+                <p className="text-gray-500 text-[11px] sm:text-xs leading-snug">{item.desc}</p>
               </div>
             );
           })}
@@ -161,29 +175,35 @@ export default function Home({ setCurrentPage, onOpenQuoteModal, onSelectProduct
       </section>
 
       {/* FEATURED PRODUCTS CAROUSEL - Matching Reference Design */}
-      <section className="bg-white py-16 border-y border-gray-200">
+      <section className="bg-white py-12 sm:py-16 border-y border-gray-200">
         <div className="max-w-container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <h2 className="text-2xl sm:text-3xl font-heading font-extrabold text-[#6A1B9A] uppercase tracking-wider border-b-2 border-purple-200 inline-block pb-2">
+          <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12 space-y-2">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl section-title-styled block">
               FEATURED PRODUCTS
             </h2>
+            <div className="section-line-accent">
+              <div className="section-line-dot"></div>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
             {PRODUCTS.slice(0, 4).map((product) => (
-              <div key={product.id} className="bg-white rounded-card overflow-hidden border border-gray-200 shadow-sm hover:shadow-2xl transition-all group flex flex-col justify-between p-4">
+              <div key={product.id} className="bg-white rounded-2xl overflow-hidden border border-gray-200/90 shadow-sm hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 group flex flex-col justify-between p-4 relative border-t-4 border-t-[#6A1B9A]">
                 <div>
-                  <div className="w-full aspect-square bg-gray-50 rounded-xl overflow-hidden p-4 flex items-center justify-center mb-4">
-                    <img src={product.image} alt={product.name} className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform" />
+                  <div className="w-full aspect-square bg-gradient-to-b from-purple-50/40 to-gray-50 rounded-xl overflow-hidden pt-8 pb-3 px-3 flex items-center justify-center mb-3.5 relative border border-gray-100">
+                    <span className="absolute top-2 left-2 z-20 bg-gradient-to-r from-[#6A1B9A] to-purple-900 text-white text-[10px] font-extrabold px-2.5 py-1 rounded-full shadow-md uppercase tracking-wider">
+                      Best Seller
+                    </span>
+                    <img src={product.image} alt={product.name} className="max-h-full max-w-full object-contain group-hover:scale-108 transition-transform duration-300 drop-shadow-sm relative z-10" />
                   </div>
-                  <h3 className="font-heading font-bold text-gray-900 text-base text-center mb-1">{product.name}</h3>
-                  <p className="text-xs text-gray-500 text-center mb-4">{product.capacity}</p>
+                  <h3 className="font-heading font-extrabold text-gray-900 text-sm sm:text-base text-center mb-1 group-hover:text-[#6A1B9A] transition-colors">{product.name}</h3>
+                  <p className="text-[11px] font-medium text-gray-500 text-center mb-4 bg-gray-50 py-1 px-2 rounded-lg border border-gray-100">{product.capacity}</p>
                 </div>
                 <button
                   onClick={() => onOpenQuoteModal(product)}
-                  className="btn-purple w-full py-2.5 text-xs font-semibold text-center"
+                  className="btn-purple w-full py-2.5 text-xs font-bold shadow-md shadow-purple-900/10 hover:shadow-purple-900/25 text-center"
                 >
-                  GET QUOTE
+                  GET FREE QUOTE
                 </button>
               </div>
             ))}
@@ -193,16 +213,19 @@ export default function Home({ setCurrentPage, onOpenQuoteModal, onSelectProduct
 
       {/* GALLERY SHOWCASE FROM REFERENCE */}
       <section className="max-w-container mx-auto px-4">
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <h2 className="text-2xl sm:text-3xl font-heading font-extrabold text-[#6A1B9A] uppercase tracking-wider border-b-2 border-purple-200 inline-block pb-2">
+        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12 space-y-2">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl section-title-styled block">
             GALLERY
           </h2>
+          <div className="section-line-accent">
+            <div className="section-line-dot"></div>
+          </div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-4">
           {["/images/gallery.png", "/images/gallery1.png", "/images/gallery2.png", "/images/gallery3.png", "/images/our workshop.png"].map((img, i) => (
-            <div key={i} className="rounded-card overflow-hidden border border-gray-200 shadow-sm aspect-square bg-gray-50 p-2">
-              <img src={img} alt="Workshop Gallery" className="w-full h-full object-cover rounded-xl" />
+            <div key={i} className="rounded-xl overflow-hidden border border-gray-200 shadow-sm aspect-square bg-gray-50 p-1.5">
+              <img src={img} alt="Workshop Gallery" className="w-full h-full object-cover object-top rounded-lg" />
             </div>
           ))}
         </div>

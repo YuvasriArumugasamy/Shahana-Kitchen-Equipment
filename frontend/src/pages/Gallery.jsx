@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { ChevronRight, Camera } from 'lucide-react';
 
 export default function Gallery() {
-  const [activeTab, setActiveTab] = useState('All');
+  const [activeTab, setActiveTab] = useState('All Photos');
 
   const galleryCategories = ['All Photos', 'Our Products', 'Installations', 'Workshop', 'Happy Customers'];
 
@@ -38,27 +39,47 @@ export default function Gallery() {
   ];
 
   return (
-    <div className="pt-20 space-y-12">
+    <div className="space-y-8 sm:space-y-12">
 
-      {/* HERO BANNER - Exact Reference Match */}
-      <section className="bg-gradient-to-r from-purple-950 via-[#6A1B9A] to-purple-900 text-white py-12">
-        <div className="max-w-container mx-auto px-4 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          <div className="lg:col-span-7 space-y-4">
-            <h1 className="text-4xl sm:text-5xl font-heading font-extrabold tracking-tight">
-              GALLERY
+      {/* HERO BANNER - STUNNING VIDEO BACKGROUND WITH ANIMATIONS */}
+      <section className="relative text-white py-14 sm:py-20 overflow-hidden min-h-[60vh] flex items-center">
+        <video
+          className="absolute inset-0 w-full h-full object-cover scale-105 transition-transform duration-1000"
+          src="/images/ithu_yellam_vachi_oru_super_an (3).mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-purple-950/70 to-black/80 pointer-events-none"></div>
+        <div className="max-w-container mx-auto px-4 relative z-10 w-full">
+          <div className="max-w-3xl space-y-4 sm:space-y-5">
+            
+            {/* Animated Glowing Badge */}
+            <div className="animate-hero-slide-up animation-delay-100 inline-flex items-center gap-2 bg-[#6A1B9A]/90 backdrop-blur-md border border-purple-400/30 text-purple-100 text-[10px] sm:text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full shadow-xl">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-200"></span>
+              </span>
+              <Camera className="w-3.5 h-3.5 text-purple-200" />
+              <span>PHOTO & VIDEO SHOWCASE</span>
+            </div>
+
+            {/* Animated Title */}
+            <h1 className="animate-hero-slide-up animation-delay-200 text-3xl sm:text-5xl lg:text-6xl font-heading font-extrabold tracking-tight drop-shadow-[0_10px_25px_rgba(0,0,0,0.6)] leading-tight">
+              PHOTO <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-200 via-white to-purple-300">GALLERY</span>
             </h1>
-            <p className="text-purple-100 text-lg font-semibold">
-              Explore our products, installations, workshop and happy customer moments.
+
+            {/* Subtitle */}
+            <p className="animate-hero-slide-up animation-delay-300 text-purple-100 text-sm sm:text-xl font-semibold max-w-2xl drop-shadow-md leading-relaxed">
+              Explore our commercial products, hotel installations, factory workshop, and happy customer moments across Tamil Nadu.
             </p>
 
-            <div className="text-xs text-purple-200 pt-2">
-              Home &gt; Gallery
-            </div>
-          </div>
-
-          <div className="lg:col-span-5">
-            <div className="bg-white/10 rounded-card p-3 border border-white/20">
-              <img src="/images/gallery.png" alt="Gallery Range" className="w-full h-56 object-cover rounded-xl" />
+            {/* Breadcrumb */}
+            <div className="animate-hero-slide-up animation-delay-400 flex items-center gap-2 pt-1 text-[11px] sm:text-xs font-medium text-purple-200 drop-shadow">
+              <span>Home</span>
+              <ChevronRight className="w-3.5 h-3.5 text-purple-400" />
+              <span className="text-white font-bold">Gallery</span>
             </div>
           </div>
         </div>
@@ -66,12 +87,12 @@ export default function Gallery() {
 
       {/* CATEGORY TABS */}
       <div className="max-w-container mx-auto px-4 text-center">
-        <div className="inline-flex flex-wrap gap-2 p-1.5 bg-white rounded-full shadow border border-gray-200">
+        <div className="inline-flex flex-wrap justify-center gap-1.5 sm:gap-2 p-1.5 bg-white rounded-2xl sm:rounded-full shadow border border-gray-200">
           {galleryCategories.map((cat, i) => (
             <button
               key={i}
               onClick={() => setActiveTab(cat)}
-              className={`px-5 py-2 rounded-full text-xs font-bold transition-all ${
+              className={`px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-full text-xs font-bold transition-all ${
                 activeTab === cat ? 'bg-[#6A1B9A] text-white shadow' : 'text-gray-700 hover:bg-gray-100'
               }`}
             >
@@ -81,65 +102,174 @@ export default function Gallery() {
         </div>
       </div>
 
-      {/* OUR PRODUCTS SECTION */}
-      <section className="max-w-container mx-auto px-4 space-y-6">
-        <div className="text-center">
-          <h2 className="text-2xl font-heading font-extrabold text-[#6A1B9A] uppercase tracking-wider border-b-2 border-purple-200 inline-block pb-1">
-            OUR PRODUCTS
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {productsGallery.map((item, idx) => (
-            <div key={idx} className="bg-white rounded-card overflow-hidden border border-gray-200 shadow-sm p-3 text-center">
-              <div className="w-full aspect-square bg-gray-50 rounded-xl overflow-hidden p-2 flex items-center justify-center mb-2">
-                <img src={item.img} alt={item.title} className="max-h-full max-w-full object-contain" />
+      {activeTab === 'All Photos' && (
+        <>
+          {/* OUR PRODUCTS SECTION */}
+          <section className="max-w-container mx-auto px-4 space-y-4 sm:space-y-6">
+            <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-8 space-y-1.5">
+              <h2 className="text-xl sm:text-2xl md:text-3xl section-title-styled block">
+                OUR PRODUCTS
+              </h2>
+              <div className="section-line-accent">
+                <div className="section-line-dot"></div>
               </div>
-              <h4 className="font-heading font-bold text-gray-900 text-xs">{item.title}</h4>
             </div>
-          ))}
-        </div>
-      </section>
 
-      {/* INSTALLATIONS SECTION */}
-      <section className="max-w-container mx-auto px-4 space-y-6">
-        <div className="text-center">
-          <h2 className="text-2xl font-heading font-extrabold text-[#6A1B9A] uppercase tracking-wider border-b-2 border-purple-200 inline-block pb-1">
-            INSTALLATIONS
-          </h2>
-        </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+              {productsGallery.map((item, idx) => (
+                <div key={idx} className="bg-white rounded-xl overflow-hidden border border-gray-200 shadow-sm p-2.5 sm:p-3 text-center">
+                  <div className="w-full aspect-square bg-gray-50 rounded-lg overflow-hidden p-2 flex items-center justify-center mb-2">
+                    <img src={item.img} alt={item.title} className="max-h-full max-w-full object-contain" />
+                  </div>
+                  <h4 className="font-heading font-bold text-gray-900 text-[11px] sm:text-xs leading-snug">{item.title}</h4>
+                </div>
+              ))}
+            </div>
+          </section>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {installationsGallery.map((item, idx) => (
-            <div key={idx} className="bg-white rounded-card overflow-hidden border border-gray-200 shadow-sm p-3 text-center">
-              <div className="w-full aspect-square bg-gray-50 rounded-xl overflow-hidden mb-2">
-                <img src={item.img} alt={item.title} className="w-full h-full object-cover rounded-xl" />
+          {/* INSTALLATIONS SECTION */}
+          <section className="max-w-container mx-auto px-4 space-y-4 sm:space-y-6">
+            <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-8 space-y-1.5">
+              <h2 className="text-xl sm:text-2xl md:text-3xl section-title-styled block">
+                INSTALLATIONS
+              </h2>
+              <div className="section-line-accent">
+                <div className="section-line-dot"></div>
               </div>
-              <h4 className="font-heading font-bold text-gray-900 text-xs">{item.title}</h4>
             </div>
-          ))}
-        </div>
-      </section>
 
-      {/* WORKSHOP & MORE SECTION */}
-      <section className="max-w-container mx-auto px-4 pb-16 space-y-6">
-        <div className="text-center">
-          <h2 className="text-2xl font-heading font-extrabold text-[#6A1B9A] uppercase tracking-wider border-b-2 border-purple-200 inline-block pb-1">
-            WORKSHOP & MORE
-          </h2>
-        </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+              {installationsGallery.map((item, idx) => (
+                <div key={idx} className="bg-white rounded-xl overflow-hidden border border-gray-200 shadow-sm p-2.5 sm:p-3 text-center">
+                  <div className="w-full aspect-square bg-gray-50 rounded-lg overflow-hidden mb-2">
+                    <img src={item.img} alt={item.title} className="w-full h-full object-cover rounded-lg" />
+                  </div>
+                  <h4 className="font-heading font-bold text-gray-900 text-[11px] sm:text-xs leading-snug">{item.title}</h4>
+                </div>
+              ))}
+            </div>
+          </section>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {workshopGallery.map((item, idx) => (
-            <div key={idx} className="bg-white rounded-card overflow-hidden border border-gray-200 shadow-sm p-3 text-center">
-              <div className="w-full aspect-square bg-gray-50 rounded-xl overflow-hidden mb-2">
-                <img src={item.img} alt={item.title} className="w-full h-full object-cover rounded-xl" />
+          {/* WORKSHOP & MORE SECTION */}
+          <section className="max-w-container mx-auto px-4 pb-12 sm:pb-16 space-y-4 sm:space-y-6">
+            <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-8 space-y-1.5">
+              <h2 className="text-xl sm:text-2xl md:text-3xl section-title-styled block">
+                WORKSHOP & MORE
+              </h2>
+              <div className="section-line-accent">
+                <div className="section-line-dot"></div>
               </div>
-              <h4 className="font-heading font-bold text-gray-900 text-xs">{item.title}</h4>
             </div>
-          ))}
-        </div>
-      </section>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+              {workshopGallery.map((item, idx) => (
+                <div key={idx} className="bg-white rounded-xl overflow-hidden border border-gray-200 shadow-sm p-2.5 sm:p-3 text-center">
+                  <div className="w-full aspect-square bg-gray-50 rounded-lg overflow-hidden mb-2">
+                    <img src={item.img} alt={item.title} className="w-full h-full object-cover object-top rounded-lg" />
+                  </div>
+                  <h4 className="font-heading font-bold text-gray-900 text-[11px] sm:text-xs leading-snug">{item.title}</h4>
+                </div>
+              ))}
+            </div>
+          </section>
+        </>
+      )}
+
+      {activeTab === 'Our Products' && (
+        <section className="max-w-container mx-auto px-4 space-y-4 sm:space-y-6">
+          <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-8 space-y-1.5">
+            <h2 className="text-xl sm:text-2xl md:text-3xl section-title-styled block">
+              OUR PRODUCTS
+            </h2>
+            <div className="section-line-accent">
+              <div className="section-line-dot"></div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+            {productsGallery.map((item, idx) => (
+              <div key={idx} className="bg-white rounded-xl overflow-hidden border border-gray-200 shadow-sm p-2.5 sm:p-3 text-center">
+                <div className="w-full aspect-square bg-gray-50 rounded-lg overflow-hidden p-2 flex items-center justify-center mb-2">
+                  <img src={item.img} alt={item.title} className="max-h-full max-w-full object-contain" />
+                </div>
+                <h4 className="font-heading font-bold text-gray-900 text-[11px] sm:text-xs leading-snug">{item.title}</h4>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {activeTab === 'Installations' && (
+        <section className="max-w-container mx-auto px-4 space-y-4 sm:space-y-6">
+          <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-8 space-y-1.5">
+            <h2 className="text-xl sm:text-2xl md:text-3xl section-title-styled block">
+              INSTALLATIONS
+            </h2>
+            <div className="section-line-accent">
+              <div className="section-line-dot"></div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+            {installationsGallery.map((item, idx) => (
+              <div key={idx} className="bg-white rounded-xl overflow-hidden border border-gray-200 shadow-sm p-2.5 sm:p-3 text-center">
+                <div className="w-full aspect-square bg-gray-50 rounded-lg overflow-hidden mb-2">
+                  <img src={item.img} alt={item.title} className="w-full h-full object-cover rounded-lg" />
+                </div>
+                <h4 className="font-heading font-bold text-gray-900 text-[11px] sm:text-xs leading-snug">{item.title}</h4>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {activeTab === 'Workshop' && (
+        <section className="max-w-container mx-auto px-4 pb-12 sm:pb-16 space-y-4 sm:space-y-6">
+          <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-8 space-y-1.5">
+            <h2 className="text-xl sm:text-2xl md:text-3xl section-title-styled block">
+              WORKSHOP & MORE
+            </h2>
+            <div className="section-line-accent">
+              <div className="section-line-dot"></div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+            {workshopGallery.map((item, idx) => (
+              <div key={idx} className="bg-white rounded-xl overflow-hidden border border-gray-200 shadow-sm p-2.5 sm:p-3 text-center">
+                <div className="w-full aspect-square bg-gray-50 rounded-lg overflow-hidden mb-2">
+                  <img src={item.img} alt={item.title} className="w-full h-full object-cover object-top rounded-lg" />
+                </div>
+                <h4 className="font-heading font-bold text-gray-900 text-[11px] sm:text-xs leading-snug">{item.title}</h4>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {activeTab === 'Happy Customers' && (
+        <section className="max-w-container mx-auto px-4 pb-12 sm:pb-16 space-y-4 sm:space-y-6">
+          <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-8 space-y-1.5">
+            <h2 className="text-xl sm:text-2xl md:text-3xl section-title-styled block">
+              HAPPY CUSTOMERS
+            </h2>
+            <div className="section-line-accent">
+              <div className="section-line-dot"></div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+            {workshopGallery.slice(0, 6).map((item, idx) => (
+              <div key={idx} className="bg-white rounded-xl overflow-hidden border border-gray-200 shadow-sm p-2.5 sm:p-3 text-center">
+                <div className="w-full aspect-square bg-gray-50 rounded-lg overflow-hidden mb-2">
+                  <img src={item.img} alt={item.title} className="w-full h-full object-cover object-top rounded-lg" />
+                </div>
+                <h4 className="font-heading font-bold text-gray-900 text-[11px] sm:text-xs leading-snug">{item.title}</h4>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
     </div>
   );

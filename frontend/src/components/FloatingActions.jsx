@@ -1,47 +1,36 @@
 import React from 'react';
-import { Phone, MessageSquare, ArrowUp } from 'lucide-react';
+import { Phone } from 'lucide-react';
 
 export default function FloatingActions() {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   return (
-    <div className="fixed bottom-6 right-6 z-40 flex flex-col gap-3">
-      {/* WhatsApp Button */}
+    <div className="fixed right-0 top-1/2 -translate-y-1/2 z-30 shadow-2xl rounded-l-xl sm:rounded-l-2xl overflow-hidden bg-[#581C87] border-l border-t border-b border-purple-400/40">
+      {/* Top Half - Call Now */}
       <a
-        href="https://wa.me/918675767640?text=Hi%20Shahana%20Kitchen%20Equipment,%20I%20want%20to%20inquire%20about%20commercial%20kitchen%20machines."
+        href="tel:+919994944123"
+        className="flex flex-col items-center justify-center px-2 py-2.5 sm:px-3 sm:py-3.5 text-white hover:bg-purple-900/80 transition-colors border-b border-purple-400/30 group"
+        title="Call Now"
+      >
+        <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-purple-700/80 flex items-center justify-center group-hover:scale-110 transition-transform">
+          <Phone className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
+        </div>
+        <span className="hidden sm:block text-[10px] font-bold tracking-wide whitespace-nowrap mt-1">Call Now</span>
+      </a>
+
+      {/* Bottom Half - WhatsApp */}
+      <a
+        href="https://wa.me/919994944123?text=Hi%20Shahana%20Kitchen%20Equipment,%20I%20want%20to%20inquire%20about%20commercial%20kitchen%20machines."
         target="_blank"
         rel="noreferrer"
-        className="w-13 h-13 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-all p-3 group relative"
+        className="flex flex-col items-center justify-center px-2 py-2.5 sm:px-3 sm:py-3.5 text-white hover:bg-purple-900/80 transition-colors group"
         title="Chat on WhatsApp"
       >
-        <MessageSquare className="w-6 h-6" />
-        <span className="absolute right-14 bg-gray-900 text-white text-xs font-semibold px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-lg">
-          Instant WhatsApp Enquiry
-        </span>
+        <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-emerald-500 flex items-center justify-center group-hover:scale-110 transition-transform shadow-md">
+          <svg className="w-4 h-4 text-white fill-current" viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.197 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.05 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+        </div>
+        <span className="hidden sm:block text-[10px] font-bold tracking-wide whitespace-nowrap mt-1">WhatsApp</span>
       </a>
-
-      {/* Call Button */}
-      <a
-        href="tel:+918675767640"
-        className="w-13 h-13 bg-[#6A1B9A] hover:bg-[#581C87] text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-all p-3 group relative"
-        title="Call Us Now"
-      >
-        <Phone className="w-6 h-6" />
-        <span className="absolute right-14 bg-gray-900 text-white text-xs font-semibold px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-lg">
-          Call Sales: +91 86757 67640
-        </span>
-      </a>
-
-      {/* Back to top */}
-      <button
-        onClick={scrollToTop}
-        className="w-11 h-11 bg-white hover:bg-gray-100 text-gray-800 border border-gray-200 rounded-full flex items-center justify-center shadow-lg transition-all"
-        title="Scroll to Top"
-      >
-        <ArrowUp className="w-5 h-5" />
-      </button>
     </div>
   );
 }
