@@ -1,30 +1,36 @@
 import React from 'react';
-import { Wrench, Shield, Clock, CheckCircle2, Phone, Settings, ArrowRight } from 'lucide-react';
+import { Wrench, ShieldCheck, FileCheck, Compass, Truck, RefreshCw, ArrowRight } from 'lucide-react';
 
 export default function Services({ onOpenQuoteModal }) {
   const servicesList = [
     {
       title: "Commercial Machine Installation",
+      icon: Wrench,
       desc: "Precision floor leveling, 3-phase high torque power wiring connection, water inlet setup, and full operational demo by senior engineers."
     },
     {
       title: "Preventive Maintenance & Repair",
+      icon: ShieldCheck,
       desc: "Scheduled inspection, motor insulation checks, stone dressing, oil seal changes, and instant breakdown repairs for zero kitchen downtime."
     },
     {
       title: "Annual Maintenance Contracts (AMC)",
+      icon: FileCheck,
       desc: "Comprehensive annual maintenance packages tailored for hotels, marriage halls, and hospitals ensuring 365 days of smooth machinery performance."
     },
     {
       title: "Kitchen Setup Consultation",
+      icon: Compass,
       desc: "Expert layout planning for commercial kitchens, choosing correct motor power, space optimization, and safety compliance guidance."
     },
     {
       title: "On-Site Service & Emergency Repair",
+      icon: Truck,
       desc: "Mobile service units equipped with skilled technicians and spare parts ready to dispatch to hotel sites across Tamil Nadu."
     },
     {
       title: "Machine Relocation & Upgrades",
+      icon: RefreshCw,
       desc: "Dismantling, safe transport packaging, and re-installation services when expanding or shifting your restaurant location."
     }
   ];
@@ -79,22 +85,25 @@ export default function Services({ onOpenQuoteModal }) {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-          {servicesList.map((srv, idx) => (
-            <div key={idx} className="bg-[#FFFFFF] rounded-2xl p-5 sm:p-8 border border-gray-200/90 shadow-sm hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 space-y-3 sm:space-y-4 group relative border-t-4 border-t-[#6A1B9A]">
-              <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-purple-100 to-purple-50 text-[#6A1B9A] rounded-2xl flex items-center justify-center group-hover:from-[#6A1B9A] group-hover:to-purple-900 group-hover:text-white transition-all duration-300 shrink-0 shadow-sm">
-                <Wrench className="w-6 h-6 sm:w-7 sm:h-7" />
+          {servicesList.map((srv, idx) => {
+            const IconComponent = srv.icon;
+            return (
+              <div key={idx} className="bg-[#FFFFFF] rounded-2xl p-5 sm:p-8 border border-gray-200/90 shadow-sm hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 space-y-3 sm:space-y-4 group relative border-t-4 border-t-[#6A1B9A]">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-purple-100 to-purple-50 text-[#6A1B9A] rounded-2xl flex items-center justify-center group-hover:from-[#6A1B9A] group-hover:to-purple-900 group-hover:text-white transition-all duration-300 shrink-0 shadow-sm">
+                  <IconComponent className="w-6 h-6 sm:w-7 sm:h-7" />
+                </div>
+                <h3 className="font-heading font-extrabold text-gray-900 text-base sm:text-lg group-hover:text-[#6A1B9A] transition-colors">{srv.title}</h3>
+                <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">{srv.desc}</p>
+                <button
+                  onClick={onOpenQuoteModal}
+                  className="inline-flex items-center gap-2 text-xs font-extrabold text-[#6A1B9A] hover:text-purple-900 pt-2 group-hover:translate-x-1 transition-transform"
+                >
+                  <span>Book Service Consultation</span>
+                  <ArrowRight className="w-4 h-4 text-[#6A1B9A]" />
+                </button>
               </div>
-              <h3 className="font-heading font-extrabold text-gray-900 text-base sm:text-lg group-hover:text-[#6A1B9A] transition-colors">{srv.title}</h3>
-              <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">{srv.desc}</p>
-              <button
-                onClick={onOpenQuoteModal}
-                className="inline-flex items-center gap-2 text-xs font-extrabold text-[#6A1B9A] hover:text-purple-900 pt-2 group-hover:translate-x-1 transition-transform"
-              >
-                <span>Book Service Consultation</span>
-                <ArrowRight className="w-4 h-4 text-[#6A1B9A]" />
-              </button>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 
