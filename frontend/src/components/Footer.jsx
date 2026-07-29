@@ -79,14 +79,14 @@ export default function Footer({ setCurrentPage, onOpenQuoteModal }) {
               Quick Links
             </h3>
             <ul className="space-y-2.5 text-xs sm:text-sm text-gray-400">
-              {['home', 'about', 'products', 'services', 'spare-parts', 'gallery', 'industries', 'reviews', 'contact'].map((link) => (
+              {['home', 'about', 'products', 'services', 'spare-parts', 'gallery', 'industries', 'reviews', 'contact', 'faq'].map((link) => (
                 <li key={link}>
                   <button
                     onClick={() => handleNav(link)}
                     className="hover:text-purple-400 transition-colors capitalize flex items-center gap-1.5"
                   >
                     <ChevronRight className="w-3.5 h-3.5 text-purple-500" />
-                    <span>{link.replace('-', ' ')}</span>
+                    <span>{link === 'faq' ? 'FAQ' : link.replace('-', ' ')}</span>
                   </button>
                 </li>
               ))}
@@ -144,9 +144,8 @@ export default function Footer({ setCurrentPage, onOpenQuoteModal }) {
         {/* Bottom Bar */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-500 text-center sm:text-left">
           <p>© {new Date().getFullYear()} Shahana Kitchen Equipment. All Rights Reserved.</p>
-          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
+          <div>
             <span className="hover:underline cursor-pointer">Designed with <span className="text-red-400">❤️</span> by -Yuvasi Arumugasamy</span>
-            <button onClick={() => handleNav('faq')} className="hover:underline">FAQ</button>
           </div>
         </div>
 
