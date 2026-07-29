@@ -104,9 +104,9 @@ export default function Home({ setCurrentPage, onOpenQuoteModal, onSelectProduct
         </div>
       </section>
 
-      {/* PRODUCT CATEGORIES GRID - Matching Reference Layout */}
+      {/* PRODUCT CATEGORIES - 3D ROTATING CAROUSEL */}
       <section className="max-w-container mx-auto px-4">
-        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12 space-y-2">
+        <div className="text-center max-w-3xl mx-auto mb-4 sm:mb-6 space-y-2">
           <h2 className="text-2xl sm:text-3xl md:text-4xl section-title-styled block">
             PRODUCT CATEGORIES
           </h2>
@@ -115,28 +115,46 @@ export default function Home({ setCurrentPage, onOpenQuoteModal, onSelectProduct
           </div>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 sm:gap-4 text-center">
-          {[
-            { name: "Coconut Scraper", img: "/images/coconut scraper.png" },
-            { name: "Wet Grinder", img: "/images/instant wet grinder.png" },
-            { name: "Dough Kneader", img: "/images/dough kneader.png" },
-            { name: "Vegetable Cutter", img: "/images/vegetable cutting machine.png" },
-            { name: "Pulverizer", img: "/images/pulverizer machine.png" },
-            { name: "Mixer Machine", img: "/images/mixer machine.png" },
-            { name: "Coconut Milk Extractor", img: "/images/coconut milk extractor.png" },
-            { name: "Spare Parts", img: "/images/spare part.png" }
-          ].map((cat, idx) => (
-            <div 
-              key={idx} 
-              onClick={() => { setCurrentPage('products'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-              className="bg-white p-3 sm:p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-xl transition-all cursor-pointer hover:-translate-y-1 group"
-            >
-              <div className="w-full aspect-square bg-gray-50 rounded-lg overflow-hidden mb-2 sm:mb-3 p-1.5 flex items-center justify-center">
-                <img src={cat.img} alt={cat.name} className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform" />
+        <div className="carousel-wrapper">
+          <div className="carousel-inner">
+            {[
+              { name: "Coconut Scraper", img: "/images/coconut scraper.png", color: "142, 249, 252" },
+              { name: "Wet Grinder", img: "/images/instant wet grinder.png", color: "142, 252, 204" },
+              { name: "Dough Kneader", img: "/images/dough kneader.png", color: "142, 252, 157" },
+              { name: "Vegetable Cutter", img: "/images/vegetable cutting machine.png", color: "215, 252, 142" },
+              { name: "Pulverizer", img: "/images/pulverizer machine.png", color: "252, 252, 142" },
+              { name: "Mixer Machine", img: "/images/mixer machine.png", color: "252, 208, 142" },
+              { name: "Coconut Milk Extractor", img: "/images/coconut milk extractor.png", color: "252, 142, 142" },
+              { name: "Spare Parts", img: "/images/spare part.png", color: "204, 142, 252" },
+              { name: "Coconut Scraper", img: "/images/coconut scraper.png", color: "142, 249, 252" },
+              { name: "Wet Grinder", img: "/images/instant wet grinder.png", color: "142, 252, 204" },
+              { name: "Dough Kneader", img: "/images/dough kneader.png", color: "142, 252, 157" },
+              { name: "Vegetable Cutter", img: "/images/vegetable cutting machine.png", color: "215, 252, 142" }
+            ].map((cat, idx) => (
+              <div
+                key={idx}
+                className="carousel-card"
+                style={{
+                  "--color-card": cat.color,
+                  "--index": idx,
+                  transform: `rotateY(calc((360deg / 12) * ${idx})) translateZ(250px)`
+                }}
+                onClick={() => { setCurrentPage('products'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+              >
+                <div className="carousel-card-img">
+                  <img src={cat.img} alt={cat.name} />
+                </div>
+                <div className="carousel-card-label">{cat.name}</div>
               </div>
-              <h3 className="font-heading font-bold text-gray-900 text-[11px] sm:text-xs leading-tight">{cat.name}</h3>
-            </div>
-          ))}
+            ))}
+          </div>
+        </div>
+
+        <div className="text-center mt-8 sm:mt-12">
+          <p className="text-gray-600 text-sm font-medium">
+            <span className="animate-pulse inline-block mr-1">↻</span> 
+            Click any product to view details
+          </p>
         </div>
       </section>
 
