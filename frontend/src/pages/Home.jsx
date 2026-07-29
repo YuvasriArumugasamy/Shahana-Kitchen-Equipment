@@ -149,13 +149,6 @@ export default function Home({ setCurrentPage, onOpenQuoteModal, onSelectProduct
             ))}
           </div>
         </div>
-
-        <div className="text-center mt-8 sm:mt-12">
-          <p className="text-gray-600 text-sm font-medium">
-            <span className="animate-pulse inline-block mr-1">↻</span> 
-            Click any product to view details
-          </p>
-        </div>
       </section>
 
       {/* WHY CHOOSE US - Matching Reference Grid */}
