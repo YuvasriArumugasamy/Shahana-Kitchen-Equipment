@@ -60,10 +60,17 @@ export default function Contact({ onOpenQuoteModal }) {
             </div>
           </div>
 
-          {/* Right Commercial Kitchen Image */}
+          {/* Right Commercial Kitchen Video */}
           <div className="animate-hero-scale animation-delay-300 lg:col-span-6">
             <div className="rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-white/10 p-2 transform hover:scale-[1.02] transition-transform duration-500 backdrop-blur-sm">
-              <img src="/images/caterin unit installation.png" alt="Commercial Kitchen Setup" className="w-full h-52 sm:h-72 object-cover rounded-xl" />
+              <video
+                src="/images/ithu_yellam_vachi_oru_super_an (3).mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full h-52 sm:h-72 object-cover rounded-xl"
+              />
             </div>
           </div>
         </div>
