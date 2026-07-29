@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import FloatingActions from './components/FloatingActions';
@@ -38,6 +38,56 @@ export default function App() {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [quoteModalOpen, setQuoteModalOpen] = useState(false);
   const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
+
+  // Automatic Smooth Scroll Reveal Animations Hook
+  useEffect(() => {
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    };
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px 0px -40px 0px',
+      threshold: 0.08
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    const timer = setTimeout(() => {
+      const targets = document.querySelectorAll(
+        'main section, main .grid > div, main .carousel-wrapper, .reveal-on-scroll, .reveal-left, .reveal-right, .reveal-zoom'
+      );
+
+      targets.forEach((target, index) => {
+        if (
+          !target.classList.contains('reveal-on-scroll') &&
+          !target.classList.contains('reveal-left') &&
+          !target.classList.contains('reveal-right') &&
+          !target.classList.contains('reveal-zoom')
+        ) {
+          target.classList.add('reveal-on-scroll');
+        }
+
+        if (target.parentElement && target.parentElement.classList.contains('grid')) {
+          const staggerClass = `stagger-${(index % 6) + 1}`;
+          if (!target.classList.contains(staggerClass)) {
+            target.classList.add(staggerClass);
+          }
+        }
+
+        observer.observe(target);
+      });
+    }, 100);
+
+    return () => {
+      clearTimeout(timer);
+      observer.disconnect();
+    };
+  }, [currentPage]);
 
   const handleOpenQuoteModal = (product = null) => {
     setSelectedProduct(product);
