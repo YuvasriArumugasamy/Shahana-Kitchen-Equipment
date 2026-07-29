@@ -56,12 +56,12 @@ export default function Header({ currentPage, setCurrentPage, onOpenQuoteModal }
   const navItems = [
     { label: 'Home', id: 'home', icon: Home },
     { label: 'About Us', id: 'about', icon: Building2 },
-    { label: 'Products Catalog', id: 'products', icon: Package },
-    { label: 'Equipment Services', id: 'services', icon: Wrench },
+    { label: 'Products', id: 'products', icon: Package },
+    { label: 'Services', id: 'services', icon: Wrench },
     { label: 'Spare Parts', id: 'spare-parts', icon: Settings },
     { label: 'Gallery', id: 'gallery', icon: Image },
-    { label: 'Industries We Serve', id: 'industries', icon: Factory },
-    { label: 'Client Reviews', id: 'reviews', icon: Star },
+    { label: 'Industries', id: 'industries', icon: Factory },
+    { label: 'Reviews', id: 'reviews', icon: Star },
     { label: 'Contact Us', id: 'contact', icon: PhoneCall },
   ];
 
@@ -110,42 +110,42 @@ export default function Header({ currentPage, setCurrentPage, onOpenQuoteModal }
       {/* Main Navigation - STICKY / FIXED AT TOP 0 WHEN SCROLLED */}
       <div className={`w-full transition-all duration-300 bg-white ${
         isScrolled 
-          ? 'fixed top-0 left-0 right-0 z-50 py-3 sm:py-3.5 shadow-lg border-b border-purple-200' 
-          : 'relative py-3.5 sm:py-4.5 border-b border-gray-200'
+          ? 'fixed top-0 left-0 right-0 z-50 py-2.5 sm:py-3 shadow-md border-b border-purple-200' 
+          : 'relative py-3 sm:py-3.5 border-b border-gray-200'
       }`}>
-        <div className="w-full mx-auto px-3.5 sm:px-5 flex items-center justify-between gap-3 sm:gap-5">
+        <div className="max-w-[1550px] mx-auto px-3 sm:px-6 flex items-center justify-between gap-2 lg:gap-4">
           
           {/* Logo Brand Group */}
           <div 
             onClick={() => handleNavClick('home')}
-            className="cursor-pointer flex items-center gap-2 sm:gap-3 shrink-0 min-w-0"
+            className="cursor-pointer flex items-center gap-2.5 shrink-0 pr-2"
           >
-            <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full border-2 border-[#6A1B9A] shadow-md bg-white flex items-center justify-center p-0.5 scale-105 shrink-0">
+            <div className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full border-2 border-[#6A1B9A] shadow-sm bg-white flex items-center justify-center p-0.5 shrink-0">
               <img 
                 src="/images/logo.png" 
                 alt="Shahana Icon Logo" 
                 className="w-full h-full object-cover rounded-full"
               />
             </div>
-            <div className="flex items-center shrink-0 pr-4">
+            <div className="flex items-center shrink-0">
               <img 
                 src="/images/ChatGPT Image Jul 28, 2026, 01_18_49 PM.png" 
                 alt="Shahana Kitchen Equipment" 
-                className="h-10 xs:h-12 sm:h-14 md:h-16 lg:h-18 w-auto object-contain mix-blend-multiply scale-[1.28] sm:scale-[1.38] origin-left" 
+                className="h-8 xs:h-9 sm:h-10 md:h-11 w-auto object-contain mix-blend-multiply" 
               />
             </div>
           </div>
 
-          {/* Desktop Nav Items - Super Clean Row */}
-          <nav className="hidden lg:flex items-center justify-center flex-1 space-x-1 font-heading">
+          {/* Desktop Nav Items - Super Clean Single Line Row */}
+          <nav className="hidden lg:flex items-center justify-center flex-1 gap-1 xl:gap-1.5 font-heading">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
-                className={`px-3.5 py-2 rounded-full text-[11px] xl:text-xs font-bold uppercase tracking-wider transition-all duration-200 ${
+                className={`px-2.5 xl:px-3 py-1.5 rounded-full text-[11px] xl:text-[12px] font-extrabold uppercase tracking-wider whitespace-nowrap transition-all duration-200 ${
                   currentPage === item.id 
-                    ? 'text-[#6A1B9A] bg-purple-100/80 font-extrabold shadow-sm' 
-                    : 'text-gray-700 hover:text-[#6A1B9A] hover:bg-purple-50/60'
+                    ? 'text-[#6A1B9A] bg-purple-100/90 shadow-xs' 
+                    : 'text-gray-700 hover:text-[#6A1B9A] hover:bg-purple-50/70'
                 }`}
               >
                 {item.label}
