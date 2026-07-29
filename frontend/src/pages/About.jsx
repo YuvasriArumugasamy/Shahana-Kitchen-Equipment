@@ -73,7 +73,7 @@ export default function About({ setCurrentPage, onOpenQuoteModal }) {
                 <span className="text-[11px] sm:text-xs text-gray-500 font-semibold leading-tight block mt-1">Years of Experience</span>
               </div>
               <div className="bg-white p-4 sm:p-6 rounded-2xl border border-gray-200 shadow-sm">
-                <span className="text-2xl sm:text-3xl font-heading font-extrabold text-[#6A1B9A] block">500+</span>
+                <span className="text-2xl sm:text-3xl font-heading font-extrabold text-[#6A1B9A] block">1000+</span>
                 <span className="text-[11px] sm:text-xs text-gray-500 font-semibold leading-tight block mt-1">Happy Customers</span>
               </div>
               <div className="bg-white p-4 sm:p-6 rounded-2xl border border-gray-200 shadow-sm">
