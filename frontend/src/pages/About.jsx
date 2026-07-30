@@ -85,17 +85,6 @@ export default function About({ setCurrentPage, onOpenQuoteModal }) {
                 <span className="text-[11px] sm:text-xs text-gray-500 font-semibold leading-tight block mt-1">After Sales Support</span>
               </div>
             </div>
-
-            {/* GST Registered Card */}
-            <div className="bg-purple-50 border border-purple-200 p-4 sm:p-6 rounded-2xl flex items-center justify-between">
-              <div>
-                <h4 className="font-heading font-bold text-gray-900 text-xs sm:text-base">GST REGISTERED BUSINESS</h4>
-                <p className="text-[11px] sm:text-xs text-gray-600 mt-1">We are a GST registered company and provide GST invoices for all our products and services.</p>
-              </div>
-              <div className="w-10 h-10 sm:w-14 sm:h-14 bg-[#6A1B9A] text-white rounded-full flex items-center justify-center font-bold text-xs shrink-0 ml-3 sm:ml-4">
-                GST
-              </div>
-            </div>
           </div>
         </div>
       </section>
