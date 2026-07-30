@@ -1,0 +1,27 @@
+========================================================================
+  SHAHANA KITCHEN EQUIPMENT - ASSETS PHOTO MANAGEMENT GUIDE
+========================================================================
+
+Neenga Client Original Photos-a `src/assets/` or `public/assets/` folder-la 
+vachi easy-ah map panna rendu options irukku:
+
+OPTION 1: (EASIEST) Put Photos in public/assets/client-photos/
+------------------------------------------------------------
+1. Ungaloda client original photos-a indha folder-la paste pannunga:
+   `frontend/public/assets/client-photos/`
+
+2. [clientAssets.js](file:///c:/Users/HP/OneDrive/Attachments/OneDrive/Desktop/files/shahana%20kitchen%20eqipment/frontend/src/assets/clientAssets.js) file open panni, photo filename-a update pannunga!
+   Example:
+   instantWetGrinder: "/assets/client-photos/my_client_wet_grinder.jpg",
+
+3. Save pannina, website-la automatic-ah client photo live aayidum!
+
+
+OPTION 2: Import photos directly in JS
+--------------------------------------
+1. Place images inside `src/assets/client-photos/`
+2. In `clientAssets.js`, import the image at the top:
+   import wetGrinderImg from './client-photos/wet_grinder.jpg';
+3. Assign it to `instantWetGrinder: wetGrinderImg`.
+
+========================================================================

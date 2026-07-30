@@ -1,3 +1,5 @@
+import { productAssets } from '../assets/clientAssets';
+
 export const PRODUCTS = [
   {
     id: "wet-grinder-instant",
@@ -11,7 +13,7 @@ export const PRODUCTS = [
     rating: 4.9,
     reviewsCount: 48,
     badge: "Best Seller",
-    image: "/images/instant wet grinder.png",
+    image: productAssets.instantWetGrinder,
     description: "Heavy-duty commercial instant wet grinder designed for continuous batter grinding in commercial kitchens, hotels, and marriage halls with zero heat transfer.",
     features: [
       "304 Grade Stainless Steel Body & Drum",
@@ -34,7 +36,7 @@ export const PRODUCTS = [
     rating: 4.9,
     reviewsCount: 62,
     badge: "Popular",
-    image: "/images/titting wet grinder.png",
+    image: productAssets.tiltingWetGrinder,
     description: "Hydraulic and manual tilting wet grinder for effortlessly tilting and discharging heavy batter directly into containers without manual lifting.",
     features: [
       "Effortless Tilting Mechanism",
@@ -57,7 +59,7 @@ export const PRODUCTS = [
     rating: 4.8,
     reviewsCount: 35,
     badge: "Industrial Grade",
-    image: "/images/pulverizer machine.png",
+    image: productAssets.pulverizerMachine,
     description: "High-speed multi-purpose spice and grain pulverizer machine for dry grinding masala, turmeric, chilli, coriander, rice, and wheat flour.",
     features: [
       "Multi-mesh interchangeable sieves",
@@ -80,7 +82,7 @@ export const PRODUCTS = [
     rating: 4.9,
     reviewsCount: 54,
     badge: "Top Rated",
-    image: "/images/dough kneader.png",
+    image: productAssets.doughKneader,
     description: "Precision spiral dough kneader for bakeries, pizza outlets, and parotta masters ensuring perfectly kneaded smooth dough in under 8 minutes.",
     features: [
       "Dual Speed Spiral Revolution Control",
@@ -103,7 +105,7 @@ export const PRODUCTS = [
     rating: 4.8,
     reviewsCount: 41,
     badge: "Efficiency Leader",
-    image: "/images/vegetable cutting machine.png",
+    image: productAssets.vegetableCutter,
     description: "Versatile vegetable slicing, dicing, shredding, and julienne cutting machine with interchangeable hardened SS blade discs.",
     features: [
       "Includes 5 Different Cutting Blade Discs",
@@ -126,7 +128,7 @@ export const PRODUCTS = [
     rating: 4.9,
     reviewsCount: 38,
     badge: "Essential",
-    image: "/images/coconut scraper.png",
+    image: productAssets.coconutScraper,
     description: "Compact high-efficiency double head coconut scraper machine for quick scraping without muscle strain.",
     features: [
       "Dual Hardened SS Serrated Blades",
@@ -149,7 +151,7 @@ export const PRODUCTS = [
     rating: 4.8,
     reviewsCount: 27,
     badge: "Heavy Duty",
-    image: "/images/mixer machine.png",
+    image: productAssets.mixerMachine,
     description: "Commercial heavy duty mixer machine designed for heavy spice grinding, chutneys, and food processing.",
     features: [
       "Heavy Stainless Steel Jars",
@@ -170,7 +172,7 @@ export const PRODUCTS = [
     rating: 4.9,
     reviewsCount: 19,
     badge: "Specialized",
-    image: "/images/coconut milk extractor.png",
+    image: productAssets.coconutMilkExtractor,
     description: "Precision coconut milk extraction machine for high volume sweet shops, hotels, and coconut processing units.",
     features: [
       "Maximum Juice & Milk Yield",

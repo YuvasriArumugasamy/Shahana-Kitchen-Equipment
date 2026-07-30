@@ -1,0 +1,34 @@
+========================================================================
+  SHAHANA KITCHEN EQUIPMENT - CLIENT PHOTOS REPLACEMENT GUIDE
+========================================================================
+
+Follow these simple 3 steps to replace any website photo with your client's original photos:
+
+STEP 1: Copy your Client Photos
+-------------------------------
+Save your client's photos into this folder:
+frontend/public/images/
+
+(Or create a subfolder like frontend/public/images/client/ and paste them inside)
+
+
+STEP 2: Open the Configuration File
+-----------------------------------
+Open this file in your editor:
+[galleryData.js](file:///c:/Users/HP/OneDrive/Attachments/OneDrive/Desktop/files/shahana%20kitchen%20eqipment/frontend/src/data/galleryData.js)
+
+
+STEP 3: Update the Image Name
+-----------------------------
+In galleryData.js, change the `img` line to your new photo name.
+
+Example:
+Change:
+    img: "/images/instant wet grinder.png"
+
+To:
+    img: "/images/my_client_wet_grinder.jpg"
+
+
+That's it! Save the file and refresh your browser. The website will immediately show the client's original photos.
+========================================================================

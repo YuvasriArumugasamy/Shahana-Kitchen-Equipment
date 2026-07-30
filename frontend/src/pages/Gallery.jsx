@@ -1,42 +1,11 @@
 import React, { useState } from 'react';
 import { ChevronRight, Camera } from 'lucide-react';
+import { productsGallery, installationsGallery, workshopGallery, happyCustomersGallery } from '../data/galleryData';
 
 export default function Gallery() {
   const [activeTab, setActiveTab] = useState('All Photos');
 
   const galleryCategories = ['All Photos', 'Our Products', 'Installations', 'Workshop', 'Happy Customers'];
-
-  const productsGallery = [
-    { title: "Wet Grinder", img: "/images/instant wet grinder.png" },
-    { title: "Dough Kneader", img: "/images/dough kneader.png" },
-    { title: "Vegetable Cutter", img: "/images/vegetable cutting machine.png" },
-    { title: "Coconut Scraper", img: "/images/coconut scraper.png" },
-    { title: "Mixer Machine", img: "/images/mixer machine.png" },
-    { title: "Pulverizer Machine", img: "/images/pulverizer machine.png" },
-    { title: "Instant Wet Grinder", img: "/images/instant wet grinder.png" },
-    { title: "Coconut Milk Extractor", img: "/images/coconut milk extractor.png" },
-    { title: "Idli / Dosa Batter Mixer", img: "/images/idly dose batter mixer.png" },
-    { title: "Masala Grinder", img: "/images/masala grinder.png" },
-    { title: "Juice Machine", img: "/images/juice mechine.png" }
-  ];
-
-  const installationsGallery = [
-    { title: "Hotel Installation", img: "/images/gallery.png" },
-    { title: "Restaurant Installation", img: "/images/gallery1.png" },
-    { title: "Catering Unit Installation", img: "/images/caterin unit installation.png" },
-    { title: "Bakery Installation", img: "/images/bakery installation.png" },
-    { title: "Institution Installation", img: "/images/institution installation.png" },
-    { title: "Cloud Kitchen Setup", img: "/images/hostel installation.png" }
-  ];
-
-  const workshopGallery = [
-    { title: "Our Workshop", img: "/images/our workshop.png" },
-    { title: "Spare Parts Stock", img: "/images/spare parts stock.png" },
-    { title: "Machine Repair", img: "/images/machine repair.png" },
-    { title: "Testing & Quality Check", img: "/images/testing .png" },
-    { title: "Our Team", img: "/images/our team.png" },
-    { title: "Delivery & Packing", img: "/images/delivery .png" }
-  ];
 
   return (
     <div className="space-y-8 sm:space-y-12">
@@ -259,7 +228,7 @@ export default function Gallery() {
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
-            {workshopGallery.slice(0, 6).map((item, idx) => (
+            {happyCustomersGallery.map((item, idx) => (
               <div key={idx} className="bg-white rounded-xl overflow-hidden border border-gray-200 shadow-sm p-2.5 sm:p-3 text-center">
                 <div className="w-full aspect-square bg-gray-50 rounded-lg overflow-hidden mb-2">
                   <img src={item.img} alt={item.title} className="w-full h-full object-cover object-top rounded-lg" />
