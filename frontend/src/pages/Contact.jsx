@@ -12,16 +12,22 @@ export default function Contact({ onOpenQuoteModal }) {
   return (
     <div className="space-y-8 sm:space-y-12">
 
-      {/* HERO BANNER WITH STUNNING ANIMATIONS */}
-      <section className="relative min-h-[45vh] flex items-center bg-gradient-to-r from-purple-950 via-[#6A1B9A] to-purple-900 text-white overflow-hidden py-12 sm:py-16">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-purple-800/40 via-transparent to-transparent pointer-events-none"></div>
-        <div className="max-w-container mx-auto px-4 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10 w-full">
-          
-          {/* Left Text */}
-          <div className="lg:col-span-6 space-y-4 sm:space-y-5">
+      {/* HERO BANNER - STUNNING VIDEO BACKGROUND WITH ANIMATIONS */}
+      <section className="relative min-h-[50vh] sm:min-h-[60vh] flex items-center text-white overflow-hidden py-14 sm:py-20">
+        <video
+          className="absolute inset-0 w-full h-full object-cover scale-105 transition-transform duration-1000"
+          src="/images/ithu_yellam_vachi_oru_super_an (3).mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-purple-950/80 to-black/75 pointer-events-none"></div>
+        <div className="max-w-container mx-auto px-4 relative z-10 w-full">
+          <div className="max-w-3xl space-y-4 sm:space-y-5">
             
             {/* Animated Glowing Badge */}
-            <div className="animate-hero-slide-up animation-delay-100 inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-purple-400/30 text-purple-100 text-[10px] sm:text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full shadow-lg">
+            <div className="animate-hero-slide-up animation-delay-100 inline-flex items-center gap-2 bg-[#6A1B9A]/90 backdrop-blur-md border border-purple-400/30 text-purple-100 text-[10px] sm:text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full shadow-lg">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-300 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-100"></span>
@@ -30,20 +36,20 @@ export default function Contact({ onOpenQuoteModal }) {
             </div>
 
             {/* Animated Title */}
-            <h1 className="animate-hero-slide-up animation-delay-200 text-3xl sm:text-4xl lg:text-5xl font-heading font-extrabold tracking-tight drop-shadow-md">
+            <h1 className="animate-hero-slide-up animation-delay-200 text-3xl sm:text-5xl lg:text-6xl font-heading font-extrabold tracking-tight drop-shadow-[0_10px_25px_rgba(0,0,0,0.6)] leading-tight">
               CONTACT <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-200 via-white to-purple-300">US</span>
             </h1>
 
-            <p className="animate-hero-slide-up animation-delay-300 text-purple-100 text-xs sm:text-sm max-w-lg leading-relaxed font-medium">
+            <p className="animate-hero-slide-up animation-delay-300 text-purple-100 text-sm sm:text-lg max-w-2xl leading-relaxed font-semibold drop-shadow">
               We're here to help you! Get in touch with us for equipment quotes, custom machinery specifications, spare parts inquiries, or site installation support across Tamil Nadu.
             </p>
 
-            <div className="animate-hero-slide-up animation-delay-400 space-y-3 pt-1 text-xs font-semibold text-purple-100">
+            <div className="animate-hero-slide-up animation-delay-400 space-y-3 pt-2 text-xs sm:text-sm font-semibold text-purple-100">
               <div className="flex items-center gap-3 group">
-                <div className="w-8 h-8 bg-purple-800/80 rounded-full flex items-center justify-center text-white shrink-0 group-hover:scale-110 group-hover:bg-[#6A1B9A] transition-all duration-300 shadow">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 bg-purple-800/90 rounded-full flex items-center justify-center text-white shrink-0 group-hover:scale-110 group-hover:bg-[#6A1B9A] transition-all duration-300 shadow border border-purple-400/30">
                   <Phone className="w-4 h-4" />
                 </div>
-                <a href="tel:+919994944123" className="hover:underline font-bold text-white text-xs sm:text-sm transition-colors">+91 99949 44123</a>
+                <a href="tel:+919994944123" className="hover:underline font-bold text-white text-xs sm:text-base transition-colors">+91 99949 44123</a>
               </div>
 
               <a 
@@ -52,25 +58,11 @@ export default function Contact({ onOpenQuoteModal }) {
                 rel="noopener noreferrer" 
                 className="flex items-start gap-3 group hover:text-purple-200 transition-colors"
               >
-                <div className="w-8 h-8 bg-purple-800/80 rounded-full flex items-center justify-center text-white shrink-0 mt-0.5 group-hover:scale-110 group-hover:bg-[#6A1B9A] transition-all duration-300 shadow">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 bg-purple-800/90 rounded-full flex items-center justify-center text-white shrink-0 mt-0.5 group-hover:scale-110 group-hover:bg-[#6A1B9A] transition-all duration-300 shadow border border-purple-400/30">
                   <MapPin className="w-4 h-4" />
                 </div>
-                <span className="text-xs sm:text-sm leading-snug hover:underline">5/120 G, Shop No.7, M.S.K. Building, Sankaran Kovil Road, Ramayanpatti, Tirunelveli - 627358</span>
+                <span className="text-xs sm:text-sm leading-snug hover:underline font-medium">5/120 G, Shop No.7, M.S.K. Building, Sankaran Kovil Road, Ramayanpatti, Tirunelveli - 627358</span>
               </a>
-            </div>
-          </div>
-
-          {/* Right Commercial Kitchen Video */}
-          <div className="animate-hero-scale animation-delay-300 lg:col-span-6">
-            <div className="rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-white/10 p-2 transform hover:scale-[1.02] transition-transform duration-500 backdrop-blur-sm">
-              <video
-                src="/images/ithu_yellam_vachi_oru_super_an (3).mp4"
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="w-full h-52 sm:h-72 object-cover rounded-xl"
-              />
             </div>
           </div>
         </div>
