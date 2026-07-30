@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { PRODUCTS, REVIEWS } from '../data/siteData';
+import { productAssets } from '../assets/clientAssets';
 import { 
   ShieldCheck, Wrench, Award, Truck, Clock, Phone, 
   ArrowRight, CheckCircle2, Star, Zap, ChevronRight, Settings, Sparkles, Building2, Package, Image 
@@ -13,6 +14,21 @@ export default function Home({ setCurrentPage, onOpenQuoteModal, onSelectProduct
   const filteredProducts = activeTab === 'All' 
     ? PRODUCTS 
     : PRODUCTS.filter(p => p.category.toLowerCase().includes(activeTab.toLowerCase()) || activeTab.includes(p.category));
+
+  const carouselItems = [
+    { name: "Vegetable Cutter", img: productAssets.vegetableCutter, color: "215, 252, 142" },
+    { name: "Wet Grinder", img: productAssets.wetGrinder, color: "142, 252, 204" },
+    { name: "Atta Kneader", img: productAssets.attaKneader, color: "142, 252, 157" },
+    { name: "Coconut Crab", img: productAssets.coconutCrab, color: "142, 249, 252" },
+    { name: "U-Drum SS Mixer", img: productAssets.uDrumMixer, color: "252, 208, 142" },
+    { name: "Table Top Grinder", img: productAssets.tableTopWetGrinder, color: "252, 252, 142" },
+    { name: "Chicken Feather Remover", img: productAssets.chickenFeatherRemover, color: "252, 142, 142" },
+    { name: "Commercial Oil Dryer", img: productAssets.oilDryer, color: "204, 142, 252" },
+    { name: "Vegetable Cutter", img: productAssets.vegetableCutter, color: "215, 252, 142" },
+    { name: "Wet Grinder", img: productAssets.wetGrinder, color: "142, 252, 204" },
+    { name: "Atta Kneader", img: productAssets.attaKneader, color: "142, 252, 157" },
+    { name: "Coconut Crab", img: productAssets.coconutCrab, color: "142, 249, 252" }
+  ];
 
   return (
     <div className="space-y-12 sm:space-y-16 md:space-y-20 pb-12">
@@ -117,20 +133,7 @@ export default function Home({ setCurrentPage, onOpenQuoteModal, onSelectProduct
 
         <div className="carousel-wrapper">
           <div className="carousel-inner">
-            {[
-              { name: "Coconut Scraper", img: "/images/coconut scraper.png", color: "142, 249, 252" },
-              { name: "Wet Grinder", img: "/images/instant wet grinder.png", color: "142, 252, 204" },
-              { name: "Dough Kneader", img: "/images/dough kneader.png", color: "142, 252, 157" },
-              { name: "Vegetable Cutter", img: "/images/vegetable cutting machine.png", color: "215, 252, 142" },
-              { name: "Pulverizer", img: "/images/pulverizer machine.png", color: "252, 252, 142" },
-              { name: "Mixer Machine", img: "/images/mixer machine.png", color: "252, 208, 142" },
-              { name: "Coconut Milk Extractor", img: "/images/coconut milk extractor.png", color: "252, 142, 142" },
-              { name: "Spare Parts", img: "/images/spare part.png", color: "204, 142, 252" },
-              { name: "Coconut Scraper", img: "/images/coconut scraper.png", color: "142, 249, 252" },
-              { name: "Wet Grinder", img: "/images/instant wet grinder.png", color: "142, 252, 204" },
-              { name: "Dough Kneader", img: "/images/dough kneader.png", color: "142, 252, 157" },
-              { name: "Vegetable Cutter", img: "/images/vegetable cutting machine.png", color: "215, 252, 142" }
-            ].map((cat, idx) => (
+            {carouselItems.map((cat, idx) => (
               <div
                 key={idx}
                 className="carousel-card"
