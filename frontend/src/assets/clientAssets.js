@@ -34,4 +34,6 @@ export const productAssets = {
   juiceMachine: ssSinksCounters,
 };
 
+export const clientAssetImages = productAssets;
+
 export default productAssets;

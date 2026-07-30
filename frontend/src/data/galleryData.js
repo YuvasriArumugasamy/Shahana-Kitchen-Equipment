@@ -1,10 +1,5 @@
 /**
  * GALLERY DATA CONFIGURATION & CLIENT ASSETS MAPPING
- * 
- * You can put your client photos in:
- * 1. src/assets/clientAssets.js  (Recommended!)
- *    OR
- * 2. Directly change the 'img' path below to your asset file path!
  */
 
 import { productAssets } from '../assets/clientAssets';
@@ -94,42 +89,42 @@ export const installationsGallery = [
     id: 1,
     title: "Hotel Installation",
     location: "Madurai",
-    img: clientAssetImages.hotelInstallation || "/images/gallery.png",
+    img: "/images/gallery.png",
     description: "Complete commercial hotel kitchen setup"
   },
   {
     id: 2,
     title: "Restaurant Installation",
     location: "Coimbatore",
-    img: clientAssetImages.restaurantInstallation || "/images/gallery1.png",
+    img: "/images/gallery1.png",
     description: "Modern restaurant stainless steel layout"
   },
   {
     id: 3,
     title: "Catering Unit Installation",
     location: "Tirunelveli",
-    img: clientAssetImages.cateringInstallation || "/images/caterin unit installation.png",
+    img: "/images/caterin unit installation.png",
     description: "Heavy-duty bulk catering equipment installation"
   },
   {
     id: 4,
     title: "Bakery Installation",
     location: "Chennai",
-    img: clientAssetImages.bakeryInstallation || "/images/bakery installation.png",
+    img: "/images/bakery installation.png",
     description: "Commercial bakery dough kneader & ovens"
   },
   {
     id: 5,
     title: "Institution Installation",
     location: "Trichy",
-    img: clientAssetImages.institutionInstallation || "/images/institution installation.png",
+    img: "/images/institution installation.png",
     description: "College canteen & hospital kitchen equipment"
   },
   {
     id: 6,
     title: "Cloud Kitchen Setup",
     location: "Salem",
-    img: clientAssetImages.cloudKitchenInstallation || "/images/hostel installation.png",
+    img: "/images/hostel installation.png",
     description: "Compact multi-brand cloud kitchen installation"
   }
 ];
@@ -138,37 +133,37 @@ export const workshopGallery = [
   {
     id: 1,
     title: "Our Factory Workshop",
-    img: clientAssetImages.workshop || "/images/our workshop.png",
+    img: "/images/our workshop.png",
     description: "Manufacturing & SS fabrication facility"
   },
   {
     id: 2,
     title: "Spare Parts Stock",
-    img: clientAssetImages.spareParts || "/images/spare parts stock.png",
+    img: "/images/spare parts stock.png",
     description: "Genuine copper motors, bearings & gear sets"
   },
   {
     id: 3,
     title: "Machine Repair & Service",
-    img: clientAssetImages.machineRepair || "/images/machine repair.png",
+    img: "/images/machine repair.png",
     description: "Expert technician maintenance & servicing"
   },
   {
     id: 4,
     title: "Testing & Quality Check",
-    img: clientAssetImages.testing || "/images/testing .png",
+    img: "/images/testing .png",
     description: "Rigorous quality check before dispatch"
   },
   {
     id: 5,
     title: "Our Engineering Team",
-    img: clientAssetImages.ourTeam || "/images/our team.png",
+    img: "/images/our team.png",
     description: "Experienced engineers and fabricators"
   },
   {
     id: 6,
     title: "Safe Delivery & Packing",
-    img: clientAssetImages.delivery || "/images/delivery .png",
+    img: "/images/delivery .png",
     description: "Heavy wooden box packing for safe transit"
   }
 ];
@@ -178,21 +173,21 @@ export const happyCustomersGallery = [
     id: 1,
     title: "Hotel Sri Balaji",
     location: "Tirunelveli",
-    img: clientAssetImages.hotelInstallation || "/images/gallery.png",
+    img: "/images/gallery.png",
     testimonial: "Excellent wet grinder performance!"
   },
   {
     id: 2,
     title: "Anandha Bhavan",
     location: "Madurai",
-    img: clientAssetImages.restaurantInstallation || "/images/gallery1.png",
+    img: "/images/gallery1.png",
     testimonial: "Reliable commercial kitchen setup."
   },
   {
     id: 3,
     title: "Sree Catering",
     location: "Kovilpatti",
-    img: clientAssetImages.cateringInstallation || "/images/caterin unit installation.png",
+    img: "/images/caterin unit installation.png",
     testimonial: "Prompt delivery and great service."
   }
 ];
