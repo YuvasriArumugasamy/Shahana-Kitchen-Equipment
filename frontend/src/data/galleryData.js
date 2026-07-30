@@ -7,80 +7,59 @@ import { productAssets } from '../assets/clientAssets';
 export const productsGallery = [
   {
     id: 1,
-    title: "Instant Wet Grinder",
-    category: "Wet Grinders",
-    img: productAssets.instantWetGrinder,
-    description: "Heavy duty commercial instant wet grinder"
+    title: "Vegetable Cutting Machine",
+    category: "Cutters",
+    img: productAssets.vegetableCutter,
+    description: "0.5 HP Lakshmi copper motor vegetable cutting machine"
   },
   {
     id: 2,
-    title: "Tilting Wet Grinder",
+    title: "Commercial Wet Grinder",
     category: "Wet Grinders",
-    img: productAssets.tiltingWetGrinder,
-    description: "Hydraulic tilting commercial wet grinder"
+    img: productAssets.wetGrinder,
+    description: "Commercial wet grinder 3 Litres to 25 Litres available"
   },
   {
     id: 3,
-    title: "Dough Kneader",
-    category: "Kneaders",
-    img: productAssets.doughKneader,
-    description: "Spiral dough kneader for bakeries & hotels"
+    title: "Coconut Crab Machine",
+    category: "Scrapers",
+    img: productAssets.coconutCrab,
+    description: "0.5 HP Lakshmi copper motor coconut crab scraper"
   },
   {
     id: 4,
-    title: "Vegetable Cutter",
-    category: "Cutters",
-    img: productAssets.vegetableCutter,
-    description: "Multi-functional vegetable slicing machine"
+    title: "U-Drum SS Mixer",
+    category: "Mixers",
+    img: productAssets.uDrumMixer,
+    description: "Starting from 50 Litres stainless steel mat finishing"
   },
   {
     id: 5,
-    title: "Coconut Scraper",
-    category: "Scrapers",
-    img: productAssets.coconutScraper,
-    description: "Commercial double head coconut scraper"
+    title: "Atta Kneader Machine",
+    category: "Kneaders",
+    img: productAssets.attaKneader,
+    description: "10 kg to 50 kg Lakshmi copper motor kneader"
   },
   {
     id: 6,
-    title: "Mixer Machine",
-    category: "Mixers",
-    img: productAssets.mixerMachine,
-    description: "Commercial heavy duty spice mixer"
+    title: "Table Top Wet Grinder",
+    category: "Wet Grinders",
+    img: productAssets.tableTopWetGrinder,
+    description: "Compact high efficiency table top wet grinder"
   },
   {
     id: 7,
-    title: "Pulverizer Machine",
-    category: "Pulverizers",
-    img: productAssets.pulverizerMachine,
-    description: "High speed spice & grain pulverizer"
+    title: "Chicken Feather Remover",
+    category: "Processing",
+    img: productAssets.chickenFeatherRemover,
+    description: "Commercial stainless steel chicken feather removing machine"
   },
   {
     id: 8,
-    title: "Coconut Milk Extractor",
-    category: "Extractors",
-    img: productAssets.coconutMilkExtractor,
-    description: "Stainless steel coconut milk extractor"
-  },
-  {
-    id: 9,
-    title: "Idli / Dosa Batter Mixer",
-    category: "Mixers",
-    img: productAssets.batterMixer,
-    description: "Large volume batter mixing machine"
-  },
-  {
-    id: 10,
-    title: "Masala Grinder",
-    category: "Grinders",
-    img: productAssets.masalaGrinder,
-    description: "Heavy duty masala grinding unit"
-  },
-  {
-    id: 11,
-    title: "Juice Machine",
-    category: "Extractors",
-    img: productAssets.juiceMachine,
-    description: "Commercial fruit juice extraction machine"
+    title: "Commercial Oil Dryer",
+    category: "Processing",
+    img: productAssets.oilDryer,
+    description: "High speed centrifugal oil dryer machine"
   }
 ];
 
