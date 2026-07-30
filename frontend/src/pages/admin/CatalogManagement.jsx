@@ -328,14 +328,14 @@ export default function CatalogManagement({
             </thead>
             <tbody className="divide-y divide-slate-100 font-medium text-slate-700">
               {paginatedProducts.length > 0 ? (
-                paginatedProducts.map((p) => {
+                paginatedProducts.map((p, idx) => {
                   const isChecked = selectedProducts.includes(p.id);
                   const isFeatured = p.featured !== undefined ? p.featured : (p.rating >= 4.9);
                   const stockText = p.stockUnits || `${p.stockCount !== undefined ? p.stockCount : 15} Units`;
                   const isLowStock = stockText.toLowerCase().includes('low') || stockText.includes('8 Units') || stockText.includes('5 Units');
                   const availabilityBadge = isLowStock ? 'Low Stock' : 'In Stock';
                   const categoryTag = p.category || 'Wet Grinders';
-                  const skuCode = p.sku || `SKE-WG-00${p.id}`;
+                  const skuCode = p.sku || `SKE-${(p.category || 'GEN').slice(0, 2).toUpperCase()}-0${idx + 1}`;
 
                   return (
                     <tr key={p.id} className={`hover:bg-purple-50/30 transition-colors ${isChecked ? 'bg-purple-50/50' : ''}`}>
@@ -350,12 +350,12 @@ export default function CatalogManagement({
                       </td>
 
                       {/* Product Thumbnail & Title */}
-                      <td className="py-3.5 px-4">
+                      <td className="py-3.5 px-4 min-w-[240px]">
                         <div className="flex items-center gap-3">
                           <img 
                             src={p.image || 'https://images.unsplash.com/photo-1590794056226-77ef3a6c4743?auto=format&fit=crop&w=150&q=80'} 
                             alt={p.name} 
-                            className="w-12 h-12 rounded-xl object-cover border border-slate-200 shrink-0 bg-slate-100"
+                            className="w-12 h-12 rounded-xl object-cover border border-slate-200 shrink-0 bg-slate-100 p-0.5"
                           />
                           <div className="min-w-0">
                             <span className="font-bold text-slate-900 block leading-snug truncate">{p.name}</span>
@@ -363,7 +363,7 @@ export default function CatalogManagement({
                               {p.shortDesc || p.description?.slice(0, 35) || 'High performance SS body'}
                             </span>
                             {p.badge && (
-                              <span className="inline-block mt-0.5 px-2 py-0.2 text-[9px] font-extrabold bg-purple-100 text-purple-700 rounded-md">
+                              <span className="inline-block mt-0.5 px-2 py-0.5 text-[9px] font-extrabold bg-purple-100 text-purple-700 rounded-md">
                                 {p.badge}
                               </span>
                             )}
@@ -372,31 +372,33 @@ export default function CatalogManagement({
                       </td>
 
                       {/* Category Pill */}
-                      <td className="py-3.5 px-4">
-                        <span className="px-2.5 py-1 rounded-md text-[11px] font-bold bg-purple-50 text-purple-700 border border-purple-100">
+                      <td className="py-3.5 px-4 whitespace-nowrap">
+                        <span className="px-2.5 py-1 rounded-md text-[11px] font-bold bg-purple-50 text-purple-700 border border-purple-100/80 inline-block whitespace-nowrap">
                           {categoryTag}
                         </span>
                       </td>
 
                       {/* SKU */}
-                      <td className="py-3.5 px-4 text-slate-500 font-mono text-[11px] font-semibold">
-                        {skuCode}
+                      <td className="py-3.5 px-4 whitespace-nowrap font-mono text-[11px] font-bold text-slate-600">
+                        <span className="px-2 py-0.5 bg-slate-100 rounded border border-slate-200">
+                          {skuCode}
+                        </span>
                       </td>
 
                       {/* Price */}
-                      <td className="py-3.5 px-4 font-black text-slate-900">
+                      <td className="py-3.5 px-4 whitespace-nowrap font-black text-slate-900 text-sm">
                         {p.price}
                       </td>
 
                       {/* Stock Units */}
-                      <td className="py-3.5 px-4 font-bold">
+                      <td className="py-3.5 px-4 whitespace-nowrap font-bold text-xs">
                         <span className={isLowStock ? 'text-amber-600' : 'text-emerald-600'}>
                           {stockText}
                         </span>
                       </td>
 
                       {/* Availability Badge */}
-                      <td className="py-3.5 px-4">
+                      <td className="py-3.5 px-4 whitespace-nowrap">
                         <span className={`px-2.5 py-1 rounded-full text-[10px] font-extrabold flex items-center gap-1.5 w-max ${
                           isLowStock 
                             ? 'bg-amber-50 text-amber-700 border border-amber-200' 
@@ -408,7 +410,7 @@ export default function CatalogManagement({
                       </td>
 
                       {/* Featured Star */}
-                      <td className="py-3.5 px-4 text-center">
+                      <td className="py-3.5 px-4 text-center whitespace-nowrap">
                         <button
                           onClick={() => toggleFeatured(p.id)}
                           className={`p-1.5 rounded-lg transition-colors ${
@@ -421,7 +423,7 @@ export default function CatalogManagement({
                       </td>
 
                       {/* Last Updated */}
-                      <td className="py-3.5 px-4 text-slate-400 text-[11px] font-medium">
+                      <td className="py-3.5 px-4 text-slate-400 text-[11px] font-medium whitespace-nowrap">
                         20 May 2024<br />
                         <span className="text-[10px] text-slate-400 font-normal">10:30 AM</span>
                       </td>

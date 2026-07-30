@@ -53,9 +53,8 @@ export default function AdminLayout({
       icon: ShoppingBag, 
       hasSub: true,
       subItems: [
-        { id: 'products', label: 'All Products' },
-        { id: 'edit-product-new', label: 'Add New Product' },
-        { id: 'categories', label: 'Categories' }
+        { id: 'products', label: 'Catalog & Products' },
+        { id: 'edit-product-new', label: 'Add New Product' }
       ]
     },
     { id: 'categories', label: 'Categories', icon: FolderTree },
@@ -67,12 +66,7 @@ export default function AdminLayout({
     { id: 'enquiries', label: 'Enquiries', icon: MessageSquare, badge: '5' },
     { id: 'reviews', label: 'Reviews', icon: Star },
     { id: 'users', label: 'Users', icon: Users },
-    { id: 'orders', label: 'Orders', icon: ShoppingCart },
-    { id: 'reports', label: 'Reports', icon: BarChart3 },
-    { id: 'seo-settings', label: 'SEO Settings', icon: Globe },
-    { id: 'settings', label: 'Website Settings', icon: Sliders },
-    { id: 'notifications-tab', label: 'Notifications', icon: Bell },
-    { id: 'system-settings', label: 'System Settings', icon: Shield }
+    { id: 'settings', label: 'Website Settings', icon: Sliders }
   ];
 
   const getBreadcrumb = () => {
