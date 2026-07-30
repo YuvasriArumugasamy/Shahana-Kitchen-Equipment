@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Search, SlidersHorizontal, ChevronRight, Phone, MessageSquare, Download } from 'lucide-react';
+import { productAssets } from '../assets/clientAssets';
 
 export default function Products({ setCurrentPage, onOpenQuoteModal, onSelectProduct }) {
   const [selectedCategory, setSelectedCategory] = useState('All Products');
@@ -7,17 +8,17 @@ export default function Products({ setCurrentPage, onOpenQuoteModal, onSelectPro
   const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
 
   const productsList = [
-    { name: "Instant Wet Grinder", category: "Wet Grinders", specs: "10L | 20L | 30L", badge: "Best Seller", img: "/images/instant wet grinder.png" },
-    { name: "Tilting Wet Grinder", category: "Tilting Wet Grinders", specs: "15L | 25L | 35L", badge: "Popular", img: "/images/titting wet grinder.png" },
-    { name: "Dough Kneader", category: "Dough Kneaders", specs: "5kg | 10kg | 25kg", badge: "New Arrival", img: "/images/dough kneader.png" },
-    { name: "Vegetable Cutting Machine", category: "Vegetable Cutters", specs: "All Models Available", badge: "", img: "/images/vegetable cutting machine.png" },
-    { name: "Coconut Scraper", category: "Coconut Scrapers", specs: "Domestic | Commercial", badge: "", img: "/images/coconut scraper.png" },
-    { name: "Pulverizer Machine", category: "Pulverizers", specs: "1HP | 2HP | 3HP", badge: "", img: "/images/pulverizer machine.png" },
-    { name: "Mixer Machine", category: "Mixer Machines", specs: "10L | 20L | 30L", badge: "", img: "/images/mixer machine.png" },
-    { name: "Coconut Milk Extractor", category: "Extractors", specs: "5L | 10L | 15L", badge: "", img: "/images/coconut milk extractor.png" },
-    { name: "Idli Dosa Batter Mixer", category: "Mixers", specs: "10L | 20L | 30L", badge: "", img: "/images/idly dose batter mixer.png" },
-    { name: "Masala Grinder", category: "Grinders", specs: "2HP | 3HP | 5HP", badge: "", img: "/images/masala grinder.png" },
-    { name: "Juice Machine", category: "Juicers", specs: "Sugarcane / Fruits", badge: "", img: "/images/juice mechine.png" },
+    { name: "Vegetable Cutting Machine", category: "Vegetable Cutters", specs: "0.5 HP Lakshmi Copper Motor", badge: "Best Seller", img: productAssets.vegetableCutter },
+    { name: "Commercial Wet Grinder", category: "Wet Grinders", specs: "3L to 25L Available", badge: "Popular", img: productAssets.wetGrinder },
+    { name: "Tilting Wet Grinder", category: "Tilting Wet Grinders", specs: "15L | 25L | 35L", badge: "", img: productAssets.tiltingWetGrinder },
+    { name: "Atta Kneader Machine", category: "Dough Kneaders", specs: "10kg to 50kg Lakshmi Motor", badge: "Top Rated", img: productAssets.attaKneader },
+    { name: "Coconut Crab Machine", category: "Coconut Scrapers", specs: "0.5 HP Lakshmi Motor", badge: "", img: productAssets.coconutCrab },
+    { name: "U-Drum SS Mixer", category: "Mixer Machines", specs: "50L SS Mat Finishing", badge: "", img: productAssets.uDrumMixer },
+    { name: "Table Top Wet Grinder", category: "Wet Grinders", specs: "Compact 2L - 5L", badge: "", img: productAssets.tableTopWetGrinder },
+    { name: "Chicken Feather Remover", category: "Processing Machines", specs: "Full SS Heavy Duty", badge: "", img: productAssets.chickenFeatherRemover },
+    { name: "Commercial Oil Dryer", category: "Processing Machines", specs: "Centrifugal 15kg/Batch", badge: "", img: productAssets.oilDryer },
+    { name: "Coconut Milk Extractor", category: "Extractors", specs: "5L | 10L | 15L", badge: "", img: productAssets.coconutMilkExtractor },
+    { name: "Juice Machine", category: "Juicers", specs: "Sugarcane / Fruits", badge: "", img: productAssets.juiceMachine },
     { name: "Spare Parts", category: "Parts", specs: "All Types Available", badge: "", img: "/images/spare part.png" }
   ];
 
