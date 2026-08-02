@@ -49,21 +49,18 @@ export default function Footer({ setCurrentPage, onOpenQuoteModal }) {
           {/* Col 1: Brand Info with Circular Logo */}
           <div>
             <div className="flex items-center gap-3 mb-4 bg-white p-2.5 sm:p-3 rounded-2xl shadow-md border border-gray-100 max-w-xs">
-              <div className="w-11 h-11 sm:w-13 sm:h-13 rounded-full overflow-hidden border-2 border-[#6A1B9A] shadow-sm bg-white p-0.5 shrink-0">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-[#6A1B9A] shadow-sm bg-white p-0.5 shrink-0">
                 <img 
                   src={logoImg} 
-                  alt="MS Shahana Kitchen Equipment Logo" 
+                  alt="MS Shahana Icon Logo" 
                   className="w-full h-full object-cover rounded-full"
                 />
               </div>
-              <div className="flex flex-col justify-center">
-                <span className="font-heading font-extrabold text-sm sm:text-base text-gray-900 leading-none tracking-tight">
-                  SHAHANA <span className="text-[#6A1B9A]">KITCHEN</span>
-                </span>
-                <span className="text-[9px] font-bold text-gray-500 tracking-widest uppercase mt-0.5">
-                  EQUIPMENT
-                </span>
-              </div>
+              <img 
+                src="/images/ChatGPT Image Jul 28, 2026, 01_18_49 PM.png" 
+                alt="Shahana Kitchen Equipment" 
+                className="h-8 sm:h-10 object-contain mix-blend-multiply" 
+              />
             </div>
             <p className="text-gray-400 text-xs sm:text-sm mb-4 leading-relaxed">
               Shahana Kitchen Equipment is Tamil Nadu's leading B2B commercial kitchen equipment manufacturer, supplier, service specialist, and genuine spare parts dealer.
