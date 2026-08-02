@@ -1,7 +1,7 @@
 /**
  * CLIENT PRODUCT ASSETS MAPPER
  * 
- * Exact product photo imports directly from WhatsApp client images
+ * Exact product photo imports directly from client images
  */
 
 import wetGrinder20L from './WhatsApp Image 2026-07-29 at 22.58.39.jpeg';
@@ -10,6 +10,13 @@ import blueTableTopGrinder from './WhatsApp Image 2026-07-29 at 23.01.53.jpeg';
 import attaKneaderYellow from './WhatsApp Image 2026-07-29 at 22.45.52.jpeg';
 import doughKneaderOrange from './WhatsApp Image 2026-07-29 at 22.56.24.jpeg';
 import uDrumMixerSS from './WhatsApp Image 2026-07-29 at 22.43.16.jpeg';
+import coconutCrabSS from './WhatsApp Image 2026-07-29 at 22.37.48.jpeg';
+import oilDryerMachine from './WhatsApp Image 2026-07-29 at 22.57.24.jpeg';
+import ssSinksCounters from './Screenshot 2026-07-30 111312.png';
+import gravyMachineImg from './Screenshot 2026-07-30 111435.png';
+import ssProductScreenshot2 from './Screenshot 2026-07-30 111452.png';
+import chickenFeatherMachine from './Screenshot 2026-07-30 111527.png';
+
 import popcornMachineImg from './WhatsApp Image 2026-08-02 at 11.51.40.jpeg';
 import potatoPeelerImg from './WhatsApp Image 2026-08-02 at 11.51.34.jpeg';
 import riceWasherImg from './WhatsApp Image 2026-08-02 at 11.51.42.jpeg';
@@ -24,7 +31,7 @@ import roasterProcessingImg from './ChatGPT Image Aug 2, 2026, 06_34_59 PM.png';
 
 export const productAssets = {
   vegetableCutter: studioVegCutterImg,
-  vegetableCutterRed: vegetableCutterRed,
+  vegetableCutterRed: studioVegCutterImg,
   wetGrinder: wetGrinder5L,
   instantWetGrinder: wetGrinder20L,
   tiltingWetGrinder: tiltingGrinderStudioImg,
