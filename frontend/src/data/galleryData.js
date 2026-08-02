@@ -14,20 +14,34 @@ export const productsGallery = [
   },
   {
     id: 2,
+    title: "Commercial Instant Wet Grinder",
+    category: "Wet Grinders",
+    img: productAssets.instantWetGrinder,
+    description: "High capacity instant wet grinder for commercial batter production"
+  },
+  {
+    id: 3,
     title: "Commercial Wet Grinder",
     category: "Wet Grinders",
     img: productAssets.wetGrinder,
     description: "Commercial wet grinder 3 Litres to 25 Litres available"
   },
   {
-    id: 3,
-    title: "Coconut Crab Machine",
+    id: 4,
+    title: "Commercial Bowl Coconut Scraper",
     category: "Scrapers",
-    img: productAssets.coconutCrab,
-    description: "0.5 HP Lakshmi copper motor coconut crab scraper"
+    img: productAssets.coconutScraper,
+    description: "0.5 HP Lakshmi copper motor bowl coconut scraper"
   },
   {
-    id: 4,
+    id: 5,
+    title: "Double Head Heavy Coconut Scraper",
+    category: "Scrapers",
+    img: productAssets.doubleCoconutScraper,
+    description: "1 HP heavy duty dual-funnel commercial coconut scraper"
+  },
+  {
+    id: 6,
     title: "U-Drum SS Mixer",
     category: "Mixers",
     img: productAssets.uDrumMixer,

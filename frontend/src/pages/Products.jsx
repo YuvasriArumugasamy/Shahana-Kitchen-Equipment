@@ -9,10 +9,12 @@ export default function Products({ setCurrentPage, onOpenQuoteModal, onSelectPro
 
   const productsList = [
     { name: "Vegetable Cutting Machine", category: "Vegetable Cutters", specs: "0.5 HP Lakshmi Copper Motor", badge: "Best Seller", img: productAssets.vegetableCutter },
+    { name: "Commercial Instant Wet Grinder", category: "Wet Grinders", specs: "25kg - 100kg/hr Instant Grinding", badge: "Studio HD", img: productAssets.instantWetGrinder },
     { name: "Commercial Wet Grinder", category: "Wet Grinders", specs: "3L to 25L Available", badge: "Popular", img: productAssets.wetGrinder },
     { name: "Tilting Wet Grinder", category: "Tilting Wet Grinders", specs: "15L | 25L | 35L", badge: "", img: productAssets.tiltingWetGrinder },
     { name: "Atta Kneader Machine", category: "Dough Kneaders", specs: "10kg to 50kg Lakshmi Motor", badge: "Top Rated", img: productAssets.attaKneader },
-    { name: "Coconut Crab Machine", category: "Coconut Scrapers", specs: "0.5 HP Lakshmi Motor", badge: "", img: productAssets.coconutCrab },
+    { name: "Commercial Bowl Coconut Scraper", category: "Coconut Scrapers", specs: "0.5 HP Lakshmi Motor", badge: "Best Seller", img: productAssets.coconutScraper },
+    { name: "Double Head Coconut Scraper", category: "Coconut Scrapers", specs: "1 HP Heavy Duty Dual Funnel", badge: "Heavy Duty", img: productAssets.doubleCoconutScraper },
     { name: "U-Drum SS Mixer", category: "Mixer Machines", specs: "50L SS Mat Finishing", badge: "", img: productAssets.uDrumMixer },
     { name: "Table Top Wet Grinder", category: "Wet Grinders", specs: "Compact 2L - 5L", badge: "", img: productAssets.tableTopWetGrinder },
     { name: "Chicken Feather Remover", category: "Processing Machines", specs: "Full SS Heavy Duty", badge: "", img: productAssets.chickenFeatherRemover },
@@ -22,7 +24,7 @@ export default function Products({ setCurrentPage, onOpenQuoteModal, onSelectPro
     { name: "Commercial Potato Peeler", category: "Vegetable Cutters", specs: "5kg - 15kg/Batch", badge: "Heavy Duty", img: productAssets.potatoPeeler },
     { name: "Rice & Grain Washer", category: "Processing Machines", specs: "SS High Flow Drainer", badge: "New", img: productAssets.riceWasher },
     { name: "Banana Chips Slicer", category: "Vegetable Cutters", specs: "High Capacity Motorized", badge: "Specialized", img: productAssets.bananaSlicer },
-    { name: "Commercial Meat Mincer", category: "Processing Machines", specs: "1.5 HP SS Gear Drive", badge: "Commercial", img: productAssets.meatMincer },
+    { name: "Commercial Meat Mincing Machine", category: "Processing Machines", specs: "1.5 HP SS Gear Drive", badge: "Commercial", img: productAssets.meatMincer },
     { name: "Heavy Duty Flour Mill", category: "Pulverizers", specs: "3 HP - 7.5 HP Blower", badge: "High Capacity", img: productAssets.flourMill },
     { name: "Juice Machine", category: "Juicers", specs: "Sugarcane / Fruits", badge: "", img: productAssets.juiceMachine },
     { name: "Spare Parts", category: "Parts", specs: "All Types Available", badge: "", img: "/images/spare part.png" }

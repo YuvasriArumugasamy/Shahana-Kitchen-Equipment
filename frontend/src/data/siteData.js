@@ -25,6 +25,29 @@ export const PRODUCTS = [
     applications: ["Hotels", "Restaurants", "Cloud Kitchens", "Caterers", "Hostel Mess"]
   },
   {
+    id: "instant-wet-grinder",
+    name: "Commercial Instant Wet Grinder",
+    category: "Wet Grinders",
+    capacity: "25kg - 100kg / Hour",
+    motor: "2 HP - 3 HP Heavy Duty Copper Motor",
+    material: "304 Food Grade Stainless Steel",
+    voltage: "230V Single Phase / 415V Three Phase",
+    price: "₹36,000",
+    rating: 5.0,
+    reviewsCount: 52,
+    badge: "Studio HD",
+    image: productAssets.instantWetGrinder,
+    description: "High speed commercial instant wet grinder for continuous batter grinding of rice and urad dal with minimal water.",
+    features: [
+      "2 HP Heavy Duty Copper Motor Drive",
+      "Food Grade 304 Stainless Steel Body & Chamber",
+      "Instant Continuous Batter Discharge",
+      "Easy Dismantling & Washing",
+      "Low Power Consumption"
+    ],
+    applications: ["Hotels", "Batter Units", "Restaurants", "Marriage Caterers"]
+  },
+  {
     id: "wet-grinder-commercial",
     name: "Commercial Wet Grinder",
     category: "Wet Grinders",
@@ -49,26 +72,49 @@ export const PRODUCTS = [
   },
   {
     id: "coconut-crab-machine",
-    name: "Coconut Crab Scraper Machine",
+    name: "Commercial Bowl Coconut Scraper",
     category: "Coconut Scrapers",
-    capacity: "60 Coconuts / hr",
+    capacity: "80 Coconuts / hr",
     motor: "0.5 HP Lakshmi Copper Motor",
-    material: "Full Stainless Steel 304",
+    material: "Full Stainless Steel 304 & Red Safety Caps",
     voltage: "230V Single Phase",
     price: "₹14,500",
-    rating: 4.8,
-    reviewsCount: 35,
-    badge: "Essential",
-    image: productAssets.coconutCrab,
-    description: "Coconut crab scraper machine powered by 0.5 HP Lakshmi copper motor for effortless high-volume scraping.",
+    rating: 4.9,
+    reviewsCount: 45,
+    badge: "Best Seller",
+    image: productAssets.coconutScraper,
+    description: "Commercial countertop coconut scraper with stainless steel bowl and spiked blade powered by 0.5 HP Lakshmi motor.",
     features: [
-      "0.5 HP Lakshmi Copper Motor Drive",
-      "Heavy Duty Stainless Steel Body & Blades",
-      "Dual Head Scraping System",
-      "Silent Gear Box Transmission",
-      "Compact Countertop Footprint"
+      "0.5 HP Lakshmi Heavy Duty Copper Motor",
+      "Stainless Steel Collection Bowl & Hardened Blade",
+      "Red Protective Corner Bumpers",
+      "Compact Countertop Footprint",
+      "Fast & Hygienic Coconut Scraping"
     ],
     applications: ["South Indian Restaurants", "Hotels", "Sweet Shops", "Caterers"]
+  },
+  {
+    id: "double-head-coconut-scraper",
+    name: "Double Head Heavy Duty Coconut Scraper",
+    category: "Coconut Scrapers",
+    capacity: "150 Coconuts / hr",
+    motor: "1 HP Lakshmi Copper Motor",
+    material: "Full Stainless Steel 304 Enclosure",
+    voltage: "230V Single Phase",
+    price: "₹19,500",
+    rating: 5.0,
+    reviewsCount: 38,
+    badge: "Heavy Duty",
+    image: productAssets.doubleCoconutScraper,
+    description: "Heavy duty commercial double-head coconut scraper machine with dual funnels and heavy stainless steel enclosure for high speed restaurant scraping.",
+    features: [
+      "1 HP High Torque Copper Motor",
+      "Dual Side Funnel Guards for Simultaneous Scraping",
+      "Full Stainless Steel Body Enclosure",
+      "Waterproof Power Switch & Safety Wire Plug",
+      "Designed for Continuous Heavy Commercial Use"
+    ],
+    applications: ["Bulk Caterers", "Large Restaurants", "Temples & Marriage Halls", "Sweet Factories"]
   },
   {
     id: "u-drum-mixer",

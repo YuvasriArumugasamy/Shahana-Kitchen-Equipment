@@ -28,16 +28,20 @@ import flourMillImg from './ChatGPT Image Aug 2, 2026, 06_38_29 PM.png';
 import heavyPulverizerImg from './ChatGPT Image Aug 2, 2026, 06_39_40 PM.png';
 import industrialKneaderImg from './ChatGPT Image Aug 2, 2026, 06_35_07 PM.png';
 import roasterProcessingImg from './ChatGPT Image Aug 2, 2026, 06_34_59 PM.png';
+import instantWetGrinderStudioImg from './ChatGPT Image Aug 2, 2026, 07_04_05 PM.png';
+import coconutScraperBowlImg from './ChatGPT Image Aug 2, 2026, 07_04_14 PM.png';
+import doubleCoconutScraperImg from './ChatGPT Image Aug 2, 2026, 07_09_34 PM.png';
 
 export const productAssets = {
   vegetableCutter: studioVegCutterImg,
   vegetableCutterRed: studioVegCutterImg,
   wetGrinder: wetGrinder5L,
-  instantWetGrinder: wetGrinder20L,
+  instantWetGrinder: instantWetGrinderStudioImg,
   tiltingWetGrinder: tiltingGrinderStudioImg,
   tableTopWetGrinder: blueTableTopGrinder,
-  coconutCrab: coconutCrabSS,
-  coconutScraper: coconutCrabSS,
+  coconutCrab: coconutScraperBowlImg,
+  coconutScraper: coconutScraperBowlImg,
+  doubleCoconutScraper: doubleCoconutScraperImg,
   uDrumMixer: uDrumMixerSS,
   batterMixer: uDrumMixerSS,
   attaKneader: industrialKneaderImg,
