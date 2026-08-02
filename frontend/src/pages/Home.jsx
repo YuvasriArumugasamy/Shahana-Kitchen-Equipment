@@ -16,18 +16,16 @@ export default function Home({ setCurrentPage, onOpenQuoteModal, onSelectProduct
     : PRODUCTS.filter(p => p.category.toLowerCase().includes(activeTab.toLowerCase()) || activeTab.includes(p.category));
 
   const carouselItems = [
-    { name: "Vegetable Cutter", img: productAssets.vegetableCutter, color: "215, 252, 142" },
-    { name: "Wet Grinder", img: productAssets.wetGrinder, color: "142, 252, 204" },
+    { name: "Popcorn Machine", img: productAssets.popcornMachine, color: "252, 180, 142" },
+    { name: "Potato Peeler", img: productAssets.potatoPeeler, color: "252, 220, 142" },
+    { name: "Banana Chips Slicer", img: productAssets.bananaSlicer, color: "215, 252, 142" },
+    { name: "Tilting Wet Grinder", img: productAssets.tiltingWetGrinder, color: "142, 252, 204" },
+    { name: "Meat Mincer", img: productAssets.meatMincer, color: "252, 142, 160" },
+    { name: "Gravy Machine", img: productAssets.gravyMachine, color: "192, 132, 252" },
+    { name: "Heavy Duty Flour Mill", img: productAssets.flourMill, color: "142, 200, 252" },
+    { name: "Rice & Grain Washer", img: productAssets.riceWasher, color: "142, 252, 240" },
     { name: "Atta Kneader", img: productAssets.attaKneader, color: "142, 252, 157" },
-    { name: "Coconut Crab", img: productAssets.coconutCrab, color: "142, 249, 252" },
-    { name: "U-Drum SS Mixer", img: productAssets.uDrumMixer, color: "252, 208, 142" },
-    { name: "Table Top Grinder", img: productAssets.tableTopWetGrinder, color: "252, 252, 142" },
-    { name: "Chicken Feather Remover", img: productAssets.chickenFeatherRemover, color: "252, 142, 142" },
-    { name: "Commercial Oil Dryer", img: productAssets.oilDryer, color: "204, 142, 252" },
-    { name: "Vegetable Cutter", img: productAssets.vegetableCutter, color: "215, 252, 142" },
-    { name: "Wet Grinder", img: productAssets.wetGrinder, color: "142, 252, 204" },
-    { name: "Atta Kneader", img: productAssets.attaKneader, color: "142, 252, 157" },
-    { name: "Coconut Crab", img: productAssets.coconutCrab, color: "142, 249, 252" }
+    { name: "Vegetable Cutter", img: productAssets.vegetableCutter, color: "215, 252, 142" }
   ];
 
   return (

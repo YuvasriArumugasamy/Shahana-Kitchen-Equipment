@@ -119,10 +119,15 @@ export default function QuoteModal({ isOpen, onClose, selectedProduct }) {
                   >
                     <option>Commercial Instant Wet Grinder</option>
                     <option>Tilting Commercial Wet Grinder</option>
-                    <option>Heavy Duty Commercial Pulverizer</option>
+                    <option>Gravy Machine & Pulverizer</option>
+                    <option>Commercial Popcorn Machine</option>
+                    <option>Commercial Potato Peeler</option>
+                    <option>Banana Chips Slicer Machine</option>
+                    <option>Commercial Rice & Grain Washer</option>
+                    <option>Commercial Meat Mincer</option>
+                    <option>Heavy Duty Commercial Flour Mill</option>
                     <option>Commercial Spiral Dough Kneader</option>
                     <option>Multi-Functional Vegetable Cutter</option>
-                    <option>Commercial Potato & Ginger Peeler</option>
                     <option>Commercial Coconut Scraper Machine</option>
                     <option>Stainless Steel Work Preparation Table</option>
                     <option>Complete Commercial Kitchen Setup</option>

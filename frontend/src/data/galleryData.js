@@ -60,6 +60,55 @@ export const productsGallery = [
     category: "Processing",
     img: productAssets.oilDryer,
     description: "High speed centrifugal oil dryer machine"
+  },
+  {
+    id: 9,
+    title: "Gravy Machine / Pulverizer",
+    category: "Pulverizers",
+    img: productAssets.gravyMachine,
+    description: "304 Food grade stainless steel commercial gravy machine"
+  },
+  {
+    id: 10,
+    title: "Commercial Popcorn Machine",
+    category: "Snack Equipment",
+    img: productAssets.popcornMachine,
+    description: "Electric kettle popcorn machine with heated warming deck"
+  },
+  {
+    id: 11,
+    title: "Commercial Potato Peeler",
+    category: "Cutters",
+    img: productAssets.potatoPeeler,
+    description: "Rapid abrasive peeling machine for commercial kitchens"
+  },
+  {
+    id: 12,
+    title: "Banana Chips Slicer Machine",
+    category: "Cutters",
+    img: productAssets.bananaSlicer,
+    description: "Motorized banana wafer slicer for high output snack processing"
+  },
+  {
+    id: 13,
+    title: "Rice & Grain Washing Tank",
+    category: "Processing",
+    img: productAssets.riceWasher,
+    description: "304 SS grain washing tank with bottom cone drainage"
+  },
+  {
+    id: 14,
+    title: "Commercial Meat Mincer",
+    category: "Processing",
+    img: productAssets.meatMincer,
+    description: "Heavy duty SS gear drive meat and mutton mincing machine"
+  },
+  {
+    id: 15,
+    title: "Heavy Duty Flour Mill",
+    category: "Pulverizers",
+    img: productAssets.flourMill,
+    description: "Industrial pulverizer & flour mill with cyclonic dust collector"
   }
 ];
 

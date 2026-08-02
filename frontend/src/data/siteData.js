@@ -181,6 +181,167 @@ export const PRODUCTS = [
       "Vibration Controlled Base"
     ],
     applications: ["Snack Manufacturers", "Sweet Shops", "Hotels", "Bakeries"]
+  },
+  {
+    id: "gravy-machine",
+    name: "Gravy Machine",
+    category: "Pulverizers",
+    capacity: "25kg/hr to 100kg/hr",
+    motor: "2 HP - 5 HP Lakshmi Copper Motor",
+    material: "304 Food Grade Stainless Steel",
+    voltage: "230V Single Phase / 415V Three Phase",
+    price: "₹35,000",
+    rating: 4.9,
+    reviewsCount: 38,
+    badge: "Best Seller",
+    image: productAssets.gravyMachine,
+    description: "Commercial 304 food-grade stainless steel Gravy Machine and Pulverizer for smooth grinding of onion, tomato, ginger, garlic, coconut milk, and wet curry gravy pastes.",
+    features: [
+      "2 HP to 5 HP Heavy Duty Copper Motor",
+      "Food Grade 304 Stainless Steel Body",
+      "Multipurpose Fine Grinding Sieves Included",
+      "Hygienic Easy Dismantling & Cleaning",
+      "High Output Gravy Extraction"
+    ],
+    applications: ["Hotels", "Restaurants", "Catering Units", "Sweet Shops", "Cloud Kitchens"]
+  },
+  {
+    id: "popcorn-machine",
+    name: "Commercial Popcorn Machine",
+    category: "Snack Machines",
+    capacity: "8 oz Kettle / Batch",
+    motor: "Built-in Electric Stirrer & Heater",
+    material: "Tempered Glass & Red Coated Stainless Frame",
+    voltage: "230V Single Phase",
+    price: "₹18,500",
+    rating: 4.8,
+    reviewsCount: 25,
+    badge: "Popular",
+    image: productAssets.popcornMachine,
+    description: "Commercial tabletop popcorn machine with heated warming deck, stainless steel kettle, and internal lighting for theaters, snack stalls, and food courts.",
+    features: [
+      "Heavy Duty Stainless Steel Non-Stick Kettle",
+      "Built-in Deck Warmer Keeps Popcorn Fresh & Crisp",
+      "Tempered Safety Glass Side Panels",
+      "Simple 3-Switch Operation (Turn, Heat, Warm)",
+      "Removable Crumb Tray for Easy Cleaning"
+    ],
+    applications: ["Theaters", "Snack Counters", "Shopping Malls", "Events & Catering", "Parks"]
+  },
+  {
+    id: "potato-peeler-machine",
+    name: "Commercial Potato Peeler Machine",
+    category: "Vegetable Cutters",
+    capacity: "5kg - 15kg / Batch",
+    motor: "0.5 HP - 1 HP Lakshmi Copper Motor",
+    material: "Full Stainless Steel & Abrasive Peeling Drum",
+    voltage: "230V Single Phase",
+    price: "₹22,000",
+    rating: 4.9,
+    reviewsCount: 30,
+    badge: "Heavy Duty",
+    image: productAssets.potatoPeeler,
+    description: "Commercial potato peeling machine with high-friction carborundum abrasive disc for rapid peeling of potatoes, carrots, and root vegetables in minutes.",
+    features: [
+      "Rapid Peeling in under 2 minutes per batch",
+      "Water Inlet Attachment for Flushing Skins Clean",
+      "Heavy Duty Abrasive Disc with Long Lifespan",
+      "Hygienic SS Discharge Chute and Locking Lid",
+      "Minimal Potato Waste & Uniform Peeling"
+    ],
+    applications: ["Hotels", "Restaurants", "Hostel Mess", "Canteen Units", "Chips Manufacturers"]
+  },
+  {
+    id: "rice-grain-washer",
+    name: "Commercial Rice & Grain Washing Machine",
+    category: "Processing Machines",
+    capacity: "50kg - 200kg / Hour",
+    motor: "High Flow Water Circulation System",
+    material: "Full 304 Food Grade Stainless Steel",
+    voltage: "230V Single Phase",
+    price: "₹32,500",
+    rating: 4.9,
+    reviewsCount: 16,
+    badge: "New",
+    image: productAssets.riceWasher,
+    description: "Commercial stainless steel rice and dal washing tank with bottom cone drainer and goose-neck water faucet for rapid grain cleaning in bulk catering.",
+    features: [
+      "304 Food Grade Stainless Steel Construction",
+      "Gooseneck Faucet & Perforated Strainer Basket",
+      "Cone Bottom Design for Rapid Dirt & Impurity Drainage",
+      "Saves up to 70% Manual Labor and Water Consumption",
+      "Sturdy Tubular Support Leg Base"
+    ],
+    applications: ["Marriage Halls", "Bulk Caterers", "Temples & Community Kitchens", "Hotels"]
+  },
+  {
+    id: "banana-chips-slicer",
+    name: "Banana Chips Slicer Machine",
+    category: "Vegetable Cutters",
+    capacity: "100kg - 250kg / Hour",
+    motor: "0.5 HP Heavy Duty Copper Motor",
+    material: "Stainless Steel Contact Parts & Hardened Blades",
+    voltage: "230V Single Phase",
+    price: "₹28,000",
+    rating: 4.9,
+    reviewsCount: 41,
+    badge: "Specialized",
+    image: productAssets.bananaSlicer,
+    description: "High speed motorized banana slicer for uniform wafer thin slicing of raw bananas, plantains, potatoes, and tapioca directly into frying pans.",
+    features: [
+      "Precision Hardened SS Slicing Blades",
+      "Adjustable Slice Thickness Control",
+      "High Output Slicing for Snack Units",
+      "Safe Hand Guard Feed Hopper",
+      "Low Noise Gear Box Transmission"
+    ],
+    applications: ["Chips Manufacturers", "Kerala Snack Shops", "Sweet & Savory Outlets", "Hotels"]
+  },
+  {
+    id: "commercial-meat-mincer",
+    name: "Commercial Meat Mincer & Meat Grinder",
+    category: "Processing Machines",
+    capacity: "120kg - 300kg / Hour",
+    motor: "1.5 HP High Torque Motor",
+    material: "Heavy Stainless Steel Feed Tray & Housing",
+    voltage: "230V / 415V",
+    price: "₹38,000",
+    rating: 4.8,
+    reviewsCount: 20,
+    badge: "Commercial",
+    image: productAssets.meatMincer,
+    description: "Heavy duty commercial stainless steel meat mincer for grinding mutton, chicken, fish, and meat paste in commercial kitchens and butchery shops.",
+    features: [
+      "Heavy Stainless Steel Worm Gear & Cutting Blades",
+      "Large Top Loading Stainless Steel Hopper Tray",
+      "Dual Hole Size Extruder Plates Included",
+      "Reversing Switch to Clear Jammed Meat",
+      "Easy Dismantling for Thorough Sanitization"
+    ],
+    applications: ["Butchery Shops", "Non-Veg Hotels", "Cloud Kitchens", "Sausage & Patty Units"]
+  },
+  {
+    id: "heavy-duty-flour-mill",
+    name: "Heavy Duty Commercial Flour Mill & Pulverizer",
+    category: "Pulverizers",
+    capacity: "50kg - 150kg / Hour",
+    motor: "3 HP - 7.5 HP Blower Motor",
+    material: "Full Stainless Steel Enclosure & Dust Bag",
+    voltage: "415V Three Phase",
+    price: "₹48,000",
+    rating: 4.9,
+    reviewsCount: 33,
+    badge: "High Capacity",
+    image: productAssets.flourMill,
+    description: "Commercial heavy duty pulverizer and flour mill with cyclonic dust collector bag for fine grinding of wheat, rice, spices, turmeric, and grains.",
+    features: [
+      "High Speed Heavy Duty Grinding Rotor",
+      "Built-in Cyclone Blower & Cotton Dust Collection Bag",
+      "Multiple Sieve Screen Mesh Sizes",
+      "Vibration Free Heavy Base Frame",
+      "Dust-Free Clean Operation Environment"
+    ],
+    applications: ["Commercial Flour Mills", "Spice Processing Units", "Bakeries", "Hotels"]
   }
 ];
 

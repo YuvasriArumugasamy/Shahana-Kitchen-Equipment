@@ -17,7 +17,13 @@ export default function Products({ setCurrentPage, onOpenQuoteModal, onSelectPro
     { name: "Table Top Wet Grinder", category: "Wet Grinders", specs: "Compact 2L - 5L", badge: "", img: productAssets.tableTopWetGrinder },
     { name: "Chicken Feather Remover", category: "Processing Machines", specs: "Full SS Heavy Duty", badge: "", img: productAssets.chickenFeatherRemover },
     { name: "Commercial Oil Dryer", category: "Processing Machines", specs: "Centrifugal 15kg/Batch", badge: "", img: productAssets.oilDryer },
-    { name: "Coconut Milk Extractor", category: "Extractors", specs: "5L | 10L | 15L", badge: "", img: productAssets.coconutMilkExtractor },
+    { name: "Gravy Machine", category: "Pulverizers", specs: "2 HP | 3 HP | 5 HP", badge: "304 SS Food Grade", img: productAssets.gravyMachine },
+    { name: "Commercial Popcorn Machine", category: "Snack Machines", specs: "Electric 8 oz Kettle", badge: "Popular", img: productAssets.popcornMachine },
+    { name: "Commercial Potato Peeler", category: "Vegetable Cutters", specs: "5kg - 15kg/Batch", badge: "Heavy Duty", img: productAssets.potatoPeeler },
+    { name: "Rice & Grain Washer", category: "Processing Machines", specs: "SS High Flow Drainer", badge: "New", img: productAssets.riceWasher },
+    { name: "Banana Chips Slicer", category: "Vegetable Cutters", specs: "High Capacity Motorized", badge: "Specialized", img: productAssets.bananaSlicer },
+    { name: "Commercial Meat Mincer", category: "Processing Machines", specs: "1.5 HP SS Gear Drive", badge: "Commercial", img: productAssets.meatMincer },
+    { name: "Heavy Duty Flour Mill", category: "Pulverizers", specs: "3 HP - 7.5 HP Blower", badge: "High Capacity", img: productAssets.flourMill },
     { name: "Juice Machine", category: "Juicers", specs: "Sugarcane / Fruits", badge: "", img: productAssets.juiceMachine },
     { name: "Spare Parts", category: "Parts", specs: "All Types Available", badge: "", img: "/images/spare part.png" }
   ];
@@ -26,10 +32,11 @@ export default function Products({ setCurrentPage, onOpenQuoteModal, onSelectPro
     'Wet Grinders': ['Wet Grinders', 'Tilting Wet Grinders'],
     'Dough Kneaders': ['Dough Kneaders'],
     'Vegetable Cutters': ['Vegetable Cutters'],
-    'Pulverizers': ['Pulverizers'],
+    'Pulverizers': ['Pulverizers', 'Gravy Machines', 'Extractors'],
+    'Gravy Machines': ['Pulverizers', 'Gravy Machines', 'Extractors'],
+    'Processing Machines': ['Processing Machines', 'Snack Machines'],
     'Coconut Scrapers': ['Coconut Scrapers'],
     'Mixer Machines': ['Mixer Machines', 'Mixers'],
-    'Coconut Milk Extractors': ['Extractors'],
     'Spare Parts': ['Spare Parts', 'Parts']
   };
 
@@ -66,10 +73,9 @@ export default function Products({ setCurrentPage, onOpenQuoteModal, onSelectPro
     { name: 'Wet Grinders', count: productsList.filter((item) => matchesCategory(item, 'Wet Grinders')).length },
     { name: 'Dough Kneaders', count: productsList.filter((item) => matchesCategory(item, 'Dough Kneaders')).length },
     { name: 'Vegetable Cutters', count: productsList.filter((item) => matchesCategory(item, 'Vegetable Cutters')).length },
-    { name: 'Pulverizers', count: productsList.filter((item) => matchesCategory(item, 'Pulverizers')).length },
+    { name: 'Pulverizers & Gravy', count: productsList.filter((item) => matchesCategory(item, 'Pulverizers')).length },
     { name: 'Coconut Scrapers', count: productsList.filter((item) => matchesCategory(item, 'Coconut Scrapers')).length },
     { name: 'Mixer Machines', count: productsList.filter((item) => matchesCategory(item, 'Mixer Machines')).length },
-    { name: 'Coconut Milk Extractors', count: productsList.filter((item) => matchesCategory(item, 'Coconut Milk Extractors')).length },
     { name: 'Spare Parts', count: productsList.filter((item) => matchesCategory(item, 'Spare Parts')).length }
   ];
 
