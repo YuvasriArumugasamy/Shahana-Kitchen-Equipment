@@ -3,6 +3,7 @@ import {
   Phone, Mail, MapPin, Clock, Menu, X, ChevronDown, ArrowRight,
   Home, Building2, Package, Wrench, Settings, Image, Factory, Star, PhoneCall, ShieldCheck, ChevronRight 
 } from 'lucide-react';
+import { logoImg } from '../assets/clientAssets';
 
 export default function Header({ currentPage, setCurrentPage, onOpenQuoteModal }) {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -118,21 +119,22 @@ export default function Header({ currentPage, setCurrentPage, onOpenQuoteModal }
           {/* Logo Brand Group */}
           <div 
             onClick={() => handleNavClick('home')}
-            className="cursor-pointer flex items-center gap-2.5 shrink-0 pr-2"
+            className="cursor-pointer flex items-center gap-3 shrink-0 pr-2 group"
           >
-            <div className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full border-2 border-[#6A1B9A] shadow-sm bg-white flex items-center justify-center p-0.5 shrink-0">
+            <div className="w-11 h-11 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full border-2 border-[#6A1B9A] shadow-md bg-white p-0.5 shrink-0 overflow-hidden group-hover:scale-105 transition-transform duration-300">
               <img 
-                src="/images/logo.png" 
-                alt="Shahana Icon Logo" 
+                src={logoImg} 
+                alt="MS Shahana Kitchen Equipment Logo" 
                 className="w-full h-full object-cover rounded-full"
               />
             </div>
-            <div className="flex items-center shrink-0">
-              <img 
-                src="/images/ChatGPT Image Jul 28, 2026, 01_18_49 PM.png" 
-                alt="Shahana Kitchen Equipment" 
-                className="h-8 xs:h-9 sm:h-10 md:h-11 w-auto object-contain mix-blend-multiply" 
-              />
+            <div className="flex flex-col justify-center shrink-0">
+              <span className="font-heading font-extrabold text-sm xs:text-base sm:text-lg md:text-xl text-gray-900 leading-none tracking-tight group-hover:text-[#6A1B9A] transition-colors">
+                SHAHANA <span className="text-[#6A1B9A]">KITCHEN</span>
+              </span>
+              <span className="text-[9px] sm:text-[10px] md:text-xs font-bold text-gray-500 tracking-widest uppercase mt-0.5">
+                EQUIPMENT
+              </span>
             </div>
           </div>
 
