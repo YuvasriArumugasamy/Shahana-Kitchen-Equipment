@@ -374,6 +374,40 @@
   opacity: 1;
 }
 
+/* Responsive adjustments for 3D Carousel on Mobile & Tablet */
+@media (max-width: 768px) {
+  .carousel-wrapper {
+    min-height: 220px;
+    padding: 5px 0;
+    overflow: hidden;
+  }
+
+  .carousel-inner {
+    --w: 75px;
+    --h: 80px;
+    --translateZ: 170px;
+    --rotateX: -4deg;
+  }
+
+  .carousel-card {
+    border-width: 2px;
+    border-radius: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-wrapper {
+    min-height: 190px;
+  }
+
+  .carousel-inner {
+    --w: 64px;
+    --h: 68px;
+    --translateZ: 140px;
+    --rotateX: -3deg;
+  }
+}
+
 /* ==========================================
    GLOBAL SMOOTH SCROLL REVEAL ANIMATIONS
    ========================================== */

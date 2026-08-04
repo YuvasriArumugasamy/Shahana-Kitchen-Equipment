@@ -146,7 +146,7 @@ export default function Home({ setCurrentPage, onOpenQuoteModal, onSelectProduct
                 style={{
                   "--color-card": cat.color,
                   "--index": idx,
-                  transform: `rotateY(calc((360deg / ${carouselItems.length}) * ${idx})) translateZ(350px)`
+                  transform: `rotateY(calc((360deg / ${carouselItems.length}) * ${idx})) translateZ(var(--translateZ, 350px))`
                 }}
                 onClick={() => { setCurrentPage('products'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
               >
