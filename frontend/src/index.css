@@ -377,33 +377,33 @@
 /* Responsive adjustments for 3D Carousel on Mobile & Tablet */
 @media (max-width: 768px) {
   .carousel-wrapper {
-    min-height: 220px;
+    min-height: 200px;
     padding: 5px 0;
     overflow: hidden;
   }
 
   .carousel-inner {
-    --w: 75px;
-    --h: 80px;
-    --translateZ: 170px;
+    --w: 58px;
+    --h: 64px;
+    --translateZ: 210px;
     --rotateX: -4deg;
   }
 
   .carousel-card {
     border-width: 2px;
-    border-radius: 12px;
+    border-radius: 10px;
   }
 }
 
 @media (max-width: 480px) {
   .carousel-wrapper {
-    min-height: 190px;
+    min-height: 180px;
   }
 
   .carousel-inner {
-    --w: 64px;
-    --h: 68px;
-    --translateZ: 140px;
+    --w: 50px;
+    --h: 55px;
+    --translateZ: 180px;
     --rotateX: -3deg;
   }
 }
