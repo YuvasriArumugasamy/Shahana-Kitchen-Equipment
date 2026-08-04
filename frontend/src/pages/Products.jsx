@@ -9,15 +9,15 @@ export default function Products({ setCurrentPage, onOpenQuoteModal, onSelectPro
 
   const productsList = [
     { name: "Vegetable Cutting Machine", category: "Vegetable Cutters", specs: "0.5 HP Lakshmi Copper Motor", badge: "Best Seller", img: productAssets.vegetableCutter },
-    { name: "Commercial Instant Wet Grinder", category: "Wet Grinders", specs: "25kg - 100kg/hr Instant Grinding", badge: "Studio HD", img: productAssets.instantWetGrinder },
+    { name: "Instant Wet Grinder", category: "Wet Grinders", specs: "25kg - 100kg/hr Instant Grinding", badge: "Studio HD", img: productAssets.instantWetGrinder },
     { name: "Commercial Wet Grinder", category: "Wet Grinders", specs: "3L to 25L Available", badge: "Popular", img: productAssets.wetGrinder },
     { name: "Tilting Wet Grinder", category: "Tilting Wet Grinders", specs: "15L | 25L | 35L", badge: "", img: productAssets.tiltingWetGrinder },
     { name: "Atta Kneader Machine", category: "Dough Kneaders", specs: "10kg to 50kg Lakshmi Motor", badge: "Top Rated", img: productAssets.attaKneader },
-    { name: "Commercial Bowl Coconut Scraper", category: "Coconut Scrapers", specs: "0.5 HP Lakshmi Motor", badge: "Best Seller", img: productAssets.coconutScraper },
+    { name: "Coconut Crab", category: "Coconut Scrapers", specs: "0.5 HP Lakshmi Motor", badge: "Best Seller", img: productAssets.coconutScraper },
     { name: "Double Head Coconut Scraper", category: "Coconut Scrapers", specs: "1 HP Heavy Duty Dual Funnel", badge: "Heavy Duty", img: productAssets.doubleCoconutScraper },
     { name: "U-Drum SS Mixer", category: "Mixer Machines", specs: "50L SS Mat Finishing", badge: "", img: productAssets.uDrumMixer },
     { name: "Table Top Wet Grinder", category: "Wet Grinders", specs: "Compact 2L - 5L", badge: "", img: productAssets.tableTopWetGrinder },
-    { name: "Chicken Feather Remover", category: "Processing Machines", specs: "Full SS Heavy Duty", badge: "", img: productAssets.chickenFeatherRemover },
+    { name: "Tilting Wet Grinder Machine", category: "Wet Grinders", specs: "Full SS Heavy Duty", badge: "304 SS Food Grade", img: productAssets.tiltingWetGrinder },
     { name: "Commercial Oil Dryer", category: "Processing Machines", specs: "Centrifugal 15kg/Batch", badge: "", img: productAssets.oilDryer },
     { name: "Gravy Machine", category: "Pulverizers", specs: "2 HP | 3 HP | 5 HP", badge: "304 SS Food Grade", img: productAssets.gravyMachine },
     { name: "Commercial Popcorn Machine", category: "Snack Machines", specs: "Electric 8 oz Kettle", badge: "Popular", img: productAssets.popcornMachine },
@@ -26,7 +26,7 @@ export default function Products({ setCurrentPage, onOpenQuoteModal, onSelectPro
     { name: "Banana Chips Slicer", category: "Vegetable Cutters", specs: "High Capacity Motorized", badge: "Specialized", img: productAssets.bananaSlicer },
     { name: "Commercial Meat Mincing Machine", category: "Processing Machines", specs: "1.5 HP SS Gear Drive", badge: "Commercial", img: productAssets.meatMincer },
     { name: "Heavy Duty Flour Mill", category: "Pulverizers", specs: "3 HP - 7.5 HP Blower", badge: "High Capacity", img: productAssets.flourMill },
-    { name: "Juice Machine", category: "Juicers", specs: "Sugarcane / Fruits", badge: "", img: productAssets.juiceMachine },
+    { name: "Commercial Coconut Scraper", category: "Coconut Scrapers", specs: "Multi Station SS", badge: "304 SS Food Grade", img: productAssets.coconutMilkExtractor },
     { name: "Spare Parts", category: "Parts", specs: "All Types Available", badge: "", img: "/images/spare part.png" }
   ];
 

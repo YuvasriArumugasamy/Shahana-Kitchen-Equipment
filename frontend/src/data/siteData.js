@@ -26,7 +26,7 @@ export const PRODUCTS = [
   },
   {
     id: "instant-wet-grinder",
-    name: "Commercial Instant Wet Grinder",
+    name: "Instant Wet Grinder",
     category: "Wet Grinders",
     capacity: "25kg - 100kg / Hour",
     motor: "2 HP - 3 HP Heavy Duty Copper Motor",
@@ -72,7 +72,7 @@ export const PRODUCTS = [
   },
   {
     id: "coconut-crab-machine",
-    name: "Commercial Bowl Coconut Scraper",
+    name: "Coconut Crab",
     category: "Coconut Scrapers",
     capacity: "80 Coconuts / hr",
     motor: "0.5 HP Lakshmi Copper Motor",
@@ -185,9 +185,9 @@ export const PRODUCTS = [
     applications: ["Small Eateries", "Cloud Kitchens", "Commercial & Home Use"]
   },
   {
-    id: "chicken-feather-remover",
-    name: "Chicken Feather Removing Machine",
-    category: "Processing Machines",
+    id: "tilting-wet-grinder-heavy",
+    name: "Tilting Wet Grinder",
+    category: "Wet Grinders",
     capacity: "10 - 15 Birds / Min",
     motor: "1.5 HP Heavy Duty",
     material: "Full Stainless Steel 304",
