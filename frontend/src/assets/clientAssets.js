@@ -11,7 +11,7 @@ import attaKneaderYellow from './WhatsApp Image 2026-07-29 at 22.45.52.jpeg';
 import doughKneaderOrange from './WhatsApp Image 2026-07-29 at 22.56.24.jpeg';
 import uDrumMixerSS from './WhatsApp Image 2026-07-29 at 22.43.16.jpeg';
 import coconutCrabSS from './WhatsApp Image 2026-07-29 at 22.37.48.jpeg';
-import oilDryerMachine from './WhatsApp Image 2026-07-29 at 22.57.24.jpeg';
+import oilDryerMachine from './ChatGPT Image Aug 4, 2026, 12_39_29 PM.png';
 import ssSinksCounters from './Screenshot 2026-07-30 111312.png';
 import gravyMachineImg from './Screenshot 2026-07-30 111435.png';
 import ssProductScreenshot2 from './Screenshot 2026-07-30 111452.png';
