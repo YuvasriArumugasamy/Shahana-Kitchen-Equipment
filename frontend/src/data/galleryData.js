@@ -131,14 +131,14 @@ export const installationsGallery = [
     id: 1,
     title: "Hotel Installation",
     location: "Madurai",
-    img: "/images/gallery.png",
+    img: "/images/institution installation.png",
     description: "Complete commercial hotel kitchen setup"
   },
   {
     id: 2,
     title: "Restaurant Installation",
     location: "Coimbatore",
-    img: "/images/gallery1.png",
+    img: "/images/hostel installation.png",
     description: "Modern restaurant stainless steel layout"
   },
   {
@@ -215,14 +215,14 @@ export const happyCustomersGallery = [
     id: 1,
     title: "Hotel Sri Balaji",
     location: "Tirunelveli",
-    img: "/images/gallery.png",
+    img: "/images/institution installation.png",
     testimonial: "Excellent wet grinder performance!"
   },
   {
     id: 2,
     title: "Anandha Bhavan",
     location: "Madurai",
-    img: "/images/gallery1.png",
+    img: "/images/bakery installation.png",
     testimonial: "Reliable commercial kitchen setup."
   },
   {

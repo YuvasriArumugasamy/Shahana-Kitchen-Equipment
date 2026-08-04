@@ -234,9 +234,18 @@ export default function Home({ setCurrentPage, onOpenQuoteModal, onSelectProduct
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-4">
-          {["/images/gallery.png", "/images/gallery1.png", "/images/gallery2.png", "/images/gallery3.png", "/images/our workshop.png"].map((img, i) => (
-            <div key={i} className="rounded-xl overflow-hidden border border-gray-200 shadow-sm aspect-square bg-gray-50 p-1.5">
-              <img src={img} alt="Workshop Gallery" className="w-full h-full object-cover object-top rounded-lg" />
+          {[
+            { img: "/images/caterin unit installation.png", title: "Catering Unit" },
+            { img: "/images/bakery installation.png", title: "Bakery Setup" },
+            { img: "/images/institution installation.png", title: "Institution Canteen" },
+            { img: "/images/hostel installation.png", title: "Hotel & Hostel" },
+            { img: "/images/our workshop.png", title: "Our Workshop" }
+          ].map((item, i) => (
+            <div key={i} className="rounded-xl overflow-hidden border border-gray-200 shadow-sm aspect-square bg-gray-50 p-1.5 group relative hover:shadow-md transition-shadow">
+              <img src={item.img} alt={item.title} className="w-full h-full object-cover object-center rounded-lg group-hover:scale-105 transition-transform duration-300" />
+              <div className="absolute inset-x-1.5 bottom-1.5 bg-black/65 backdrop-blur-xs text-white text-[10px] sm:text-xs font-semibold py-1 text-center rounded-b-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                {item.title}
+              </div>
             </div>
           ))}
         </div>
