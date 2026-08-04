@@ -360,14 +360,16 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 60%, transparent 100%);
   color: white;
   font-weight: 700;
-  font-size: 11px;
-  padding: 8px 4px;
+  font-size: 9px;
+  line-height: 1.15;
+  padding: 4px 2px;
   text-align: center;
   opacity: 0;
   transition: opacity 0.3s ease;
+  pointer-events: none;
 }
 
 .carousel-card:hover .carousel-card-label {
@@ -393,6 +395,11 @@
     border-width: 2.5px;
     border-radius: 14px;
   }
+
+  .carousel-card-label {
+    font-size: 8px;
+    padding: 3px 2px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -410,6 +417,11 @@
   .carousel-card {
     border-width: 2px;
     border-radius: 12px;
+  }
+
+  .carousel-card-label {
+    font-size: 7.5px;
+    padding: 2px 1px;
   }
 }
 
