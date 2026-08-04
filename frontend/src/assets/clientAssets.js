@@ -21,7 +21,7 @@ import popcornMachineImg from './WhatsApp Image 2026-08-02 at 11.51.40.jpeg';
 import potatoPeelerImg from './WhatsApp Image 2026-08-02 at 11.51.34.jpeg';
 import riceWasherImg from './WhatsApp Image 2026-08-02 at 11.51.42.jpeg';
 import bananaSlicerImg from './WhatsApp Image 2026-08-01 at 16.26.03.jpeg';
-import tiltingGrinderStudioImg from './WhatsApp Image 2026-08-01 at 17.02.08.jpeg';
+import tiltingGrinderStudioImg from './ChatGPT Image Aug 4, 2026, 11_58_18 AM.png';
 import studioVegCutterImg from './WhatsApp Image 2026-08-02 at 11.51.33.jpeg';
 import meatMincerImg from './ChatGPT Image Aug 2, 2026, 06_38_22 PM.png';
 import flourMillImg from './ChatGPT Image Aug 2, 2026, 06_38_29 PM.png';
