@@ -47,6 +47,7 @@
   text-transform: uppercase;
   background: linear-gradient(135deg, #4A0E67 0%, #6A1B9A 50%, #8B5CF6 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
   position: relative;
@@ -255,6 +256,7 @@
   background: linear-gradient(90deg, #FFFFFF 0%, #E9D5FF 50%, #FFFFFF 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: shimmerGlow 4s linear infinite;
 }
