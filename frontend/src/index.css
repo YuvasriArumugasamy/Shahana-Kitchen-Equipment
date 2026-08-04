@@ -280,15 +280,15 @@
   justify-content: center;
   overflow: visible;
   perspective: 1000px;
-  min-height: 360px;
+  min-height: 350px;
   padding: 10px 0;
 }
 
 .carousel-inner {
-  --w: 115px;
-  --h: 160px;
-  --translateZ: 300px;
-  --rotateX: -7deg;
+  --w: 100px;
+  --h: 145px;
+  --translateZ: 350px;
+  --rotateX: -6deg;
   --perspective: 1000px;
   position: absolute;
   width: var(--w);
