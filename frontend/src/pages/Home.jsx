@@ -55,136 +55,81 @@ export default function Home({ setCurrentPage, onOpenQuoteModal, onSelectProduct
         <div className="absolute top-10 right-10 w-96 h-96 bg-purple-500/15 rounded-full filter blur-3xl pointer-events-none animate-glow-pulse"></div>
 
         <div className="max-w-container mx-auto px-4 relative z-10 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="max-w-3xl space-y-4 sm:space-y-6 text-left">
             
-            {/* Left Column - Headline & CTAs */}
-            <div className="lg:col-span-7 space-y-4 sm:space-y-6 text-left">
-              
-              {/* 3D Animated Glowing Badge */}
-              <div className="animate-hero-slide-up animation-delay-100 inline-flex items-center gap-2 bg-[#6A1B9A] text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider shadow-xl shadow-purple-900/20 hover:shadow-purple-500/40 transition-all duration-300 transform hover:-translate-y-0.5">
-                <span className="relative flex h-2.5 w-2.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-300 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-purple-100"></span>
-                </span>
-                <Sparkles className="w-4 h-4 text-purple-200 shrink-0 animate-pulse" />
-                <span>Tamil Nadu's #1 Commercial Kitchen Equipment Brand</span>
+            {/* 3D Animated Glowing Badge */}
+            <div className="animate-hero-slide-up animation-delay-100 inline-flex items-center gap-2 bg-[#6A1B9A] text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider shadow-xl shadow-purple-900/20 hover:shadow-purple-500/40 transition-all duration-300 transform hover:-translate-y-0.5">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-300 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-purple-100"></span>
+              </span>
+              <Sparkles className="w-4 h-4 text-purple-200 shrink-0 animate-pulse" />
+              <span>Tamil Nadu's #1 Commercial Kitchen Equipment Brand</span>
+            </div>
+
+            {/* Heading with 3D Gradient Text */}
+            <h1 className="animate-hero-slide-up animation-delay-200 text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-heading font-extrabold text-gray-900 tracking-tight leading-[1.12]">
+              COMMERCIAL KITCHEN <br/>
+              <span className="text-[#6A1B9A] bg-clip-text text-transparent bg-gradient-to-r from-[#6A1B9A] via-purple-700 to-indigo-900 drop-shadow-sm">
+                EQUIPMENT & MACHINERY
+              </span>
+            </h1>
+
+            {/* Subheading */}
+            <p className="animate-hero-slide-up animation-delay-300 text-[#6A1B9A] text-base sm:text-lg lg:text-xl font-extrabold tracking-wide uppercase flex items-center gap-2">
+              <span className="h-0.5 w-7 bg-[#6A1B9A] rounded-full inline-block"></span>
+              <span>MANUFACTURING | SALES | SPARE PARTS & SERVICE</span>
+            </p>
+
+            {/* Description */}
+            <p className="animate-hero-slide-up animation-delay-400 text-gray-800 text-sm sm:text-base lg:text-lg font-medium leading-relaxed max-w-xl">
+              High-capacity 304 food grade stainless steel kitchen machinery for hotels, restaurants, caterers, hostels, cloud kitchens & food processing units.
+            </p>
+
+            {/* Value Checkmark Bullets */}
+            <div className="animate-hero-slide-up animation-delay-500 grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1 text-xs sm:text-sm font-bold text-gray-900">
+              <div className="flex items-center gap-2.5 group">
+                <div className="w-6 h-6 rounded-full bg-purple-100 flex items-center justify-center shrink-0 group-hover:bg-[#6A1B9A] transition-colors">
+                  <CheckCircle2 className="w-4 h-4 text-[#6A1B9A] group-hover:text-white transition-colors" />
+                </div>
+                <span className="group-hover:text-[#6A1B9A] transition-colors">100% 304 Food Grade SS</span>
               </div>
-
-              {/* Heading with 3D Gradient Text */}
-              <h1 className="animate-hero-slide-up animation-delay-200 text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-heading font-extrabold text-gray-900 tracking-tight leading-[1.12]">
-                COMMERCIAL KITCHEN <br/>
-                <span className="text-[#6A1B9A] bg-clip-text text-transparent bg-gradient-to-r from-[#6A1B9A] via-purple-700 to-indigo-900 drop-shadow-sm">
-                  EQUIPMENT & MACHINERY
-                </span>
-              </h1>
-
-              {/* Subheading */}
-              <p className="animate-hero-slide-up animation-delay-300 text-[#6A1B9A] text-base sm:text-lg lg:text-xl font-extrabold tracking-wide uppercase flex items-center gap-2">
-                <span className="h-0.5 w-7 bg-[#6A1B9A] rounded-full inline-block"></span>
-                <span>MANUFACTURING | SALES | SPARE PARTS & SERVICE</span>
-              </p>
-
-              {/* Description */}
-              <p className="animate-hero-slide-up animation-delay-400 text-gray-800 text-sm sm:text-base lg:text-lg font-medium leading-relaxed max-w-xl">
-                High-capacity 304 food grade stainless steel kitchen machinery for hotels, restaurants, caterers, hostels, cloud kitchens & food processing units.
-              </p>
-
-              {/* Value Checkmark Bullets */}
-              <div className="animate-hero-slide-up animation-delay-500 grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1 text-xs sm:text-sm font-bold text-gray-900">
-                <div className="flex items-center gap-2.5 group">
-                  <div className="w-6 h-6 rounded-full bg-purple-100 flex items-center justify-center shrink-0 group-hover:bg-[#6A1B9A] transition-colors">
-                    <CheckCircle2 className="w-4 h-4 text-[#6A1B9A] group-hover:text-white transition-colors" />
-                  </div>
-                  <span className="group-hover:text-[#6A1B9A] transition-colors">100% 304 Food Grade SS</span>
+              <div className="flex items-center gap-2.5 group">
+                <div className="w-6 h-6 rounded-full bg-purple-100 flex items-center justify-center shrink-0 group-hover:bg-[#6A1B9A] transition-colors">
+                  <CheckCircle2 className="w-4 h-4 text-[#6A1B9A] group-hover:text-white transition-colors" />
                 </div>
-                <div className="flex items-center gap-2.5 group">
-                  <div className="w-6 h-6 rounded-full bg-purple-100 flex items-center justify-center shrink-0 group-hover:bg-[#6A1B9A] transition-colors">
-                    <CheckCircle2 className="w-4 h-4 text-[#6A1B9A] group-hover:text-white transition-colors" />
-                  </div>
-                  <span className="group-hover:text-[#6A1B9A] transition-colors">Lakshmi Heavy Duty Motor</span>
-                </div>
-                <div className="flex items-center gap-2.5 group">
-                  <div className="w-6 h-6 rounded-full bg-purple-100 flex items-center justify-center shrink-0 group-hover:bg-[#6A1B9A] transition-colors">
-                    <CheckCircle2 className="w-4 h-4 text-[#6A1B9A] group-hover:text-white transition-colors" />
-                  </div>
-                  <span className="group-hover:text-[#6A1B9A] transition-colors">Original Spare Parts Ready</span>
-                </div>
-                <div className="flex items-center gap-2.5 group">
-                  <div className="w-6 h-6 rounded-full bg-purple-100 flex items-center justify-center shrink-0 group-hover:bg-[#6A1B9A] transition-colors">
-                    <CheckCircle2 className="w-4 h-4 text-[#6A1B9A] group-hover:text-white transition-colors" />
-                  </div>
-                  <span className="group-hover:text-[#6A1B9A] transition-colors">Doorstep On-Site Service</span>
-                </div>
+                <span className="group-hover:text-[#6A1B9A] transition-colors">Lakshmi Heavy Duty Motor</span>
               </div>
-
-              {/* CTA Buttons */}
-              <div className="animate-hero-slide-up animation-delay-600 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4 pt-3">
-                <button
-                  onClick={() => { setCurrentPage('products'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                  className="btn-purple px-7 py-3.5 text-xs sm:text-sm font-bold shadow-xl shadow-purple-900/25 flex items-center justify-center gap-2.5 w-full sm:w-auto transform hover:scale-[1.04] active:scale-95 transition-all duration-300"
-                >
-                  <span>EXPLORE PRODUCTS</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={onOpenQuoteModal}
-                  className="btn-secondary px-7 py-3.5 text-xs sm:text-sm font-bold flex items-center justify-center gap-2 bg-white/90 backdrop-blur-md w-full sm:w-auto transform hover:scale-[1.04] active:scale-95 transition-all duration-300 shadow-lg border border-purple-200 text-[#6A1B9A]"
-                >
-                  <span>GET FREE QUOTE</span>
-                </button>
+              <div className="flex items-center gap-2.5 group">
+                <div className="w-6 h-6 rounded-full bg-purple-100 flex items-center justify-center shrink-0 group-hover:bg-[#6A1B9A] transition-colors">
+                  <CheckCircle2 className="w-4 h-4 text-[#6A1B9A] group-hover:text-white transition-colors" />
+                </div>
+                <span className="group-hover:text-[#6A1B9A] transition-colors">Original Spare Parts Ready</span>
+              </div>
+              <div className="flex items-center gap-2.5 group">
+                <div className="w-6 h-6 rounded-full bg-purple-100 flex items-center justify-center shrink-0 group-hover:bg-[#6A1B9A] transition-colors">
+                  <CheckCircle2 className="w-4 h-4 text-[#6A1B9A] group-hover:text-white transition-colors" />
+                </div>
+                <span className="group-hover:text-[#6A1B9A] transition-colors">Doorstep On-Site Service</span>
               </div>
             </div>
 
-            {/* Right Column - 3D Floating Interactive Machine Stage */}
-            <div className="lg:col-span-5 hidden lg:block relative perspective-1000">
-              <div className="relative w-full aspect-square max-w-md mx-auto preserve-3d">
-                
-                {/* Center 3D Machine Stage Card */}
-                <div className="glass-card-purple rounded-3xl p-6 shadow-2xl border border-purple-300/50 card-3d-hover relative z-10 shine-overlay">
-                  <div className="w-full aspect-square podium-ss-3d rounded-2xl p-6 flex items-center justify-center relative overflow-hidden mb-4 border border-white">
-                    
-                    {/* Glowing Accent Halo */}
-                    <div className="absolute inset-0 bg-gradient-to-tr from-purple-400/20 via-transparent to-indigo-400/20 animate-glow-pulse pointer-events-none"></div>
-                    
-                    <img
-                      src={productAssets.instantWetGrinder}
-                      alt="Commercial Instant Wet Grinder"
-                      className="max-h-full max-w-full object-contain img-3d-pop drop-shadow-2xl transition-transform duration-500"
-                    />
-
-                    {/* Badge Overlay */}
-                    <span className="absolute top-3 left-3 bg-[#6A1B9A] text-white text-[10px] font-extrabold px-3 py-1 rounded-full shadow-lg uppercase tracking-wider">
-                      ★ Top Bestseller
-                    </span>
-                  </div>
-
-                  <div className="text-center space-y-1">
-                    <h3 className="font-heading font-extrabold text-gray-900 text-lg">Commercial Instant Wet Grinder</h3>
-                    <p className="text-xs text-purple-700 font-bold">25kg - 100kg / Hour Batter Output</p>
-                  </div>
-                </div>
-
-                {/* Floating 3D Spec Pill #1 (Top Right) */}
-                <div className="absolute -top-4 -right-4 glass-card-3d py-2 px-3.5 rounded-2xl shadow-xl z-20 animate-float-slow flex items-center gap-2 border border-purple-200">
-                  <Zap className="w-4 h-4 text-amber-500 fill-amber-400" />
-                  <div className="text-left">
-                    <div className="text-[10px] font-extrabold text-gray-900 uppercase leading-none">Motor</div>
-                    <div className="text-[11px] font-bold text-purple-900">2 HP Heavy Duty Copper</div>
-                  </div>
-                </div>
-
-                {/* Floating 3D Spec Pill #2 (Bottom Left) */}
-                <div className="absolute -bottom-4 -left-4 glass-card-3d py-2 px-3.5 rounded-2xl shadow-xl z-20 animate-float-reverse flex items-center gap-2 border border-purple-200">
-                  <ShieldCheck className="w-4 h-4 text-emerald-600 fill-emerald-100" />
-                  <div className="text-left">
-                    <div className="text-[10px] font-extrabold text-gray-900 uppercase leading-none">Material</div>
-                    <div className="text-[11px] font-bold text-emerald-800">Food Grade 304 SS</div>
-                  </div>
-                </div>
-
-              </div>
+            {/* CTA Buttons */}
+            <div className="animate-hero-slide-up animation-delay-600 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4 pt-3">
+              <button
+                onClick={() => { setCurrentPage('products'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                className="btn-purple px-7 py-3.5 text-xs sm:text-sm font-bold shadow-xl shadow-purple-900/25 flex items-center justify-center gap-2.5 w-full sm:w-auto transform hover:scale-[1.04] active:scale-95 transition-all duration-300"
+              >
+                <span>EXPLORE PRODUCTS</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+              <button
+                onClick={onOpenQuoteModal}
+                className="btn-secondary px-7 py-3.5 text-xs sm:text-sm font-bold flex items-center justify-center gap-2 bg-white/90 backdrop-blur-md w-full sm:w-auto transform hover:scale-[1.04] active:scale-95 transition-all duration-300 shadow-lg border border-purple-200 text-[#6A1B9A]"
+              >
+                <span>GET FREE QUOTE</span>
+              </button>
             </div>
-
           </div>
         </div>
       </section>
