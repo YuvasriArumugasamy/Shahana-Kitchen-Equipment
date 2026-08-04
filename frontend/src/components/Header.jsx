@@ -137,9 +137,9 @@ export default function Header({ currentPage, setCurrentPage, onOpenQuoteModal }
             </div>
           </div>
 
-          {/* Desktop Nav Items - Ultra Modern Floating Glass Capsule */}
+          {/* Desktop Nav Items */}
           <nav className="hidden lg:flex items-center justify-center flex-1 font-heading">
-            <div className="bg-purple-50/80 backdrop-blur-md p-1.5 rounded-full border border-purple-200/80 shadow-xs flex items-center justify-center gap-1 xl:gap-1.5">
+            <div className="flex items-center justify-center gap-1 xl:gap-1.5">
               {navItems.map((item) => {
                 const isActive = currentPage === item.id;
                 return (
@@ -149,7 +149,7 @@ export default function Header({ currentPage, setCurrentPage, onOpenQuoteModal }
                     className={`relative px-3.5 xl:px-4 py-2 rounded-full text-xs xl:text-[12.5px] font-extrabold uppercase tracking-wide whitespace-nowrap transition-all duration-300 ${
                       isActive 
                         ? 'text-white bg-gradient-to-r from-[#6A1B9A] via-purple-700 to-purple-900 shadow-md shadow-purple-900/20 scale-[1.03]' 
-                        : 'text-gray-700 hover:text-[#6A1B9A] hover:bg-white/90'
+                        : 'text-gray-700 hover:text-[#6A1B9A] hover:bg-purple-50/80'
                     }`}
                   >
                     {item.label}
