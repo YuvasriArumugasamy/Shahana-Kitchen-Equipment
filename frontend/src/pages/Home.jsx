@@ -180,7 +180,7 @@ export default function Home({ setCurrentPage, onOpenQuoteModal, onSelectProduct
             <div className="text-xs sm:text-sm font-semibold text-gray-700">Food Grade 304 SS</div>
           </div>
           <div className="space-y-1 pl-4">
-            <div className="text-2xl sm:text-4xl font-extrabold text-[#6A1B9A]">18+</div>
+            <div className="text-2xl sm:text-4xl font-extrabold text-[#6A1B9A]">50+</div>
             <div className="text-xs sm:text-sm font-semibold text-gray-700">Machine Categories</div>
           </div>
           <div className="space-y-1 pl-4">
