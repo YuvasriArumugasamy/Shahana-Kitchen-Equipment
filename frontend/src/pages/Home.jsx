@@ -25,7 +25,15 @@ export default function Home({ setCurrentPage, onOpenQuoteModal, onSelectProduct
     { name: "Heavy Duty Flour Mill", img: productAssets.flourMill, color: "142, 200, 252" },
     { name: "Rice & Grain Washer", img: productAssets.riceWasher, color: "142, 252, 240" },
     { name: "Atta Kneader", img: productAssets.attaKneader, color: "142, 252, 157" },
-    { name: "Vegetable Cutter", img: productAssets.vegetableCutter, color: "215, 252, 142" }
+    { name: "Vegetable Cutter", img: productAssets.vegetableCutter, color: "215, 252, 142" },
+    { name: "Commercial Wet Grinder", img: productAssets.wetGrinder, color: "252, 180, 210" },
+    { name: "Instant Wet Grinder", img: productAssets.instantWetGrinder, color: "180, 210, 252" },
+    { name: "Coconut Scraper", img: productAssets.coconutScraper, color: "252, 230, 142" },
+    { name: "Double Head Scraper", img: productAssets.doubleCoconutScraper, color: "252, 160, 142" },
+    { name: "U-Drum SS Mixer", img: productAssets.uDrumMixer, color: "160, 252, 220" },
+    { name: "Table Top Grinder", img: productAssets.tableTopWetGrinder, color: "180, 180, 252" },
+    { name: "Chicken Feather Remover", img: productAssets.chickenFeatherRemover, color: "252, 200, 160" },
+    { name: "Oil Dryer Machine", img: productAssets.oilDryer, color: "210, 252, 180" }
   ];
 
   return (
@@ -138,7 +146,7 @@ export default function Home({ setCurrentPage, onOpenQuoteModal, onSelectProduct
                 style={{
                   "--color-card": cat.color,
                   "--index": idx,
-                  transform: `rotateY(calc((360deg / 12) * ${idx})) translateZ(250px)`
+                  transform: `rotateY(calc((360deg / ${carouselItems.length}) * ${idx})) translateZ(300px)`
                 }}
                 onClick={() => { setCurrentPage('products'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
               >
