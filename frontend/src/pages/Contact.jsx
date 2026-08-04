@@ -171,34 +171,6 @@ export default function Contact({ onOpenQuoteModal }) {
               ></iframe>
             </div>
 
-            {/* Business Hours Box */}
-            <div className="bg-white rounded-2xl p-5 sm:p-6 border border-gray-200 shadow-sm space-y-4">
-              <h3 className="font-heading font-extrabold text-gray-900 text-xs uppercase border-b border-gray-100 pb-2">
-                BUSINESS HOURS
-              </h3>
-
-              <div className="space-y-3 text-xs text-gray-700">
-                <div className="flex justify-between items-center">
-                  <span className="flex items-center gap-2"><Calendar className="w-4 h-4 text-[#6A1B9A]" /> Monday - Saturday</span>
-                  <span className="font-bold">9.00 AM - 7.00 PM</span>
-                </div>
-                <div className="flex justify-between items-center text-gray-500">
-                  <span className="flex items-center gap-2"><Calendar className="w-4 h-4 text-gray-400" /> Sunday</span>
-                  <span className="font-bold text-red-500">Closed</span>
-                </div>
-              </div>
-
-              {/* Emergency Support Note Box */}
-              <div className="bg-purple-50 p-3.5 sm:p-4 rounded-xl border border-purple-100 flex items-start gap-3">
-                <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-[#6A1B9A] shrink-0 mt-0.5" />
-                <div>
-                  <h4 className="font-bold text-gray-900 text-xs">Emergency Support (24/7 Available)</h4>
-                  <p className="text-[10px] sm:text-[11px] text-purple-900 font-semibold">Available 24 Hours (24/7 Support) on WhatsApp & Phone Call.</p>
-                </div>
-              </div>
-
-            </div>
-
           </div>
 
         </div>
