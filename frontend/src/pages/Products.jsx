@@ -279,9 +279,9 @@ export default function Products({ setCurrentPage, onOpenQuoteModal, onSelectPro
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {filteredProducts.length > 0 ? filteredProducts.map((item, idx) => (
-                <div key={idx} className="bg-white/95 rounded-3xl overflow-hidden border border-gray-200/90 shadow-xl hover:shadow-[0_35px_80px_-35px_rgba(106,27,154,0.45)] hover:-translate-y-1.5 transition-all duration-300 p-4 flex flex-col justify-between group relative border-t-4 border-t-[#6A1B9A]">
+                <div key={idx} className="bg-white/95 rounded-3xl overflow-hidden border border-purple-100 shadow-md hover:shadow-2xl card-3d-hover p-4 flex flex-col justify-between group relative border-t-4 border-t-[#6A1B9A] shine-overlay">
                   <div>
-                    <div className="w-full aspect-square bg-gradient-to-b from-purple-50/60 to-gray-50 rounded-3xl overflow-hidden pt-8 pb-3 px-3 flex items-center justify-center mb-3.5 relative border border-gray-100">
+                    <div className="w-full aspect-square podium-ss-3d rounded-2xl overflow-hidden pt-8 pb-3 px-3 flex items-center justify-center mb-3.5 relative border border-white">
                       {item.badge ? (
                         <span className="absolute top-2 left-2 z-20 bg-gradient-to-r from-[#6A1B9A] to-purple-900 text-white text-[10px] font-extrabold px-2.5 py-1 rounded-full shadow-lg tracking-wider uppercase">
                           {item.badge}
@@ -291,7 +291,7 @@ export default function Products({ setCurrentPage, onOpenQuoteModal, onSelectPro
                           304 SS Food Grade
                         </span>
                       )}
-                      <img src={item.img} alt={item.name} className="max-h-full max-w-full object-contain group-hover:scale-108 transition-transform duration-300 drop-shadow-sm relative z-10" />
+                      <img src={item.img} alt={item.name} className="max-h-full max-w-full object-contain img-3d-pop transition-transform duration-500 drop-shadow-md relative z-10" />
                     </div>
 
                     <h3 className="font-heading font-extrabold text-gray-900 text-sm text-center mb-4 group-hover:text-[#6A1B9A] transition-colors">{item.name}</h3>
@@ -300,7 +300,7 @@ export default function Products({ setCurrentPage, onOpenQuoteModal, onSelectPro
                   <div className="space-y-2 pt-1">
                     <button 
                       onClick={() => onOpenQuoteModal({ name: item.name })} 
-                      className="btn-purple w-full py-2.5 text-xs font-bold shadow-md shadow-purple-900/10 hover:shadow-purple-900/25 flex items-center justify-center gap-1.5"
+                      className="btn-purple w-full py-2.5 text-xs font-bold shadow-md shadow-purple-900/15 hover:shadow-purple-900/30 flex items-center justify-center gap-1.5 uppercase tracking-wide"
                     >
                       <span>GET FREE QUOTE</span>
                     </button>

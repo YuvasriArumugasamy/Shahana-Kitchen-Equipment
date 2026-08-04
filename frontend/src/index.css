@@ -338,24 +338,21 @@
 .carousel-card-img {
   width: 100%;
   height: 100%;
+  object-fit: contain;
   background: #ffffff;
-  padding: 0;
+  padding: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
 }
 
 .carousel-card-img img {
+  max-height: 96%;
+  max-width: 96%;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center;
-  transition: transform 0.3s ease;
-}
-
-.carousel-card:hover .carousel-card-img img {
-  transform: scale(1.08);
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 .carousel-card-label {
@@ -474,5 +471,137 @@
 .stagger-4 { transition-delay: 0.32s; }
 .stagger-5 { transition-delay: 0.40s; }
 .stagger-6 { transition-delay: 0.48s; }
+
+/* ==========================================
+   3D ANIMATION & GLASSMORPHISM UTILITIES
+   ========================================== */
+
+/* 3D Perspective Wrappers */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.perspective-2000 {
+  perspective: 2000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+/* 3D Card Hover Elevation */
+.card-3d-hover {
+  transition: transform 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.45s ease, border-color 0.45s ease;
+  transform-style: preserve-3d;
+}
+
+.card-3d-hover:hover {
+  transform: translateY(-8px) rotateX(4deg) rotateY(-2deg) scale(1.02);
+  box-shadow: 0 25px 50px -12px rgba(106, 27, 154, 0.22), 0 0 30px rgba(106, 27, 154, 0.15);
+}
+
+.card-3d-hover:hover .img-3d-pop {
+  transform: translateZ(25px) scale(1.06);
+}
+
+/* 3D Glassmorphism Cards */
+.glass-card-3d {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.glass-card-purple {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.92) 0%, rgba(243, 232, 255, 0.75) 100%);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  box-shadow: 0 20px 40px -15px rgba(106, 27, 154, 0.15);
+}
+
+/* Metallic Stainless Steel Podium Background */
+.podium-ss-3d {
+  background: radial-gradient(ellipse at center, rgba(243, 232, 255, 0.8) 0%, rgba(248, 250, 252, 0.95) 70%, rgba(238, 242, 255, 1) 100%);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.03), 0 8px 20px -6px rgba(106, 27, 154, 0.1);
+}
+
+/* Floating Animations */
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(1.5deg);
+  }
+}
+
+@keyframes floatReverse {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(10px) rotate(-1.5deg);
+  }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    opacity: 0.4;
+    filter: drop-shadow(0 0 15px rgba(106, 27, 154, 0.4));
+  }
+  50% {
+    opacity: 0.8;
+    filter: drop-shadow(0 0 35px rgba(168, 85, 247, 0.7));
+  }
+}
+
+@keyframes shineSheen {
+  0% {
+    transform: translateX(-100%) rotate(25deg);
+  }
+  100% {
+    transform: translateX(200%) rotate(25deg);
+  }
+}
+
+.animate-float-slow {
+  animation: floatSlow 5s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: floatReverse 6s ease-in-out infinite;
+}
+
+.animate-glow-pulse {
+  animation: glowPulse 3.5s ease-in-out infinite;
+}
+
+.shine-overlay {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine-overlay::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 70%
+  );
+  transform: translateX(-100%) rotate(25deg);
+  transition: transform 0.8s ease;
+  pointer-events: none;
+}
+
+.shine-overlay:hover::after {
+  animation: shineSheen 1.2s ease forwards;
+}
 
 
