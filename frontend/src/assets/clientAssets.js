@@ -38,7 +38,7 @@ export const logoImg = siteLogo;
 export const productAssets = {
   vegetableCutter: studioVegCutterImg,
   vegetableCutterRed: studioVegCutterImg,
-  wetGrinder: wetGrinder5L,
+  wetGrinder: '/images/wet grinder.png',
   instantWetGrinder: instantWetGrinderStudioImg,
   tiltingWetGrinder: tiltingGrinderStudioImg,
   tableTopWetGrinder: blueTableTopGrinder,
