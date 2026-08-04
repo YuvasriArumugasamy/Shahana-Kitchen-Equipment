@@ -172,7 +172,7 @@ export default function Home({ setCurrentPage, onOpenQuoteModal, onSelectProduct
       <section className="max-w-container mx-auto px-4">
         <div className="glass-card-purple rounded-3xl p-6 sm:p-8 shadow-xl border border-purple-200 grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-x divide-purple-200/50">
           <div className="space-y-1">
-            <div className="text-2xl sm:text-4xl font-extrabold text-[#6A1B9A]">500+</div>
+            <div className="text-2xl sm:text-4xl font-extrabold text-[#6A1B9A]">1000+</div>
             <div className="text-xs sm:text-sm font-semibold text-gray-700">Satisfied Clients</div>
           </div>
           <div className="space-y-1 pl-4">
