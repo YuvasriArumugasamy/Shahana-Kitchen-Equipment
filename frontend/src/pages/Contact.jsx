@@ -192,8 +192,8 @@ export default function Contact({ onOpenQuoteModal }) {
               <div className="bg-purple-50 p-3.5 sm:p-4 rounded-xl border border-purple-100 flex items-start gap-3">
                 <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-[#6A1B9A] shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="font-bold text-gray-900 text-xs">Emergency Support (For Existing Customers)</h4>
-                  <p className="text-[10px] sm:text-[11px] text-gray-600">Available on WhatsApp during business hours.</p>
+                  <h4 className="font-bold text-gray-900 text-xs">Emergency Support (24/7 Available)</h4>
+                  <p className="text-[10px] sm:text-[11px] text-purple-900 font-semibold">Available 24 Hours (24/7 Support) on WhatsApp & Phone Call.</p>
                 </div>
               </div>
 
