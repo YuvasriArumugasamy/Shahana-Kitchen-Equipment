@@ -31,6 +31,7 @@ import roasterProcessingImg from './ChatGPT Image Aug 2, 2026, 06_34_59 PM.png';
 import instantWetGrinderStudioImg from './ChatGPT Image Aug 2, 2026, 07_04_05 PM.png';
 import coconutScraperBowlImg from './ChatGPT Image Aug 2, 2026, 07_04_14 PM.png';
 import doubleCoconutScraperImg from './ChatGPT Image Aug 2, 2026, 07_09_34 PM.png';
+import ordinaryGrinderStudioImg from './ChatGPT Image Aug 4, 2026, 12_09_13 PM.png';
 import siteLogo from './ChatGPT Image Aug 2, 2026, 10_28_47 PM.png';
 
 export const logoImg = siteLogo;
@@ -39,6 +40,7 @@ export const productAssets = {
   vegetableCutter: studioVegCutterImg,
   vegetableCutterRed: studioVegCutterImg,
   wetGrinder: '/images/wet grinder.png',
+  ordinaryGrinder: ordinaryGrinderStudioImg,
   instantWetGrinder: instantWetGrinderStudioImg,
   tiltingWetGrinder: tiltingGrinderStudioImg,
   tableTopWetGrinder: blueTableTopGrinder,

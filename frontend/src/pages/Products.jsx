@@ -11,6 +11,7 @@ export default function Products({ setCurrentPage, onOpenQuoteModal, onSelectPro
     { name: "Vegetable Cutting Machine", category: "Vegetable Cutters", specs: "0.5 HP Lakshmi Copper Motor", badge: "Best Seller", img: productAssets.vegetableCutter },
     { name: "Instant Wet Grinder", category: "Wet Grinders", specs: "25kg - 100kg/hr Instant Grinding", badge: "Studio HD", img: productAssets.instantWetGrinder },
     { name: "Commercial Wet Grinder", category: "Wet Grinders", specs: "3L to 25L Available", badge: "Popular", img: productAssets.wetGrinder },
+    { name: "Ordinary Grinder", category: "Wet Grinders", specs: "5L to 25L Available", badge: "Popular", img: productAssets.ordinaryGrinder },
     { name: "Tilting Wet Grinder", category: "Tilting Wet Grinders", specs: "15L | 25L | 35L", badge: "", img: productAssets.tiltingWetGrinder },
     { name: "Atta Kneader Machine", category: "Dough Kneaders", specs: "10kg to 50kg Lakshmi Motor", badge: "Top Rated", img: productAssets.attaKneader },
     { name: "Coconut Crab", category: "Coconut Scrapers", specs: "0.5 HP Lakshmi Motor", badge: "Best Seller", img: productAssets.coconutScraper },

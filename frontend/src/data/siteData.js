@@ -71,6 +71,29 @@ export const PRODUCTS = [
     applications: ["Hotels", "Restaurants", "Marriage Halls", "Industrial Canteens"]
   },
   {
+    id: "ordinary-grinder",
+    name: "Ordinary Grinder",
+    category: "Wet Grinders",
+    capacity: "5 Litres to 25 Litres Available",
+    motor: "1 HP - 3 HP Heavy Duty Lakshmi Motor",
+    material: "304 Food Grade SS & Natural Granite Stone",
+    voltage: "230V Single Phase",
+    price: "₹24,000",
+    rating: 4.9,
+    reviewsCount: 40,
+    badge: "Popular",
+    image: productAssets.ordinaryGrinder,
+    description: "Commercial Ordinary Wet Grinder with 304 food grade stainless steel drum and heavy duty natural granite grinding stone for continuous batter grinding.",
+    features: [
+      "5L to 25L Grinding Capacity",
+      "High Torque Lakshmi Copper Motor",
+      "Food Grade 304 Stainless Steel Drum",
+      "Natural Black Granite Grinding Stone",
+      "Sturdy Anti-Vibration Base Frame"
+    ],
+    applications: ["Hotels", "Restaurants", "Caterers", "Commercial Kitchens"]
+  },
+  {
     id: "coconut-crab-machine",
     name: "Coconut Crab",
     category: "Coconut Scrapers",

@@ -26,7 +26,7 @@ export default function Home({ setCurrentPage, onOpenQuoteModal, onSelectProduct
     { name: "Rice & Grain Washer", img: productAssets.riceWasher, color: "142, 252, 240" },
     { name: "Atta Kneader", img: productAssets.attaKneader, color: "142, 252, 157" },
     { name: "Vegetable Cutter", img: productAssets.vegetableCutter, color: "215, 252, 142" },
-    { name: "Commercial Wet Grinder", img: productAssets.wetGrinder, color: "252, 180, 210" },
+    { name: "Ordinary Grinder", img: productAssets.ordinaryGrinder, color: "252, 180, 210" },
     { name: "Instant Wet Grinder", img: productAssets.instantWetGrinder, color: "180, 210, 252" },
     { name: "Coconut Scraper", img: productAssets.coconutScraper, color: "252, 230, 142" },
     { name: "Double Head Scraper", img: productAssets.doubleCoconutScraper, color: "252, 160, 142" },
