@@ -208,8 +208,7 @@ export default function Home({ setCurrentPage, onOpenQuoteModal, onSelectProduct
                     </span>
                     <img src={product.image} alt={product.name} className="max-h-full max-w-full object-contain group-hover:scale-108 transition-transform duration-300 drop-shadow-sm relative z-10" />
                   </div>
-                  <h3 className="font-heading font-extrabold text-gray-900 text-sm sm:text-base text-center mb-1 group-hover:text-[#6A1B9A] transition-colors">{product.name}</h3>
-                  <p className="text-[11px] font-medium text-gray-500 text-center mb-4 bg-gray-50 py-1 px-2 rounded-lg border border-gray-100">{product.capacity}</p>
+                  <h3 className="font-heading font-extrabold text-gray-900 text-sm sm:text-base text-center mb-4 group-hover:text-[#6A1B9A] transition-colors">{product.name}</h3>
                 </div>
                 <button
                   onClick={() => onOpenQuoteModal(product)}

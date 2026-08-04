@@ -122,8 +122,7 @@ export default function SpareParts({ onOpenQuoteModal }) {
                       </span>
                       <img src={part.img} alt={part.name} className="max-h-full max-w-full object-contain group-hover:scale-108 transition-transform duration-300 drop-shadow-xs relative z-10" />
                     </div>
-                    <h3 className="font-heading font-extrabold text-gray-900 text-xs sm:text-sm mb-1 leading-snug group-hover:text-[#6A1B9A] transition-colors">{part.name}</h3>
-                    <p className="text-[10px] sm:text-[11px] font-medium text-gray-500 mb-3 bg-gray-50 py-0.5 px-1.5 rounded-lg border border-gray-100">{part.specs}</p>
+                    <h3 className="font-heading font-extrabold text-gray-900 text-xs sm:text-sm mb-3 leading-snug group-hover:text-[#6A1B9A] transition-colors">{part.name}</h3>
                   </div>
                   <button
                     onClick={() => onOpenQuoteModal({ name: part.name })}

@@ -294,8 +294,7 @@ export default function Products({ setCurrentPage, onOpenQuoteModal, onSelectPro
                       <img src={item.img} alt={item.name} className="max-h-full max-w-full object-contain group-hover:scale-108 transition-transform duration-300 drop-shadow-sm relative z-10" />
                     </div>
 
-                    <h3 className="font-heading font-extrabold text-gray-900 text-sm text-center mb-1 group-hover:text-[#6A1B9A] transition-colors">{item.name}</h3>
-                    <p className="text-[11px] font-medium text-gray-500 text-center mb-4 bg-white/80 py-1 px-2 rounded-full border border-gray-100">{item.specs}</p>
+                    <h3 className="font-heading font-extrabold text-gray-900 text-sm text-center mb-4 group-hover:text-[#6A1B9A] transition-colors">{item.name}</h3>
                   </div>
 
                   <div className="space-y-2 pt-1">
