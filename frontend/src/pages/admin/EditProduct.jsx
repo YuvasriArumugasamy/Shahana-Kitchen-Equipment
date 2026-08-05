@@ -294,19 +294,27 @@ export default function EditProduct({
                 <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
                   Category *
                 </label>
-                <select
+                <input
+                  type="text"
+                  required
+                  list="category-suggestions"
                   value={formData.category}
                   onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                  className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 focus:border-purple-500 rounded-xl text-xs font-semibold outline-none bg-white"
-                >
-                  <option>Wet Grinders</option>
-                  <option>Tilting Wet Grinders</option>
-                  <option>Pulverizers</option>
-                  <option>Dough Kneaders</option>
-                  <option>Vegetable Cutters</option>
-                  <option>Mixer Machines</option>
-                  <option>Coconut Scrapers</option>
-                </select>
+                  className="w-full px-3.5 py-2.5 bg-slate-50 focus:bg-white border border-slate-200 focus:border-purple-500 rounded-xl text-xs font-semibold text-slate-800 outline-none transition-all"
+                  placeholder="e.g. Vegetable Cutters, Wet Grinders..."
+                />
+                <datalist id="category-suggestions">
+                  <option value="Wet Grinders" />
+                  <option value="Tilting Wet Grinders" />
+                  <option value="Pulverizers & Gravy" />
+                  <option value="Dough Kneaders" />
+                  <option value="Vegetable Cutters" />
+                  <option value="Mixer Machines" />
+                  <option value="Coconut Scrapers" />
+                  <option value="Processing Machines" />
+                  <option value="Snack Machines" />
+                  <option value="Spare Parts" />
+                </datalist>
               </div>
 
               {/* Status */}
