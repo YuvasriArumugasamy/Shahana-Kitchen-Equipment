@@ -41,11 +41,17 @@ const formatQuoteAsNotification = (q) => ({
 
 // Fetch notifications - MongoDB from Render backend
 export const fetchCloudNotifications = async () => {
+  let deletedIds = new Set();
+  try {
+    const rawDeleted = JSON.parse(localStorage.getItem('shahana_deleted_quote_ids') || '[]');
+    deletedIds = new Set(rawDeleted.map(String));
+  } catch (e) {}
+
   // Start with whatever is saved in localStorage
   let combinedNotifs = [];
   try {
     const local = JSON.parse(localStorage.getItem(LS_KEY) || '[]');
-    if (Array.isArray(local)) combinedNotifs = local;
+    if (Array.isArray(local)) combinedNotifs = local.filter(n => !deletedIds.has(String(n.id)));
   } catch (e) {}
 
   // Fetch fresh quotes from MongoDB backend
@@ -57,7 +63,9 @@ export const fetchCloudNotifications = async () => {
     if (backendRes.ok) {
       const dbQuotes = await backendRes.json();
       if (Array.isArray(dbQuotes) && dbQuotes.length > 0) {
-        const fromDB = dbQuotes.map(formatQuoteAsNotification);
+        const fromDB = dbQuotes
+          .map(formatQuoteAsNotification)
+          .filter(n => !deletedIds.has(String(n.id)));
 
         // Merge: DB quotes take precedence (they are the source of truth)
         const dbIds = new Set(fromDB.map(n => String(n.id)));
@@ -68,7 +76,6 @@ export const fetchCloudNotifications = async () => {
     }
   } catch (err) {
     console.warn('Render Backend fetch warning (using cached data):', err?.message || err);
-    // Use cached localStorage data - already loaded above
   }
 
   // Save merged result to LocalStorage as cache
@@ -77,6 +84,40 @@ export const fetchCloudNotifications = async () => {
   } catch (e) {}
 
   return combinedNotifs;
+};
+
+// Delete notification permanently across local cache, localStorage & MongoDB Backend
+export const deleteCloudNotification = async (idToDelete) => {
+  if (!idToDelete) return;
+  const strId = String(idToDelete);
+
+  // 1. Add to deleted IDs in localStorage
+  try {
+    const deleted = JSON.parse(localStorage.getItem('shahana_deleted_quote_ids') || '[]');
+    if (!deleted.map(String).includes(strId)) {
+      deleted.push(strId);
+      localStorage.setItem('shahana_deleted_quote_ids', JSON.stringify(deleted));
+    }
+  } catch (e) {}
+
+  // 2. Remove from active notifications in localStorage
+  try {
+    const current = JSON.parse(localStorage.getItem(LS_KEY) || '[]');
+    const updated = current.filter(n => String(n.id) !== strId);
+    localStorage.setItem(LS_KEY, JSON.stringify(updated));
+  } catch (e) {}
+
+  // 3. Send DELETE to Render Backend API if valid ID
+  try {
+    await fetchWithTimeout(`${RENDER_API_URL}/${strId}`, { method: 'DELETE' }, 6000);
+  } catch (err) {
+    console.warn('Backend DELETE error:', err);
+  }
+
+  // Trigger storage event so all tabs update
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new Event('storage'));
+  }
 };
 
 // Push a new notification when customer submits quote

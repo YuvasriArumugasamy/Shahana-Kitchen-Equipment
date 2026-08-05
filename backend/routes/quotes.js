@@ -34,4 +34,14 @@ router.patch('/:id', async (req, res) => {
   }
 });
 
+// DELETE quote request by ID
+router.delete('/:id', async (req, res) => {
+  try {
+    await Quote.findByIdAndDelete(req.params.id);
+    res.json({ success: true, message: 'Quote deleted successfully' });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 export default router;

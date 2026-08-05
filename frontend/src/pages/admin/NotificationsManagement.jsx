@@ -5,6 +5,7 @@ import {
 } from 'lucide-react';
 
 import { requestPushPermission } from '../../services/firebaseConfig';
+import { deleteCloudNotification } from '../../services/cloudNotifications';
 
 export default function NotificationsManagement({ notifications = [], setNotifications }) {
   const [filter, setFilter] = useState('all'); // all, unread, quote, enquiry, stock, system
@@ -48,6 +49,7 @@ export default function NotificationsManagement({ notifications = [], setNotific
 
   const handleDelete = (id) => {
     setNotifications(notifications.filter(n => n.id !== id));
+    deleteCloudNotification(id);
     if (selectedNotification?.id === id) {
       setSelectedNotification(null);
     }
