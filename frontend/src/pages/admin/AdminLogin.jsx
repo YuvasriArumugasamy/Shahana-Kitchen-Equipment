@@ -20,9 +20,10 @@ export default function AdminLogin({ onLoginSuccess }) {
       const cleanPassword = password.trim();
 
       if (cleanEmail === 'admin@shahanakitchen.com' && cleanPassword === 'admin123') {
+        setError('');
         onLoginSuccess();
       } else {
-        setError('Invalid Email or Password! Please enter correct Admin credentials.');
+        setError('Access Denied! Incorrect email or password. Only admin@shahanakitchen.com with admin123 is allowed.');
       }
     }, 600);
   };
