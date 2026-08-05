@@ -1,5 +1,7 @@
-// Cross-device Cloud Notifications Synchronization Service for Shahana Kitchen Equipment
-// Enables receiving customer enquiries and quote requests from ANY device (Mobile, Laptop, Tablet, Anywhere in the world!)
+import { showBrowserNotification } from './firebaseConfig';
+
+// Firebase Web Push VAPID Key for Shahana Kitchen Equipment
+export const FIREBASE_VAPID_KEY = 'BOpGEMKjvmUavivLIEvFxKNU88oqt7C-XnCoNkoZO4qwtOEvJGMJPQMAjwzIffb_WVLPPoz8xPYl78OITskEVjw';
 
 // Public Cloud Endpoint ID for Shahana Kitchen Equipment Notifications
 const CLOUD_STORAGE_KEY = 'shahana_cloud_blob_id';
@@ -49,6 +51,14 @@ export const pushCloudNotification = async (newNotif) => {
 
   const updatedList = [newNotif, ...currentList.filter(n => n.id !== newNotif.id)];
   localStorage.setItem('shahana_admin_notifications', JSON.stringify(updatedList));
+
+  // Trigger native browser push notification alert
+  if (newNotif?.title) {
+    showBrowserNotification(
+      newNotif.title || 'Shahana Kitchen Equipment Notification',
+      newNotif.desc || 'New customer quote request or enquiry received!'
+    );
+  }
 
   // Now sync to Cloud API so ALL devices (Admin laptop, phone, etc.) receive it
   try {

@@ -4,10 +4,23 @@ import {
   Trash2, Check, Filter, Plus, Info, X, Clock, AlertCircle, ShieldAlert
 } from 'lucide-react';
 
+import { requestPushPermission } from '../../services/firebaseConfig';
+
 export default function NotificationsManagement({ notifications = [], setNotifications }) {
   const [filter, setFilter] = useState('all'); // all, unread, quote, enquiry, stock, system
   const [selectedNotification, setSelectedNotification] = useState(null);
   const [showAddModal, setShowAddModal] = useState(false);
+  const [pushEnabled, setPushEnabled] = useState(() => typeof window !== 'undefined' && 'Notification' in window && Notification.permission === 'granted');
+
+  const handleEnablePush = async () => {
+    const granted = await requestPushPermission();
+    if (granted) {
+      setPushEnabled(true);
+      alert('Firebase Push Notifications enabled successfully on this browser!');
+    } else {
+      alert('Push Notifications permission was denied or not supported by browser.');
+    }
+  };
   const [newNotification, setNewNotification] = useState({
     title: '',
     desc: '',
@@ -111,6 +124,18 @@ export default function NotificationsManagement({ notifications = [], setNotific
         </div>
 
         <div className="flex items-center gap-2.5">
+          <button
+            onClick={handleEnablePush}
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition-all border ${
+              pushEnabled
+                ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                : 'bg-amber-50 text-amber-800 border-amber-200 hover:bg-amber-100'
+            }`}
+          >
+            <Bell className="w-4 h-4" />
+            <span>{pushEnabled ? 'Push Alerts Enabled' : 'Enable Push Alerts'}</span>
+          </button>
+
           <button
             onClick={handleMarkAllRead}
             disabled={unreadCount === 0}
