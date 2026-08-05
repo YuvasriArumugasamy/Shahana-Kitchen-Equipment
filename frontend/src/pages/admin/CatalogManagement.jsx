@@ -16,8 +16,11 @@ export default function CatalogManagement({
   const resolveProductImg = (p) => {
     let img = p.image || p.images?.[0];
     if (typeof img === 'object' && img !== null && img.default) img = img.default;
-    if (!img || typeof img !== 'string' || img === '[object Object]' || img === 'undefined') {
-      const real = PRODUCTS.find(r => r.id === p.id);
+    if (typeof img === 'string') img = img.trim();
+
+    const real = PRODUCTS.find(r => r.id === p.id || (r.name && p.name && r.name.toLowerCase() === p.name.toLowerCase()));
+
+    if (!img || typeof img !== 'string' || img === '[object Object]' || img === 'undefined' || img === '') {
       img = real?.image || 'https://images.unsplash.com/photo-1590794056226-77ef3a6c4743?auto=format&fit=crop&w=150&q=80';
     }
     return img;

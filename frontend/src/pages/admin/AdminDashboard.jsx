@@ -24,12 +24,12 @@ export default function AdminDashboard({ onLogout, setCurrentPage }) {
         if (Array.isArray(parsed) && parsed.length > 0) {
           // Merge real siteData product defaults with any saved edits in localStorage
           const merged = PRODUCTS.map(realProd => {
-            const savedItem = parsed.find(p => p.id === realProd.id);
+            const savedItem = parsed.find(p => p.id === realProd.id || (p.name && p.name.toLowerCase() === realProd.name.toLowerCase()));
             const savedImg = savedItem?.image || savedItem?.images?.[0];
-            const isValidImg = savedImg && typeof savedImg === 'string' && savedImg !== '[object Object]' && savedImg !== 'undefined';
-            return savedItem ? { ...realProd, ...savedItem, image: isValidImg ? savedImg : realProd.image } : realProd;
+            const isValidImg = savedImg && typeof savedImg === 'string' && savedImg.trim() !== '' && savedImg !== '[object Object]' && savedImg !== 'undefined';
+            return savedItem ? { ...realProd, ...savedItem, id: realProd.id, image: isValidImg ? savedImg : realProd.image } : realProd;
           });
-          const customProducts = parsed.filter(p => !PRODUCTS.some(real => real.id === p.id));
+          const customProducts = parsed.filter(p => !PRODUCTS.some(real => real.id === p.id || (p.name && p.name.toLowerCase() === real.name.toLowerCase())));
           return [...merged, ...customProducts];
         }
       } catch (e) { console.error(e); }
