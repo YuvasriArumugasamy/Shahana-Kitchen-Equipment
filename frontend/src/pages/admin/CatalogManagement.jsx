@@ -309,7 +309,6 @@ export default function CatalogManagement({
                 </th>
                 <th className="py-3.5 px-4 min-w-[240px]">Product</th>
                 <th className="py-3.5 px-4">Category</th>
-                <th className="py-3.5 px-4">SKU</th>
                 <th className="py-3.5 px-4">Price</th>
                 <th className="py-3.5 px-4">Stock</th>
                 <th className="py-3.5 px-4">Availability</th>
@@ -369,13 +368,6 @@ export default function CatalogManagement({
                       <td className="py-3.5 px-4 whitespace-nowrap">
                         <span className="px-2.5 py-1 rounded-md text-[11px] font-bold bg-purple-50 text-purple-700 border border-purple-100/80 inline-block whitespace-nowrap">
                           {categoryTag}
-                        </span>
-                      </td>
-
-                      {/* SKU */}
-                      <td className="py-3.5 px-4 whitespace-nowrap font-mono text-[11px] font-bold text-slate-600">
-                        <span className="px-2 py-0.5 bg-slate-100 rounded border border-slate-200">
-                          {skuCode}
                         </span>
                       </td>
 
