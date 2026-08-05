@@ -25,7 +25,7 @@ export default function AdminDashboard({ onLogout, setCurrentPage }) {
           // Merge real siteData product defaults with any saved edits in localStorage
           const merged = PRODUCTS.map(realProd => {
             const savedItem = parsed.find(p => p.id === realProd.id);
-            return savedItem ? { ...realProd, ...savedItem } : realProd;
+            return savedItem ? { ...realProd, ...savedItem, image: savedItem?.image || realProd.image } : realProd;
           });
           const customProducts = parsed.filter(p => !PRODUCTS.some(real => real.id === p.id));
           return [...merged, ...customProducts];
