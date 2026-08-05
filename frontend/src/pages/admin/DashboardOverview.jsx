@@ -62,7 +62,7 @@ export default function DashboardOverview({
   return (
     <div className="space-y-6 sm:space-y-8 animate-in fade-in duration-300">
       
-      {/* WELCOME BANNER & DATE RANGE */}
+      {/* WELCOME BANNER */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-xl sm:text-2xl font-heading font-black text-slate-900 tracking-tight flex items-center gap-2">
@@ -71,34 +71,6 @@ export default function DashboardOverview({
           <p className="text-xs sm:text-sm text-slate-500 font-medium mt-0.5">
             Real-time management dashboard for Shahana Kitchen Equipment
           </p>
-        </div>
-
-        {/* Date Selector */}
-        <div className="relative shrink-0">
-          <button
-            onClick={() => setShowDatePicker(!showDatePicker)}
-            className="flex items-center gap-2.5 px-4 py-2 bg-white rounded-xl border border-slate-200 shadow-xs hover:border-purple-300 text-xs font-bold text-slate-700 transition-all"
-          >
-            <Calendar className="w-4 h-4 text-purple-600" />
-            <span>{dateRange}</span>
-            <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
-          </button>
-
-          {showDatePicker && (
-            <div className="absolute right-0 mt-2 w-64 bg-white rounded-2xl shadow-xl border border-slate-200 p-3 space-y-1 z-50 text-xs font-medium">
-              {['May 1, 2024 - May 31, 2024', 'June 1, 2024 - June 30, 2024', 'Last 30 Days', 'This Year 2024'].map((range) => (
-                <button
-                  key={range}
-                  onClick={() => { setDateRange(range); setShowDatePicker(false); }}
-                  className={`w-full text-left px-3 py-2 rounded-xl transition-colors ${
-                    dateRange === range ? 'bg-purple-50 text-purple-700 font-bold' : 'hover:bg-slate-50 text-slate-700'
-                  }`}
-                >
-                  {range}
-                </button>
-              ))}
-            </div>
-          )}
         </div>
       </div>
 
