@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Lock, Mail, ShieldCheck, ArrowRight, Eye, EyeOff, Shield, User, AlertCircle } from 'lucide-react';
+import { Lock, Mail, ShieldCheck, ArrowRight, Eye, EyeOff, Shield, User, AlertCircle, X } from 'lucide-react';
 
 export default function AdminLogin({ onLoginSuccess }) {
   const [email, setEmail] = useState('');
@@ -23,7 +23,7 @@ export default function AdminLogin({ onLoginSuccess }) {
         setError('');
         onLoginSuccess();
       } else {
-        setError('Access Denied! Incorrect email or password. Only admin@shahanakitchen.com with admin123 is allowed.');
+        setError('Invalid email or password');
       }
     }, 600);
   };
@@ -68,11 +68,13 @@ export default function AdminLogin({ onLoginSuccess }) {
           </div>
         </div>
 
-        {/* Error Notification Alert */}
+        {/* Dark Toast Error Alert Notification */}
         {error && (
-          <div className="mt-4 mb-2 p-3 bg-red-50 border border-red-200 text-red-700 text-xs font-semibold rounded-2xl flex items-center gap-2 animate-fade-in">
-            <AlertCircle className="w-4 h-4 shrink-0 text-red-600" />
-            <span>{error}</span>
+          <div className="mt-4 mb-2 p-3.5 bg-[#0D1322] border border-slate-800 text-white text-xs sm:text-sm font-bold rounded-xl flex items-center gap-3 shadow-2xl animate-hero-slide-up">
+            <div className="w-5 sm:w-6 h-5 sm:h-6 rounded-full bg-[#EF4444] flex items-center justify-center shrink-0 shadow-md">
+              <X className="w-3.5 h-3.5 text-white stroke-[3]" />
+            </div>
+            <span className="tracking-wide">{error}</span>
           </div>
         )}
 
