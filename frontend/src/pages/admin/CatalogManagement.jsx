@@ -317,8 +317,8 @@ export default function CatalogManagement({
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 font-medium text-slate-700">
-              {paginatedProducts.length > 0 ? (
-                paginatedProducts.map((p, idx) => {
+              {filteredProducts.length > 0 ? (
+                filteredProducts.map((p, idx) => {
                   const isChecked = selectedProducts.includes(p.id);
                   const isFeatured = p.featured !== undefined ? p.featured : (p.rating >= 4.9);
                   const stockCount = p.stockCount !== undefined ? p.stockCount : (p.rating >= 4.9 ? 25 : 18);
@@ -449,79 +449,7 @@ export default function CatalogManagement({
             </tbody>
           </table>
         </div>
-
-        {/* PAGINATION FOOTER (Exact match to Image 3) */}
-        <div className="bg-slate-50/70 border-t border-slate-200 px-4 py-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
-          
-          <div className="text-slate-500 font-medium">
-            Showing <span className="font-bold text-slate-800">{paginatedProducts.length > 0 ? (currentPageNum - 1) * itemsPerPage + 1 : 0}</span> to <span className="font-bold text-slate-800">{Math.min(currentPageNum * itemsPerPage, totalItems)}</span> of <span className="font-bold text-slate-800">{totalItems}</span> products
-          </div>
-
-          <div className="flex items-center justify-between sm:justify-end gap-4">
-            
-            {/* Page number buttons */}
-            <div className="flex items-center gap-1">
-              <button
-                onClick={() => setCurrentPageNum(Math.max(1, currentPageNum - 1))}
-                disabled={currentPageNum === 1}
-                className="p-1.5 rounded-lg border border-slate-200 text-slate-600 hover:bg-white disabled:opacity-40 disabled:hover:bg-transparent"
-              >
-                <ChevronLeft className="w-4 h-4" />
-              </button>
-
-              {[1, 2, 3, 4, 5].map((pageNum) => (
-                <button
-                  key={pageNum}
-                  onClick={() => setCurrentPageNum(pageNum)}
-                  className={`w-8 h-8 rounded-lg font-bold text-xs transition-colors ${
-                    currentPageNum === pageNum
-                      ? 'bg-[#6A1B9A] text-white shadow-xs'
-                      : 'text-slate-600 hover:bg-white hover:border border-slate-200'
-                  }`}
-                >
-                  {pageNum}
-                </button>
-              ))}
-
-              <span className="px-1 text-slate-400">...</span>
-
-              <button
-                onClick={() => setCurrentPageNum(13)}
-                className={`w-8 h-8 rounded-lg font-bold text-xs transition-colors ${
-                  currentPageNum === 13
-                    ? 'bg-[#6A1B9A] text-white shadow-xs'
-                    : 'text-slate-600 hover:bg-white hover:border border-slate-200'
-                }`}
-              >
-                13
-              </button>
-
-              <button
-                onClick={() => setCurrentPageNum(Math.min(totalPages, currentPageNum + 1))}
-                disabled={currentPageNum === totalPages}
-                className="p-1.5 rounded-lg border border-slate-200 text-slate-600 hover:bg-white disabled:opacity-40 disabled:hover:bg-transparent"
-              >
-                <ChevronRight className="w-4 h-4" />
-              </button>
-            </div>
-
-            {/* Items per page selector */}
-            <select
-              value={itemsPerPage}
-              onChange={(e) => setItemsPerPage(Number(e.target.value))}
-              className="px-2.5 py-1.5 bg-white border border-slate-200 rounded-lg text-xs font-bold text-slate-700 outline-none"
-            >
-              <option value={10}>10 / page</option>
-              <option value={25}>25 / page</option>
-              <option value={50}>50 / page</option>
-            </select>
-
-          </div>
-
-        </div>
-
       </div>
-
     </div>
   );
 }
