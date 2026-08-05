@@ -71,16 +71,16 @@ export default function AdminLayout({
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex text-slate-800 font-sans selection:bg-purple-600 selection:text-white">
       
-      {/* LEFT SIDEBAR (Dark Theme #18102B / #1E1535 matching screenshots) */}
-      <aside className={`fixed inset-y-0 left-0 z-40 bg-[#16102A] text-white flex flex-col justify-between transition-all duration-300 ${
+      {/* LEFT SIDEBAR (Clean White Theme) */}
+      <aside className={`fixed inset-y-0 left-0 z-40 bg-white text-slate-800 flex flex-col justify-between transition-all duration-300 ${
         sidebarOpen ? 'w-64' : 'w-20'
-      } hidden lg:flex border-r border-purple-900/30 shadow-2xl`}>
+      } hidden lg:flex border-r border-slate-200 shadow-xl`}>
         
         <div className="flex flex-col h-full overflow-y-auto no-scrollbar">
           
-          {/* Official Company Logo Header - Big & Prominent Zoomed */}
-          <div className="p-2.5 sm:p-3.5 border-b border-white/10 shrink-0">
-            <div className="bg-white p-2 sm:p-2.5 rounded-2xl shadow-md border border-purple-100 flex items-center justify-center w-full min-h-[72px] overflow-hidden">
+          {/* Official Company Logo Header */}
+          <div className="p-3 sm:p-4 border-b border-slate-100 shrink-0 bg-slate-50/50">
+            <div className="bg-white p-2.5 sm:p-3 rounded-2xl shadow-sm border border-slate-200 flex items-center justify-center w-full min-h-[72px] overflow-hidden">
               <img 
                 src="/images/ChatGPT Image Jul 28, 2026, 01_18_49 PM.png" 
                 alt="Shahana Kitchen Equipment Logo" 
@@ -90,7 +90,7 @@ export default function AdminLayout({
           </div>
 
           {/* Nav Items */}
-          <div className="px-3 py-4 space-y-1 flex-1">
+          <div className="px-3 py-4 space-y-1.5 flex-1">
             {navItems.map((item) => {
               const IconComponent = item.icon;
               const isSubActive = item.hasSub && (activeTab === 'products' || activeTab === 'edit-product' || activeTab === 'categories');
@@ -104,10 +104,10 @@ export default function AdminLayout({
                         if (!sidebarOpen) setSidebarOpen(true);
                         setProductsMenuOpen(!productsMenuOpen);
                       }}
-                      className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-medium transition-all ${
+                      className={`w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-xs font-bold transition-all ${
                         isItemActive
-                          ? 'bg-purple-600/90 text-white shadow-md shadow-purple-900/40 font-semibold'
-                          : 'text-slate-300 hover:text-white hover:bg-white/10'
+                          ? 'bg-[#6A1B9A] text-white shadow-md shadow-purple-900/20'
+                          : 'text-slate-600 hover:text-[#6A1B9A] hover:bg-purple-50/80'
                       }`}
                     >
                       <div className="flex items-center gap-3">
@@ -134,10 +134,10 @@ export default function AdminLayout({
                                   setActiveTab(sub.id);
                                 }
                               }}
-                              className={`w-full text-left px-3 py-2 rounded-lg text-[11px] font-medium transition-colors ${
+                              className={`w-full text-left px-3 py-2 rounded-lg text-[11px] font-bold transition-colors ${
                                 isSubSelected
-                                  ? 'bg-purple-500/20 text-purple-300 font-bold border-l-2 border-purple-400'
-                                  : 'text-slate-400 hover:text-white hover:bg-white/5'
+                                  ? 'bg-purple-100 text-[#6A1B9A] border-l-2 border-[#6A1B9A]'
+                                  : 'text-slate-500 hover:text-[#6A1B9A] hover:bg-purple-50/50'
                               }`}
                             >
                               • {sub.label}
@@ -154,10 +154,10 @@ export default function AdminLayout({
                 <button
                   key={item.id}
                   onClick={() => setActiveTab(item.id)}
-                  className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-medium transition-all ${
+                  className={`w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-xs font-bold transition-all ${
                     activeTab === item.id
-                      ? 'bg-purple-600 text-white shadow-md shadow-purple-900/40 font-semibold'
-                      : 'text-slate-300 hover:text-white hover:bg-white/10'
+                      ? 'bg-[#6A1B9A] text-white shadow-md shadow-purple-900/20'
+                      : 'text-slate-600 hover:text-[#6A1B9A] hover:bg-purple-50/80'
                   }`}
                   title={!sidebarOpen ? item.label : undefined}
                 >
@@ -166,7 +166,7 @@ export default function AdminLayout({
                     {sidebarOpen && <span>{item.label}</span>}
                   </div>
                   {sidebarOpen && item.badge && (
-                    <span className="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-purple-500/30 text-purple-200 border border-purple-400/30">
+                    <span className="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-purple-100 text-[#6A1B9A] border border-purple-200">
                       {item.badge}
                     </span>
                   )}
@@ -176,22 +176,22 @@ export default function AdminLayout({
           </div>
 
           {/* User Profile Footer */}
-          <div className="p-3 border-t border-white/10 shrink-0 bg-black/20">
+          <div className="p-3 border-t border-slate-100 shrink-0 bg-slate-50/80">
             <div className="relative">
               <button 
                 onClick={() => setUserDropdownOpen(!userDropdownOpen)}
-                className="w-full flex items-center justify-between p-2 rounded-xl hover:bg-white/10 transition-colors"
+                className="w-full flex items-center justify-between p-2 rounded-xl hover:bg-slate-200/50 transition-colors"
               >
                 <div className="flex items-center gap-3 overflow-hidden">
                   <img 
                     src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" 
                     alt="Admin Avatar" 
-                    className="w-8 h-8 rounded-full object-cover border-2 border-purple-500 shrink-0"
+                    className="w-8 h-8 rounded-full object-cover border-2 border-purple-600 shrink-0"
                   />
                   {sidebarOpen && (
                     <div className="text-left truncate">
-                      <span className="text-xs font-bold text-white block leading-tight truncate">Admin</span>
-                      <span className="text-[10px] text-slate-400 font-medium block truncate">Super Admin</span>
+                      <span className="text-xs font-extrabold text-slate-900 block leading-tight truncate">Admin</span>
+                      <span className="text-[10px] text-slate-500 font-semibold block truncate">Super Admin</span>
                     </div>
                   )}
                 </div>
@@ -200,19 +200,19 @@ export default function AdminLayout({
 
               {/* User Dropdown Menu */}
               {userDropdownOpen && (
-                <div className="absolute bottom-full left-0 mb-2 w-full bg-[#1E1535] border border-purple-500/30 rounded-xl shadow-2xl p-2 space-y-1 z-50 text-xs text-slate-200">
+                <div className="absolute bottom-full left-0 mb-2 w-full bg-white border border-slate-200 rounded-2xl shadow-2xl p-2 space-y-1 z-50 text-xs text-slate-700">
                   <a 
                     href="/" 
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/10 text-left text-purple-300"
+                    className="w-full flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-purple-50 text-left text-purple-700 font-bold"
                   >
                     <ExternalLink className="w-3.5 h-3.5" />
                     <span>View Live Site</span>
                   </a>
                   <button 
                     onClick={onLogout}
-                    className="w-full flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-red-500/20 text-red-400 text-left font-bold"
+                    className="w-full flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-red-50 text-red-600 text-left font-bold"
                   >
                     <LogOut className="w-3.5 h-3.5" />
                     <span>Sign Out</span>
@@ -228,22 +228,22 @@ export default function AdminLayout({
 
       {/* MOBILE DRAWER */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm lg:hidden flex">
-          <div className="w-72 bg-[#16102A] text-white flex flex-col h-full p-4 overflow-y-auto">
-            <div className="flex items-center justify-between pb-3 border-b border-white/10 mb-4">
-              <div className="bg-white p-2 sm:p-2.5 rounded-2xl shadow-md border border-purple-100 flex items-center justify-center flex-1 mr-3 min-h-[64px] overflow-hidden">
+        <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm lg:hidden flex">
+          <div className="w-72 bg-white text-slate-800 flex flex-col h-full p-4 overflow-y-auto border-r border-slate-200 shadow-2xl">
+            <div className="flex items-center justify-between pb-3 border-b border-slate-100 mb-4">
+              <div className="bg-white p-2 sm:p-2.5 rounded-2xl shadow-sm border border-slate-200 flex items-center justify-center flex-1 mr-3 min-h-[64px] overflow-hidden">
                 <img 
                   src="/images/ChatGPT Image Jul 28, 2026, 01_18_49 PM.png" 
                   alt="Shahana Kitchen Equipment Logo" 
                   className="w-full h-12 sm:h-14 object-contain mix-blend-multiply scale-135 sm:scale-150" 
                 />
               </div>
-              <button onClick={() => setMobileMenuOpen(false)} className="p-1 text-slate-400 hover:text-white">
+              <button onClick={() => setMobileMenuOpen(false)} className="p-1 text-slate-400 hover:text-slate-700">
                 <X className="w-6 h-6" />
               </button>
             </div>
             
-            <nav className="space-y-1 flex-1">
+            <nav className="space-y-1.5 flex-1">
               {navItems.map((item) => {
                 const IconComp = item.icon;
                 return (
@@ -257,8 +257,8 @@ export default function AdminLayout({
                       }
                       setMobileMenuOpen(false);
                     }}
-                    className={`w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-xs font-semibold ${
-                      activeTab === item.id ? 'bg-purple-600 text-white' : 'text-slate-300 hover:bg-white/10'
+                    className={`w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-xs font-bold ${
+                      activeTab === item.id ? 'bg-[#6A1B9A] text-white shadow-md' : 'text-slate-600 hover:bg-purple-50'
                     }`}
                   >
                     <div className="flex items-center gap-3">
@@ -270,16 +270,20 @@ export default function AdminLayout({
               })}
             </nav>
 
-            <div className="pt-4 border-t border-white/10 space-y-2">
-              <button 
-                onClick={() => { setCurrentPage('home'); setMobileMenuOpen(false); }}
-                className="w-full py-2.5 text-xs text-purple-300 font-bold bg-white/5 rounded-xl"
+            <div className="pt-4 border-t border-slate-100 space-y-2">
+              <a 
+                href="/" 
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full py-2.5 text-xs text-purple-700 font-bold bg-purple-50 hover:bg-purple-100 rounded-xl flex items-center justify-center gap-2"
               >
-                ← Back to Public Website
-              </button>
+                <ExternalLink className="w-3.5 h-3.5" />
+                <span>View Live Site</span>
+              </a>
               <button 
                 onClick={onLogout}
-                className="w-full py-2.5 text-xs text-red-400 font-bold bg-red-950/40 rounded-xl"
+                className="w-full py-2.5 text-xs text-red-600 font-bold bg-red-50 hover:bg-red-100 rounded-xl"
               >
                 Sign Out
               </button>
