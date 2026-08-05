@@ -478,6 +478,17 @@
   transform: scale(1);
 }
 
+/* Mobile Fail-Safe: Ensure reveal elements are instantly visible on touch screens */
+@media (max-width: 768px) {
+  .reveal-on-scroll,
+  .reveal-left,
+  .reveal-right,
+  .reveal-zoom {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
 /* Stagger Delays for Grid Elements */
 .stagger-1 { transition-delay: 0.08s; }
 .stagger-2 { transition-delay: 0.16s; }
