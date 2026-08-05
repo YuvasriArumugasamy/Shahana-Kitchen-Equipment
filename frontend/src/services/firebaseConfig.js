@@ -3,12 +3,13 @@
 export const FIREBASE_VAPID_KEY = 'BOpGEMKjvmUavivLIEvFxKNU88oqt7C-XnCoNkoZO4qwtOEvJGMJPQMAjwzIffb_WVLPPoz8xPYl78OITskEVjw';
 
 export const FIREBASE_CONFIG = {
-  apiKey: "AIzaSyShahanaKitchenEquipmentKey",
+  apiKey: "AIzaSyCEHKtVKKVKdldq1389A-45UN54AlT8qwo",
   authDomain: "shahana-kitchen-equipment.firebaseapp.com",
   projectId: "shahana-kitchen-equipment",
-  storageBucket: "shahana-kitchen-equipment.appspot.com",
+  storageBucket: "shahana-kitchen-equipment.firebasestorage.app",
   messagingSenderId: "1020760953711",
-  appId: "1:1020760953711:web:NGZjMzAwODktNGFmMi00ZDg4LWJkYmYmltOTUzWfHOtgy"
+  appId: "1:1020760953711:web:68969de877e1d85fbece9a",
+  measurementId: "G-LGGXVTGLXZ"
 };
 
 // Request Web Push Notification Permission
