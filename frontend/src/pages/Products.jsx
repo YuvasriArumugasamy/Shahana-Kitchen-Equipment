@@ -7,29 +7,42 @@ export default function Products({ setCurrentPage, onOpenQuoteModal, onSelectPro
   const [capacityFilter, setCapacityFilter] = useState([]);
   const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
 
-  const productsList = [
-    { name: "Vegetable Cutting Machine", category: "Vegetable Cutters", specs: "0.5 HP Lakshmi Copper Motor", badge: "Best Seller", img: productAssets.vegetableCutter },
-    { name: "Instant Wet Grinder", category: "Wet Grinders", specs: "25kg - 100kg/hr Instant Grinding", badge: "Studio HD", img: productAssets.instantWetGrinder },
-    { name: "Commercial Wet Grinder", category: "Wet Grinders", specs: "3L to 25L Available", badge: "Popular", img: productAssets.wetGrinder },
-    { name: "Ordinary Grinder", category: "Wet Grinders", specs: "5L to 25L Available", badge: "Popular", img: productAssets.ordinaryGrinder },
-    { name: "Tilting Wet Grinder", category: "Tilting Wet Grinders", specs: "15L | 25L | 35L", badge: "", img: productAssets.tiltingWetGrinder },
-    { name: "Atta Kneader Machine", category: "Dough Kneaders", specs: "10kg to 50kg Lakshmi Motor", badge: "Top Rated", img: productAssets.attaKneader },
-    { name: "Coconut Crab", category: "Coconut Scrapers", specs: "0.5 HP Lakshmi Motor", badge: "Best Seller", img: productAssets.coconutScraper },
-    { name: "Double Head Coconut Scraper", category: "Coconut Scrapers", specs: "1 HP Heavy Duty Dual Funnel", badge: "Heavy Duty", img: productAssets.doubleCoconutScraper },
-    { name: "U Drum Mixer", category: "Mixer Machines", specs: "50L SS Mat Finishing", badge: "304 SS Food Grade", img: productAssets.uDrumMixer },
-    { name: "Table Top Wet Grinder", category: "Wet Grinders", specs: "Compact 2L - 5L", badge: "", img: productAssets.tableTopWetGrinder },
-    { name: "Tilting Wet Grinder Machine", category: "Wet Grinders", specs: "Full SS Heavy Duty", badge: "304 SS Food Grade", img: productAssets.tiltingWetGrinder },
-    { name: "Commercial Oil Dryer", category: "Processing Machines", specs: "Centrifugal 15kg/Batch", badge: "", img: productAssets.oilDryer },
-    { name: "Gravy Machine", category: "Pulverizers", specs: "2 HP | 3 HP | 5 HP", badge: "304 SS Food Grade", img: productAssets.gravyMachine },
-    { name: "Commercial Popcorn Machine", category: "Snack Machines", specs: "Electric 8 oz Kettle", badge: "Popular", img: productAssets.popcornMachine },
-    { name: "Commercial Potato Peeler", category: "Vegetable Cutters", specs: "5kg - 15kg/Batch", badge: "Heavy Duty", img: productAssets.potatoPeeler },
-    { name: "Rice & Grain Washer", category: "Processing Machines", specs: "SS High Flow Drainer", badge: "New", img: productAssets.riceWasher },
-    { name: "Banana Chips Slicer", category: "Vegetable Cutters", specs: "High Capacity Motorized", badge: "Specialized", img: productAssets.bananaSlicer },
-    { name: "Commercial Meat Mincing Machine", category: "Processing Machines", specs: "1.5 HP SS Gear Drive", badge: "Commercial", img: productAssets.meatMincer },
-    { name: "Heavy Duty Flour Mill", category: "Pulverizers", specs: "3 HP - 7.5 HP Blower", badge: "High Capacity", img: productAssets.flourMill },
-    { name: "Commercial Coconut Scraper", category: "Coconut Scrapers", specs: "Multi Station SS", badge: "304 SS Food Grade", img: productAssets.coconutMilkExtractor },
-    { name: "Spare Parts", category: "Parts", specs: "All Types Available", badge: "", img: "/images/spare part.png" }
-  ];
+  const [productsList] = useState(() => {
+    const defaultList = [
+      { name: "Vegetable Cutting Machine", category: "Vegetable Cutters", specs: "0.5 HP Lakshmi Copper Motor", badge: "Best Seller", img: productAssets.vegetableCutter },
+      { name: "Instant Wet Grinder", category: "Wet Grinders", specs: "25kg - 100kg/hr Instant Grinding", badge: "Studio HD", img: productAssets.instantWetGrinder },
+      { name: "Commercial Wet Grinder", category: "Wet Grinders", specs: "3L to 25L Available", badge: "Popular", img: productAssets.wetGrinder },
+      { name: "Ordinary Grinder", category: "Wet Grinders", specs: "5L to 25L Available", badge: "Popular", img: productAssets.ordinaryGrinder },
+      { name: "Tilting Wet Grinder", category: "Tilting Wet Grinders", specs: "15L | 25L | 35L", badge: "", img: productAssets.tiltingWetGrinder },
+      { name: "Atta Kneader Machine", category: "Dough Kneaders", specs: "10kg to 50kg Lakshmi Motor", badge: "Top Rated", img: productAssets.attaKneader },
+      { name: "Coconut Crab", category: "Coconut Scrapers", specs: "0.5 HP Lakshmi Motor", badge: "Best Seller", img: productAssets.coconutScraper },
+      { name: "Double Head Coconut Scraper", category: "Coconut Scrapers", specs: "1 HP Heavy Duty Dual Funnel", badge: "Heavy Duty", img: productAssets.doubleCoconutScraper },
+      { name: "U Drum Mixer", category: "Mixer Machines", specs: "50L SS Mat Finishing", badge: "304 SS Food Grade", img: productAssets.uDrumMixer },
+      { name: "Table Top Wet Grinder", category: "Wet Grinders", specs: "Compact 2L - 5L", badge: "", img: productAssets.tableTopWetGrinder },
+      { name: "Tilting Wet Grinder Machine", category: "Wet Grinders", specs: "Full SS Heavy Duty", badge: "304 SS Food Grade", img: productAssets.tiltingWetGrinder },
+      { name: "Commercial Oil Dryer", category: "Processing Machines", specs: "Centrifugal 15kg/Batch", badge: "", img: productAssets.oilDryer },
+      { name: "Gravy Machine", category: "Pulverizers", specs: "2 HP | 3 HP | 5 HP", badge: "304 SS Food Grade", img: productAssets.gravyMachine },
+      { name: "Commercial Popcorn Machine", category: "Snack Machines", specs: "Electric 8 oz Kettle", badge: "Popular", img: productAssets.popcornMachine },
+      { name: "Commercial Potato Peeler", category: "Vegetable Cutters", specs: "5kg - 15kg/Batch", badge: "Heavy Duty", img: productAssets.potatoPeeler },
+      { name: "Rice & Grain Washer", category: "Processing Machines", specs: "SS High Flow Drainer", badge: "New", img: productAssets.riceWasher },
+      { name: "Banana Chips Slicer", category: "Vegetable Cutters", specs: "High Capacity Motorized", badge: "Specialized", img: productAssets.bananaSlicer },
+      { name: "Commercial Meat Mincing Machine", category: "Processing Machines", specs: "1.5 HP SS Gear Drive", badge: "Commercial", img: productAssets.meatMincer },
+      { name: "Heavy Duty Flour Mill", category: "Pulverizers", specs: "3 HP - 7.5 HP Blower", badge: "High Capacity", img: productAssets.flourMill },
+      { name: "Commercial Coconut Scraper", category: "Coconut Scrapers", specs: "Multi Station SS", badge: "304 SS Food Grade", img: productAssets.coconutMilkExtractor },
+      { name: "Spare Parts", category: "Parts", specs: "All Types Available", badge: "", img: "/images/spare part.png" }
+    ];
+    try {
+      const saved = localStorage.getItem('shahana_admin_products');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          const activeOnly = parsed.filter(p => p.status !== 'Inactive');
+          return activeOnly.length > 0 ? activeOnly : parsed;
+        }
+      }
+    } catch (e) { console.error(e); }
+    return defaultList;
+  });
 
   const categoryMap = {
     'Wet Grinders': ['Wet Grinders', 'Tilting Wet Grinders'],
@@ -292,7 +305,11 @@ export default function Products({ setCurrentPage, onOpenQuoteModal, onSelectPro
                           304 SS Food Grade
                         </span>
                       )}
-                      <img src={item.img} alt={item.name} className="max-h-full max-w-full object-contain img-3d-pop transition-transform duration-500 drop-shadow-md relative z-10" />
+                      <img 
+                        src={item.image || item.img || item.images?.[0] || 'https://images.unsplash.com/photo-1590794056226-77ef3a6c4743?auto=format&fit=crop&w=400&q=80'} 
+                        alt={item.name} 
+                        className="max-h-full max-w-full object-contain img-3d-pop transition-transform duration-500 drop-shadow-md relative z-10" 
+                      />
                     </div>
 
                     <h3 className="font-heading font-extrabold text-gray-900 text-sm text-center mb-4 group-hover:text-[#6A1B9A] transition-colors">{item.name}</h3>
