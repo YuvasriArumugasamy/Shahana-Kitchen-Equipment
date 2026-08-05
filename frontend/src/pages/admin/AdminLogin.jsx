@@ -69,17 +69,6 @@ export default function AdminLogin({ onLoginSuccess }) {
           </div>
         </div>
 
-        {/* Glowing Badge */}
-        <div>
-          <div className="inline-flex items-center gap-2 bg-[#F3E8FF]/90 text-[#6A1B9A] text-[10px] sm:text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-full border border-purple-300/80 shadow-sm backdrop-blur-md hover:scale-105 transition-transform">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-500 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-700"></span>
-            </span>
-            <ShieldCheck className="w-3.5 h-3.5 text-[#6A1B9A]" />
-            <span>ENTERPRISE ADMIN PORTAL</span>
-          </div>
-        </div>
 
         {/* Titles with 3D Gradient */}
         <div className="space-y-1">
