@@ -298,8 +298,8 @@ export default function AdminLayout({
         sidebarOpen ? 'lg:pl-64' : 'lg:pl-20'
       }`}>
         
-        {/* MOBILE MENU TOGGLE (Mobile only - Sticky Fixed Top Bar) */}
-        <div className="lg:hidden sticky top-0 z-30 p-3.5 border-b border-slate-200 bg-white/95 backdrop-blur-md flex items-center justify-between shadow-xs">
+        {/* MOBILE MENU TOGGLE (Mobile only - Strictly Fixed Top Bar) */}
+        <div className="lg:hidden fixed top-0 left-0 right-0 z-40 h-14 px-4 bg-white/95 backdrop-blur-md border-b border-slate-200 flex items-center justify-between shadow-xs">
           <button
             onClick={() => setMobileMenuOpen(true)}
             className="flex items-center gap-2 px-3 py-1.5 text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-xl text-xs font-bold transition-colors"
@@ -309,6 +309,9 @@ export default function AdminLayout({
           </button>
           <span className="font-heading font-black text-xs text-slate-900 uppercase tracking-tight">Shahana Admin</span>
         </div>
+        
+        {/* Spacer for fixed top bar on mobile */}
+        <div className="lg:hidden h-14 shrink-0" />
 
         {/* PAGE CONTENT CONTAINER */}
         <main className="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto">
