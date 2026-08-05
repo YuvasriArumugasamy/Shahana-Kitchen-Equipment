@@ -24,15 +24,20 @@ export default function QuoteModal({ isOpen, onClose, selectedProduct }) {
     const newQuoteAlert = {
       id: Date.now(),
       title: `புதிய விலை கோரிக்கை - ${formData.name || 'வாடிக்கையாளர்'}`,
-      desc: `பொருள்: ${formData.product} (எண்ணிக்கை: ${formData.quantity}) | நிறுவனம்: ${formData.company || 'தெரியவில்லை'} | தொலைபேசி: ${formData.phone}`,
+      desc: `பொருள்: ${formData.product} (எண்ணிக்கை: ${formData.quantity}) | தொலைபேசி: ${formData.phone} | நகரம்: ${formData.city || 'தெரியவில்லை'}`,
       time: 'இப்போதுதான்',
       unread: true,
       type: 'quote',
       priority: 'High',
       senderName: formData.name,
       senderPhone: formData.phone,
+      senderEmail: formData.email,
       product: formData.product,
-      fullMessage: `வாடிக்கையாளர் ${formData.product} (${formData.quantity} யூனிட்) க்கு விலை கோரிக்கை அனுப்பியுள்ளார். வணிக வகை: ${formData.businessType}. நகரம்: ${formData.city || 'தெரியவில்லை'}. கூடுதல் குறிப்பு: ${formData.message || 'எதுவுமில்லை'}`
+      company: formData.company,
+      city: formData.city,
+      businessType: formData.businessType,
+      quantity: formData.quantity,
+      fullMessage: `வாடிக்கையாளர் ${formData.product} (${formData.quantity} யூனிட்) க்கு விலை கோரிக்கை அனுப்பியுள்ளார். வணிக வகை: ${formData.businessType}. நகரம்: ${formData.city || 'தெரியவில்லை'}. நிறுவனம்: ${formData.company || 'தெரியவில்லை'}. கூடுதல் குறிப்பு: ${formData.message || 'எதுவுமில்லை'}`
     };
 
     // Push to Render MongoDB Backend & Cloud API so Admin receives it across ALL devices

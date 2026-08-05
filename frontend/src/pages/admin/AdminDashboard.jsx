@@ -67,10 +67,12 @@ export default function AdminDashboard({ onLogout, setCurrentPage }) {
 
   // Real-time synchronization for Admin Notifications across ALL devices (Mobile, Laptop, Cloud)
   useEffect(() => {
+    let isMounted = true;
+
     const syncNotifs = async () => {
       try {
         const cloudData = await fetchCloudNotifications();
-        if (cloudData && Array.isArray(cloudData)) {
+        if (isMounted && cloudData && Array.isArray(cloudData)) {
           setNotifications(cloudData);
         }
       } catch (e) {
@@ -78,16 +80,22 @@ export default function AdminDashboard({ onLogout, setCurrentPage }) {
       }
     };
 
+    // Fetch immediately on load
     syncNotifs();
 
-    // Auto-poll cloud every 10 seconds so Admin gets live customer messages from ANY device
-    const intervalId = setInterval(syncNotifs, 10000);
+    // Auto-poll every 5 seconds - cross-device quotes வர
+    const intervalId = setInterval(syncNotifs, 5000);
 
+    // Tab focus ஆகும்போதும் உடனே refresh பண்ணு
+    const handleFocus = () => syncNotifs();
+    window.addEventListener('focus', handleFocus);
     window.addEventListener('storage', syncNotifs);
     window.addEventListener('shahana_notification_added', syncNotifs);
 
     return () => {
+      isMounted = false;
       clearInterval(intervalId);
+      window.removeEventListener('focus', handleFocus);
       window.removeEventListener('storage', syncNotifs);
       window.removeEventListener('shahana_notification_added', syncNotifs);
     };

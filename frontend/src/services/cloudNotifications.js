@@ -3,225 +3,155 @@ import { showBrowserNotification } from './firebaseConfig';
 // Firebase Web Push VAPID Key for Shahana Kitchen Equipment
 export const FIREBASE_VAPID_KEY = 'BOpGEMKjvmUavivLIEvFxKNU88oqt7C-XnCoNkoZO4qwtOEvJGMJPQMAjwzIffb_WVLPPoz8xPYl78OITskEVjw';
 
-// Express Backend & Cloud Storage Endpoints
+// Express Backend Endpoint (Render MongoDB)
 const RENDER_API_URL = 'https://shahana-kitchen-equipment.onrender.com/api/quotes';
-const CLOUD_STORAGE_KEY = 'shahana_cloud_notifications_blob_id';
-const DEFAULT_BLOB_ID = '1336630467576406016';
-const BASE_URL = 'https://jsonblob.com/api/jsonBlob';
 
-// Helper to get active Blob URL
-const getBlobUrl = () => {
-  const savedId = localStorage.getItem(CLOUD_STORAGE_KEY) || DEFAULT_BLOB_ID;
-  return `${BASE_URL}/${savedId}`;
+// LocalStorage keys
+const LS_KEY = 'shahana_admin_notifications';
+const LS_SEEN_IDS = 'shahana_seen_quote_ids';
+
+// Fetch with timeout helper - Render cold start timeout prevent பண்ண
+const fetchWithTimeout = (url, options = {}, timeoutMs = 8000) => {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  return fetch(url, { ...options, signal: controller.signal })
+    .finally(() => clearTimeout(timer));
 };
 
-// Initialize Cloud Blob if 404 or missing
-const initCloudBlob = async (initialData = []) => {
-  try {
-    const res = await fetch(BASE_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify(initialData)
-    });
-    if (res.ok) {
-      const location = res.headers.get('Location');
-      if (location) {
-        const blobId = location.split('/').pop();
-        localStorage.setItem(CLOUD_STORAGE_KEY, blobId);
-        return `${BASE_URL}/${blobId}`;
-      }
-    }
-  } catch (e) {
-    console.warn("Init cloud notifications blob warning:", e);
-  }
-  return getBlobUrl();
-};
+// MongoDB quote → notification object format
+const formatQuoteAsNotification = (q) => ({
+  id: q._id || q.id,
+  title: `புதிய விலை கோரிக்கை - ${q.name || 'வாடிக்கையாளர்'}`,
+  desc: `பொருள்: ${q.product || 'Kitchen Equipment'} (எண்ணிக்கை: ${q.quantity || '1'}) | தொலைபேசி: ${q.phone || 'N/A'} | நகரம்: ${q.city || 'தெரியவில்லை'}`,
+  time: q.createdAt
+    ? new Date(q.createdAt).toLocaleString('ta-IN', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' })
+    : 'சமீபத்தில்',
+  unread: q.status === 'Pending' || q.status === 'Unread' || !q.status,
+  type: 'quote',
+  priority: 'High',
+  senderName: q.name,
+  senderPhone: q.phone,
+  senderEmail: q.email,
+  product: q.product,
+  company: q.company,
+  businessType: q.businessType,
+  city: q.city,
+  fullMessage: `வாடிக்கையாளர் ${q.product || 'Kitchen Machinery'} (${q.quantity || '1'} யூனிட்) க்கு விலை கோரிக்கை அனுப்பியுள்ளார். வணிக வகை: ${q.businessType || 'தெரியவில்லை'}. நகரம்: ${q.city || 'தெரியவில்லை'}. நிறுவனம்: ${q.company || 'தெரியவில்லை'}. கூடுதல் குறிப்பு: ${q.message || 'எதுவுமில்லை'}`
+});
 
-// Fetch notifications from Render MongoDB Backend & JsonBlob Cloud API
+// Fetch notifications - MongoDB from Render backend
 export const fetchCloudNotifications = async () => {
+  // Start with whatever is saved in localStorage
   let combinedNotifs = [];
-
-  // 1. Fetch from Render MongoDB Backend
   try {
-    const backendRes = await fetch(RENDER_API_URL, {
+    const local = JSON.parse(localStorage.getItem(LS_KEY) || '[]');
+    if (Array.isArray(local)) combinedNotifs = local;
+  } catch (e) {}
+
+  // Fetch fresh quotes from MongoDB backend
+  try {
+    const backendRes = await fetchWithTimeout(RENDER_API_URL, {
       headers: { 'Accept': 'application/json' }
-    });
+    }, 10000);
+
     if (backendRes.ok) {
       const dbQuotes = await backendRes.json();
       if (Array.isArray(dbQuotes) && dbQuotes.length > 0) {
-        const formattedDbQuotes = dbQuotes.map(q => ({
-          id: q._id || q.id || Date.now(),
-          title: `Quote Request: ${q.name || q.senderName || 'Customer'}`,
-          desc: `Product: ${q.product || 'Kitchen Equipment'} | Phone: ${q.phone || q.senderPhone || 'N/A'}`,
-          time: q.createdAt ? new Date(q.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'Recently',
-          unread: q.status !== 'Read',
-          type: 'quote',
-          priority: 'High',
-          senderName: q.name || q.senderName,
-          senderPhone: q.phone || q.senderPhone,
-          product: q.product,
-          fullMessage: q.message || q.fullMessage || `Quote request for ${q.product || 'Kitchen Machinery'}`
-        }));
-        combinedNotifs = [...formattedDbQuotes];
+        const fromDB = dbQuotes.map(formatQuoteAsNotification);
+
+        // Merge: DB quotes take precedence (they are the source of truth)
+        const dbIds = new Set(fromDB.map(n => String(n.id)));
+        // Keep any manual/system notifications that aren't from DB
+        const manualNotifs = combinedNotifs.filter(n => !dbIds.has(String(n.id)) && n.type !== 'quote');
+        combinedNotifs = [...fromDB, ...manualNotifs];
       }
     }
   } catch (err) {
-    console.warn("Render Backend fetch warning:", err);
+    console.warn('Render Backend fetch warning (using cached data):', err?.message || err);
+    // Use cached localStorage data - already loaded above
   }
 
-  // 2. Fetch from JsonBlob API
+  // Save merged result to LocalStorage as cache
   try {
-    let url = getBlobUrl();
-    let res = await fetch(url, {
-      headers: { 'Accept': 'application/json' }
-    });
-
-    if (res.status === 404) {
-      url = await initCloudBlob(combinedNotifs);
-      res = await fetch(url, { headers: { 'Accept': 'application/json' } });
-    }
-
-    if (res.ok) {
-      const blobNotifs = await res.json();
-      if (Array.isArray(blobNotifs)) {
-        // Merge without duplicates
-        const existingIds = new Set(combinedNotifs.map(n => String(n.id)));
-        blobNotifs.forEach(n => {
-          if (!existingIds.has(String(n.id))) {
-            combinedNotifs.push(n);
-          }
-        });
-      }
-    }
-  } catch (err) {
-    console.warn("JsonBlob fetch warning:", err);
-  }
-
-  // 3. Fallback to LocalStorage
-  try {
-    const local = JSON.parse(localStorage.getItem('shahana_admin_notifications') || '[]');
-    if (Array.isArray(local)) {
-      const existingIds = new Set(combinedNotifs.map(n => String(n.id)));
-      local.forEach(n => {
-        if (!existingIds.has(String(n.id))) {
-          combinedNotifs.push(n);
-        }
-      });
-    }
-  } catch (e) {}
-
-  // Save merged result to LocalStorage
-  try {
-    localStorage.setItem('shahana_admin_notifications', JSON.stringify(combinedNotifs));
+    localStorage.setItem(LS_KEY, JSON.stringify(combinedNotifs));
   } catch (e) {}
 
   return combinedNotifs;
 };
 
-// Push a new notification (Customer submit quote or enquiry)
+// Push a new notification when customer submits quote
 export const pushCloudNotification = async (newNotif) => {
-  // Update local storage immediately for zero-delay UI feedback
+  // 1. Save to localStorage immediately - instant UI feedback
   let currentList = [];
   try {
-    currentList = JSON.parse(localStorage.getItem('shahana_admin_notifications') || '[]');
+    currentList = JSON.parse(localStorage.getItem(LS_KEY) || '[]');
   } catch (e) {}
 
   const updatedList = [newNotif, ...currentList.filter(n => String(n.id) !== String(newNotif.id))];
   try {
-    localStorage.setItem('shahana_admin_notifications', JSON.stringify(updatedList));
+    localStorage.setItem(LS_KEY, JSON.stringify(updatedList));
   } catch (e) {}
 
-  // Trigger browser push notification alert
+  // 2. Browser push notification (if permission granted)
   if (newNotif?.title) {
     showBrowserNotification(
       newNotif.title || 'Shahana Kitchen Equipment Alert',
-      newNotif.desc || 'New customer quote request received!'
+      newNotif.desc || 'புதிய வாடிக்கையாளர் விலை கோரிக்கை வந்துள்ளது!'
     );
   }
 
-  // 1. Post to Render MongoDB Backend
+  // 3. POST to Render MongoDB Backend - this is the cross-device sync source
   try {
-    await fetch(RENDER_API_URL, {
+    const res = await fetchWithTimeout(RENDER_API_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         name: newNotif.senderName || 'Customer',
         phone: newNotif.senderPhone || 'N/A',
+        email: newNotif.senderEmail || '',
         product: newNotif.product || newNotif.title,
+        company: newNotif.company || '',
+        city: newNotif.city || '',
+        businessType: newNotif.businessType || '',
+        quantity: newNotif.quantity || '1',
         message: newNotif.fullMessage || newNotif.desc,
-        status: 'Unread'
+        status: 'Pending'
       })
-    });
-  } catch (err) {
-    console.warn("Render Backend post warning:", err);
-  }
+    }, 12000);
 
-  // 2. Sync to JsonBlob Cloud API
-  try {
-    let url = getBlobUrl();
-    let res = await fetch(url, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify(updatedList)
-    });
-
-    if (!res.ok && res.status === 404) {
-      url = await initCloudBlob(updatedList);
-      await fetch(url, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify(updatedList)
-      });
+    if (res.ok) {
+      const saved = await res.json();
+      console.log('✅ Quote saved to MongoDB:', saved);
     }
   } catch (err) {
-    console.error("JsonBlob push error:", err);
+    console.warn('Render Backend post warning (saved locally):', err?.message || err);
   }
 
-  // Trigger local events for immediate update on active tabs
+  // 4. Dispatch events so admin page refreshes immediately (same browser)
   if (typeof window !== 'undefined') {
     window.dispatchEvent(new Event('storage'));
     window.dispatchEvent(new CustomEvent('shahana_notification_added', { detail: newNotif }));
   }
 };
 
-// Update entire notifications list (Mark read / Delete)
+// Update entire notifications list (Mark read / Delete sync)
 export const updateCloudNotifications = async (updatedList) => {
+  // Save to localStorage
   try {
-    localStorage.setItem('shahana_admin_notifications', JSON.stringify(updatedList));
+    localStorage.setItem(LS_KEY, JSON.stringify(updatedList));
   } catch (e) {}
 
+  // Sync read/delete status to MongoDB for quote-type notifications
   try {
-    let url = getBlobUrl();
-    let res = await fetch(url, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify(updatedList)
-    });
-
-    if (!res.ok && res.status === 404) {
-      url = await initCloudBlob(updatedList);
-      await fetch(url, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify(updatedList)
-      });
+    const readQuotes = updatedList.filter(n => n.type === 'quote' && !n.unread && n.id);
+    for (const q of readQuotes) {
+      const mongoId = q.id;
+      if (!mongoId || mongoId.toString().length !== 24) continue; // skip non-MongoDB ids
+      fetchWithTimeout(`${RENDER_API_URL}/${mongoId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: 'Contacted' })
+      }, 5000).catch(() => {});
     }
-  } catch (err) {
-    console.error("Cloud notifications update error:", err);
-  }
+  } catch (e) {}
 };
