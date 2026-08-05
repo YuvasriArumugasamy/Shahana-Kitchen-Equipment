@@ -16,7 +16,7 @@ export default function Products({ setCurrentPage, onOpenQuoteModal, onSelectPro
     { name: "Atta Kneader Machine", category: "Dough Kneaders", specs: "10kg to 50kg Lakshmi Motor", badge: "Top Rated", img: productAssets.attaKneader },
     { name: "Coconut Crab", category: "Coconut Scrapers", specs: "0.5 HP Lakshmi Motor", badge: "Best Seller", img: productAssets.coconutScraper },
     { name: "Double Head Coconut Scraper", category: "Coconut Scrapers", specs: "1 HP Heavy Duty Dual Funnel", badge: "Heavy Duty", img: productAssets.doubleCoconutScraper },
-    { name: "U-Drum SS Mixer", category: "Mixer Machines", specs: "50L SS Mat Finishing", badge: "", img: productAssets.uDrumMixer },
+    { name: "U Drum Mixer", category: "Mixer Machines", specs: "50L SS Mat Finishing", badge: "304 SS Food Grade", img: productAssets.uDrumMixer },
     { name: "Table Top Wet Grinder", category: "Wet Grinders", specs: "Compact 2L - 5L", badge: "", img: productAssets.tableTopWetGrinder },
     { name: "Tilting Wet Grinder Machine", category: "Wet Grinders", specs: "Full SS Heavy Duty", badge: "304 SS Food Grade", img: productAssets.tiltingWetGrinder },
     { name: "Commercial Oil Dryer", category: "Processing Machines", specs: "Centrifugal 15kg/Batch", badge: "", img: productAssets.oilDryer },

@@ -42,7 +42,7 @@ export const productsGallery = [
   },
   {
     id: 6,
-    title: "U-Drum SS Mixer",
+    title: "U Drum Mixer",
     category: "Mixers",
     img: productAssets.uDrumMixer,
     description: "Starting from 50 Litres stainless steel mat finishing"

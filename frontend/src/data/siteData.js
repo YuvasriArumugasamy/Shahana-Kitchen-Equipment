@@ -141,7 +141,7 @@ export const PRODUCTS = [
   },
   {
     id: "u-drum-mixer",
-    name: "U-Drum SS Mixer Machine",
+    name: "U Drum Mixer",
     category: "Mixer Machines",
     capacity: "50 Litres to 150 Litres",
     motor: "2 HP - 3 HP Heavy Duty Motor",
@@ -150,9 +150,9 @@ export const PRODUCTS = [
     price: "₹42,000",
     rating: 4.9,
     reviewsCount: 29,
-    badge: "Heavy Duty",
+    badge: "304 SS Food Grade",
     image: productAssets.uDrumMixer,
-    description: "U-Drum SS mixer starting from 50 Litres in premium stainless steel mat finishing for commercial batter & masala mixing.",
+    description: "U Drum Mixer starting from 50 Litres in premium stainless steel mat finishing for commercial batter & masala mixing.",
     features: [
       "Starting from 50 Litres Capacity",
       "Premium Stainless Steel Mat Finishing",

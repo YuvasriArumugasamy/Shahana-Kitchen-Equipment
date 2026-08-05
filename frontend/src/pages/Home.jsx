@@ -30,7 +30,7 @@ export default function Home({ setCurrentPage, onOpenQuoteModal, onSelectProduct
     { name: "Instant Wet Grinder", img: productAssets.instantWetGrinder, color: "180, 210, 252" },
     { name: "Coconut Scraper", img: productAssets.coconutScraper, color: "252, 230, 142" },
     { name: "Double Head Scraper", img: productAssets.doubleCoconutScraper, color: "252, 160, 142" },
-    { name: "U-Drum SS Mixer", img: productAssets.uDrumMixer, color: "160, 252, 220" },
+    { name: "U Drum Mixer", img: productAssets.uDrumMixer, color: "160, 252, 220" },
     { name: "Table Top Grinder", img: productAssets.tableTopWetGrinder, color: "180, 180, 252" },
     { name: "Chicken Feather Remover", img: productAssets.chickenFeatherRemover, color: "252, 200, 160" },
     { name: "Oil Dryer Machine", img: productAssets.oilDryer, color: "210, 252, 180" }
