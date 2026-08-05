@@ -4,6 +4,7 @@ import {
   Plus, Upload, Download, Search, Filter, RotateCcw, Eye, Edit3, 
   Trash2, Star, ChevronLeft, ChevronRight
 } from 'lucide-react';
+import { PRODUCTS } from '../../data/siteData';
 
 export default function CatalogManagement({ 
   productsList = [], 
@@ -12,6 +13,15 @@ export default function CatalogManagement({
   onAddNewProduct, 
   onViewProduct 
 }) {
+  const resolveProductImg = (p) => {
+    let img = p.image || p.images?.[0];
+    if (typeof img === 'object' && img !== null && img.default) img = img.default;
+    if (!img || typeof img !== 'string' || img === '[object Object]' || img === 'undefined') {
+      const real = PRODUCTS.find(r => r.id === p.id);
+      img = real?.image || 'https://images.unsplash.com/photo-1590794056226-77ef3a6c4743?auto=format&fit=crop&w=150&q=80';
+    }
+    return img;
+  };
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All Categories');
   const [selectedStatus, setSelectedStatus] = useState('All Status');
@@ -345,8 +355,12 @@ export default function CatalogManagement({
                       <td className="py-3.5 px-4 min-w-[240px]">
                         <div className="flex items-center gap-3">
                           <img 
-                            src={p.image || p.images?.[0] || 'https://images.unsplash.com/photo-1590794056226-77ef3a6c4743?auto=format&fit=crop&w=150&q=80'} 
+                            src={resolveProductImg(p)} 
                             alt={p.name} 
+                            onError={(e) => {
+                              e.target.onerror = null;
+                              e.target.src = 'https://images.unsplash.com/photo-1590794056226-77ef3a6c4743?auto=format&fit=crop&w=150&q=80';
+                            }}
                             className="w-12 h-12 rounded-xl object-cover border border-slate-200 shrink-0 bg-slate-100 p-0.5"
                           />
                           <div className="min-w-0">
