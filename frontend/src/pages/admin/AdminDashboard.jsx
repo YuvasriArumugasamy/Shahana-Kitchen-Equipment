@@ -75,10 +75,11 @@ export default function AdminDashboard({ onLogout, setCurrentPage }) {
 
   // Save / Update product handler
   const handleSaveProduct = (updatedProduct) => {
-    const exists = productsList.some(p => p.id === updatedProduct.id);
+    if (!updatedProduct || typeof updatedProduct !== 'object') return;
+    const exists = productsList.some(p => p && p.id === updatedProduct.id);
     let newList;
     if (exists) {
-      newList = productsList.map(p => p.id === updatedProduct.id ? { ...p, ...updatedProduct } : p);
+      newList = productsList.map(p => (p && p.id === updatedProduct.id) ? { ...p, ...updatedProduct } : p);
     } else {
       const newProd = {
         id: updatedProduct.id || `prod-${Date.now()}`,
@@ -93,7 +94,11 @@ export default function AdminDashboard({ onLogout, setCurrentPage }) {
       newList = [newProd, ...productsList];
     }
     setProductsList(newList);
-    localStorage.setItem('shahana_admin_products', JSON.stringify(newList));
+    try {
+      localStorage.setItem('shahana_admin_products', JSON.stringify(newList));
+    } catch (e) {
+      console.warn('LocalStorage save limit warning:', e);
+    }
     setActiveTab('products');
   };
 

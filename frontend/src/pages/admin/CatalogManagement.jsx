@@ -14,11 +14,13 @@ export default function CatalogManagement({
   onViewProduct 
 }) {
   const resolveProductImg = (p) => {
-    let img = p.image || p.images?.[0];
+    if (!p) return 'https://images.unsplash.com/photo-1590794056226-77ef3a6c4743?auto=format&fit=crop&w=150&q=80';
+    let img = p.image || p.img || p.images?.[0];
     if (typeof img === 'object' && img !== null && img.default) img = img.default;
     if (typeof img === 'string') img = img.trim();
 
-    const real = PRODUCTS.find(r => r.id === p.id || (r.name && p.name && r.name.toLowerCase() === p.name.toLowerCase()));
+    const pName = p.name ? p.name.toLowerCase() : '';
+    const real = PRODUCTS.find(r => r.id === p.id || (r.name && pName && r.name.toLowerCase() === pName));
 
     if (!img || typeof img !== 'string' || img === '[object Object]' || img === 'undefined' || img === '') {
       img = real?.image || 'https://images.unsplash.com/photo-1590794056226-77ef3a6c4743?auto=format&fit=crop&w=150&q=80';
@@ -35,10 +37,14 @@ export default function CatalogManagement({
 
   // Filtered products logic
   const filteredProducts = useMemo(() => {
-    return productsList.filter((prod) => {
-      const matchesSearch = prod.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                            (prod.id && prod.id.toLowerCase().includes(searchTerm.toLowerCase())) ||
-                            (prod.sku && prod.sku.toLowerCase().includes(searchTerm.toLowerCase()));
+    return (productsList || []).filter((prod) => {
+      if (!prod || typeof prod !== 'object') return false;
+      const nameStr = String(prod.name || '').toLowerCase();
+      const idStr = String(prod.id || '').toLowerCase();
+      const skuStr = String(prod.sku || '').toLowerCase();
+      const searchStr = String(searchTerm || '').toLowerCase();
+
+      const matchesSearch = nameStr.includes(searchStr) || idStr.includes(searchStr) || skuStr.includes(searchStr);
       const matchesCategory = selectedCategory === 'All Categories' || prod.category === selectedCategory;
       const matchesStatus = selectedStatus === 'All Status' || (prod.status || 'Active') === selectedStatus;
       

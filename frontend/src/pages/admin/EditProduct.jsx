@@ -94,7 +94,7 @@ export default function EditProduct({
   // Save handler
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.name.trim()) {
+    if (!formData.name || !formData.name.trim()) {
       alert('Please enter a product name');
       return;
     }
@@ -102,16 +102,15 @@ export default function EditProduct({
     const updatedProduct = {
       ...product,
       ...formData,
-      img: formData.image,
+      name: formData.name.trim(),
+      image: formData.image || formData.img || formData.images?.[0] || 'https://images.unsplash.com/photo-1590794056226-77ef3a6c4743?auto=format&fit=crop&w=400&q=80',
+      img: formData.image || formData.img || formData.images?.[0],
       description: formData.description || formData.shortDesc
     };
 
-    onSave && onSave(updatedProduct);
-    setToastMessage('Product saved successfully!');
-    setTimeout(() => {
-      setToastMessage(null);
-      if (onCancel) onCancel();
-    }, 800);
+    if (onSave) {
+      onSave(updatedProduct);
+    }
   };
 
   return (
