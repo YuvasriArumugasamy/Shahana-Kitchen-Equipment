@@ -78,13 +78,13 @@ export default function AdminLayout({
         
         <div className="flex flex-col h-full overflow-y-auto no-scrollbar">
           
-          {/* Official Company Logo Header */}
-          <div className="p-3 sm:p-4 shrink-0 border-b border-slate-100">
-            <div className="bg-white p-1 sm:p-2 flex items-center justify-center w-full min-h-[60px]">
+          {/* Official Company Logo Header - Large & Clear */}
+          <div className="px-2.5 py-3 sm:px-3.5 sm:py-4 shrink-0 border-b border-slate-100 bg-white">
+            <div className="flex items-center justify-center w-full">
               <img 
                 src="/images/ChatGPT Image Jul 28, 2026, 01_18_49 PM.png" 
                 alt="Shahana Kitchen Equipment Logo" 
-                className="w-full h-11 sm:h-13 md:h-15 object-contain mix-blend-multiply scale-105 transition-transform" 
+                className="w-full h-16 sm:h-20 object-contain mix-blend-multiply" 
               />
             </div>
           </div>
@@ -231,11 +231,11 @@ export default function AdminLayout({
         <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm lg:hidden flex">
           <div className="w-72 bg-white text-slate-800 flex flex-col h-full p-4 overflow-y-auto border-r border-slate-200 shadow-2xl">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100 mb-4">
-              <div className="bg-white p-1 sm:p-2 flex items-center justify-center flex-1 mr-3 min-h-[56px]">
+              <div className="bg-white flex items-center justify-center flex-1 mr-2">
                 <img 
                   src="/images/ChatGPT Image Jul 28, 2026, 01_18_49 PM.png" 
                   alt="Shahana Kitchen Equipment Logo" 
-                  className="w-full h-10 sm:h-12 object-contain mix-blend-multiply scale-105" 
+                  className="w-full h-14 sm:h-16 object-contain mix-blend-multiply" 
                 />
               </div>
               <button onClick={() => setMobileMenuOpen(false)} className="p-1 text-slate-400 hover:text-slate-700">
