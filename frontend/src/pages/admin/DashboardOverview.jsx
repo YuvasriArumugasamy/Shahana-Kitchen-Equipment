@@ -21,7 +21,7 @@ export default function DashboardOverview({
       id: 'products',
       label: 'Total Products',
       value: productsList.length,
-      growth: '+12.5%',
+      growth: 'Active Catalog',
       bgColor: 'bg-purple-100/70',
       iconColor: 'bg-purple-600 text-white',
       icon: Package,

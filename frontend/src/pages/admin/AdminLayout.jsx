@@ -20,13 +20,7 @@ export default function AdminLayout({
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
   const [productsMenuOpen, setProductsMenuOpen] = useState(activeTab.startsWith('product'));
 
-  const [localNotifications, setLocalNotifications] = useState([
-    { id: 1, title: "New Quote Request", desc: "Ramesh Kumar requested quote for 2x Wet Grinder", time: "10 mins ago", unread: true, type: "quote" },
-    { id: 2, title: "Enquiry Received", desc: "Anita Sharma sent an enquiry via WhatsApp", time: "45 mins ago", unread: true, type: "enquiry" },
-    { id: 3, title: "Low Stock Alert", desc: "Vegetable Cutting Machine is low on stock (5 Units)", time: "2 hours ago", unread: true, type: "stock" },
-    { id: 4, title: "New Review Approved", desc: "Hotel Sri Balaji rated 5 stars", time: "5 hours ago", unread: true, type: "review" },
-    { id: 5, title: "System Backup Complete", desc: "Automated cloud catalog backup completed", time: "Yesterday", unread: false, type: "system" }
-  ]);
+  const [localNotifications, setLocalNotifications] = useState([]);
 
   const notifications = notificationsProp || localNotifications;
   const setNotifications = setNotificationsProp || setLocalNotifications;
