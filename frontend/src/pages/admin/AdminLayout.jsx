@@ -78,18 +78,22 @@ export default function AdminLayout({
         
         <div className="flex flex-col h-full overflow-y-auto no-scrollbar">
           
-          {/* Logo Header */}
-          <div className="p-5 flex items-center justify-between border-b border-white/10 shrink-0">
+          {/* Official Company Logo Header */}
+          <div className="p-4 flex items-center justify-between border-b border-white/10 shrink-0">
             <div className="flex items-center gap-3 overflow-hidden">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-600 to-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-purple-900/50 shrink-0 border border-purple-400/30">
-                <span className="font-heading text-lg font-black tracking-wider">S</span>
+              <div className="bg-white p-1.5 sm:p-2 rounded-2xl shadow-md border border-purple-100/30 flex items-center justify-center shrink-0">
+                <img 
+                  src="/images/ChatGPT Image Jul 28, 2026, 01_18_49 PM.png" 
+                  alt="Shahana Kitchen Equipment Logo" 
+                  className="h-8 sm:h-9 w-auto object-contain mix-blend-multiply" 
+                />
               </div>
               {sidebarOpen && (
                 <div className="truncate">
-                  <span className="font-heading font-black text-sm tracking-tight text-white block uppercase leading-tight">
+                  <span className="font-heading font-black text-xs tracking-tight text-white block uppercase leading-tight truncate">
                     SHAHANA
                   </span>
-                  <span className="text-[10px] text-purple-300 font-semibold tracking-wider block uppercase opacity-80">
+                  <span className="text-[9px] text-purple-300 font-bold tracking-wider block uppercase opacity-80 truncate">
                     Kitchen Equipment
                   </span>
                 </div>
@@ -240,10 +244,14 @@ export default function AdminLayout({
           <div className="w-72 bg-[#16102A] text-white flex flex-col h-full p-4 overflow-y-auto">
             <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-4">
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-purple-600 flex items-center justify-center font-bold text-white">
-                  S
+                <div className="bg-white p-1.5 rounded-xl shadow-md border border-purple-100 flex items-center justify-center shrink-0">
+                  <img 
+                    src="/images/ChatGPT Image Jul 28, 2026, 01_18_49 PM.png" 
+                    alt="Shahana Kitchen Equipment Logo" 
+                    className="h-8 w-auto object-contain mix-blend-multiply" 
+                  />
                 </div>
-                <span className="font-heading font-black text-sm text-white uppercase">SHAHANA ADMIN</span>
+                <span className="font-heading font-black text-xs text-white uppercase tracking-tight">SHAHANA ADMIN</span>
               </div>
               <button onClick={() => setMobileMenuOpen(false)} className="p-1 text-slate-400 hover:text-white">
                 <X className="w-6 h-6" />
