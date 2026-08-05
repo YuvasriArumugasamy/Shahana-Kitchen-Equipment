@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { PRODUCTS } from '../../data/siteData';
+import { fetchCloudProducts, saveCloudProducts } from '../../services/cloudProducts';
 
 import AdminLayout from './AdminLayout';
 import DashboardOverview from './DashboardOverview';
@@ -22,7 +23,6 @@ export default function AdminDashboard({ onLogout, setCurrentPage }) {
       try {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          // Merge real siteData product defaults with any saved edits in localStorage
           const merged = PRODUCTS.map(realProd => {
             const savedItem = parsed.find(p => p.id === realProd.id || (p.name && p.name.toLowerCase() === realProd.name.toLowerCase()));
             const savedImg = savedItem?.image || savedItem?.images?.[0];
@@ -39,6 +39,21 @@ export default function AdminDashboard({ onLogout, setCurrentPage }) {
 
   // Persistent Notifications List
   const [notifications, setNotifications] = useState([]);
+
+  // Cloud Sync for Products across ALL devices globally
+  useEffect(() => {
+    const syncProducts = async () => {
+      try {
+        const cloudProds = await fetchCloudProducts();
+        if (cloudProds && Array.isArray(cloudProds) && cloudProds.length > 0) {
+          setProductsList(cloudProds);
+        }
+      } catch (e) {
+        console.warn("Cloud products sync error:", e);
+      }
+    };
+    syncProducts();
+  }, []);
 
   // Save products to LocalStorage whenever state changes
   useEffect(() => {
@@ -98,11 +113,7 @@ export default function AdminDashboard({ onLogout, setCurrentPage }) {
       newList = [newProd, ...productsList];
     }
     setProductsList(newList);
-    try {
-      localStorage.setItem('shahana_admin_products', JSON.stringify(newList));
-    } catch (e) {
-      console.warn('LocalStorage save limit warning:', e);
-    }
+    saveCloudProducts(newList);
     setActiveTab('products');
   };
 

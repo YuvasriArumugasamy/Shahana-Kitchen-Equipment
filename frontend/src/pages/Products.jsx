@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Search, SlidersHorizontal, ChevronRight, Phone, MessageSquare, Download } from 'lucide-react';
 import { productAssets } from '../assets/clientAssets';
+import { fetchCloudProducts } from '../services/cloudProducts';
 
 export default function Products({ setCurrentPage, onOpenQuoteModal, onSelectProduct }) {
   const [selectedCategory, setSelectedCategory] = useState('All Products');
   const [capacityFilter, setCapacityFilter] = useState([]);
   const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
 
-  const [productsList] = useState(() => {
+  const [productsList, setProductsList] = useState(() => {
     const defaultList = [
       { name: "Vegetable Cutting Machine", category: "Vegetable Cutters", specs: "0.5 HP Lakshmi Copper Motor", badge: "Best Seller", img: productAssets.vegetableCutter },
       { name: "Instant Wet Grinder", category: "Wet Grinders", specs: "25kg - 100kg/hr Instant Grinding", badge: "Studio HD", img: productAssets.instantWetGrinder },
@@ -43,6 +44,30 @@ export default function Products({ setCurrentPage, onOpenQuoteModal, onSelectPro
     } catch (e) { console.error(e); }
     return defaultList;
   });
+
+  // Real-time Cloud Sync for Products across ALL devices globally
+  useEffect(() => {
+    const syncProducts = async () => {
+      try {
+        const cloudProds = await fetchCloudProducts();
+        if (cloudProds && Array.isArray(cloudProds) && cloudProds.length > 0) {
+          const activeOnly = cloudProds.filter(p => p.status !== 'Inactive');
+          setProductsList(activeOnly.length > 0 ? activeOnly : cloudProds);
+        }
+      } catch (e) { console.warn(e); }
+    };
+
+    syncProducts();
+
+    const handleUpdate = () => syncProducts();
+    window.addEventListener('storage', handleUpdate);
+    window.addEventListener('shahana_products_updated', handleUpdate);
+
+    return () => {
+      window.removeEventListener('storage', handleUpdate);
+      window.removeEventListener('shahana_products_updated', handleUpdate);
+    };
+  }, []);
 
   const categoryMap = {
     'Wet Grinders': ['Wet Grinders', 'Tilting Wet Grinders'],
