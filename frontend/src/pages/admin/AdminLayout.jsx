@@ -79,12 +79,12 @@ export default function AdminLayout({
         <div className="flex flex-col h-full overflow-y-auto no-scrollbar">
           
           {/* Official Company Logo Header - Big & Prominent Zoomed */}
-          <div className="p-3 sm:p-4 border-b border-white/10 shrink-0">
-            <div className="bg-white p-2.5 sm:p-3 rounded-2xl shadow-md border border-purple-100 flex items-center justify-center w-full min-h-[64px] overflow-hidden">
+          <div className="p-2.5 sm:p-3.5 border-b border-white/10 shrink-0">
+            <div className="bg-white p-2 sm:p-2.5 rounded-2xl shadow-md border border-purple-100 flex items-center justify-center w-full min-h-[72px] overflow-hidden">
               <img 
                 src="/images/ChatGPT Image Jul 28, 2026, 01_18_49 PM.png" 
                 alt="Shahana Kitchen Equipment Logo" 
-                className="h-12 sm:h-14 md:h-16 w-auto max-w-full object-contain mix-blend-multiply scale-110 sm:scale-125 transition-transform" 
+                className="w-full h-14 sm:h-16 md:h-20 object-contain mix-blend-multiply scale-135 sm:scale-150 transition-transform" 
               />
             </div>
           </div>
@@ -231,11 +231,11 @@ export default function AdminLayout({
         <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm lg:hidden flex">
           <div className="w-72 bg-[#16102A] text-white flex flex-col h-full p-4 overflow-y-auto">
             <div className="flex items-center justify-between pb-3 border-b border-white/10 mb-4">
-              <div className="bg-white p-2.5 rounded-2xl shadow-md border border-purple-100 flex items-center justify-center flex-1 mr-3 overflow-hidden">
+              <div className="bg-white p-2 sm:p-2.5 rounded-2xl shadow-md border border-purple-100 flex items-center justify-center flex-1 mr-3 min-h-[64px] overflow-hidden">
                 <img 
                   src="/images/ChatGPT Image Jul 28, 2026, 01_18_49 PM.png" 
                   alt="Shahana Kitchen Equipment Logo" 
-                  className="h-10 sm:h-12 w-auto object-contain mix-blend-multiply scale-110" 
+                  className="w-full h-12 sm:h-14 object-contain mix-blend-multiply scale-135 sm:scale-150" 
                 />
               </div>
               <button onClick={() => setMobileMenuOpen(false)} className="p-1 text-slate-400 hover:text-white">
