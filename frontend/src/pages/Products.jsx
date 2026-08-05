@@ -83,10 +83,10 @@ export default function Products({ setCurrentPage, onOpenQuoteModal, onSelectPro
   ];
 
   return (
-    <div className="space-y-8 sm:space-y-12">
+    <div className="space-y-4 sm:space-y-10">
 
       {/* PRODUCTS HERO BANNER - STUNNING VIDEO BACKGROUND WITH ANIMATIONS */}
-      <section id="catalog" className="relative text-white py-16 sm:py-20 overflow-hidden min-h-[70vh] sm:min-h-[80vh]">
+      <section id="catalog" className="relative text-white py-8 sm:py-16 md:py-20 overflow-hidden min-h-0 sm:min-h-[50vh] lg:min-h-[65vh] flex items-center">
         <video
           className="absolute inset-0 w-full h-full object-cover scale-105 transition-transform duration-1000"
           src="/images/ithu_yellam_vachi_oru_super_an.mp4"
