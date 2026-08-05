@@ -15,19 +15,18 @@ export default function AdminDashboard({ onLogout, setCurrentPage }) {
   const [editingProduct, setEditingProduct] = useState(null);
   const [selectedPreviewProduct, setSelectedPreviewProduct] = useState(null);
 
-  // Persistent Products List synced 100% with siteData catalog
+  // Persistent Products List synced 100% with siteData catalog & user edits
   const [productsList, setProductsList] = useState(() => {
     const saved = localStorage.getItem('shahana_admin_products');
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          // Merge real siteData product images and properties with any saved edits
+          // Merge real siteData product defaults with any saved edits in localStorage
           const merged = PRODUCTS.map(realProd => {
             const savedItem = parsed.find(p => p.id === realProd.id);
-            return savedItem ? { ...realProd, ...savedItem, image: realProd.image } : realProd;
+            return savedItem ? { ...realProd, ...savedItem } : realProd;
           });
-          // Add any custom new products created in admin
           const customProducts = parsed.filter(p => !PRODUCTS.some(real => real.id === p.id));
           return [...merged, ...customProducts];
         }
@@ -75,22 +74,24 @@ export default function AdminDashboard({ onLogout, setCurrentPage }) {
   // Save / Update product handler
   const handleSaveProduct = (updatedProduct) => {
     const exists = productsList.some(p => p.id === updatedProduct.id);
+    let newList;
     if (exists) {
-      setProductsList(productsList.map(p => p.id === updatedProduct.id ? updatedProduct : p));
+      newList = productsList.map(p => p.id === updatedProduct.id ? { ...p, ...updatedProduct } : p);
     } else {
       const newProd = {
         id: updatedProduct.id || `prod-${Date.now()}`,
         name: updatedProduct.name || 'New Machine',
         category: updatedProduct.category || 'Wet Grinders',
-        price: updatedProduct.price || '₹35,000',
         rating: 5.0,
         reviewsCount: 1,
-        image: updatedProduct.images?.[0] || 'https://images.unsplash.com/photo-1590794056226-77ef3a6c4743?auto=format&fit=crop&w=400&q=80',
+        image: updatedProduct.image || updatedProduct.images?.[0] || 'https://images.unsplash.com/photo-1590794056226-77ef3a6c4743?auto=format&fit=crop&w=400&q=80',
         description: updatedProduct.description || 'Commercial stainless steel kitchen equipment manufactured by Shahana.',
         ...updatedProduct
       };
-      setProductsList([newProd, ...productsList]);
+      newList = [newProd, ...productsList];
     }
+    setProductsList(newList);
+    localStorage.setItem('shahana_admin_products', JSON.stringify(newList));
     setActiveTab('products');
   };
 

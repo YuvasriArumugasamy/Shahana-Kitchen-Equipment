@@ -12,44 +12,36 @@ export default function EditProduct({
   onViewProduct 
 }) {
   const [formData, setFormData] = useState({
-    name: product?.name || 'Commercial Wet Grinder',
-    sku: product?.sku || product?.code || 'SKE-WG-001',
-    slug: product?.slug || 'commercial-wet-grinder',
+    id: product?.id || `prod-${Date.now()}`,
+    name: product?.name || '',
+    sku: product?.sku || product?.code || `SKE-00${Date.now().toString().slice(-3)}`,
+    slug: product?.slug || (product?.name ? product.name.toLowerCase().replace(/[^a-z0-9]+/g, '-') : ''),
     brand: product?.brand || 'Shahana',
     category: product?.category || 'Wet Grinders',
     status: product?.status || 'Active',
-    shortDesc: product?.shortDesc || 'High performance commercial wet grinder suitable for hotels, restaurants, catering services and industrial kitchens.',
+    shortDesc: product?.shortDesc || product?.description?.slice(0, 80) || '',
+    badge: product?.badge || '',
     featured: product?.featured !== undefined ? product?.featured : true,
-    price: product?.price || '₹45,000',
-    salePrice: product?.salePrice || '₹42,000',
-    stockCount: product?.stockCount !== undefined ? product?.stockCount : 15,
-    description: product?.description || 'Shahana Commercial Wet Grinder is designed for continuous heavy-duty grinding. It delivers perfect grinding for batter, idli, dosa, chutney and other wet applications. Built with superior quality stainless steel body for long life and durability.',
+    price: product?.price || '',
+    salePrice: product?.salePrice || '',
+    stockCount: product?.stockCount !== undefined ? product?.stockCount : 25,
+    description: product?.description || '',
     specs: product?.specs || [
-      { key: 'Capacity', value: '2 Litre / 5 Litre / 10 Litre / 15 Litre' },
-      { key: 'Material', value: 'Stainless Steel (304 Grade)' },
-      { key: 'Motor Power', value: '1 HP / 1.5 HP / 2 HP' },
-      { key: 'Voltage', value: '220V / 50Hz' },
-      { key: 'Dimensions', value: 'As per Model' }
+      { key: 'Material', value: '304 Food Grade Stainless Steel' },
+      { key: 'Motor', value: 'Heavy Duty Copper Motor' }
     ],
     features: product?.features || [
-      'Heavy duty stainless steel body',
-      'High efficiency motor for continuous operation',
-      'Low maintenance and easy to clean',
-      'Available in multiple capacities',
-      'Suitable for hotels, restaurants and industrial kitchens'
+      '304 Food Grade Stainless Steel Construction',
+      'Heavy Duty High Torque Copper Motor'
     ],
-    images: product?.images || [
-      'https://images.unsplash.com/photo-1590794056226-77ef3a6c4743?auto=format&fit=crop&w=400&q=80',
-      'https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?auto=format&fit=crop&w=400&q=80',
-      'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=400&q=80',
-      'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=400&q=80',
-      'https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=400&q=80',
-      'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=400&q=80'
-    ],
-    seoTitle: product?.seoTitle || 'Commercial Wet Grinder | Shahana Kitchen Equipment',
-    metaDesc: product?.metaDesc || 'Buy high quality commercial wet grinder from Shahana Kitchen Equipment. Available in various sizes. Perfect for hotels, restaurants and industrial kitchens.',
+    image: product?.image || product?.images?.[0] || 'https://images.unsplash.com/photo-1590794056226-77ef3a6c4743?auto=format&fit=crop&w=400&q=80',
+    images: product?.images || (product?.image ? [product.image] : [
+      'https://images.unsplash.com/photo-1590794056226-77ef3a6c4743?auto=format&fit=crop&w=400&q=80'
+    ]),
+    seoTitle: product?.seoTitle || (product?.name ? `${product.name} | Shahana Kitchen Equipment` : ''),
+    metaDesc: product?.metaDesc || product?.description || '',
     weight: product?.weight || '45 kg',
-    dimensions: product?.dimensions || '600 x 450 x 850 mm'
+    dimensions: product?.dimensions || 'Standard Commercial'
   });
 
   const [seoOpen, setSeoOpen] = useState(true);
@@ -114,20 +106,24 @@ export default function EditProduct({
     }));
   };
 
-  // Remove Image Thumbnail
-  const removeImage = (index) => {
+  // Add image URL
+  const handleAddImageUrl = (url) => {
+    if (!url) return;
     setFormData(prev => ({
       ...prev,
-      images: prev.images.filter((_, i) => i !== index)
+      image: prev.image || url,
+      images: [...prev.images, url]
     }));
   };
 
-  // Set Featured Image
-  const setFeaturedImage = (index) => {
-    const imgs = [...formData.images];
-    const [selected] = imgs.splice(index, 1);
-    imgs.unshift(selected);
-    setFormData(prev => ({ ...prev, images: imgs }));
+  // Remove image
+  const handleRemoveImage = (index) => {
+    const imgs = formData.images.filter((_, i) => i !== index);
+    setFormData(prev => ({ 
+      ...prev, 
+      image: imgs[0] || '',
+      images: imgs 
+    }));
   };
 
   // Duplicate Product
@@ -140,18 +136,26 @@ export default function EditProduct({
     };
     onSave && onSave(cloned);
     setToastMessage('Product duplicated successfully!');
-    setTimeout(() => setToastMessage(null), 3000);
+    setTimeout(() => {
+      setToastMessage(null);
+      if (onCancel) onCancel();
+    }, 800);
   };
 
   // Save Product
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSave && onSave({
+    const updated = {
       ...product,
-      ...formData
-    });
+      ...formData,
+      image: formData.image || formData.images?.[0] || product?.image
+    };
+    onSave && onSave(updated);
     setToastMessage('Changes saved successfully!');
-    setTimeout(() => setToastMessage(null), 3000);
+    setTimeout(() => {
+      setToastMessage(null);
+      if (onCancel) onCancel();
+    }, 800);
   };
 
   return (
