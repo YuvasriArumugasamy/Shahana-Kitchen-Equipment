@@ -188,7 +188,6 @@ export default function DashboardOverview({
                 </div>
 
                 <div className="text-right shrink-0">
-                  <span className="font-black text-purple-700 text-xs block">{prod.price}</span>
                   <span className="px-2 py-0.5 rounded-full text-[9px] font-bold bg-emerald-100 text-emerald-700">In Stock</span>
                 </div>
               </div>
