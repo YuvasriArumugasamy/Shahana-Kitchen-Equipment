@@ -18,14 +18,14 @@ const fetchWithTimeout = (url, options = {}, timeoutMs = 8000) => {
     .finally(() => clearTimeout(timer));
 };
 
-// MongoDB quote → notification object format
+// MongoDB quote → notification object format (English)
 const formatQuoteAsNotification = (q) => ({
   id: q._id || q.id,
-  title: `புதிய விலை கோரிக்கை - ${q.name || 'வாடிக்கையாளர்'}`,
-  desc: `பொருள்: ${q.product || 'Kitchen Equipment'} (எண்ணிக்கை: ${q.quantity || '1'}) | தொலைபேசி: ${q.phone || 'N/A'} | நகரம்: ${q.city || 'தெரியவில்லை'}`,
+  title: `Quote Request: ${q.name || 'Customer'}`,
+  desc: `Product: ${q.product || 'Kitchen Equipment'} (Qty: ${q.quantity || '1'}) | Phone: ${q.phone || 'N/A'} | City: ${q.city || 'N/A'}`,
   time: q.createdAt
-    ? new Date(q.createdAt).toLocaleString('ta-IN', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' })
-    : 'சமீபத்தில்',
+    ? new Date(q.createdAt).toLocaleString('en-IN', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' })
+    : 'Recently',
   unread: q.status === 'Pending' || q.status === 'Unread' || !q.status,
   type: 'quote',
   priority: 'High',
@@ -36,7 +36,7 @@ const formatQuoteAsNotification = (q) => ({
   company: q.company,
   businessType: q.businessType,
   city: q.city,
-  fullMessage: `வாடிக்கையாளர் ${q.product || 'Kitchen Machinery'} (${q.quantity || '1'} யூனிட்) க்கு விலை கோரிக்கை அனுப்பியுள்ளார். வணிக வகை: ${q.businessType || 'தெரியவில்லை'}. நகரம்: ${q.city || 'தெரியவில்லை'}. நிறுவனம்: ${q.company || 'தெரியவில்லை'}. கூடுதல் குறிப்பு: ${q.message || 'எதுவுமில்லை'}`
+  fullMessage: `Customer requested a price quote for ${q.product || 'Kitchen Machinery'} (${q.quantity || '1'} unit(s)). Business Type: ${q.businessType || 'N/A'}. City: ${q.city || 'N/A'}. Company: ${q.company || 'N/A'}. Additional Notes: ${q.message || 'None'}`
 });
 
 // Fetch notifications - MongoDB from Render backend
