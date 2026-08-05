@@ -13,7 +13,8 @@ export default function AdminLayout({
   setCurrentPage, 
   children,
   editingProduct,
-  unreadNotificationsCount = 5
+  notifications: notificationsProp,
+  setNotifications: setNotificationsProp
 }) {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -21,13 +22,16 @@ export default function AdminLayout({
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
   const [productsMenuOpen, setProductsMenuOpen] = useState(activeTab.startsWith('product'));
 
-  const [notifications, setNotifications] = useState([
+  const [localNotifications, setLocalNotifications] = useState([
     { id: 1, title: "New Quote Request", desc: "Ramesh Kumar requested quote for 2x Wet Grinder", time: "10 mins ago", unread: true, type: "quote" },
     { id: 2, title: "Enquiry Received", desc: "Anita Sharma sent an enquiry via WhatsApp", time: "45 mins ago", unread: true, type: "enquiry" },
     { id: 3, title: "Low Stock Alert", desc: "Vegetable Cutting Machine is low on stock (5 Units)", time: "2 hours ago", unread: true, type: "stock" },
     { id: 4, title: "New Review Approved", desc: "Hotel Sri Balaji rated 5 stars", time: "5 hours ago", unread: true, type: "review" },
     { id: 5, title: "System Backup Complete", desc: "Automated cloud catalog backup completed", time: "Yesterday", unread: false, type: "system" }
   ]);
+
+  const notifications = notificationsProp || localNotifications;
+  const setNotifications = setNotificationsProp || setLocalNotifications;
 
   useEffect(() => {
     if (activeTab.startsWith('product')) {
@@ -45,41 +49,30 @@ export default function AdminLayout({
     }
   };
 
+  const unreadCount = notifications.filter(n => n.unread).length;
+
   const navItems = [
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
+    { id: 'notifications', label: 'Notifications', icon: Bell, badge: unreadCount > 0 ? String(unreadCount) : null },
     { 
       id: 'products-parent', 
       label: 'Products', 
       icon: ShoppingBag, 
       hasSub: true,
       subItems: [
-        { id: 'products', label: 'Catalog & Products' },
+        { id: 'products', label: 'All Products' },
         { id: 'edit-product-new', label: 'Add New Product' }
       ]
     },
-    { id: 'categories', label: 'Categories', icon: FolderTree },
-    { id: 'services', label: 'Services', icon: Wrench },
-    { id: 'spareparts', label: 'Spare Parts', icon: Settings },
-    { id: 'gallery', label: 'Gallery', icon: ImageIcon },
-    { id: 'industries', label: 'Industries', icon: Building2 },
-    { id: 'quotes', label: 'Quote Requests', icon: FileText, badge: '3' },
-    { id: 'enquiries', label: 'Enquiries', icon: MessageSquare, badge: '5' },
-    { id: 'reviews', label: 'Reviews', icon: Star },
-    { id: 'users', label: 'Users', icon: Users },
-    { id: 'settings', label: 'Website Settings', icon: Sliders }
+    { id: 'settings', label: 'Settings', icon: Sliders }
   ];
 
   const getBreadcrumb = () => {
-    if (activeTab === 'dashboard') return 'Dashboard';
-    if (activeTab === 'products') return 'Catalog Management';
+    if (activeTab === 'dashboard') return 'Dashboard Overview';
+    if (activeTab === 'notifications') return 'Notifications Center';
+    if (activeTab === 'products') return 'Product Catalog Management';
     if (activeTab === 'edit-product') return 'Products > Edit Product';
-    if (activeTab === 'categories') return 'Categories Management';
-    if (activeTab === 'quotes') return 'Quote Requests';
-    if (activeTab === 'enquiries') return 'Customer Enquiries';
-    if (activeTab === 'spareparts') return 'Spare Parts Inventory';
-    if (activeTab === 'reviews') return 'Reviews Moderation';
-    if (activeTab === 'users') return 'User & Role Management';
-    if (activeTab === 'settings' || activeTab === 'seo-settings') return 'Website & SEO Settings';
+    if (activeTab === 'settings') return 'Admin & Website Settings';
     return activeTab.toUpperCase();
   };
 
@@ -417,7 +410,7 @@ export default function AdminLayout({
 
                   <div className="pt-2 border-t border-slate-100 text-center">
                     <button 
-                      onClick={() => { setActiveTab('notifications-tab'); setNotificationsOpen(false); }}
+                      onClick={() => { setActiveTab('notifications'); setNotificationsOpen(false); }}
                       className="text-xs font-bold text-purple-600 hover:text-purple-800 flex items-center justify-center gap-1 w-full py-1"
                     >
                       <span>View All Notifications</span>

@@ -155,17 +155,14 @@
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 7px;
+  width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: #F7F7F7;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(106, 27, 154, 0.35);
-  border-radius: 9999px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(106, 27, 154, 0.7);
+  background: #6A1B9A;
+  border-radius: 4px;
 }
 
 /* Staggered reveal for top bar contact items (all screen sizes) */

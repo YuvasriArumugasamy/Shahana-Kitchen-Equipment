@@ -5,12 +5,7 @@ import AdminLayout from './AdminLayout';
 import DashboardOverview from './DashboardOverview';
 import CatalogManagement from './CatalogManagement';
 import EditProduct from './EditProduct';
-import CategoriesManagement from './CategoriesManagement';
-import EnquiriesManagement from './EnquiriesManagement';
-import QuotesManagement from './QuotesManagement';
-import SparePartsManagement from './SparePartsManagement';
-import ReviewsManagement from './ReviewsManagement';
-import UsersManagement from './UsersManagement';
+import NotificationsManagement from './NotificationsManagement';
 import SettingsManagement from './SettingsManagement';
 
 import { X, CheckCircle } from 'lucide-react';
@@ -29,33 +24,18 @@ export default function AdminDashboard({ onLogout, setCurrentPage }) {
     return PRODUCTS;
   });
 
-  // Persistent Quotes List
-  const [quotesList, setQuotesList] = useState(() => {
-    const saved = localStorage.getItem('shahana_admin_quotes');
+  // Persistent Notifications List
+  const [notifications, setNotifications] = useState(() => {
+    const saved = localStorage.getItem('shahana_admin_notifications');
     if (saved) {
       try { return JSON.parse(saved); } catch (e) { console.error(e); }
     }
     return [
-      { id: "Q-101", name: "Ramesh Kumar", company: "Hotel Grand", phone: "+91 98765 43210", product: "Commercial Wet Grinder 25L", quantity: 2, status: "New", date: "31 May 2024" },
-      { id: "Q-102", name: "Anita Sharma", company: "Sharma Catering", phone: "+91 94433 11223", product: "Pulverizer Machine 5 HP", quantity: 1, status: "In Progress", date: "31 May 2024" },
-      { id: "Q-103", name: "Mohammed Ali", company: "Ali Restaurant", phone: "+91 99887 76655", product: "Vegetable Cutting Machine", quantity: 3, status: "New", date: "30 May 2024" },
-      { id: "Q-104", name: "Vikram Singh", company: "Singh Bakery", phone: "+91 91234 56789", product: "Spiral Dough Kneader 10kg", quantity: 1, status: "Completed", date: "29 May 2024" },
-      { id: "Q-105", name: "Sunil Patel", company: "Patel Foods", phone: "+91 97766 55443", product: "Mixer Grinder Heavy Duty", quantity: 2, status: "In Progress", date: "29 May 2024" }
-    ];
-  });
-
-  // Persistent Enquiries List
-  const [enquiriesList, setEnquiriesList] = useState(() => {
-    const saved = localStorage.getItem('shahana_admin_enquiries');
-    if (saved) {
-      try { return JSON.parse(saved); } catch (e) { console.error(e); }
-    }
-    return [
-      { id: "ENQ-201", name: "Ramesh Kumar", company: "Hotel Grand", phone: "+91 98765 43210", email: "ramesh@hotelgrand.com", source: "Website", date: "31 May 2024", status: "New", message: "Interested in commercial wet grinder 25L and dough kneader 10kg package deal." },
-      { id: "ENQ-202", name: "Anita Sharma", company: "Sharma Catering", phone: "+91 94433 11223", email: "anita@sharmacatering.in", source: "WhatsApp", date: "31 May 2024", status: "In Progress", message: "Need urgent price quote for 3 units of heavy duty pulverizer machine." },
-      { id: "ENQ-203", name: "Mohammed Ali", company: "Ali Restaurant", phone: "+91 99887 76655", email: "ali@restaurant.com", source: "Phone", date: "30 May 2024", status: "New", message: "Requesting catalog and warranty terms for vegetable cutting machine." },
-      { id: "ENQ-204", name: "Vikram Singh", company: "Singh Bakery", phone: "+91 91234 56789", email: "vikram@singhbakery.com", source: "Email", date: "30 May 2024", status: "Completed", message: "Order placed for spiral dough kneader 25kg." },
-      { id: "ENQ-205", name: "Sunil Patel", company: "Patel Foods", phone: "+91 97766 55443", email: "sunil@patelfoods.com", source: "Website", date: "29 May 2024", status: "In Progress", message: "Inquiring about coconut scraper double head availability." }
+      { id: 1, title: "New Quote Request", desc: "Ramesh Kumar requested quote for 2x Wet Grinder", time: "10 mins ago", unread: true, type: "quote" },
+      { id: 2, title: "Enquiry Received", desc: "Anita Sharma sent an enquiry via WhatsApp", time: "45 mins ago", unread: true, type: "enquiry" },
+      { id: 3, title: "Low Stock Alert", desc: "Vegetable Cutting Machine is low on stock (5 Units)", time: "2 hours ago", unread: true, type: "stock" },
+      { id: 4, title: "New Review Approved", desc: "Hotel Sri Balaji rated 5 stars", time: "5 hours ago", unread: true, type: "review" },
+      { id: 5, title: "System Backup Complete", desc: "Automated cloud catalog backup completed", time: "Yesterday", unread: false, type: "system" }
     ];
   });
 
@@ -65,12 +45,8 @@ export default function AdminDashboard({ onLogout, setCurrentPage }) {
   }, [productsList]);
 
   useEffect(() => {
-    localStorage.setItem('shahana_admin_quotes', JSON.stringify(quotesList));
-  }, [quotesList]);
-
-  useEffect(() => {
-    localStorage.setItem('shahana_admin_enquiries', JSON.stringify(enquiriesList));
-  }, [enquiriesList]);
+    localStorage.setItem('shahana_admin_notifications', JSON.stringify(notifications));
+  }, [notifications]);
 
   // Save / Update product handler
   const handleSaveProduct = (updatedProduct) => {
@@ -101,19 +77,28 @@ export default function AdminDashboard({ onLogout, setCurrentPage }) {
       onLogout={onLogout} 
       setCurrentPage={setCurrentPage}
       editingProduct={editingProduct}
+      notifications={notifications}
+      setNotifications={setNotifications}
     >
       
-      {/* 1. OVERVIEW DASHBOARD (Image 1) */}
+      {/* 1. DASHBOARD OVERVIEW */}
       {activeTab === 'dashboard' && (
         <DashboardOverview 
           productsList={productsList} 
-          quotesList={quotesList} 
-          enquiriesList={enquiriesList} 
+          notifications={notifications}
           setActiveTab={setActiveTab} 
         />
       )}
 
-      {/* 2. PRODUCTS / CATALOG MANAGEMENT (Image 3) */}
+      {/* 2. NOTIFICATIONS MANAGEMENT */}
+      {activeTab === 'notifications' && (
+        <NotificationsManagement 
+          notifications={notifications} 
+          setNotifications={setNotifications} 
+        />
+      )}
+
+      {/* 3. PRODUCTS MANAGEMENT */}
       {activeTab === 'products' && (
         <CatalogManagement 
           productsList={productsList} 
@@ -124,7 +109,7 @@ export default function AdminDashboard({ onLogout, setCurrentPage }) {
         />
       )}
 
-      {/* 3. EDIT / ADD PRODUCT FORM (Image 2) */}
+      {/* 4. EDIT / ADD PRODUCT FORM */}
       {activeTab === 'edit-product' && (
         <EditProduct 
           product={editingProduct} 
@@ -134,66 +119,9 @@ export default function AdminDashboard({ onLogout, setCurrentPage }) {
         />
       )}
 
-      {/* 4. CATEGORIES */}
-      {activeTab === 'categories' && (
-        <CategoriesManagement />
-      )}
-
-      {/* 5. CUSTOMER ENQUIRIES */}
-      {activeTab === 'enquiries' && (
-        <EnquiriesManagement 
-          enquiriesList={enquiriesList} 
-          setEnquiriesList={setEnquiriesList} 
-        />
-      )}
-
-      {/* 6. QUOTE REQUESTS */}
-      {activeTab === 'quotes' && (
-        <QuotesManagement 
-          quotesList={quotesList} 
-          setQuotesList={setQuotesList} 
-        />
-      )}
-
-      {/* 7. SPARE PARTS */}
-      {activeTab === 'spareparts' && (
-        <SparePartsManagement />
-      )}
-
-      {/* 8. REVIEWS */}
-      {activeTab === 'reviews' && (
-        <ReviewsManagement />
-      )}
-
-      {/* 9. USERS */}
-      {activeTab === 'users' && (
-        <UsersManagement />
-      )}
-
-      {/* 10. SETTINGS & SEO */}
-      {(activeTab === 'settings' || activeTab === 'seo-settings' || activeTab === 'system-settings') && (
+      {/* 5. SETTINGS */}
+      {activeTab === 'settings' && (
         <SettingsManagement />
-      )}
-
-      {/* OTHER TABS FALLBACK */}
-      {['services', 'gallery', 'industries', 'orders', 'reports', 'notifications-tab'].includes(activeTab) && (
-        <div className="bg-white rounded-2xl p-8 border border-slate-100 shadow-xs text-center space-y-4">
-          <div className="w-16 h-16 rounded-2xl bg-purple-100 text-[#6A1B9A] flex items-center justify-center mx-auto text-2xl font-black">
-            S
-          </div>
-          <h2 className="text-xl font-heading font-black text-slate-900 capitalize">
-            {activeTab.replace('-', ' ')} Module
-          </h2>
-          <p className="text-xs text-slate-500 max-w-md mx-auto">
-            Live enterprise management tools for {activeTab}. Connected to local state and database.
-          </p>
-          <button 
-            onClick={() => setActiveTab('dashboard')} 
-            className="px-5 py-2.5 bg-[#6A1B9A] text-white rounded-xl text-xs font-bold shadow-md"
-          >
-            ← Back to Overview Dashboard
-          </button>
-        </div>
       )}
 
       {/* LIVE PRODUCT PREVIEW MODAL */}
