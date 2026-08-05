@@ -39,12 +39,12 @@ export default function AdminLogin({ onLoginSuccess }) {
   };
 
   return (
-    <div className="min-h-screen bg-[#FAF6FF] relative flex flex-col justify-between items-center py-8 sm:py-12 px-4 select-none font-sans overflow-hidden">
+    <div className="h-screen w-full bg-[#FAF6FF] relative flex flex-col justify-between items-center py-4 sm:py-6 px-4 select-none font-sans overflow-hidden">
       
       {/* Dynamic 3D Ambient Glowing Orbs Background */}
-      <div className="absolute top-10 left-1/4 w-80 sm:w-96 h-80 sm:h-96 bg-purple-400/25 rounded-full blur-[100px] pointer-events-none animate-pulse"></div>
-      <div className="absolute bottom-10 right-1/4 w-80 sm:w-96 h-80 sm:h-96 bg-pink-400/20 rounded-full blur-[100px] pointer-events-none animate-pulse" style={{ animationDelay: '1.5s' }}></div>
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-indigo-300/15 rounded-full blur-[130px] pointer-events-none"></div>
+      <div className="absolute top-10 left-1/4 w-80 sm:w-96 h-80 sm:h-96 bg-purple-400/20 rounded-full blur-[100px] pointer-events-none animate-pulse"></div>
+      <div className="absolute bottom-10 right-1/4 w-80 sm:w-96 h-80 sm:h-96 bg-pink-400/15 rounded-full blur-[100px] pointer-events-none animate-pulse" style={{ animationDelay: '1.5s' }}></div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-indigo-300/10 rounded-full blur-[130px] pointer-events-none"></div>
 
       {/* Subtle Tech Pattern Overlay */}
       <div 
@@ -56,22 +56,22 @@ export default function AdminLogin({ onLoginSuccess }) {
       ></div>
 
       {/* Top Brand Header Section */}
-      <div className="relative z-10 w-full max-w-md mx-auto text-center space-y-3.5 pt-2">
+      <div className="relative z-10 w-full max-w-md mx-auto text-center space-y-2 pt-1">
         
         {/* Levitate Logo with 3D Hover Effect */}
         <div className="flex items-center justify-center cursor-pointer group" onClick={autoFillDemo}>
-          <div className="p-2 rounded-2xl bg-white/80 backdrop-blur-md shadow-md border border-purple-100 group-hover:scale-105 group-hover:shadow-purple-900/15 transition-all duration-300">
+          <div className="p-1.5 rounded-2xl bg-white/80 backdrop-blur-md shadow-md border border-purple-100 group-hover:scale-105 group-hover:shadow-purple-900/15 transition-all duration-300">
             <img 
               src="/images/ChatGPT Image Jul 28, 2026, 01_18_49 PM.png" 
               alt="Shahana Kitchen Equipment Logo" 
-              className="h-12 sm:h-14 w-auto object-contain mix-blend-multiply drop-shadow-xs" 
+              className="h-10 sm:h-12 w-auto object-contain mix-blend-multiply drop-shadow-xs" 
             />
           </div>
         </div>
 
         {/* Glowing Badge */}
         <div>
-          <div className="inline-flex items-center gap-2 bg-[#F3E8FF]/90 text-[#6A1B9A] text-[10px] sm:text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-full border border-purple-300/80 shadow-sm backdrop-blur-md hover:scale-105 transition-transform">
+          <div className="inline-flex items-center gap-1.5 bg-[#F3E8FF]/90 text-[#6A1B9A] text-[10px] sm:text-xs font-bold uppercase tracking-wider px-3.5 py-1 rounded-full border border-purple-300/80 shadow-sm backdrop-blur-md hover:scale-105 transition-transform">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-500 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-700"></span>
@@ -82,42 +82,42 @@ export default function AdminLogin({ onLoginSuccess }) {
         </div>
 
         {/* Titles with 3D Gradient */}
-        <div className="space-y-1">
-          <h1 className="text-2xl sm:text-3xl font-heading font-extrabold text-gray-900 tracking-tight">
+        <div className="space-y-0.5">
+          <h1 className="text-xl sm:text-2xl font-heading font-extrabold text-gray-900 tracking-tight">
             Admin Portal Login
           </h1>
-          <p className="text-xs sm:text-sm text-gray-500 font-semibold">
+          <p className="text-[11px] sm:text-xs text-gray-500 font-semibold">
             Sign in to access your administrative management dashboard
           </p>
         </div>
       </div>
 
       {/* Main Glassmorphism Login Card */}
-      <div className={`relative z-10 w-full max-w-md bg-white/95 backdrop-blur-xl rounded-[32px] p-6 sm:p-9 shadow-[0_25px_60px_-15px_rgba(106,27,154,0.18)] border border-purple-200/80 mt-12 mb-6 transition-all duration-300 ${
+      <div className={`relative z-10 w-full max-w-md bg-white/95 backdrop-blur-xl rounded-[28px] p-5 sm:p-7 shadow-[0_20px_50px_-15px_rgba(106,27,154,0.18)] border border-purple-200/80 mt-7 mb-2 transition-all duration-300 ${
         isShaking ? 'animate-bounce' : ''
       }`}>
         
-        {/* Floating Levitating Shield Icon Badge */}
-        <div className="absolute -top-10 left-1/2 -translate-x-1/2 z-20">
-          <div className="w-20 h-20 bg-white rounded-full p-1.5 shadow-xl flex items-center justify-center border border-purple-100">
-            <div className="w-full h-full rounded-full bg-gradient-to-br from-[#8B5CF6] via-[#6A1B9A] to-[#4C1D95] shadow-lg flex items-center justify-center text-white border-2 border-white transform hover:rotate-6 transition-transform">
-              <Shield className="w-9 h-9 fill-white/20 text-white animate-pulse" />
+        {/* Floating Compact Shield Icon Badge */}
+        <div className="absolute -top-7 left-1/2 -translate-x-1/2 z-20">
+          <div className="w-13 h-13 sm:w-14 sm:h-14 bg-white rounded-full p-1 shadow-md flex items-center justify-center border border-purple-100">
+            <div className="w-full h-full rounded-full bg-gradient-to-br from-[#8B5CF6] via-[#6A1B9A] to-[#4C1D95] shadow-md flex items-center justify-center text-white border-2 border-white transform hover:rotate-6 transition-transform">
+              <Shield className="w-6 h-6 fill-white/20 text-white animate-pulse" />
             </div>
           </div>
         </div>
 
         {/* Dark Toast Error Alert Notification */}
         {error && (
-          <div className="mt-4 mb-2 p-3.5 bg-[#0D1322] border border-slate-800 text-white text-xs sm:text-sm font-bold rounded-2xl flex items-center gap-3 shadow-2xl animate-hero-slide-up">
-            <div className="w-6 h-6 rounded-full bg-[#EF4444] flex items-center justify-center shrink-0 shadow-md animate-pulse">
-              <X className="w-3.5 h-3.5 text-white stroke-[3]" />
+          <div className="mt-3 mb-1 p-3 bg-[#0D1322] border border-slate-800 text-white text-xs font-bold rounded-xl flex items-center gap-2.5 shadow-2xl animate-hero-slide-up">
+            <div className="w-5 h-5 rounded-full bg-[#EF4444] flex items-center justify-center shrink-0 shadow-md animate-pulse">
+              <X className="w-3 h-3 text-white stroke-[3]" />
             </div>
             <span className="tracking-wide">{error}</span>
           </div>
         )}
 
         {/* Real-time Login Form */}
-        <form onSubmit={handleLogin} className="space-y-5 pt-4 sm:pt-6">
+        <form onSubmit={handleLogin} className="space-y-4 pt-3 sm:pt-4">
           
           {/* Email Field */}
           <div className="space-y-1.5">
