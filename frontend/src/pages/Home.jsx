@@ -242,7 +242,7 @@ export default function Home({ setCurrentPage, onOpenQuoteModal, onSelectProduct
                 <div>
                   <div className="w-full aspect-square podium-ss-3d rounded-2xl overflow-hidden pt-7 pb-3 px-3 flex items-center justify-center mb-3.5 relative border border-white">
                     <span className="absolute top-2 left-2 z-20 bg-gradient-to-r from-[#6A1B9A] to-purple-900 text-white text-[10px] font-extrabold px-2.5 py-1 rounded-full shadow-md uppercase tracking-wider">
-                      Best Seller
+                      {product.badge || 'Best Seller'}
                     </span>
                     <img src={product.image} alt={product.name} className="max-h-full max-w-full object-contain img-3d-pop transition-transform duration-500 drop-shadow-md relative z-10" />
                   </div>

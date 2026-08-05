@@ -71,27 +71,27 @@ export const PRODUCTS = [
     applications: ["Hotels", "Restaurants", "Marriage Halls", "Industrial Canteens"]
   },
   {
-    id: "ordinary-grinder",
-    name: "Ordinary Grinder",
-    category: "Wet Grinders",
-    capacity: "5 Litres to 25 Litres Available",
-    motor: "1 HP - 3 HP Heavy Duty Lakshmi Motor",
-    material: "304 Food Grade SS & Natural Granite Stone",
+    id: "popcorn-machine",
+    name: "Commercial Popcorn Machine",
+    category: "Snack Machines",
+    capacity: "8 oz Kettle / Batch",
+    motor: "Built-in Electric Stirrer & Heater",
+    material: "Tempered Glass & Red Coated Stainless Frame",
     voltage: "230V Single Phase",
-    price: "₹24,000",
-    rating: 4.9,
-    reviewsCount: 40,
+    price: "₹18,500",
+    rating: 4.8,
+    reviewsCount: 25,
     badge: "Popular",
-    image: productAssets.ordinaryGrinder,
-    description: "Commercial Ordinary Wet Grinder with 304 food grade stainless steel drum and heavy duty natural granite grinding stone for continuous batter grinding.",
+    image: productAssets.popcornMachine,
+    description: "Commercial tabletop popcorn machine with heated warming deck, stainless steel kettle, and internal lighting for theaters, snack stalls, and food courts.",
     features: [
-      "5L to 25L Grinding Capacity",
-      "High Torque Lakshmi Copper Motor",
-      "Food Grade 304 Stainless Steel Drum",
-      "Natural Black Granite Grinding Stone",
-      "Sturdy Anti-Vibration Base Frame"
+      "Heavy Duty Stainless Steel Non-Stick Kettle",
+      "Built-in Deck Warmer Keeps Popcorn Fresh & Crisp",
+      "Tempered Safety Glass Side Panels",
+      "Simple 3-Switch Operation (Turn, Heat, Warm)",
+      "Removable Crumb Tray for Easy Cleaning"
     ],
-    applications: ["Hotels", "Restaurants", "Caterers", "Commercial Kitchens"]
+    applications: ["Theaters", "Snack Counters", "Shopping Malls", "Events & Catering", "Parks"]
   },
   {
     id: "coconut-crab-machine",
@@ -275,27 +275,27 @@ export const PRODUCTS = [
     applications: ["Hotels", "Restaurants", "Catering Units", "Sweet Shops", "Cloud Kitchens"]
   },
   {
-    id: "popcorn-machine",
-    name: "Commercial Popcorn Machine",
-    category: "Snack Machines",
-    capacity: "8 oz Kettle / Batch",
-    motor: "Built-in Electric Stirrer & Heater",
-    material: "Tempered Glass & Red Coated Stainless Frame",
+    id: "ordinary-grinder",
+    name: "Ordinary Grinder",
+    category: "Wet Grinders",
+    capacity: "5 Litres to 25 Litres Available",
+    motor: "1 HP - 3 HP Heavy Duty Lakshmi Motor",
+    material: "304 Food Grade SS & Natural Granite Stone",
     voltage: "230V Single Phase",
-    price: "₹18,500",
-    rating: 4.8,
-    reviewsCount: 25,
+    price: "₹24,000",
+    rating: 4.9,
+    reviewsCount: 40,
     badge: "Popular",
-    image: productAssets.popcornMachine,
-    description: "Commercial tabletop popcorn machine with heated warming deck, stainless steel kettle, and internal lighting for theaters, snack stalls, and food courts.",
+    image: productAssets.ordinaryGrinder,
+    description: "Commercial Ordinary Wet Grinder with 304 food grade stainless steel drum and heavy duty natural granite grinding stone for continuous batter grinding.",
     features: [
-      "Heavy Duty Stainless Steel Non-Stick Kettle",
-      "Built-in Deck Warmer Keeps Popcorn Fresh & Crisp",
-      "Tempered Safety Glass Side Panels",
-      "Simple 3-Switch Operation (Turn, Heat, Warm)",
-      "Removable Crumb Tray for Easy Cleaning"
+      "5L to 25L Grinding Capacity",
+      "High Torque Lakshmi Copper Motor",
+      "Food Grade 304 Stainless Steel Drum",
+      "Natural Black Granite Grinding Stone",
+      "Sturdy Anti-Vibration Base Frame"
     ],
-    applications: ["Theaters", "Snack Counters", "Shopping Malls", "Events & Catering", "Parks"]
+    applications: ["Hotels", "Restaurants", "Caterers", "Commercial Kitchens"]
   },
   {
     id: "potato-peeler-machine",
