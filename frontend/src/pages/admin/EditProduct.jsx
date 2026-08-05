@@ -106,24 +106,71 @@ export default function EditProduct({
     }));
   };
 
+  const fileInputRef = React.useRef(null);
+
+  // File Upload Handler (reads image files from device using FileReader)
+  const handleFileUpload = (e) => {
+    const files = Array.from(e.target.files || []);
+    if (!files.length) return;
+
+    files.forEach(file => {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const fileDataUrl = event.target.result;
+        setFormData(prev => {
+          const validImgs = prev.images.filter(img => Boolean(img));
+          const updatedImgs = [...validImgs, fileDataUrl];
+          return {
+            ...prev,
+            image: prev.image || fileDataUrl,
+            images: updatedImgs
+          };
+        });
+      };
+      reader.readAsDataURL(file);
+    });
+  };
+
   // Add image URL
-  const handleAddImageUrl = (url) => {
+  const handleAddImageUrl = () => {
+    const url = prompt('Enter Image URL to add:');
     if (!url) return;
-    setFormData(prev => ({
-      ...prev,
-      image: prev.image || url,
-      images: [...prev.images, url]
-    }));
+    setFormData(prev => {
+      const validImgs = prev.images.filter(img => Boolean(img));
+      const updatedImgs = [...validImgs, url];
+      return {
+        ...prev,
+        image: prev.image || url,
+        images: updatedImgs
+      };
+    });
   };
 
   // Remove image
   const handleRemoveImage = (index) => {
-    const imgs = formData.images.filter((_, i) => i !== index);
-    setFormData(prev => ({ 
-      ...prev, 
-      image: imgs[0] || '',
-      images: imgs 
-    }));
+    setFormData(prev => {
+      const updated = prev.images.filter((_, i) => i !== index);
+      const fallback = 'https://images.unsplash.com/photo-1590794056226-77ef3a6c4743?auto=format&fit=crop&w=400&q=80';
+      return {
+        ...prev,
+        image: updated[0] || fallback,
+        images: updated.length ? updated : [fallback]
+      };
+    });
+  };
+
+  // Make Featured Image
+  const handleMakeFeaturedImage = (index) => {
+    setFormData(prev => {
+      const imgs = [...prev.images];
+      const [selected] = imgs.splice(index, 1);
+      imgs.unshift(selected);
+      return {
+        ...prev,
+        image: selected,
+        images: imgs
+      };
+    });
   };
 
   // Duplicate Product
@@ -513,38 +560,69 @@ export default function EditProduct({
               Product Images
             </h3>
 
-            {/* Drag & Drop Area */}
-            <div className="border-2 border-dashed border-purple-200 hover:border-purple-400 bg-purple-50/30 rounded-2xl p-6 text-center space-y-2 cursor-pointer transition-colors">
+            {/* Hidden Native File Input for OS File Picker */}
+            <input 
+              type="file" 
+              ref={fileInputRef} 
+              onChange={handleFileUpload} 
+              accept="image/*" 
+              multiple 
+              className="hidden" 
+            />
+
+            {/* Drag & Drop / Upload Area */}
+            <div 
+              onClick={() => fileInputRef.current?.click()}
+              className="border-2 border-dashed border-purple-200 hover:border-purple-400 bg-purple-50/30 rounded-2xl p-6 text-center space-y-2 cursor-pointer transition-colors"
+            >
               <div className="w-12 h-12 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center mx-auto">
                 <Upload className="w-6 h-6" />
               </div>
               <div>
-                <p className="text-xs font-bold text-slate-800">Drag & drop images here</p>
-                <p className="text-[10px] text-slate-400 font-medium">or</p>
+                <p className="text-xs font-bold text-slate-800">Click or drag & drop image files here</p>
+                <p className="text-[10px] text-slate-400 font-medium">Supports JPG, PNG, WEBP, GIF</p>
               </div>
-              <button 
-                type="button"
-                onClick={() => {
-                  const url = prompt('Enter Image URL to add:');
-                  if (url) {
-                    setFormData(prev => ({ ...prev, images: [...prev.images, url] }));
-                  }
-                }}
-                className="px-4 py-1.5 bg-purple-100 text-purple-700 rounded-xl text-xs font-bold hover:bg-purple-200"
-              >
-                Browse Files
-              </button>
+              <div className="flex items-center justify-center gap-2 pt-1">
+                <button 
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    fileInputRef.current?.click();
+                  }}
+                  className="px-4 py-1.5 bg-[#6A1B9A] text-white rounded-xl text-xs font-bold hover:bg-[#5A1582] shadow-xs"
+                >
+                  Browse Files
+                </button>
+                <button 
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleAddImageUrl();
+                  }}
+                  className="px-3 py-1.5 bg-purple-100 text-purple-700 rounded-xl text-xs font-bold hover:bg-purple-200"
+                >
+                  + Add URL
+                </button>
+              </div>
             </div>
 
-            {/* Uploaded Thumbnails Grid (Image 2 match with 6 thumbnails) */}
+            {/* Uploaded Thumbnails Grid */}
             <div className="grid grid-cols-3 gap-2.5 pt-2">
-              {formData.images.map((imgUrl, idx) => (
+              {formData.images.filter(Boolean).map((imgUrl, idx) => (
                 <div key={idx} className="relative group rounded-xl overflow-hidden border border-slate-200 bg-slate-100 aspect-square">
-                  <img src={imgUrl} alt={`Product ${idx}`} className="w-full h-full object-cover" />
+                  <img 
+                    src={imgUrl} 
+                    alt={`Product thumbnail ${idx + 1}`} 
+                    className="w-full h-full object-cover" 
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = 'https://images.unsplash.com/photo-1590794056226-77ef3a6c4743?auto=format&fit=crop&w=400&q=80';
+                    }}
+                  />
                   
                   {/* Featured Tag on 1st image */}
                   {idx === 0 && (
-                    <span className="absolute bottom-1 left-1 bg-purple-600 text-white text-[9px] font-extrabold px-1.5 py-0.5 rounded-md shadow-xs">
+                    <span className="absolute bottom-1 left-1 bg-[#6A1B9A] text-white text-[9px] font-extrabold px-1.5 py-0.5 rounded-md shadow-xs">
                       Featured
                     </span>
                   )}
@@ -552,8 +630,8 @@ export default function EditProduct({
                   {/* Top Right Remove Button */}
                   <button
                     type="button"
-                    onClick={() => removeImage(idx)}
-                    className="absolute top-1 right-1 w-5 h-5 bg-black/60 hover:bg-rose-600 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                    onClick={() => handleRemoveImage(idx)}
+                    className="absolute top-1 right-1 w-5 h-5 bg-black/60 hover:bg-rose-600 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10"
                     title="Remove Image"
                   >
                     <X className="w-3 h-3" />
@@ -562,8 +640,8 @@ export default function EditProduct({
                   {idx !== 0 && (
                     <button
                       type="button"
-                      onClick={() => setFeaturedImage(idx)}
-                      className="absolute inset-0 bg-purple-900/40 text-white text-[10px] font-bold opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity"
+                      onClick={() => handleMakeFeaturedImage(idx)}
+                      className="absolute inset-0 bg-purple-900/50 text-white text-[10px] font-bold opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity"
                     >
                       Make Featured
                     </button>
