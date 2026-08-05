@@ -138,9 +138,14 @@ export default function Footer({ setCurrentPage, onOpenQuoteModal }) {
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-500 text-center sm:text-left">
           <p>© {new Date().getFullYear()} Shahana Kitchen Equipment. All Rights Reserved.</p>
           <div className="flex items-center gap-4">
-            <button onClick={() => handleNav('admin')} className="text-purple-400 hover:text-white font-bold hover:underline transition-colors">
+            <a 
+              href="/admin" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-purple-400 hover:text-white font-bold hover:underline transition-colors flex items-center gap-1"
+            >
               🔐 Admin Login
-            </button>
+            </a>
             <span className="hover:underline cursor-pointer">Designed with <span className="text-red-400">❤️</span> by -Yuvasri Arumugasamy</span>
           </div>
         </div>

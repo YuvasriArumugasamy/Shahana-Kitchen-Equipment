@@ -215,13 +215,15 @@ export default function AdminLayout({
               {/* User Dropdown Menu */}
               {userDropdownOpen && (
                 <div className="absolute bottom-full left-0 mb-2 w-full bg-[#1E1535] border border-purple-500/30 rounded-xl shadow-2xl p-2 space-y-1 z-50 text-xs text-slate-200">
-                  <button 
-                    onClick={() => { setCurrentPage('home'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                  <a 
+                    href="/" 
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-full flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/10 text-left text-purple-300"
                   >
                     <ExternalLink className="w-3.5 h-3.5" />
                     <span>View Live Site</span>
-                  </button>
+                  </a>
                   <button 
                     onClick={onLogout}
                     className="w-full flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-red-500/20 text-red-400 text-left font-bold"
