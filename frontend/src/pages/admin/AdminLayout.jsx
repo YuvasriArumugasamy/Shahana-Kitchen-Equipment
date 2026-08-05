@@ -307,126 +307,17 @@ export default function AdminLayout({
         sidebarOpen ? 'lg:pl-64' : 'lg:pl-20'
       }`}>
         
-        {/* TOP NAVBAR (Matching top bar in screenshots) */}
-        <header className="sticky top-0 z-30 bg-white border-b border-slate-200 px-4 sm:px-6 py-3.5 flex items-center justify-between shadow-xs">
-          
-          <div className="flex items-center gap-4">
-            {/* Sidebar toggle button (desktop) */}
-            <button
-              onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="hidden lg:flex p-2 text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors"
-              title="Toggle Sidebar"
-            >
-              <Menu className="w-5 h-5" />
-            </button>
-
-            {/* Mobile menu toggle */}
-            <button
-              onClick={() => setMobileMenuOpen(true)}
-              className="lg:hidden p-2 text-slate-700 hover:bg-slate-100 rounded-lg"
-            >
-              <Menu className="w-6 h-6" />
-            </button>
-
-            {/* Breadcrumb Title */}
-            <div>
-              <h2 className="text-base sm:text-lg font-heading font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
-                {getBreadcrumb()}
-              </h2>
-            </div>
-          </div>
-
-          {/* Right Header Actions */}
-          <div className="flex items-center gap-3 sm:gap-4">
-            
-            {/* Notifications Icon with Badge */}
-            <div className="relative">
-              <button 
-                onClick={() => setNotificationsOpen(!notificationsOpen)}
-                className="relative p-2 text-slate-600 hover:text-purple-600 hover:bg-purple-50 rounded-xl transition-colors"
-                title="Notifications"
-              >
-                <Bell className="w-5 h-5" />
-                {notifications.filter(n => n.unread).length > 0 && (
-                  <span className="absolute top-1 right-1 w-4 h-4 rounded-full bg-purple-600 text-white text-[10px] font-extrabold flex items-center justify-center border-2 border-white shadow-xs">
-                    {notifications.filter(n => n.unread).length}
-                  </span>
-                )}
-              </button>
-
-              {/* Notifications Dropdown Drawer */}
-              {notificationsOpen && (
-                <div className="absolute right-0 mt-2 w-80 sm:w-96 bg-white rounded-2xl shadow-2xl border border-slate-200 p-4 space-y-3 z-50 animate-in fade-in slide-in-from-top-2">
-                  <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-                    <h4 className="font-heading font-extrabold text-sm text-slate-900 flex items-center gap-2">
-                      <span>Notifications</span>
-                      <span className="px-2 py-0.5 rounded-full text-[10px] bg-purple-100 text-purple-700 font-bold">
-                        {notifications.filter(n => n.unread).length} New
-                      </span>
-                    </h4>
-                    <button 
-                      onClick={() => setNotifications(notifications.map(n => ({ ...n, unread: false })))}
-                      className="text-[11px] font-bold text-purple-600 hover:underline"
-                    >
-                      Mark all as read
-                    </button>
-                  </div>
-
-                  <div className="space-y-2 max-h-80 overflow-y-auto pr-1">
-                    {notifications.map((n) => (
-                      <div 
-                        key={n.id} 
-                        className={`p-3 rounded-xl border text-xs transition-colors flex gap-3 ${
-                          n.unread ? 'bg-purple-50/50 border-purple-100' : 'bg-slate-50/50 border-slate-100 opacity-75'
-                        }`}
-                      >
-                        <div className="shrink-0 mt-0.5">
-                          {n.type === 'quote' && <FileText className="w-4 h-4 text-purple-600" />}
-                          {n.type === 'enquiry' && <MessageSquare className="w-4 h-4 text-emerald-600" />}
-                          {n.type === 'stock' && <AlertTriangle className="w-4 h-4 text-amber-600" />}
-                          {n.type === 'review' && <Star className="w-4 h-4 text-indigo-600" />}
-                          {n.type === 'system' && <CheckCircle2 className="w-4 h-4 text-blue-600" />}
-                        </div>
-                        <div className="flex-1 space-y-0.5">
-                          <div className="font-bold text-slate-900 flex items-center justify-between">
-                            <span>{n.title}</span>
-                            <span className="text-[10px] text-slate-400 font-normal">{n.time}</span>
-                          </div>
-                          <p className="text-slate-600 text-[11px] leading-relaxed">{n.desc}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="pt-2 border-t border-slate-100 text-center">
-                    <button 
-                      onClick={() => { setActiveTab('notifications'); setNotificationsOpen(false); }}
-                      className="text-xs font-bold text-purple-600 hover:text-purple-800 flex items-center justify-center gap-1 w-full py-1"
-                    >
-                      <span>View All Notifications</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </button>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Profile Pill */}
-            <div className="flex items-center gap-2 pl-2 border-l border-slate-200">
-              <img 
-                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" 
-                alt="Admin Profile" 
-                className="w-8 h-8 rounded-full object-cover border-2 border-purple-500 shadow-xs"
-              />
-              <div className="hidden sm:block text-left">
-                <span className="text-xs font-bold text-slate-900 block leading-tight">Admin</span>
-                <span className="text-[10px] text-slate-500 font-semibold block leading-tight">Super Admin</span>
-              </div>
-            </div>
-
-          </div>
-
-        </header>
+        {/* MOBILE MENU TOGGLE (Mobile only) */}
+        <div className="lg:hidden p-3.5 border-b border-slate-200 bg-white flex items-center justify-between">
+          <button
+            onClick={() => setMobileMenuOpen(true)}
+            className="flex items-center gap-2 px-3 py-1.5 text-slate-700 bg-slate-100 rounded-xl text-xs font-bold"
+          >
+            <Menu className="w-4 h-4" />
+            <span>Admin Menu</span>
+          </button>
+          <span className="font-heading font-black text-xs text-slate-900 uppercase tracking-tight">Shahana Admin</span>
+        </div>
 
         {/* PAGE CONTENT CONTAINER */}
         <main className="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto">
