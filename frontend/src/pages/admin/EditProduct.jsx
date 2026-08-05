@@ -189,13 +189,28 @@ export default function EditProduct({
     }, 800);
   };
 
+  // Helper to safely resolve image URLs (handles string paths, module objects, data URLs)
+  const getImageSrc = (img) => {
+    if (!img) return 'https://images.unsplash.com/photo-1590794056226-77ef3a6c4743?auto=format&fit=crop&w=400&q=80';
+    if (typeof img === 'string' && img.trim() !== '') return img;
+    if (typeof img === 'object' && img !== null && img.default) return img.default;
+    return 'https://images.unsplash.com/photo-1590794056226-77ef3a6c4743?auto=format&fit=crop&w=400&q=80';
+  };
+
+  // Helper to get non-empty valid images list
+  const validImagesList = (formData.images || [])
+    .map(img => (typeof img === 'object' && img?.default) ? img.default : img)
+    .filter(img => img && typeof img === 'string' && img.trim() !== '');
+
+  const displayImages = validImagesList.length ? validImagesList : ['https://images.unsplash.com/photo-1590794056226-77ef3a6c4743?auto=format&fit=crop&w=400&q=80'];
+
   // Save Product
   const handleSubmit = (e) => {
     e.preventDefault();
     const updated = {
       ...product,
       ...formData,
-      image: formData.image || formData.images?.[0] || product?.image
+      image: getImageSrc(formData.image || formData.images?.[0] || product?.image)
     };
     onSave && onSave(updated);
     setToastMessage('Changes saved successfully!');
@@ -608,10 +623,10 @@ export default function EditProduct({
 
             {/* Uploaded Thumbnails Grid */}
             <div className="grid grid-cols-3 gap-2.5 pt-2">
-              {formData.images.filter(Boolean).map((imgUrl, idx) => (
+              {displayImages.map((imgUrl, idx) => (
                 <div key={idx} className="relative group rounded-xl overflow-hidden border border-slate-200 bg-slate-100 aspect-square">
                   <img 
-                    src={imgUrl} 
+                    src={getImageSrc(imgUrl)} 
                     alt={`Product thumbnail ${idx + 1}`} 
                     className="w-full h-full object-cover" 
                     onError={(e) => {
