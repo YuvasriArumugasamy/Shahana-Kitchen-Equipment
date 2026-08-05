@@ -298,15 +298,22 @@ export default function AdminLayout({
         sidebarOpen ? 'lg:pl-64' : 'lg:pl-20'
       }`}>
         
-        {/* MOBILE MENU TOGGLE (Mobile only - Strictly Fixed Top Bar) */}
+        {/* MOBILE MENU TOGGLE (Mobile only - Strictly Fixed Top Bar with Uiverse.io Hamburger) */}
         <div className="lg:hidden fixed top-0 left-0 right-0 z-40 h-14 px-4 bg-white/95 backdrop-blur-md border-b border-slate-200 flex items-center justify-between shadow-xs">
-          <button
-            onClick={() => setMobileMenuOpen(true)}
-            className="flex items-center gap-2 px-3 py-1.5 text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-xl text-xs font-bold transition-colors"
-          >
-            <Menu className="w-4 h-4" />
-            <span>Admin Menu</span>
-          </button>
+          <div className="uiverse-hamburger-container">
+            <input 
+              type="checkbox" 
+              id="label-check-admin" 
+              className="uiverse-label-check" 
+              checked={mobileMenuOpen}
+              onChange={(e) => setMobileMenuOpen(e.target.checked)}
+            />
+            <label htmlFor="label-check-admin" className="uiverse-hamburger-label" title="Toggle Admin Menu">
+              <div className="uiverse-line1"></div>
+              <div className="uiverse-line2"></div>
+              <div className="uiverse-line3"></div>
+            </label>
+          </div>
         </div>
         
         {/* Spacer for fixed top bar on mobile */}

@@ -629,4 +629,64 @@
   animation: shineSheen 1.2s ease forwards;
 }
 
+/* From Uiverse.io by JkHuger - adapted for Admin Top Bar */
+.uiverse-hamburger-container {
+  display: flex;
+  align-items: center;
+}
+
+.uiverse-label-check {
+  display: none;
+}
+
+.uiverse-hamburger-label {
+  width: 36px;
+  height: 28px;
+  display: block;
+  cursor: pointer;
+  position: relative;
+}
+
+.uiverse-hamburger-label div {
+  width: 32px;
+  height: 3.5px;
+  background-color: #334155;
+  position: absolute;
+  border-radius: 4px;
+}
+
+.uiverse-line1 {
+  top: 2px;
+  transition: all .3s ease;
+}
+
+.uiverse-line2 {
+  top: 11px;
+  transition: all 0.3s ease;
+}
+
+.uiverse-line3 {
+  top: 20px;
+  transition: all 0.3s ease;
+}
+
+.uiverse-label-check:checked + .uiverse-hamburger-label .uiverse-line1 {
+  transform: rotate(35deg) scaleX(.55) translate(18px, -2px);
+  border-radius: 50px 50px 50px 0;
+  background-color: #6A1B9A;
+}
+
+.uiverse-label-check:checked + .uiverse-hamburger-label .uiverse-line3 {
+  transform: rotate(-35deg) scaleX(.55) translate(18px, 2px);
+  border-radius: 0 50px 50px 50px;
+  background-color: #6A1B9A;
+}
+
+.uiverse-label-check:checked + .uiverse-hamburger-label .uiverse-line2 {
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  width: 22px;
+  background-color: #6A1B9A;
+}
+
 
