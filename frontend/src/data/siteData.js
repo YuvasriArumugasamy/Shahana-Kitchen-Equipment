@@ -105,7 +105,7 @@ export const PRODUCTS = [
     rating: 4.9,
     reviewsCount: 45,
     badge: "Best Seller",
-    image: productAssets.coconutScraper,
+    image: productAssets.commercialCoconutCrab,
     description: "Commercial countertop coconut scraper with stainless steel bowl and spiked blade powered by 0.5 HP Lakshmi motor.",
     features: [
       "0.5 HP Lakshmi Heavy Duty Copper Motor",

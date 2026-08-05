@@ -9,13 +9,13 @@ import wetGrinder5L from './WhatsApp Image 2026-07-29 at 22.34.17.jpeg';
 import blueTableTopGrinder from './WhatsApp Image 2026-07-29 at 23.01.53.jpeg';
 import attaKneaderYellow from './WhatsApp Image 2026-07-29 at 22.45.52.jpeg';
 import doughKneaderOrange from './WhatsApp Image 2026-07-29 at 22.56.24.jpeg';
-import uDrumMixerSS from './WhatsApp Image 2026-07-29 at 22.43.16.jpeg';
+import uDrumMixerSS from './ChatGPT Image Aug 5, 2026, 09_36_33 AM.png';
 import coconutCrabSS from './WhatsApp Image 2026-07-29 at 22.37.48.jpeg';
 import oilDryerMachine from './ChatGPT Image Aug 4, 2026, 12_39_29 PM.png';
 import ssSinksCounters from './Screenshot 2026-07-30 111312.png';
 import gravyMachineImg from './Screenshot 2026-07-30 111435.png';
 import ssProductScreenshot2 from './Screenshot 2026-07-30 111452.png';
-import chickenFeatherMachine from './Screenshot 2026-07-30 111527.png';
+import chickenFeatherMachine from './WhatsApp Image 2026-08-01 at 17.02.08 (1).jpeg';
 
 import popcornMachineImg from './WhatsApp Image 2026-08-02 at 11.51.40.jpeg';
 import potatoPeelerImg from './WhatsApp Image 2026-08-02 at 11.51.34.jpeg';
@@ -33,6 +33,7 @@ import coconutScraperBowlImg from './ChatGPT Image Aug 2, 2026, 07_04_14 PM.png'
 import doubleCoconutScraperImg from './ChatGPT Image Aug 2, 2026, 07_09_34 PM.png';
 import ordinaryGrinderStudioImg from './ChatGPT Image Aug 4, 2026, 12_09_13 PM.png';
 import commercialWetGrinderStudioImg from './ChatGPT Image Aug 4, 2026, 12_23_03 PM.png';
+import commercialCoconutCrabStudioImg from './ChatGPT Image Aug 4, 2026, 12_17_14 PM.png';
 import siteLogo from './ChatGPT Image Aug 2, 2026, 10_28_47 PM.png';
 
 export const logoImg = siteLogo;
@@ -45,7 +46,8 @@ export const productAssets = {
   instantWetGrinder: instantWetGrinderStudioImg,
   tiltingWetGrinder: tiltingGrinderStudioImg,
   tableTopWetGrinder: blueTableTopGrinder,
-  coconutCrab: coconutScraperBowlImg,
+  coconutCrab: commercialCoconutCrabStudioImg,
+  commercialCoconutCrab: commercialCoconutCrabStudioImg,
   coconutScraper: coconutScraperBowlImg,
   doubleCoconutScraper: doubleCoconutScraperImg,
   uDrumMixer: uDrumMixerSS,
@@ -54,6 +56,7 @@ export const productAssets = {
   doughKneader: industrialKneaderImg,
   spiralKneader: doughKneaderOrange,
   chickenFeatherRemover: chickenFeatherMachine,
+  chickenFeatherCleaner: chickenFeatherMachine,
   oilDryer: oilDryerMachine,
   gravyMachine: heavyPulverizerImg,
   pulverizerMachine: heavyPulverizerImg,
