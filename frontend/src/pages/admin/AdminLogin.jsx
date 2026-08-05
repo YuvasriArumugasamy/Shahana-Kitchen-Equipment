@@ -24,6 +24,7 @@ export default function AdminLogin({ onLoginSuccess }) {
 
       if (cleanEmail === 'admin@shahanakitchen.com' && cleanPassword === 'admin123') {
         setError('');
+        localStorage.setItem('shahana_admin_auth', 'true');
         onLoginSuccess();
       } else {
         setError('Invalid email or password');

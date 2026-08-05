@@ -37,7 +37,23 @@ export default function App() {
   const [currentPage, setCurrentPage] = useState(getInitialPage);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [quoteModalOpen, setQuoteModalOpen] = useState(false);
-  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
+  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('shahana_admin_auth') === 'true';
+    }
+    return false;
+  });
+
+  const handleAdminLoginSuccess = () => {
+    localStorage.setItem('shahana_admin_auth', 'true');
+    setIsAdminLoggedIn(true);
+  };
+
+  const handleAdminLogout = () => {
+    localStorage.removeItem('shahana_admin_auth');
+    setIsAdminLoggedIn(false);
+    setCurrentPage('home');
+  };
 
   // Smooth Scroll Reveal Animations with Fail-Safe Visibility
   useEffect(() => {
@@ -102,9 +118,9 @@ export default function App() {
   // If in Admin mode
   if (currentPage === 'admin') {
     if (!isAdminLoggedIn) {
-      return <AdminLogin onLoginSuccess={() => setIsAdminLoggedIn(true)} />;
+      return <AdminLogin onLoginSuccess={handleAdminLoginSuccess} />;
     }
-    return <AdminDashboard onLogout={() => { setIsAdminLoggedIn(false); setCurrentPage('home'); }} setCurrentPage={setCurrentPage} />;
+    return <AdminDashboard onLogout={handleAdminLogout} setCurrentPage={setCurrentPage} />;
   }
 
   return (
