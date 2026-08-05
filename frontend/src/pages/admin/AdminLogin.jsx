@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { Lock, Mail, ShieldCheck, ArrowRight, Eye, EyeOff, Shield, User, AlertCircle, X } from 'lucide-react';
+import { 
+  Lock, Mail, ShieldCheck, ArrowRight, Eye, EyeOff, Shield, User, X, Sparkles, KeyRound, ArrowLeft 
+} from 'lucide-react';
 
 export default function AdminLogin({ onLoginSuccess }) {
   const [email, setEmail] = useState('');
@@ -7,6 +9,7 @@ export default function AdminLogin({ onLoginSuccess }) {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [isShaking, setIsShaking] = useState(false);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -24,54 +27,89 @@ export default function AdminLogin({ onLoginSuccess }) {
         onLoginSuccess();
       } else {
         setError('Invalid email or password');
+        setIsShaking(true);
+        setTimeout(() => setIsShaking(false), 500);
       }
     }, 600);
   };
 
+  const autoFillDemo = () => {
+    setEmail('admin@shahanakitchen.com');
+    setPassword('admin123');
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#F5EEFE] via-[#F8F3FF] to-[#FAF6FF] flex flex-col justify-center items-center py-10 px-4 select-none font-sans">
+    <div className="min-h-screen bg-[#FAF6FF] relative flex flex-col justify-between items-center py-8 sm:py-12 px-4 select-none font-sans overflow-hidden">
       
+      {/* Dynamic 3D Ambient Glowing Orbs Background */}
+      <div className="absolute top-10 left-1/4 w-80 sm:w-96 h-80 sm:h-96 bg-purple-400/25 rounded-full blur-[100px] pointer-events-none animate-pulse"></div>
+      <div className="absolute bottom-10 right-1/4 w-80 sm:w-96 h-80 sm:h-96 bg-pink-400/20 rounded-full blur-[100px] pointer-events-none animate-pulse" style={{ animationDelay: '1.5s' }}></div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-indigo-300/15 rounded-full blur-[130px] pointer-events-none"></div>
+
+      {/* Subtle Tech Pattern Overlay */}
+      <div 
+        className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        style={{ 
+          backgroundImage: `radial-gradient(#6A1B9A 1.5px, transparent 1.5px)`, 
+          backgroundSize: '24px 24px' 
+        }}
+      ></div>
+
       {/* Top Brand Header Section */}
-      <div className="w-full max-w-md mx-auto text-center space-y-3 mb-8">
-        <div className="flex items-center justify-center">
-          <img 
-            src="/images/ChatGPT Image Jul 28, 2026, 01_18_49 PM.png" 
-            alt="Shahana Kitchen Equipment Logo" 
-            className="h-14 sm:h-16 w-auto object-contain mix-blend-multiply drop-shadow-xs" 
-          />
+      <div className="relative z-10 w-full max-w-md mx-auto text-center space-y-3.5 pt-2">
+        
+        {/* Levitate Logo with 3D Hover Effect */}
+        <div className="flex items-center justify-center cursor-pointer group" onClick={autoFillDemo}>
+          <div className="p-2 rounded-2xl bg-white/80 backdrop-blur-md shadow-md border border-purple-100 group-hover:scale-105 group-hover:shadow-purple-900/15 transition-all duration-300">
+            <img 
+              src="/images/ChatGPT Image Jul 28, 2026, 01_18_49 PM.png" 
+              alt="Shahana Kitchen Equipment Logo" 
+              className="h-12 sm:h-14 w-auto object-contain mix-blend-multiply drop-shadow-xs" 
+            />
+          </div>
         </div>
+
+        {/* Glowing Badge */}
         <div>
-          <div className="inline-flex items-center gap-1.5 bg-[#E9D5FF]/90 text-[#6A1B9A] text-[10px] sm:text-xs font-bold uppercase tracking-wider px-4 py-1 rounded-full border border-purple-300/60 shadow-xs">
+          <div className="inline-flex items-center gap-2 bg-[#F3E8FF]/90 text-[#6A1B9A] text-[10px] sm:text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-full border border-purple-300/80 shadow-sm backdrop-blur-md hover:scale-105 transition-transform">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-500 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-700"></span>
+            </span>
             <ShieldCheck className="w-3.5 h-3.5 text-[#6A1B9A]" />
             <span>ENTERPRISE ADMIN PORTAL</span>
           </div>
         </div>
+
+        {/* Titles with 3D Gradient */}
         <div className="space-y-1">
           <h1 className="text-2xl sm:text-3xl font-heading font-extrabold text-gray-900 tracking-tight">
             Admin Portal Login
           </h1>
-          <p className="text-xs sm:text-sm text-gray-500 font-medium">
+          <p className="text-xs sm:text-sm text-gray-500 font-semibold">
             Sign in to access your administrative management dashboard
           </p>
         </div>
       </div>
 
-      {/* Main Production Clean Login Card */}
-      <div className="relative w-full max-w-md bg-white rounded-[32px] p-6 sm:p-8 shadow-[0_20px_50px_rgba(106,27,154,0.1)] border border-purple-100/80">
+      {/* Main Glassmorphism Login Card */}
+      <div className={`relative z-10 w-full max-w-md bg-white/95 backdrop-blur-xl rounded-[32px] p-6 sm:p-9 shadow-[0_25px_60px_-15px_rgba(106,27,154,0.18)] border border-purple-200/80 mt-12 mb-6 transition-all duration-300 ${
+        isShaking ? 'animate-bounce' : ''
+      }`}>
         
-        {/* Floating Top Shield Icon Badge */}
-        <div className="absolute -top-9 left-1/2 -translate-x-1/2 z-20">
-          <div className="w-18 h-18 sm:w-20 sm:h-20 bg-white rounded-full p-1.5 shadow-md flex items-center justify-center">
-            <div className="w-full h-full rounded-full bg-gradient-to-br from-[#8B5CF6] via-[#6A1B9A] to-[#4C1D95] shadow-lg flex items-center justify-center text-white border-2 border-white">
-              <Shield className="w-8 h-8 sm:w-9 sm:h-9 fill-white/20 text-white" />
+        {/* Floating Levitating Shield Icon Badge */}
+        <div className="absolute -top-10 left-1/2 -translate-x-1/2 z-20">
+          <div className="w-20 h-20 bg-white rounded-full p-1.5 shadow-xl flex items-center justify-center border border-purple-100">
+            <div className="w-full h-full rounded-full bg-gradient-to-br from-[#8B5CF6] via-[#6A1B9A] to-[#4C1D95] shadow-lg flex items-center justify-center text-white border-2 border-white transform hover:rotate-6 transition-transform">
+              <Shield className="w-9 h-9 fill-white/20 text-white animate-pulse" />
             </div>
           </div>
         </div>
 
         {/* Dark Toast Error Alert Notification */}
         {error && (
-          <div className="mt-4 mb-2 p-3.5 bg-[#0D1322] border border-slate-800 text-white text-xs sm:text-sm font-bold rounded-xl flex items-center gap-3 shadow-2xl animate-hero-slide-up">
-            <div className="w-5 sm:w-6 h-5 sm:h-6 rounded-full bg-[#EF4444] flex items-center justify-center shrink-0 shadow-md">
+          <div className="mt-4 mb-2 p-3.5 bg-[#0D1322] border border-slate-800 text-white text-xs sm:text-sm font-bold rounded-2xl flex items-center gap-3 shadow-2xl animate-hero-slide-up">
+            <div className="w-6 h-6 rounded-full bg-[#EF4444] flex items-center justify-center shrink-0 shadow-md animate-pulse">
               <X className="w-3.5 h-3.5 text-white stroke-[3]" />
             </div>
             <span className="tracking-wide">{error}</span>
@@ -86,8 +124,8 @@ export default function AdminLogin({ onLoginSuccess }) {
             <label className="block text-[11px] font-extrabold text-gray-700 uppercase tracking-wider">
               ADMIN EMAIL ADDRESS
             </label>
-            <div className="flex items-center gap-3 p-1.5 pl-3 rounded-2xl border border-purple-100 bg-[#FBF8FF] focus-within:border-[#6A1B9A] focus-within:bg-white focus-within:ring-2 focus-within:ring-purple-500/15 transition-all">
-              <div className="w-9 h-9 rounded-xl bg-purple-100/80 text-[#6A1B9A] flex items-center justify-center shrink-0">
+            <div className="flex items-center gap-3 p-1.5 pl-3 rounded-2xl border border-purple-200/90 bg-[#FBF8FF] focus-within:border-[#6A1B9A] focus-within:bg-white focus-within:ring-4 focus-within:ring-purple-500/20 shadow-xs transition-all duration-300 group">
+              <div className="w-9 h-9 rounded-xl bg-purple-100/80 text-[#6A1B9A] group-focus-within:bg-[#6A1B9A] group-focus-within:text-white flex items-center justify-center shrink-0 transition-colors">
                 <User className="w-4 h-4" />
               </div>
               <input
@@ -96,7 +134,7 @@ export default function AdminLogin({ onLoginSuccess }) {
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 placeholder="Enter admin email address"
-                className="w-full bg-transparent outline-none text-xs sm:text-sm font-semibold text-gray-900 placeholder:text-gray-400 py-1"
+                className="w-full bg-transparent outline-none text-xs sm:text-sm font-bold text-gray-900 placeholder:text-gray-400 py-1"
               />
             </div>
           </div>
@@ -106,8 +144,8 @@ export default function AdminLogin({ onLoginSuccess }) {
             <label className="block text-[11px] font-extrabold text-gray-700 uppercase tracking-wider">
               SECURITY PASSWORD
             </label>
-            <div className="flex items-center gap-3 p-1.5 pl-3 pr-2.5 rounded-2xl border border-purple-100 bg-[#FBF8FF] focus-within:border-[#6A1B9A] focus-within:bg-white focus-within:ring-2 focus-within:ring-purple-500/15 transition-all">
-              <div className="w-9 h-9 rounded-xl bg-purple-100/80 text-[#6A1B9A] flex items-center justify-center shrink-0">
+            <div className="flex items-center gap-3 p-1.5 pl-3 pr-2.5 rounded-2xl border border-purple-200/90 bg-[#FBF8FF] focus-within:border-[#6A1B9A] focus-within:bg-white focus-within:ring-4 focus-within:ring-purple-500/20 shadow-xs transition-all duration-300 group">
+              <div className="w-9 h-9 rounded-xl bg-purple-100/80 text-[#6A1B9A] group-focus-within:bg-[#6A1B9A] group-focus-within:text-white flex items-center justify-center shrink-0 transition-colors">
                 <Lock className="w-4 h-4" />
               </div>
               <input
@@ -116,7 +154,7 @@ export default function AdminLogin({ onLoginSuccess }) {
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 placeholder="Enter password"
-                className="w-full bg-transparent outline-none text-xs sm:text-sm font-semibold text-gray-900 placeholder:text-gray-400 py-1"
+                className="w-full bg-transparent outline-none text-xs sm:text-sm font-bold text-gray-900 placeholder:text-gray-400 py-1"
               />
               <button
                 type="button"
@@ -124,7 +162,7 @@ export default function AdminLogin({ onLoginSuccess }) {
                 className="text-gray-400 hover:text-[#6A1B9A] transition-colors p-1 shrink-0"
                 aria-label="Toggle Password Visibility"
               >
-                {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                {showPassword ? <EyeOff className="w-4.5 h-4.5" /> : <Eye className="w-4.5 h-4.5" />}
               </button>
             </div>
           </div>
@@ -133,14 +171,14 @@ export default function AdminLogin({ onLoginSuccess }) {
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full py-3.5 sm:py-4 bg-gradient-to-r from-[#7C3AED] via-[#6A1B9A] to-[#4C1D95] hover:opacity-95 text-white text-xs sm:text-sm font-extrabold tracking-wider uppercase rounded-2xl shadow-lg shadow-purple-900/25 hover:shadow-purple-900/40 transform hover:scale-[1.01] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2.5 group cursor-pointer mt-2"
+            className="w-full py-3.5 sm:py-4 bg-gradient-to-r from-[#8B5CF6] via-[#6A1B9A] to-[#4C1D95] hover:from-[#7C3AED] hover:to-[#3B0764] text-white text-xs sm:text-sm font-extrabold tracking-wider uppercase rounded-2xl shadow-xl shadow-purple-900/30 hover:shadow-purple-900/50 transform hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2.5 group cursor-pointer mt-2 shine-overlay"
           >
             {isLoading ? (
               <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
             ) : (
               <>
                 <span>SIGN IN TO DASHBOARD</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-4.5 h-4.5 group-hover:translate-x-1.5 transition-transform" />
               </>
             )}
           </button>
@@ -149,7 +187,7 @@ export default function AdminLogin({ onLoginSuccess }) {
       </div>
 
       {/* Clean Copyright Footer */}
-      <div className="text-center text-xs text-gray-500 font-medium pt-4">
+      <div className="relative z-10 text-center text-xs text-gray-500 font-semibold pt-4">
         © {new Date().getFullYear()} <span className="font-bold text-[#6A1B9A]">Shahana Kitchen Equipments</span>. All rights reserved.
       </div>
 
