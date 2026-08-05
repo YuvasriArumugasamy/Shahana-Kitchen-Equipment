@@ -48,11 +48,11 @@ export default function AdminLogin({ onLoginSuccess }) {
         <div className="text-center space-y-3 mb-6 sm:mb-8">
           
           {/* Logo with 3D Ring */}
-          <div className="relative inline-block group cursor-pointer bg-white px-4 py-2 rounded-2xl shadow-md border border-purple-200" onClick={autoFillDemo}>
+          <div className="relative inline-block group cursor-pointer bg-white px-5 py-2.5 rounded-2xl shadow-md border border-purple-200" onClick={autoFillDemo}>
             <img 
               src="/images/ChatGPT Image Jul 28, 2026, 01_18_49 PM.png" 
               alt="Shahana Kitchen Equipment Logo" 
-              className="h-10 sm:h-12 w-auto object-contain mix-blend-multiply" 
+              className="h-14 sm:h-16 w-auto object-contain mix-blend-multiply" 
             />
           </div>
 

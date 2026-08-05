@@ -51,7 +51,7 @@ export default function Footer({ setCurrentPage, onOpenQuoteModal }) {
               <img 
                 src="/images/ChatGPT Image Jul 28, 2026, 01_18_49 PM.png" 
                 alt="Shahana Kitchen Equipment" 
-                className="h-8 sm:h-10 object-contain mix-blend-multiply" 
+                className="h-12 sm:h-14 w-auto object-contain mix-blend-multiply" 
               />
             </div>
             <p className="text-gray-400 text-xs sm:text-sm mb-4 leading-relaxed">
