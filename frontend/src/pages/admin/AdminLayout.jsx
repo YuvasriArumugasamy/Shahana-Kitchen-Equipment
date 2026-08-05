@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  LayoutDashboard, ShoppingBag, FolderTree, Wrench, Settings, Image as ImageIcon, 
-  Building2, FileText, MessageSquare, Star, Users, ShoppingCart, BarChart3, 
-  Globe, Sliders, Bell, Shield, Search, Menu, X, Maximize, ChevronDown, 
-  LogOut, ExternalLink, CheckCircle2, AlertTriangle, ArrowRight
+  LayoutDashboard, ShoppingBag, Settings, Sliders, Bell, Menu, X, ChevronDown, 
+  LogOut, ExternalLink, CheckCircle2, AlertTriangle, ArrowRight, FileText, MessageSquare, Star
 } from 'lucide-react';
 
 export default function AdminLayout({ 
@@ -339,16 +337,6 @@ export default function AdminLayout({
           {/* Right Header Actions */}
           <div className="flex items-center gap-3 sm:gap-4">
             
-            {/* Global Search Bar */}
-            <div className="relative hidden md:block w-64 lg:w-80">
-              <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
-              <input
-                type="text"
-                placeholder="Search here..."
-                className="w-full pl-9 pr-4 py-2 bg-slate-100/80 hover:bg-slate-100 focus:bg-white text-xs text-slate-800 placeholder-slate-400 rounded-xl border border-slate-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-100 outline-none transition-all"
-              />
-            </div>
-
             {/* Notifications Icon with Badge */}
             <div className="relative">
               <button 
@@ -420,15 +408,6 @@ export default function AdminLayout({
                 </div>
               )}
             </div>
-
-            {/* Fullscreen Button */}
-            <button
-              onClick={toggleFullscreen}
-              className="p-2 text-slate-600 hover:text-purple-600 hover:bg-purple-50 rounded-xl transition-colors hidden sm:flex"
-              title="Toggle Fullscreen"
-            >
-              <Maximize className="w-4 h-4" />
-            </button>
 
             {/* Profile Pill */}
             <div className="flex items-center gap-2 pl-2 border-l border-slate-200">
