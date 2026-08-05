@@ -3,7 +3,7 @@ import {
   Lock, Mail, ShieldCheck, ArrowRight, Eye, EyeOff, Shield, User, X, Sparkles, KeyRound, ArrowLeft 
 } from 'lucide-react';
 
-export default function AdminLogin({ onLoginSuccess }) {
+export default function AdminLogin({ onLoginSuccess, onBackToSite }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -39,8 +39,21 @@ export default function AdminLogin({ onLoginSuccess }) {
   };
 
   return (
-    <div className="min-h-screen bg-[#FAF6FF] relative flex flex-col justify-between items-center py-8 sm:py-12 px-4 select-none font-sans overflow-hidden">
+    <div className="min-h-screen bg-[#FAF6FF] relative flex flex-col justify-between items-center py-6 sm:py-10 px-4 select-none font-sans overflow-x-hidden">
       
+      {/* Back to Website Floating Button */}
+      {onBackToSite && (
+        <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-20">
+          <button
+            onClick={onBackToSite}
+            className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/80 hover:bg-white text-gray-700 hover:text-[#6A1B9A] text-xs font-bold shadow-sm border border-purple-100 hover:shadow-md transition-all duration-200"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            <span>Back to Website</span>
+          </button>
+        </div>
+      )}
+
       {/* Dynamic 3D Ambient Glowing Orbs Background */}
       <div className="absolute top-10 left-1/4 w-80 sm:w-96 h-80 sm:h-96 bg-purple-400/25 rounded-full blur-[100px] pointer-events-none animate-pulse"></div>
       <div className="absolute bottom-10 right-1/4 w-80 sm:w-96 h-80 sm:h-96 bg-pink-400/20 rounded-full blur-[100px] pointer-events-none animate-pulse" style={{ animationDelay: '1.5s' }}></div>
@@ -56,10 +69,10 @@ export default function AdminLogin({ onLoginSuccess }) {
       ></div>
 
       {/* Top Brand Header Section */}
-      <div className="relative z-10 w-full max-w-md mx-auto text-center space-y-3.5 pt-2">
+      <div className="relative z-10 w-full max-w-md mx-auto text-center space-y-3 pt-6 sm:pt-4">
         
         {/* Levitate Logo with 3D Hover Effect */}
-        <div className="flex items-center justify-center cursor-pointer group" onClick={autoFillDemo}>
+        <div className="flex items-center justify-center cursor-pointer group" onClick={autoFillDemo} title="Click to autofill demo credentials">
           <div className="p-2 rounded-2xl bg-white/80 backdrop-blur-md shadow-md border border-purple-100 group-hover:scale-105 group-hover:shadow-purple-900/15 transition-all duration-300">
             <img 
               src="/images/ChatGPT Image Jul 28, 2026, 01_18_49 PM.png" 
@@ -68,7 +81,6 @@ export default function AdminLogin({ onLoginSuccess }) {
             />
           </div>
         </div>
-
 
         {/* Titles with 3D Gradient */}
         <div className="space-y-1">
@@ -79,25 +91,37 @@ export default function AdminLogin({ onLoginSuccess }) {
             Sign in to access your administrative management dashboard
           </p>
         </div>
+
+        {/* Demo Credentials Quick-Fill Badge */}
+        <div className="pt-1">
+          <button
+            type="button"
+            onClick={autoFillDemo}
+            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-100/80 hover:bg-purple-200/80 text-[#6A1B9A] text-[11px] font-bold border border-purple-200 shadow-xs transition-colors cursor-pointer"
+          >
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Click for Demo Login (admin@shahanakitchen.com)</span>
+          </button>
+        </div>
       </div>
 
       {/* Main Glassmorphism Login Card */}
-      <div className={`relative z-10 w-full max-w-md bg-white/95 backdrop-blur-xl rounded-[32px] p-6 sm:p-9 shadow-[0_25px_60px_-15px_rgba(106,27,154,0.18)] border border-purple-200/80 mt-12 mb-6 transition-all duration-300 ${
+      <div className={`relative z-10 w-full max-w-md bg-white/95 backdrop-blur-xl rounded-[32px] p-6 sm:p-8 shadow-[0_25px_60px_-15px_rgba(106,27,154,0.18)] border border-purple-200/80 mt-10 mb-4 transition-all duration-300 ${
         isShaking ? 'animate-bounce' : ''
       }`}>
         
         {/* Floating Levitating Shield Icon Badge */}
-        <div className="absolute -top-10 left-1/2 -translate-x-1/2 z-20">
-          <div className="w-20 h-20 bg-white rounded-full p-1.5 shadow-xl flex items-center justify-center border border-purple-100">
+        <div className="absolute -top-9 left-1/2 -translate-x-1/2 z-20">
+          <div className="w-18 h-18 sm:w-20 sm:h-20 bg-white rounded-full p-1.5 shadow-xl flex items-center justify-center border border-purple-100">
             <div className="w-full h-full rounded-full bg-gradient-to-br from-[#8B5CF6] via-[#6A1B9A] to-[#4C1D95] shadow-lg flex items-center justify-center text-white border-2 border-white transform hover:rotate-6 transition-transform">
-              <Shield className="w-9 h-9 fill-white/20 text-white animate-pulse" />
+              <Shield className="w-8 h-8 sm:w-9 sm:h-9 fill-white/20 text-white animate-pulse" />
             </div>
           </div>
         </div>
 
         {/* Dark Toast Error Alert Notification */}
         {error && (
-          <div className="mt-4 mb-2 p-3.5 bg-[#0D1322] border border-slate-800 text-white text-xs sm:text-sm font-bold rounded-2xl flex items-center gap-3 shadow-2xl animate-hero-slide-up">
+          <div className="mt-4 mb-2 p-3 bg-[#0D1322] border border-slate-800 text-white text-xs sm:text-sm font-bold rounded-2xl flex items-center gap-3 shadow-2xl animate-hero-slide-up">
             <div className="w-6 h-6 rounded-full bg-[#EF4444] flex items-center justify-center shrink-0 shadow-md animate-pulse">
               <X className="w-3.5 h-3.5 text-white stroke-[3]" />
             </div>
@@ -106,10 +130,10 @@ export default function AdminLogin({ onLoginSuccess }) {
         )}
 
         {/* Real-time Login Form */}
-        <form onSubmit={handleLogin} className="space-y-5 pt-4 sm:pt-6">
+        <form onSubmit={handleLogin} className="space-y-4 pt-3 sm:pt-5">
           
           {/* Email Field */}
-          <div className="space-y-1.5">
+          <div className="space-y-1">
             <label className="block text-[11px] font-extrabold text-gray-700 uppercase tracking-wider">
               ADMIN EMAIL ADDRESS
             </label>
@@ -129,7 +153,7 @@ export default function AdminLogin({ onLoginSuccess }) {
           </div>
 
           {/* Password Field */}
-          <div className="space-y-1.5">
+          <div className="space-y-1">
             <label className="block text-[11px] font-extrabold text-gray-700 uppercase tracking-wider">
               SECURITY PASSWORD
             </label>
@@ -160,7 +184,7 @@ export default function AdminLogin({ onLoginSuccess }) {
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full py-3.5 sm:py-4 bg-gradient-to-r from-[#8B5CF6] via-[#6A1B9A] to-[#4C1D95] hover:from-[#7C3AED] hover:to-[#3B0764] text-white text-xs sm:text-sm font-extrabold tracking-wider uppercase rounded-2xl shadow-xl shadow-purple-900/30 hover:shadow-purple-900/50 transform hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2.5 group cursor-pointer mt-2 shine-overlay"
+            className="w-full py-3.5 bg-gradient-to-r from-[#8B5CF6] via-[#6A1B9A] to-[#4C1D95] hover:from-[#7C3AED] hover:to-[#3B0764] text-white text-xs sm:text-sm font-extrabold tracking-wider uppercase rounded-2xl shadow-xl shadow-purple-900/30 hover:shadow-purple-900/50 transform hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2.5 group cursor-pointer mt-2 shine-overlay"
           >
             {isLoading ? (
               <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
@@ -176,7 +200,7 @@ export default function AdminLogin({ onLoginSuccess }) {
       </div>
 
       {/* Clean Copyright Footer */}
-      <div className="relative z-10 text-center text-xs text-gray-500 font-semibold pt-4">
+      <div className="relative z-10 text-center text-xs text-gray-500 font-semibold pt-2 pb-2">
         © {new Date().getFullYear()} <span className="font-bold text-[#6A1B9A]">Shahana Kitchen Equipments</span>. All rights reserved.
       </div>
 

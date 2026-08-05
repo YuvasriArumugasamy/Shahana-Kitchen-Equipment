@@ -102,7 +102,7 @@ export default function App() {
   // If in Admin mode
   if (currentPage === 'admin') {
     if (!isAdminLoggedIn) {
-      return <AdminLogin onLoginSuccess={() => setIsAdminLoggedIn(true)} />;
+      return <AdminLogin onLoginSuccess={() => setIsAdminLoggedIn(true)} onBackToSite={() => setCurrentPage('home')} />;
     }
     return <AdminDashboard onLogout={() => { setIsAdminLoggedIn(false); setCurrentPage('home'); }} setCurrentPage={setCurrentPage} />;
   }
