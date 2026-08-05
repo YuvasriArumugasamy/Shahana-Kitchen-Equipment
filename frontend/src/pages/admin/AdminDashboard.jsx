@@ -25,28 +25,20 @@ export default function AdminDashboard({ onLogout, setCurrentPage }) {
   });
 
   // Persistent Notifications List
-  const [notifications, setNotifications] = useState(() => {
-    const saved = localStorage.getItem('shahana_admin_notifications');
-    if (saved) {
-      try { return JSON.parse(saved); } catch (e) { console.error(e); }
-    }
-    return [];
-  });
+  const [notifications, setNotifications] = useState([]);
 
   // Save products to LocalStorage whenever state changes
   useEffect(() => {
     localStorage.setItem('shahana_admin_products', JSON.stringify(productsList));
   }, [productsList]);
 
-  // Real-time synchronization for Admin Notifications
+  // Real-time synchronization for Admin Notifications across ALL devices (Mobile, Laptop, Cloud)
   useEffect(() => {
-    const syncNotifs = () => {
+    const syncNotifs = async () => {
       try {
-        const saved = localStorage.getItem('shahana_admin_notifications');
-        if (saved) {
-          setNotifications(JSON.parse(saved));
-        } else {
-          setNotifications([]);
+        const cloudData = await fetchCloudNotifications();
+        if (cloudData && Array.isArray(cloudData)) {
+          setNotifications(cloudData);
         }
       } catch (e) {
         console.error("Error reading admin notifications:", e);
@@ -54,10 +46,15 @@ export default function AdminDashboard({ onLogout, setCurrentPage }) {
     };
 
     syncNotifs();
+
+    // Auto-poll cloud every 10 seconds so Admin gets live customer messages from ANY device
+    const intervalId = setInterval(syncNotifs, 10000);
+
     window.addEventListener('storage', syncNotifs);
     window.addEventListener('shahana_notification_added', syncNotifs);
 
     return () => {
+      clearInterval(intervalId);
       window.removeEventListener('storage', syncNotifs);
       window.removeEventListener('shahana_notification_added', syncNotifs);
     };
@@ -85,15 +82,11 @@ export default function AdminDashboard({ onLogout, setCurrentPage }) {
     setActiveTab('products');
   };
 
-  // Update and persist notifications handler
+  // Update and persist notifications handler to Cloud & LocalStorage
   const handleSetNotifications = (updatedVal) => {
     let newNotifs = typeof updatedVal === 'function' ? updatedVal(notifications) : updatedVal;
     setNotifications(newNotifs);
-    try {
-      localStorage.setItem('shahana_admin_notifications', JSON.stringify(newNotifs));
-    } catch (e) {
-      console.error("Failed to save updated notifications:", e);
-    }
+    updateCloudNotifications(newNotifs);
   };
 
   return (

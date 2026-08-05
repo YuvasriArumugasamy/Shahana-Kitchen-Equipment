@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { X, Send, CheckCircle2 } from 'lucide-react';
+import { pushCloudNotification } from '../services/cloudNotifications';
 
 export default function QuoteModal({ isOpen, onClose, selectedProduct }) {
   const [submitted, setSubmitted] = useState(false);
@@ -34,15 +35,8 @@ export default function QuoteModal({ isOpen, onClose, selectedProduct }) {
       fullMessage: `Customer requested a price quote for ${formData.quantity} unit(s) of ${formData.product}. Business Type: ${formData.businessType}. City: ${formData.city || 'N/A'}. Additional message: ${formData.message || 'None'}`
     };
 
-    try {
-      const existingNotifs = JSON.parse(localStorage.getItem('shahana_admin_notifications') || '[]');
-      const updatedList = [newQuoteAlert, ...existingNotifs];
-      localStorage.setItem('shahana_admin_notifications', JSON.stringify(updatedList));
-      window.dispatchEvent(new Event('storage'));
-      window.dispatchEvent(new CustomEvent('shahana_notification_added', { detail: newQuoteAlert }));
-    } catch (err) {
-      console.error("Failed to save quote request:", err);
-    }
+    // Push to Cloud API so Admin receives it across ALL devices (Mobile phone, Laptop, etc.)
+    pushCloudNotification(newQuoteAlert);
 
     setSubmitted(true);
     setTimeout(() => {

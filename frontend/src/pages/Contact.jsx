@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Phone, MapPin, Clock, Send, MessageSquare, CheckCircle2, Lock, Calendar } from 'lucide-react';
+import { pushCloudNotification } from '../services/cloudNotifications';
 
 export default function Contact({ onOpenQuoteModal }) {
   const [submitted, setSubmitted] = useState(false);
@@ -29,15 +30,8 @@ export default function Contact({ onOpenQuoteModal }) {
       fullMessage: formData.message
     };
 
-    try {
-      const existingNotifs = JSON.parse(localStorage.getItem('shahana_admin_notifications') || '[]');
-      const updatedList = [newEnquiryAlert, ...existingNotifs];
-      localStorage.setItem('shahana_admin_notifications', JSON.stringify(updatedList));
-      window.dispatchEvent(new Event('storage'));
-      window.dispatchEvent(new CustomEvent('shahana_notification_added', { detail: newEnquiryAlert }));
-    } catch (err) {
-      console.error("Failed to save enquiry to admin notifications:", err);
-    }
+    // Push to Cloud API so Admin receives it across ALL devices (Mobile phone, Laptop, etc.)
+    pushCloudNotification(newEnquiryAlert);
 
     setSubmitted(true);
   };
