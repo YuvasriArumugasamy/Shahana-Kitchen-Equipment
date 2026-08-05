@@ -137,8 +137,20 @@ export default function AdminDashboard({ onLogout, setCurrentPage }) {
         <CatalogManagement 
           productsList={productsList} 
           setProductsList={setProductsList} 
-          onEditProduct={(p) => { setEditingProduct(p); setActiveTab('edit-product'); }} 
-          onAddNewProduct={() => { setEditingProduct(null); setActiveTab('edit-product'); }}
+          onEditProduct={(p) => { 
+            setEditingProduct(p); 
+            setActiveTab('edit-product');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            const mainEl = document.querySelector('main');
+            if (mainEl) mainEl.scrollTo({ top: 0, behavior: 'smooth' });
+          }} 
+          onAddNewProduct={() => { 
+            setEditingProduct(null); 
+            setActiveTab('edit-product');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            const mainEl = document.querySelector('main');
+            if (mainEl) mainEl.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
           onViewProduct={(p) => setSelectedPreviewProduct(p)}
         />
       )}
@@ -215,6 +227,9 @@ export default function AdminDashboard({ onLogout, setCurrentPage }) {
                   setEditingProduct(selectedPreviewProduct);
                   setSelectedPreviewProduct(null);
                   setActiveTab('edit-product');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                  const mainEl = document.querySelector('main');
+                  if (mainEl) mainEl.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
                 className="px-4 py-2 bg-[#6A1B9A] text-white rounded-xl text-xs font-bold"
               >

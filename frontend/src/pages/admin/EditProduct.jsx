@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Eye, Copy, Save, Plus, Trash2, Upload, X, Link as LinkIcon, 
   Bold, Italic, Underline, List, ListOrdered, Image as ImageIcon, 
@@ -11,6 +11,14 @@ export default function EditProduct({
   onCancel, 
   onViewProduct 
 }) {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const mainEl = document.querySelector('main');
+    if (mainEl) {
+      mainEl.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [product]);
+
   const [formData, setFormData] = useState({
     id: product?.id || `prod-${Date.now()}`,
     name: product?.name || '',

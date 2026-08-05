@@ -29,6 +29,11 @@ export default function AdminLayout({
     if (activeTab.startsWith('product')) {
       setProductsMenuOpen(true);
     }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const mainEl = document.querySelector('main');
+    if (mainEl) {
+      mainEl.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }, [activeTab]);
 
   const toggleFullscreen = () => {

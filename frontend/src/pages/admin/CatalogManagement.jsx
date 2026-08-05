@@ -437,7 +437,12 @@ export default function CatalogManagement({
                             <Eye className="w-4 h-4" />
                           </button>
                           <button
-                            onClick={() => onEditProduct && onEditProduct(p)}
+                            onClick={() => {
+                              if (onEditProduct) onEditProduct(p);
+                              window.scrollTo({ top: 0, behavior: 'smooth' });
+                              const mainEl = document.querySelector('main');
+                              if (mainEl) mainEl.scrollTo({ top: 0, behavior: 'smooth' });
+                            }}
                             className="p-1.5 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
                             title="Edit Product"
                           >
