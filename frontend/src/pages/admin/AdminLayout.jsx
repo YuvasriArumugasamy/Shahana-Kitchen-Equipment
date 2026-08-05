@@ -307,7 +307,6 @@ export default function AdminLayout({
             <Menu className="w-4 h-4" />
             <span>Admin Menu</span>
           </button>
-          <span className="font-heading font-black text-xs text-slate-900 uppercase tracking-tight">Shahana Admin</span>
         </div>
         
         {/* Spacer for fixed top bar on mobile */}
