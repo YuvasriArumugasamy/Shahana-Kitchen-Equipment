@@ -15,11 +15,14 @@ export default function AdminLogin({ onLoginSuccess }) {
 
     setTimeout(() => {
       setIsLoading(false);
-      // Real-time production validation check
-      if (email.trim() && password.trim()) {
+      // Strict Admin Authentication Check
+      const cleanEmail = email.trim().toLowerCase();
+      const cleanPassword = password.trim();
+
+      if (cleanEmail === 'admin@shahanakitchen.com' && cleanPassword === 'admin123') {
         onLoginSuccess();
       } else {
-        setError('Please enter valid email address and password.');
+        setError('Invalid Email or Password! Please enter correct Admin credentials.');
       }
     }, 600);
   };
