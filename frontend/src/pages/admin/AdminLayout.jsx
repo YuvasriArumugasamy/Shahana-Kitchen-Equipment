@@ -298,11 +298,11 @@ export default function AdminLayout({
         sidebarOpen ? 'lg:pl-64' : 'lg:pl-20'
       }`}>
         
-        {/* MOBILE MENU TOGGLE (Mobile only) */}
-        <div className="lg:hidden p-3.5 border-b border-slate-200 bg-white flex items-center justify-between">
+        {/* MOBILE MENU TOGGLE (Mobile only - Sticky Fixed Top Bar) */}
+        <div className="lg:hidden sticky top-0 z-30 p-3.5 border-b border-slate-200 bg-white/95 backdrop-blur-md flex items-center justify-between shadow-xs">
           <button
             onClick={() => setMobileMenuOpen(true)}
-            className="flex items-center gap-2 px-3 py-1.5 text-slate-700 bg-slate-100 rounded-xl text-xs font-bold"
+            className="flex items-center gap-2 px-3 py-1.5 text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-xl text-xs font-bold transition-colors"
           >
             <Menu className="w-4 h-4" />
             <span>Admin Menu</span>
