@@ -323,9 +323,11 @@ export default function CatalogManagement({
                 paginatedProducts.map((p, idx) => {
                   const isChecked = selectedProducts.includes(p.id);
                   const isFeatured = p.featured !== undefined ? p.featured : (p.rating >= 4.9);
-                  const stockText = p.stockUnits || `${p.stockCount !== undefined ? p.stockCount : 15} Units`;
-                  const isLowStock = stockText.toLowerCase().includes('low') || stockText.includes('8 Units') || stockText.includes('5 Units');
-                  const availabilityBadge = isLowStock ? 'Low Stock' : 'In Stock';
+                  const stockCount = p.stockCount !== undefined ? p.stockCount : (p.rating >= 4.9 ? 25 : 18);
+                  const isOutOfStock = p.availability === 'Out of Stock' || stockCount === 0;
+                  const isLowStock = p.availability === 'Low Stock' || (stockCount > 0 && stockCount <= 5);
+                  const stockText = isOutOfStock ? '0 Units' : (p.stockUnits || `${stockCount} Units`);
+                  const availabilityBadge = isOutOfStock ? 'Out of Stock' : (isLowStock ? 'Low Stock' : 'In Stock');
                   const categoryTag = p.category || 'Wet Grinders';
                   const skuCode = p.sku || `SKE-${(p.category || 'GEN').slice(0, 2).toUpperCase()}-0${idx + 1}`;
 
@@ -345,7 +347,7 @@ export default function CatalogManagement({
                       <td className="py-3.5 px-4 min-w-[240px]">
                         <div className="flex items-center gap-3">
                           <img 
-                            src={p.image || 'https://images.unsplash.com/photo-1590794056226-77ef3a6c4743?auto=format&fit=crop&w=150&q=80'} 
+                            src={p.image || p.images?.[0] || 'https://images.unsplash.com/photo-1590794056226-77ef3a6c4743?auto=format&fit=crop&w=150&q=80'} 
                             alt={p.name} 
                             className="w-12 h-12 rounded-xl object-cover border border-slate-200 shrink-0 bg-slate-100 p-0.5"
                           />
@@ -384,7 +386,7 @@ export default function CatalogManagement({
 
                       {/* Stock Units */}
                       <td className="py-3.5 px-4 whitespace-nowrap font-bold text-xs">
-                        <span className={isLowStock ? 'text-amber-600' : 'text-emerald-600'}>
+                        <span className={isOutOfStock ? 'text-rose-600' : (isLowStock ? 'text-amber-600' : 'text-emerald-600')}>
                           {stockText}
                         </span>
                       </td>
@@ -392,11 +394,13 @@ export default function CatalogManagement({
                       {/* Availability Badge */}
                       <td className="py-3.5 px-4 whitespace-nowrap">
                         <span className={`px-2.5 py-1 rounded-full text-[10px] font-extrabold flex items-center gap-1.5 w-max ${
-                          isLowStock 
-                            ? 'bg-amber-50 text-amber-700 border border-amber-200' 
-                            : 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                          isOutOfStock
+                            ? 'bg-rose-50 text-rose-700 border border-rose-200'
+                            : (isLowStock 
+                              ? 'bg-amber-50 text-amber-700 border border-amber-200' 
+                              : 'bg-emerald-50 text-emerald-700 border border-emerald-200')
                         }`}>
-                          <span className={`w-1.5 h-1.5 rounded-full ${isLowStock ? 'bg-amber-500' : 'bg-emerald-500'}`} />
+                          <span className={`w-1.5 h-1.5 rounded-full ${isOutOfStock ? 'bg-rose-500' : (isLowStock ? 'bg-amber-500' : 'bg-emerald-500')}`} />
                           <span>{availabilityBadge}</span>
                         </span>
                       </td>
@@ -415,9 +419,8 @@ export default function CatalogManagement({
                       </td>
 
                       {/* Last Updated */}
-                      <td className="py-3.5 px-4 text-slate-400 text-[11px] font-medium whitespace-nowrap">
-                        20 May 2024<br />
-                        <span className="text-[10px] text-slate-400 font-normal">10:30 AM</span>
+                      <td className="py-3.5 px-4 text-slate-500 text-[11px] font-bold whitespace-nowrap">
+                        {p.lastUpdated || 'Active'}
                       </td>
 
                       {/* Actions */}

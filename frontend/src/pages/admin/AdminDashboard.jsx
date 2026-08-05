@@ -15,11 +15,23 @@ export default function AdminDashboard({ onLogout, setCurrentPage }) {
   const [editingProduct, setEditingProduct] = useState(null);
   const [selectedPreviewProduct, setSelectedPreviewProduct] = useState(null);
 
-  // Persistent Products List
+  // Persistent Products List synced 100% with siteData catalog
   const [productsList, setProductsList] = useState(() => {
     const saved = localStorage.getItem('shahana_admin_products');
     if (saved) {
-      try { return JSON.parse(saved); } catch (e) { console.error(e); }
+      try {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          // Merge real siteData product images and properties with any saved edits
+          const merged = PRODUCTS.map(realProd => {
+            const savedItem = parsed.find(p => p.id === realProd.id);
+            return savedItem ? { ...realProd, ...savedItem, image: realProd.image } : realProd;
+          });
+          // Add any custom new products created in admin
+          const customProducts = parsed.filter(p => !PRODUCTS.some(real => real.id === p.id));
+          return [...merged, ...customProducts];
+        }
+      } catch (e) { console.error(e); }
     }
     return PRODUCTS;
   });
