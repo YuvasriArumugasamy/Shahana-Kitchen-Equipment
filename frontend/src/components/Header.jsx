@@ -3,7 +3,6 @@ import {
   Phone, Mail, MapPin, Clock, Menu, X, ChevronDown, ArrowRight,
   Home, Building2, Package, Wrench, Settings, Image, Factory, Star, PhoneCall, ShieldCheck, ChevronRight 
 } from 'lucide-react';
-import { logoImg } from '../assets/clientAssets';
 
 export default function Header({ currentPage, setCurrentPage, onOpenQuoteModal }) {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -119,20 +118,13 @@ export default function Header({ currentPage, setCurrentPage, onOpenQuoteModal }
           {/* Logo Brand Group */}
           <div 
             onClick={() => handleNavClick('home')}
-            className="cursor-pointer flex items-center gap-2.5 shrink-0 pr-2 group"
+            className="cursor-pointer flex items-center shrink-0 pr-2 group"
           >
-            <div className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full border-2 border-[#6A1B9A] shadow-sm bg-white flex items-center justify-center p-0.5 shrink-0 overflow-hidden group-hover:scale-105 transition-transform duration-300">
-              <img 
-                src={logoImg} 
-                alt="MS Shahana Icon Logo" 
-                className="w-full h-full object-cover rounded-full"
-              />
-            </div>
             <div className="flex items-center shrink-0">
               <img 
                 src="/images/ChatGPT Image Jul 28, 2026, 01_18_49 PM.png" 
                 alt="Shahana Kitchen Equipment" 
-                className="h-8 xs:h-9 sm:h-10 md:h-11 w-auto object-contain mix-blend-multiply" 
+                className="h-8 xs:h-9 sm:h-10 md:h-11 w-auto object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-300" 
               />
             </div>
           </div>

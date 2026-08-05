@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Lock, Mail, ShieldCheck, ArrowRight, Eye, EyeOff, Sparkles, KeyRound } from 'lucide-react';
-import { logoImg } from '../../assets/clientAssets';
 
 export default function AdminLogin({ onLoginSuccess }) {
   const [email, setEmail] = useState('admin@shahanakitchen.com');
@@ -49,15 +48,12 @@ export default function AdminLogin({ onLoginSuccess }) {
         <div className="text-center space-y-3 mb-6 sm:mb-8">
           
           {/* Logo with 3D Ring */}
-          <div className="relative inline-block group cursor-pointer" onClick={autoFillDemo}>
-            <div className="absolute -inset-1.5 bg-gradient-to-r from-purple-600 to-pink-500 rounded-full blur-md opacity-70 group-hover:opacity-100 transition duration-500 animate-pulse"></div>
-            <div className="relative w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-full p-1 border-2 border-purple-500 shadow-xl flex items-center justify-center mx-auto overflow-hidden">
-              <img 
-                src={logoImg} 
-                alt="MS Shahana Kitchen Equipment Logo" 
-                className="w-full h-full object-cover rounded-full" 
-              />
-            </div>
+          <div className="relative inline-block group cursor-pointer bg-white px-4 py-2 rounded-2xl shadow-md border border-purple-200" onClick={autoFillDemo}>
+            <img 
+              src="/images/ChatGPT Image Jul 28, 2026, 01_18_49 PM.png" 
+              alt="Shahana Kitchen Equipment Logo" 
+              className="h-10 sm:h-12 w-auto object-contain mix-blend-multiply" 
+            />
           </div>
 
           {/* Security Badge */}
