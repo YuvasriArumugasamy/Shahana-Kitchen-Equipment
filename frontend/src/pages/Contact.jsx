@@ -11,7 +11,7 @@ export default function Contact({ onOpenQuoteModal }) {
     message: ''
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name || !formData.phone || !formData.message) return;
 
@@ -30,8 +30,8 @@ export default function Contact({ onOpenQuoteModal }) {
       fullMessage: formData.message
     };
 
-    // Push to Cloud API so Admin receives it across ALL devices (Mobile phone, Laptop, etc.)
-    pushCloudNotification(newEnquiryAlert);
+    // Push to Render MongoDB Backend & Cloud API so Admin receives it across ALL devices
+    await pushCloudNotification(newEnquiryAlert);
 
     setSubmitted(true);
   };

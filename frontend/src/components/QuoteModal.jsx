@@ -18,7 +18,7 @@ export default function QuoteModal({ isOpen, onClose, selectedProduct }) {
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const newQuoteAlert = {
@@ -35,8 +35,8 @@ export default function QuoteModal({ isOpen, onClose, selectedProduct }) {
       fullMessage: `Customer requested a price quote for ${formData.quantity} unit(s) of ${formData.product}. Business Type: ${formData.businessType}. City: ${formData.city || 'N/A'}. Additional message: ${formData.message || 'None'}`
     };
 
-    // Push to Cloud API so Admin receives it across ALL devices (Mobile phone, Laptop, etc.)
-    pushCloudNotification(newQuoteAlert);
+    // Push to Render MongoDB Backend & Cloud API so Admin receives it across ALL devices
+    await pushCloudNotification(newQuoteAlert);
 
     setSubmitted(true);
     setTimeout(() => {
