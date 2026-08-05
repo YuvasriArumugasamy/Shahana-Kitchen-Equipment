@@ -3,9 +3,39 @@ import { Phone, MapPin, Clock, Send, MessageSquare, CheckCircle2, Lock, Calendar
 
 export default function Contact({ onOpenQuoteModal }) {
   const [submitted, setSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    subject: 'Commercial Wet Grinders',
+    message: ''
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!formData.name || !formData.phone || !formData.message) return;
+
+    // Create notification alert for Admin Dashboard
+    const newEnquiryAlert = {
+      id: Date.now(),
+      title: `Enquiry from ${formData.name}`,
+      desc: `Phone: ${formData.phone} | Subject: ${formData.subject} | Message: ${formData.message}`,
+      time: 'Just now',
+      unread: true,
+      type: 'enquiry',
+      priority: 'High',
+      senderName: formData.name,
+      senderPhone: formData.phone,
+      subject: formData.subject,
+      fullMessage: formData.message
+    };
+
+    try {
+      const existingNotifs = JSON.parse(localStorage.getItem('shahana_admin_notifications') || '[]');
+      localStorage.setItem('shahana_admin_notifications', JSON.stringify([newEnquiryAlert, ...existingNotifs]));
+    } catch (err) {
+      console.error("Failed to save enquiry to admin notifications:", err);
+    }
+
     setSubmitted(true);
   };
 
@@ -129,21 +159,45 @@ export default function Contact({ onOpenQuoteModal }) {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-3.5 sm:space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
-                  <input type="text" required placeholder="Your Name *" className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl border border-gray-300 text-xs outline-none focus:border-[#6A1B9A]" />
-                  <input type="tel" required placeholder="Phone Number *" className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl border border-gray-300 text-xs outline-none focus:border-[#6A1B9A]" />
+                  <input 
+                    type="text" 
+                    required 
+                    placeholder="Your Name *" 
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl border border-gray-300 text-xs outline-none focus:border-[#6A1B9A]" 
+                  />
+                  <input 
+                    type="tel" 
+                    required 
+                    placeholder="Phone Number *" 
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl border border-gray-300 text-xs outline-none focus:border-[#6A1B9A]" 
+                  />
                 </div>
                 
-                <select className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl border border-gray-300 text-xs outline-none bg-white text-gray-700">
-                  <option>Select Subject / Machine Category</option>
-                  <option>Commercial Wet Grinders</option>
-                  <option>Pulverizer Machines</option>
-                  <option>Dough Kneaders</option>
-                  <option>Vegetable Cutters</option>
-                  <option>Spare Parts</option>
-                  <option>AMC / Repair Support</option>
+                <select 
+                  value={formData.subject}
+                  onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                  className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl border border-gray-300 text-xs outline-none bg-white text-gray-700 font-medium"
+                >
+                  <option value="Commercial Wet Grinders">Commercial Wet Grinders</option>
+                  <option value="Pulverizer Machines">Pulverizer Machines</option>
+                  <option value="Dough Kneaders">Dough Kneaders</option>
+                  <option value="Vegetable Cutters">Vegetable Cutters</option>
+                  <option value="Spare Parts">Spare Parts</option>
+                  <option value="AMC / Repair Support">AMC / Repair Support</option>
                 </select>
 
-                <textarea rows="4" required placeholder="Your Message *" className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl border border-gray-300 text-xs outline-none focus:border-[#6A1B9A]"></textarea>
+                <textarea 
+                  rows="4" 
+                  required 
+                  placeholder="Your Message *" 
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl border border-gray-300 text-xs outline-none focus:border-[#6A1B9A]"
+                ></textarea>
 
                 <button type="submit" className="btn-purple w-full py-3 sm:py-3.5 text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2">
                   <Send className="w-4 h-4" />

@@ -19,6 +19,28 @@ export default function QuoteModal({ isOpen, onClose, selectedProduct }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const newQuoteAlert = {
+      id: Date.now(),
+      title: `New Quote Request from ${formData.name || 'Customer'}`,
+      desc: `Product: ${formData.product} (Qty: ${formData.quantity}) | Company: ${formData.company || 'N/A'} | Phone: ${formData.phone}`,
+      time: 'Just now',
+      unread: true,
+      type: 'quote',
+      priority: 'High',
+      senderName: formData.name,
+      senderPhone: formData.phone,
+      product: formData.product,
+      fullMessage: `Customer requested a price quote for ${formData.quantity} unit(s) of ${formData.product}. Business Type: ${formData.businessType}. City: ${formData.city || 'N/A'}. Additional message: ${formData.message || 'None'}`
+    };
+
+    try {
+      const existingNotifs = JSON.parse(localStorage.getItem('shahana_admin_notifications') || '[]');
+      localStorage.setItem('shahana_admin_notifications', JSON.stringify([newQuoteAlert, ...existingNotifs]));
+    } catch (err) {
+      console.error("Failed to save quote request:", err);
+    }
+
     setSubmitted(true);
     setTimeout(() => {
       setSubmitted(false);

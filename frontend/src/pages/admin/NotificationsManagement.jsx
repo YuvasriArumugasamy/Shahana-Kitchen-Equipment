@@ -282,12 +282,45 @@ export default function NotificationsManagement({ notifications = [], setNotific
                 <p className="font-bold text-slate-900 text-sm mt-0.5">{selectedNotification.title}</p>
               </div>
 
+              {selectedNotification.senderName && (
+                <div className="bg-purple-50/70 p-3 rounded-xl border border-purple-100 space-y-1">
+                  <div className="flex items-center justify-between text-xs font-bold text-slate-900">
+                    <span>Customer: {selectedNotification.senderName}</span>
+                    {selectedNotification.senderPhone && (
+                      <span className="text-purple-700 font-mono">{selectedNotification.senderPhone}</span>
+                    )}
+                  </div>
+                  {selectedNotification.subject && (
+                    <div className="text-[11px] text-slate-500 font-medium">Subject: {selectedNotification.subject}</div>
+                  )}
+                </div>
+              )}
+
               <div>
                 <span className="text-[10px] font-extrabold uppercase text-slate-400 tracking-wider block">Message Content</span>
                 <p className="text-xs text-slate-600 leading-relaxed bg-slate-50 p-3.5 rounded-2xl mt-1 border border-slate-100">
-                  {selectedNotification.desc}
+                  {selectedNotification.fullMessage || selectedNotification.desc}
                 </p>
               </div>
+
+              {selectedNotification.senderPhone && (
+                <div className="flex items-center gap-2 pt-1">
+                  <a
+                    href={`tel:${selectedNotification.senderPhone}`}
+                    className="flex-1 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold text-center transition-colors"
+                  >
+                    📞 Call Customer
+                  </a>
+                  <a
+                    href={`https://wa.me/${selectedNotification.senderPhone.replace(/[^0-9]/g, '')}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex-1 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold text-center transition-colors"
+                  >
+                    💬 WhatsApp
+                  </a>
+                </div>
+              )}
 
               <div className="flex items-center justify-between pt-2">
                 <span className="text-xs font-bold text-slate-500">Category:</span>
