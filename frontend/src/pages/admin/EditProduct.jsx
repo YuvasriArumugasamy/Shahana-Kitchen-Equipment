@@ -60,7 +60,7 @@ export default function EditProduct({
     'Spare Parts'
   ];
 
-  // Handle local image file selection
+  // Handle local image file selection with lightweight canvas compression
   const handleFileUpload = (e) => {
     const files = Array.from(e.target.files || []);
     if (!files.length) return;
@@ -69,11 +69,51 @@ export default function EditProduct({
       const reader = new FileReader();
       reader.onload = (event) => {
         const fileDataUrl = event.target.result;
-        setFormData(prev => ({
-          ...prev,
-          image: fileDataUrl,
-          images: [fileDataUrl, ...prev.images]
-        }));
+        // Compress large image via canvas
+        const img = document.createElement('img');
+        img.onload = () => {
+          const maxDim = 600;
+          let width = img.width || maxDim;
+          let height = img.height || maxDim;
+          if (width > height) {
+            if (width > maxDim) {
+              height = Math.round((height * maxDim) / width);
+              width = maxDim;
+            }
+          } else {
+            if (height > maxDim) {
+              width = Math.round((width * maxDim) / height);
+              height = maxDim;
+            }
+          }
+          const canvas = document.createElement('canvas');
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          if (ctx) {
+            ctx.drawImage(img, 0, 0, width, height);
+            const compressed = canvas.toDataURL('image/jpeg', 0.7);
+            setFormData(prev => ({
+              ...prev,
+              image: compressed,
+              images: [compressed, ...(prev.images || [])]
+            }));
+          } else {
+            setFormData(prev => ({
+              ...prev,
+              image: fileDataUrl,
+              images: [fileDataUrl, ...(prev.images || [])]
+            }));
+          }
+        };
+        img.onerror = () => {
+          setFormData(prev => ({
+            ...prev,
+            image: fileDataUrl,
+            images: [fileDataUrl, ...(prev.images || [])]
+          }));
+        };
+        img.src = fileDataUrl;
       };
       reader.readAsDataURL(file);
     });

@@ -18,6 +18,7 @@ import FAQ from './pages/FAQ';
 
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminDashboard from './pages/admin/AdminDashboard';
+import { ErrorBoundary } from './components/ErrorBoundary';
 
 const getInitialPage = () => {
   if (typeof window === 'undefined') return 'home';
@@ -120,7 +121,11 @@ export default function App() {
     if (!isAdminLoggedIn) {
       return <AdminLogin onLoginSuccess={handleAdminLoginSuccess} />;
     }
-    return <AdminDashboard onLogout={handleAdminLogout} setCurrentPage={setCurrentPage} />;
+    return (
+      <ErrorBoundary onReset={() => setCurrentPage('admin')}>
+        <AdminDashboard onLogout={handleAdminLogout} setCurrentPage={setCurrentPage} />
+      </ErrorBoundary>
+    );
   }
 
   return (

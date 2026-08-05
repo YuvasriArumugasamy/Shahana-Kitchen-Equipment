@@ -42,7 +42,11 @@ export default function AdminDashboard({ onLogout, setCurrentPage }) {
 
   // Save products to LocalStorage whenever state changes
   useEffect(() => {
-    localStorage.setItem('shahana_admin_products', JSON.stringify(productsList));
+    try {
+      localStorage.setItem('shahana_admin_products', JSON.stringify(productsList));
+    } catch (e) {
+      console.warn("Could not sync productsList to LocalStorage:", e);
+    }
   }, [productsList]);
 
   // Real-time synchronization for Admin Notifications across ALL devices (Mobile, Laptop, Cloud)
