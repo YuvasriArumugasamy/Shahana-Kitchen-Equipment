@@ -33,14 +33,35 @@ export default function AdminDashboard({ onLogout, setCurrentPage }) {
     return [];
   });
 
-  // Save to LocalStorage whenever state changes
+  // Save products to LocalStorage whenever state changes
   useEffect(() => {
     localStorage.setItem('shahana_admin_products', JSON.stringify(productsList));
   }, [productsList]);
 
+  // Real-time synchronization for Admin Notifications
   useEffect(() => {
-    localStorage.setItem('shahana_admin_notifications', JSON.stringify(notifications));
-  }, [notifications]);
+    const syncNotifs = () => {
+      try {
+        const saved = localStorage.getItem('shahana_admin_notifications');
+        if (saved) {
+          setNotifications(JSON.parse(saved));
+        } else {
+          setNotifications([]);
+        }
+      } catch (e) {
+        console.error("Error reading admin notifications:", e);
+      }
+    };
+
+    syncNotifs();
+    window.addEventListener('storage', syncNotifs);
+    window.addEventListener('shahana_notification_added', syncNotifs);
+
+    return () => {
+      window.removeEventListener('storage', syncNotifs);
+      window.removeEventListener('shahana_notification_added', syncNotifs);
+    };
+  }, []);
 
   // Save / Update product handler
   const handleSaveProduct = (updatedProduct) => {
@@ -64,15 +85,26 @@ export default function AdminDashboard({ onLogout, setCurrentPage }) {
     setActiveTab('products');
   };
 
+  // Update and persist notifications handler
+  const handleSetNotifications = (updatedVal) => {
+    let newNotifs = typeof updatedVal === 'function' ? updatedVal(notifications) : updatedVal;
+    setNotifications(newNotifs);
+    try {
+      localStorage.setItem('shahana_admin_notifications', JSON.stringify(newNotifs));
+    } catch (e) {
+      console.error("Failed to save updated notifications:", e);
+    }
+  };
+
   return (
     <AdminLayout 
       activeTab={activeTab} 
       setActiveTab={setActiveTab} 
-      onLogout={onLogout} 
-      setCurrentPage={setCurrentPage}
-      editingProduct={editingProduct}
       notifications={notifications}
-      setNotifications={setNotifications}
+      setNotifications={handleSetNotifications}
+      editingProduct={editingProduct}
+      onLogout={onLogout}
+      setCurrentPage={setCurrentPage}
     >
       
       {/* 1. DASHBOARD OVERVIEW */}
@@ -88,7 +120,7 @@ export default function AdminDashboard({ onLogout, setCurrentPage }) {
       {activeTab === 'notifications' && (
         <NotificationsManagement 
           notifications={notifications} 
-          setNotifications={setNotifications} 
+          setNotifications={handleSetNotifications} 
         />
       )}
 

@@ -36,7 +36,10 @@ export default function QuoteModal({ isOpen, onClose, selectedProduct }) {
 
     try {
       const existingNotifs = JSON.parse(localStorage.getItem('shahana_admin_notifications') || '[]');
-      localStorage.setItem('shahana_admin_notifications', JSON.stringify([newQuoteAlert, ...existingNotifs]));
+      const updatedList = [newQuoteAlert, ...existingNotifs];
+      localStorage.setItem('shahana_admin_notifications', JSON.stringify(updatedList));
+      window.dispatchEvent(new Event('storage'));
+      window.dispatchEvent(new CustomEvent('shahana_notification_added', { detail: newQuoteAlert }));
     } catch (err) {
       console.error("Failed to save quote request:", err);
     }

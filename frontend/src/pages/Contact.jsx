@@ -31,7 +31,10 @@ export default function Contact({ onOpenQuoteModal }) {
 
     try {
       const existingNotifs = JSON.parse(localStorage.getItem('shahana_admin_notifications') || '[]');
-      localStorage.setItem('shahana_admin_notifications', JSON.stringify([newEnquiryAlert, ...existingNotifs]));
+      const updatedList = [newEnquiryAlert, ...existingNotifs];
+      localStorage.setItem('shahana_admin_notifications', JSON.stringify(updatedList));
+      window.dispatchEvent(new Event('storage'));
+      window.dispatchEvent(new CustomEvent('shahana_notification_added', { detail: newEnquiryAlert }));
     } catch (err) {
       console.error("Failed to save enquiry to admin notifications:", err);
     }
