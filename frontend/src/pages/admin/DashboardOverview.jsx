@@ -12,15 +12,18 @@ export default function DashboardOverview({
   const [dateRange, setDateRange] = useState('May 1, 2024 - May 31, 2024');
   const [showDatePicker, setShowDatePicker] = useState(false);
 
-  const unreadCount = notifications.filter(n => n.unread).length;
-  const recentProducts = productsList.slice(0, 5);
-  const recentNotifications = notifications.slice(0, 5);
+  const safeNotifs = Array.isArray(notifications) ? notifications : [];
+  const safeProds = Array.isArray(productsList) ? productsList : [];
+
+  const unreadCount = safeNotifs.filter(n => n && n.unread).length;
+  const recentProducts = safeProds.slice(0, 5);
+  const recentNotifications = safeNotifs.slice(0, 5);
 
   const stats = [
     {
       id: 'products',
       label: 'Total Products',
-      value: productsList.length,
+      value: safeProds.length,
       growth: 'Active Catalog',
       bgColor: 'bg-purple-100/70',
       iconColor: 'bg-purple-600 text-white',
@@ -30,7 +33,7 @@ export default function DashboardOverview({
     {
       id: 'notifications',
       label: 'Notifications',
-      value: notifications.length,
+      value: safeNotifs.length,
       growth: `${unreadCount} unread`,
       bgColor: 'bg-amber-100/70',
       iconColor: 'bg-amber-500 text-white',

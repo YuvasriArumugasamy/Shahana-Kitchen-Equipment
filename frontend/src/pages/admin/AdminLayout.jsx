@@ -46,7 +46,8 @@ export default function AdminLayout({
     }
   };
 
-  const unreadCount = notifications.filter(n => n.unread).length;
+  const safeNotifs = Array.isArray(notifications) ? notifications : [];
+  const unreadCount = safeNotifs.filter(n => n && n.unread).length;
 
   const navItems = [
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },

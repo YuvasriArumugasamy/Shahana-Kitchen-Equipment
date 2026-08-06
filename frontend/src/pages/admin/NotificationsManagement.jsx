@@ -22,15 +22,18 @@ export default function NotificationsManagement({ notifications = [], setNotific
     }
   };
 
+  const safeNotifs = Array.isArray(notifications) ? notifications : [];
+
   // Filtered notifications list
-  const filteredNotifications = notifications.filter(n => {
+  const filteredNotifications = safeNotifs.filter(n => {
+    if (!n) return false;
     if (filter === 'unread') return n.unread;
     if (filter === 'read') return !n.unread;
     if (filter !== 'all') return n.type === filter;
     return true;
   });
 
-  const unreadCount = notifications.filter(n => n.unread).length;
+  const unreadCount = safeNotifs.filter(n => n && n.unread).length;
 
   const getCleanId = (val) => {
     if (!val) return '';
