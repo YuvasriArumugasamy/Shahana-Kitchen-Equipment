@@ -232,24 +232,24 @@ export default function NotificationsManagement({ notifications = [], setNotific
             <div 
               key={n.id}
               onClick={() => setSelectedNotification(n)}
-              className={`p-4 sm:p-5 flex items-start justify-between gap-4 hover:bg-slate-50/80 transition-colors cursor-pointer ${
+              className={`p-4 sm:p-5 flex items-start justify-between gap-3 sm:gap-4 hover:bg-slate-50/80 transition-colors cursor-pointer ${
                 n.unread ? 'bg-purple-50/30' : ''
               }`}
             >
-              <div className="flex items-start gap-4 flex-1">
-                <div className="p-2.5 rounded-xl bg-slate-100 shrink-0 mt-0.5">
+              <div className="flex items-start gap-3 sm:gap-4 flex-1 min-w-0">
+                <div className="p-2.5 rounded-2xl bg-purple-50 text-purple-600 border border-purple-100/60 shrink-0 mt-0.5">
                   {getTypeIcon(n.type)}
                 </div>
 
-                <div className="space-y-1 flex-1">
+                <div className="space-y-1 flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
-                    <span className="font-heading font-black text-sm text-slate-900">{n.title}</span>
+                    <span className="font-heading font-black text-sm text-slate-900 leading-snug">{n.title}</span>
                     {getTypeBadge(n.type)}
                     {n.unread && (
-                      <span className="w-2 h-2 rounded-full bg-purple-600 inline-block" />
+                      <span className="w-2 h-2 rounded-full bg-purple-600 shrink-0 inline-block shadow-xs" title="Unread" />
                     )}
                   </div>
-                  <p className="text-xs text-slate-600 leading-relaxed max-w-2xl">{n.desc}</p>
+                  <p className="text-xs text-slate-600 leading-relaxed font-medium break-words max-w-2xl">{n.desc}</p>
                   <div className="flex items-center gap-3 text-[11px] text-slate-400 font-medium pt-1">
                     <span className="flex items-center gap-1">
                       <Clock className="w-3 h-3 text-slate-400" />
@@ -259,25 +259,25 @@ export default function NotificationsManagement({ notifications = [], setNotific
                 </div>
               </div>
 
-              {/* Action buttons */}
-              <div className="flex items-center gap-2 shrink-0" onClick={e => e.stopPropagation()}>
+              {/* Action buttons - Cleanly aligned on top right */}
+              <div className="flex items-center gap-1.5 shrink-0 pt-0.5" onClick={e => e.stopPropagation()}>
                 {n.unread && (
                   <button
                     type="button"
                     onClick={(e) => handleMarkAsRead(n.id, e)}
-                    className="p-2 text-purple-600 hover:bg-purple-100 rounded-lg text-xs font-bold transition-colors"
+                    className="p-2 text-purple-600 hover:bg-purple-100 rounded-xl text-xs font-bold transition-all border border-purple-100 bg-purple-50/60"
                     title="Mark as Read"
                   >
-                    <Check className="w-4 h-4" />
+                    <Check className="w-3.5 h-3.5" />
                   </button>
                 )}
                 <button
                   type="button"
                   onClick={(e) => handleDelete(n.id, e)}
-                  className="p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                  className="p-2 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-xl transition-all border border-slate-200/80 hover:border-rose-200"
                   title="Delete Notification"
                 >
-                  <Trash2 className="w-4 h-4" />
+                  <Trash2 className="w-3.5 h-3.5" />
                 </button>
               </div>
             </div>
