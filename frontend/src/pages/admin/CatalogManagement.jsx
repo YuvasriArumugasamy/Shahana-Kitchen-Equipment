@@ -138,8 +138,8 @@ export default function CatalogManagement({
         </div>
       </div>
 
-      {/* 4 DYNAMIC METRIC SUMMARY CARDS */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+      {/* DYNAMIC METRIC SUMMARY CARDS */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
         {/* Total Products */}
         <div className="bg-white rounded-2xl p-4 border border-slate-100 shadow-xs space-y-2">
           <div className="flex items-center justify-between">
@@ -151,22 +151,6 @@ export default function CatalogManagement({
           <div>
             <span className="text-[11px] text-slate-400 font-bold uppercase block">Total Products</span>
             <div className="text-xl font-heading font-black text-slate-900">{productsList.length}</div>
-          </div>
-        </div>
-
-        {/* Categories */}
-        <div className="bg-white rounded-2xl p-4 border border-slate-100 shadow-xs space-y-2">
-          <div className="flex items-center justify-between">
-            <div className="w-9 h-9 rounded-xl bg-cyan-100 text-cyan-700 flex items-center justify-center">
-              <FolderTree className="w-4 h-4" />
-            </div>
-            <span className="text-[11px] font-bold text-cyan-600">Active</span>
-          </div>
-          <div>
-            <span className="text-[11px] text-slate-400 font-bold uppercase block">Categories</span>
-            <div className="text-xl font-heading font-black text-slate-900">
-              {new Set(productsList.map(p => p.category || 'General')).size}
-            </div>
           </div>
         </div>
 
