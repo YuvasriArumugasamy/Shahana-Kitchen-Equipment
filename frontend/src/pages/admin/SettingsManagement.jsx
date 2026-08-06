@@ -2,24 +2,34 @@ import React, { useState } from 'react';
 import { Save, Check } from 'lucide-react';
 
 export default function SettingsManagement() {
-  const [settings, setSettings] = useState({
+  const defaultSettings = {
     companyName: 'Shahana Kitchen Equipment',
-    phonePrimary: '+91 98765 43210',
-    phoneSecondary: '+91 94433 11223',
-    whatsappNumber: '919876543210',
-    email: 'info@shahanakitchenequipment.com',
-    address: '124, Industrial Estate Road, Tirunelveli - 627001, Tamil Nadu',
+    phonePrimary: '+91 99949 44123',
+    whatsappNumber: '919994944123',
+    email: 'shahanakitchenequipment@gmail.com',
+    address: '5/120 G, Shop No.7, M.S.K. Building, Sankaran Kovil Road, Ramayanpatti, Tirunelveli - 627358, Tamil Nadu',
     siteTitle: 'Shahana Kitchen Equipment | Commercial Kitchen Machinery Manufacturer',
-    metaDescription: 'Leading commercial kitchen equipment manufacturer in Tamil Nadu. Wet grinders, pulverizers, dough kneaders, vegetable cutters, and custom SS fabrication.',
+    metaDescription: 'Leading commercial kitchen equipment manufacturer in Tirunelveli, Tamil Nadu. Commercial wet grinders, pulverizers, dough kneaders, vegetable cutters, and custom SS fabrication.',
     currencySymbol: '₹',
     enableQuoteModal: true,
     enableWhatsAppFloat: true
+  };
+
+  const [settings, setSettings] = useState(() => {
+    try {
+      const saved = localStorage.getItem('shahana_admin_settings');
+      if (saved) return { ...defaultSettings, ...JSON.parse(saved) };
+    } catch (e) {}
+    return defaultSettings;
   });
 
   const [saved, setSaved] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    try {
+      localStorage.setItem('shahana_admin_settings', JSON.stringify(settings));
+    } catch (e) {}
     setSaved(true);
     setTimeout(() => setSaved(false), 3000);
   };
