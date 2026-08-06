@@ -145,7 +145,7 @@ export default function QuoteModal({ isOpen, onClose, selectedProduct }) {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-gray-700 uppercase mb-1">Phone Number * (10 Digits)</label>
+                  <label className="block text-xs font-semibold text-gray-700 uppercase mb-1">Phone Number *</label>
                   <input
                     type="tel"
                     required
@@ -165,8 +165,8 @@ export default function QuoteModal({ isOpen, onClose, selectedProduct }) {
                       const digitsOnly = e.target.value.replace(/\D/g, '').slice(0, 10);
                       setFormData(prev => ({ ...prev, phone: digitsOnly }));
                     }}
-                    className="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:border-[#6A1B9A] focus:ring-2 focus:ring-purple-200 outline-none text-sm font-mono tracking-wider"
-                    placeholder="10-Digit Mobile Number"
+                    className="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:border-[#6A1B9A] focus:ring-2 focus:ring-purple-200 outline-none text-sm"
+                    placeholder="Enter Phone Number"
                   />
                 </div>
                 <div>
