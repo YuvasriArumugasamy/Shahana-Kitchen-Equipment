@@ -356,7 +356,7 @@ export default function AdminLayout({
       }`}>
         
         {/* MOBILE MENU TOGGLE (Mobile only - Strictly Fixed Top Bar with Uiverse.io Hamburger & Right Logo) */}
-        <div className="lg:hidden fixed top-0 left-0 right-0 z-40 h-14 px-4 bg-white/95 backdrop-blur-md border-b border-slate-200 flex items-center justify-between shadow-xs">
+        <div className="lg:hidden fixed top-0 left-0 right-0 z-40 h-16 px-4 bg-white/95 backdrop-blur-md border-b border-slate-200 flex items-center justify-between shadow-xs">
           <div className="uiverse-hamburger-container">
             <input 
               type="checkbox" 
@@ -372,18 +372,18 @@ export default function AdminLayout({
             </label>
           </div>
 
-          {/* Shahana Kitchen Equipment Logo on Right Side */}
+          {/* Shahana Kitchen Equipment Logo on Right Side (Enlarged) */}
           <div className="flex items-center">
             <img 
               src="/images/ChatGPT Image Jul 28, 2026, 01_18_49 PM.png" 
               alt="Shahana Kitchen Equipment Logo" 
-              className="h-9 w-auto object-contain mix-blend-multiply" 
+              className="h-12 sm:h-14 w-auto object-contain mix-blend-multiply scale-125 origin-right pr-2" 
             />
           </div>
         </div>
         
         {/* Spacer for fixed top bar on mobile */}
-        <div className="lg:hidden h-14 shrink-0" />
+        <div className="lg:hidden h-16 shrink-0" />
 
         {/* PAGE CONTENT CONTAINER */}
         <main className="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto">
