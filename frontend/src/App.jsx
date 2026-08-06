@@ -56,20 +56,23 @@ export default function App() {
     setCurrentPage('home');
   };
 
-  // Smooth Scroll Reveal Animations with Fail-Safe Visibility
+  // Smooth Scroll Reveal Animations across ALL Pages
   useEffect(() => {
-    const observerCallback = (entries) => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    const observerCallback = (entries, obs) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-visible');
+          obs.unobserve(entry.target);
         }
       });
     };
 
     const observerOptions = {
       root: null,
-      rootMargin: '100px 0px 100px 0px',
-      threshold: 0.01
+      rootMargin: '0px 0px -40px 0px',
+      threshold: 0.05
     };
 
     const observer = typeof IntersectionObserver !== 'undefined'
@@ -77,25 +80,30 @@ export default function App() {
       : null;
 
     const timer = setTimeout(() => {
+      // Find all sections, cards, and reveal containers across the current page
       const targets = document.querySelectorAll(
-        '.reveal-on-scroll, .reveal-left, .reveal-right, .reveal-zoom'
+        'section, .reveal-on-scroll, .reveal-left, .reveal-right, .reveal-zoom, .card-premium, .glass-card'
       );
 
       targets.forEach((target) => {
-        if (observer) {
-          observer.observe(target);
-        } else {
+        const rect = target.getBoundingClientRect();
+        // If element is already at top of initial viewport, make visible immediately
+        if (rect.top < window.innerHeight * 0.75) {
           target.classList.add('is-visible');
+        } else {
+          if (!target.classList.contains('reveal-left') && 
+              !target.classList.contains('reveal-right') && 
+              !target.classList.contains('reveal-zoom')) {
+            target.classList.add('reveal-on-scroll');
+          }
+          if (observer) {
+            observer.observe(target);
+          } else {
+            target.classList.add('is-visible');
+          }
         }
       });
-
-      // Safety fallback: Ensure all sections are visible after short delay
-      setTimeout(() => {
-        targets.forEach((target) => {
-          target.classList.add('is-visible');
-        });
-      }, 350);
-    }, 50);
+    }, 60);
 
     return () => {
       clearTimeout(timer);

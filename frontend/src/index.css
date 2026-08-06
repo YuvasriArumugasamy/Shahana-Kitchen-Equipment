@@ -4,6 +4,7 @@
 
 @layer base {
   html {
+    scroll-behavior: smooth;
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
     max-width: 100vw;
@@ -433,60 +434,37 @@
 .reveal-on-scroll {
   opacity: 0;
   transform: translateY(35px);
-  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
-}
-
-.reveal-on-scroll.is-visible {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 .reveal-left {
   opacity: 0;
   transform: translateX(-45px);
-  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
-}
-
-.reveal-left.is-visible {
-  opacity: 1;
-  transform: translateX(0);
 }
 
 .reveal-right {
   opacity: 0;
   transform: translateX(45px);
-  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
-}
-
-.reveal-right.is-visible {
-  opacity: 1;
-  transform: translateX(0);
 }
 
 .reveal-zoom {
   opacity: 0;
-  transform: scale(0.93);
-  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: scale(0.92);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
+.reveal-on-scroll.is-visible,
+.reveal-left.is-visible,
+.reveal-right.is-visible,
 .reveal-zoom.is-visible {
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* Mobile Fail-Safe: Ensure reveal elements are instantly visible on touch screens */
-@media (max-width: 768px) {
-  .reveal-on-scroll,
-  .reveal-left,
-  .reveal-right,
-  .reveal-zoom {
-    opacity: 1 !important;
-    transform: none !important;
-  }
+  opacity: 1 !important;
+  transform: translate(0, 0) scale(1) !important;
 }
 
 /* Stagger Delays for Grid Elements */
