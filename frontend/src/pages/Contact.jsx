@@ -34,6 +34,12 @@ export default function Contact({ onOpenQuoteModal }) {
     await pushCloudNotification(newEnquiryAlert);
 
     setSubmitted(true);
+    setFormData({
+      name: '',
+      phone: '',
+      subject: 'Commercial Wet Grinders',
+      message: ''
+    });
   };
 
   return (

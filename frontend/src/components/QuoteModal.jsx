@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, Send, CheckCircle2 } from 'lucide-react';
 import { pushCloudNotification } from '../services/cloudNotifications';
 
@@ -16,7 +16,34 @@ export default function QuoteModal({ isOpen, onClose, selectedProduct }) {
     message: ''
   });
 
+  const resetForm = () => {
+    setFormData({
+      name: '',
+      company: '',
+      phone: '',
+      email: '',
+      product: selectedProduct ? selectedProduct.name : 'Commercial Tilting Wet Grinder',
+      quantity: '1',
+      businessType: 'Restaurant',
+      city: '',
+      message: ''
+    });
+  };
+
+  useEffect(() => {
+    if (isOpen) {
+      if (selectedProduct) {
+        setFormData(prev => ({ ...prev, product: selectedProduct.name }));
+      }
+    }
+  }, [isOpen, selectedProduct]);
+
   if (!isOpen) return null;
+
+  const handleClose = () => {
+    resetForm();
+    onClose();
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,6 +73,7 @@ export default function QuoteModal({ isOpen, onClose, selectedProduct }) {
     setSubmitted(true);
     setTimeout(() => {
       setSubmitted(false);
+      resetForm();
       onClose();
     }, 3000);
   };
@@ -54,7 +82,7 @@ export default function QuoteModal({ isOpen, onClose, selectedProduct }) {
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
       <div className="bg-white rounded-2xl max-w-2xl w-full p-4 sm:p-6 md:p-8 shadow-2xl relative border border-purple-100 max-h-[92vh] overflow-y-auto">
         <button
-          onClick={onClose}
+          onClick={handleClose}
           className="absolute top-4 right-4 sm:top-5 sm:right-5 text-gray-400 hover:text-gray-700 bg-gray-100 p-1.5 sm:p-2 rounded-full transition-colors z-10"
         >
           <X className="w-4 h-4 sm:w-5 sm:h-5" />
