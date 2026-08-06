@@ -19,21 +19,25 @@ export default function AdminDashboard({ onLogout, setCurrentPage }) {
 
   // Persistent Products List synced 100% with siteData catalog & user edits
   const [productsList, setProductsList] = useState(() => {
-    const saved = localStorage.getItem('shahana_admin_products');
-    if (saved) {
-      try {
+    try {
+      const saved = localStorage.getItem('shahana_admin_products');
+      if (saved) {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) {
+          const validSaved = parsed.filter(p => p && typeof p === 'object');
           const merged = PRODUCTS.map(realProd => {
-            const savedItem = parsed.find(p => p.id === realProd.id || (p.name && p.name.toLowerCase() === realProd.name.toLowerCase()));
+            if (!realProd) return null;
+            const savedItem = validSaved.find(p => p.id === realProd.id || (p.name && typeof p.name === 'string' && realProd.name && p.name.toLowerCase() === realProd.name.toLowerCase()));
             const savedImg = savedItem?.image || savedItem?.images?.[0];
             const isValidImg = savedImg && typeof savedImg === 'string' && savedImg.trim() !== '' && savedImg !== '[object Object]' && savedImg !== 'undefined';
             return savedItem ? { ...realProd, ...savedItem, id: realProd.id, image: isValidImg ? savedImg : realProd.image } : realProd;
-          });
-          const customProducts = parsed.filter(p => !PRODUCTS.some(real => real.id === p.id || (p.name && p.name.toLowerCase() === real.name.toLowerCase())));
+          }).filter(Boolean);
+          const customProducts = validSaved.filter(p => p.id && !PRODUCTS.some(real => real && (real.id === p.id || (p.name && typeof p.name === 'string' && real.name && p.name.toLowerCase() === real.name.toLowerCase()))));
           return [...merged, ...customProducts];
         }
-      } catch (e) { console.error(e); }
+      }
+    } catch (e) {
+      console.error("Error loading productsList from localStorage:", e);
     }
     return PRODUCTS;
   });
