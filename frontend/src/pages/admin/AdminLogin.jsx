@@ -42,10 +42,7 @@ export default function AdminLogin({ onLoginSuccess }) {
   return (
     <div className="min-h-screen bg-[#FAF6FF] relative flex flex-col justify-between items-center py-8 sm:py-12 px-4 select-none font-sans overflow-hidden">
       
-      {/* Dynamic 3D Ambient Glowing Orbs Background */}
-      <div className="absolute top-10 left-1/4 w-80 sm:w-96 h-80 sm:h-96 bg-purple-400/25 rounded-full blur-[100px] pointer-events-none animate-pulse"></div>
-      <div className="absolute bottom-10 right-1/4 w-80 sm:w-96 h-80 sm:h-96 bg-pink-400/20 rounded-full blur-[100px] pointer-events-none animate-pulse" style={{ animationDelay: '1.5s' }}></div>
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-indigo-300/15 rounded-full blur-[130px] pointer-events-none"></div>
+      {/* Clean Background */}
 
       {/* Subtle Tech Pattern Overlay */}
       <div 

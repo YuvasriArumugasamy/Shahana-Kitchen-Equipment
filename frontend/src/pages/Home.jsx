@@ -50,9 +50,8 @@ export default function Home({ setCurrentPage, onOpenQuoteModal, onSelectProduct
           playsInline
         />
         
-        {/* Rich 3D gradient overlay for text readability and luxury glow */}
-        <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 sm:via-white/70 to-purple-950/20 pointer-events-none"></div>
-        <div className="absolute top-10 right-10 w-96 h-96 bg-purple-500/15 rounded-full filter blur-3xl pointer-events-none animate-glow-pulse"></div>
+        {/* Rich 3D gradient overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 sm:via-white/70 to-transparent pointer-events-none"></div>
 
         <div className="max-w-container mx-auto px-4 relative z-10 w-full">
           <div className="max-w-3xl space-y-4 sm:space-y-6 text-left">
