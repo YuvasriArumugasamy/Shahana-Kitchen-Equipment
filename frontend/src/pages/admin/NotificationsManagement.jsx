@@ -197,7 +197,7 @@ export default function NotificationsManagement({ notifications = [], setNotific
       </div>
 
       {/* FILTER TABS */}
-      <div className="flex items-center gap-2 border-b border-slate-200 pb-3 overflow-x-auto no-scrollbar">
+      <div className="flex flex-wrap items-center gap-2 border-b border-slate-200 pb-3">
         {[
           { id: 'all', label: 'All Notifications' },
           { id: 'unread', label: 'Unread Only' },
