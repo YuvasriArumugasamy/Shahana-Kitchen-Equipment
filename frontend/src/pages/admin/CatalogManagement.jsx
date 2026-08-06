@@ -248,141 +248,103 @@ export default function CatalogManagement({
 
       </div>
 
-      {/* PRODUCTS DATA TABLE (Exact match to Image 3) */}
-      <div className="bg-white rounded-2xl border border-slate-100 shadow-xs overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs">
-            <thead className="bg-slate-50 text-slate-500 font-extrabold uppercase border-b border-slate-200 tracking-wider">
-              <tr>
-                <th className="py-3.5 px-4 w-10">
-                  <input 
-                    type="checkbox"
-                    onChange={handleSelectAll}
-                    checked={selectedProducts.length === filteredProducts.length && filteredProducts.length > 0}
-                    className="rounded border-slate-300 text-purple-600 focus:ring-purple-500" 
-                  />
-                </th>
-                <th className="py-3.5 px-4 min-w-[240px]">Product</th>
-                <th className="py-3.5 px-4">Availability</th>
-                <th className="py-3.5 px-4 text-center">Status</th>
-                <th className="py-3.5 px-4 text-center">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-100 font-medium text-slate-700">
-              {filteredProducts.length > 0 ? (
-                filteredProducts.map((p, idx) => {
-                  const isChecked = selectedProducts.includes(p.id);
-                  const isFeatured = p.featured !== undefined ? p.featured : (p.rating >= 4.9);
-                  const stockCount = p.stockCount !== undefined ? p.stockCount : (p.rating >= 4.9 ? 25 : 18);
-                  const isOutOfStock = p.availability === 'Out of Stock' || stockCount === 0;
-                  const isLowStock = p.availability === 'Low Stock' || (stockCount > 0 && stockCount <= 5);
-                  const availabilityBadge = isOutOfStock ? 'Out of Stock' : (isLowStock ? 'Low Stock' : 'In Stock');
+      {/* PRODUCTS CARDS GRID SHOWCASE */}
+      {filteredProducts.length > 0 ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+          {filteredProducts.map((p) => {
+            const stockCount = p.stockCount !== undefined ? p.stockCount : (p.rating >= 4.9 ? 25 : 18);
+            const isOutOfStock = p.availability === 'Out of Stock' || stockCount === 0;
+            const isLowStock = p.availability === 'Low Stock' || (stockCount > 0 && stockCount <= 5);
+            const availabilityBadge = isOutOfStock ? 'Out of Stock' : (isLowStock ? 'Low Stock' : 'In Stock');
 
-                  return (
-                    <tr key={p.id} className={`hover:bg-purple-50/30 transition-colors ${isChecked ? 'bg-purple-50/50' : ''}`}>
-                      {/* Checkbox */}
-                      <td className="py-3.5 px-4">
-                        <input 
-                          type="checkbox"
-                          checked={isChecked}
-                          onChange={() => handleSelectOne(p.id)}
-                          className="rounded border-slate-300 text-purple-600 focus:ring-purple-500" 
-                        />
-                      </td>
+            return (
+              <div 
+                key={p.id} 
+                className="bg-white rounded-3xl p-4 border border-slate-100 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between group relative border-t-4 border-t-[#6A1B9A]"
+              >
+                <div>
+                  {/* Product Image Container */}
+                  <div className="w-full aspect-square bg-slate-50 rounded-2xl p-3 flex items-center justify-center relative border border-slate-100 mb-3.5 overflow-hidden">
+                    {p.badge && (
+                      <span className="absolute top-2 left-2 z-10 bg-[#6A1B9A] text-white text-[9px] font-extrabold px-2.5 py-1 rounded-full shadow-xs uppercase tracking-wider">
+                        {p.badge}
+                      </span>
+                    )}
 
-                      {/* Product Thumbnail & Title */}
-                      <td className="py-3.5 px-4 min-w-[240px]">
-                        <div className="flex items-center gap-3">
-                          <img 
-                            src={resolveProductImg(p)} 
-                            alt={p.name} 
-                            onError={(e) => {
-                              e.target.onerror = null;
-                              e.target.src = 'https://images.unsplash.com/photo-1590794056226-77ef3a6c4743?auto=format&fit=crop&w=150&q=80';
-                            }}
-                            className="w-12 h-12 rounded-xl object-cover border border-slate-200 shrink-0 bg-slate-100 p-0.5"
-                          />
-                          <div className="min-w-0">
-                            <span className="font-bold text-slate-900 block leading-snug truncate">{p.name}</span>
-                            <span className="text-[11px] text-slate-400 block truncate font-normal">
-                              {p.shortDesc || p.description?.slice(0, 35) || 'High performance SS body'}
-                            </span>
-                            {p.badge && (
-                              <span className="inline-block mt-0.5 px-2 py-0.5 text-[9px] font-extrabold bg-purple-100 text-purple-700 rounded-md">
-                                {p.badge}
-                              </span>
-                            )}
-                          </div>
-                        </div>
-                      </td>
+                    <span className={`absolute top-2 right-2 z-10 px-2 py-0.5 rounded-full text-[9px] font-extrabold border ${
+                      isOutOfStock
+                        ? 'bg-rose-50 text-rose-700 border-rose-200'
+                        : (isLowStock ? 'bg-amber-50 text-amber-700 border-amber-200' : 'bg-emerald-50 text-emerald-700 border-emerald-200')
+                    }`}>
+                      {availabilityBadge}
+                    </span>
 
-                      {/* Availability Badge */}
-                      <td className="py-3.5 px-4 whitespace-nowrap">
-                        <span className={`px-2.5 py-1 rounded-full text-[10px] font-extrabold flex items-center gap-1.5 w-max ${
-                          isOutOfStock
-                            ? 'bg-rose-50 text-rose-700 border border-rose-200'
-                            : (isLowStock 
-                              ? 'bg-amber-50 text-amber-700 border border-amber-200' 
-                              : 'bg-emerald-50 text-emerald-700 border border-emerald-200')
-                        }`}>
-                          <span className={`w-1.5 h-1.5 rounded-full ${isOutOfStock ? 'bg-rose-500' : (isLowStock ? 'bg-amber-500' : 'bg-emerald-500')}`} />
-                          <span>{availabilityBadge}</span>
-                        </span>
-                      </td>
+                    <img 
+                      src={resolveProductImg(p)} 
+                      alt={p.name} 
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = 'https://images.unsplash.com/photo-1590794056226-77ef3a6c4743?auto=format&fit=crop&w=150&q=80';
+                      }}
+                      className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
 
-                      {/* Status */}
-                      <td className="py-3.5 px-4 text-center text-slate-500 text-[11px] font-bold whitespace-nowrap">
-                        <span className="px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 border border-slate-200 font-extrabold text-[10px]">
-                          {p.status || p.lastUpdated || 'Active'}
-                        </span>
-                      </td>
+                  {/* Product Title & Details */}
+                  <h3 className="font-heading font-black text-sm text-slate-900 text-center mb-1 group-hover:text-[#6A1B9A] transition-colors line-clamp-1">
+                    {p.name}
+                  </h3>
+                  <p className="text-[11px] text-slate-500 text-center line-clamp-2 mb-4 leading-relaxed font-medium min-h-[32px]">
+                    {p.shortDesc || p.description || 'Commercial food grade 304 SS kitchen machine.'}
+                  </p>
+                </div>
 
-                      {/* Actions */}
-                      <td className="py-3.5 px-4">
-                        <div className="flex items-center justify-center gap-1">
-                          <button
-                            onClick={() => onViewProduct && onViewProduct(p)}
-                            className="p-1.5 text-slate-400 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-colors"
-                            title="View Product"
-                          >
-                            <Eye className="w-4 h-4" />
-                          </button>
-                          <button
-                            onClick={() => {
-                              if (onEditProduct) onEditProduct(p);
-                              window.scrollTo({ top: 0, behavior: 'smooth' });
-                              const mainEl = document.querySelector('main');
-                              if (mainEl) mainEl.scrollTo({ top: 0, behavior: 'smooth' });
-                            }}
-                            className="p-1.5 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                            title="Edit Product"
-                          >
-                            <Edit3 className="w-4 h-4" />
-                          </button>
-                          <button
-                            onClick={() => handleDelete(p.id)}
-                            className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
-                            title="Delete Product"
-                          >
-                            <Trash2 className="w-4 h-4" />
-                          </button>
-                        </div>
-                      </td>
+                {/* Card Footer Actions */}
+                <div className="flex items-center gap-1.5 pt-2 border-t border-slate-100">
+                  <button
+                    type="button"
+                    onClick={() => onViewProduct && onViewProduct(p)}
+                    className="flex-1 py-2 bg-slate-50 hover:bg-purple-50 text-slate-700 hover:text-purple-700 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1 border border-slate-200"
+                    title="View Product Preview"
+                  >
+                    <Eye className="w-3.5 h-3.5 text-purple-600" />
+                    <span>Preview</span>
+                  </button>
 
-                    </tr>
-                  );
-                })
-              ) : (
-                <tr>
-                  <td colSpan="10" className="py-12 text-center text-slate-400 font-medium">
-                    No products found matching your search or filters.
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (onEditProduct) onEditProduct(p);
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                      const mainEl = document.querySelector('main');
+                      if (mainEl) mainEl.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                    className="flex-1 py-2 bg-[#6A1B9A] hover:bg-[#5A1582] text-white rounded-xl text-xs font-bold shadow-xs transition-all flex items-center justify-center gap-1"
+                    title="Edit Product"
+                  >
+                    <Edit3 className="w-3.5 h-3.5" />
+                    <span>Edit</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => handleDelete(p.id)}
+                    className="p-2 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-xl text-xs font-bold transition-all shrink-0 border border-rose-100"
+                    title="Delete Product"
+                  >
+                    <Trash2 className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+
+              </div>
+            );
+          })}
         </div>
-      </div>
+      ) : (
+        <div className="bg-white rounded-3xl p-12 text-center text-slate-400 font-bold border border-slate-100 shadow-xs">
+          No products found matching your search or filters.
+        </div>
+      )}
     </div>
   );
 }
