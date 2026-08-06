@@ -106,15 +106,15 @@ export default function DashboardOverview({
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         
         {/* RECENT NOTIFICATIONS FEED */}
-        <div className="bg-white rounded-2xl p-5 sm:p-6 border border-slate-100 shadow-xs space-y-4">
-          <div className="flex items-center justify-between">
-            <h3 className="font-heading font-black text-base text-slate-900 flex items-center gap-2">
-              <Bell className="w-4 h-4 text-purple-600" />
-              <span>Recent Admin Notifications</span>
+        <div className="bg-white rounded-2xl p-4 sm:p-6 border border-slate-100 shadow-xs space-y-4">
+          <div className="flex items-center justify-between gap-3">
+            <h3 className="font-heading font-black text-sm sm:text-base text-slate-900 flex items-center gap-2 min-w-0">
+              <Bell className="w-4 h-4 text-purple-600 shrink-0" />
+              <span className="truncate">Recent Notifications</span>
             </h3>
             <button 
               onClick={() => setActiveTab('notifications')}
-              className="text-xs font-extrabold text-purple-600 hover:text-purple-800 bg-purple-50 hover:bg-purple-100 px-3.5 py-1.5 rounded-xl transition-colors flex items-center gap-1"
+              className="text-xs font-extrabold text-purple-600 hover:text-purple-800 bg-purple-50 hover:bg-purple-100 px-3 py-1.5 rounded-xl transition-colors flex items-center gap-1 shrink-0 whitespace-nowrap"
             >
               <span>View All</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -139,10 +139,10 @@ export default function DashboardOverview({
                     {n.type === 'enquiry' && <MessageSquare className="w-4 h-4 text-emerald-600" />}
                     {(!n.type || n.type === 'system') && <CheckCircle2 className="w-4 h-4 text-blue-600" />}
                   </div>
-                  <div className="flex-1 space-y-0.5">
-                    <div className="flex items-center justify-between font-bold text-slate-900">
-                      <span>{n.title}</span>
-                      <span className="text-[10px] text-slate-400 font-normal">{n.time}</span>
+                  <div className="flex-1 space-y-0.5 min-w-0">
+                    <div className="flex items-center justify-between font-bold text-slate-900 gap-2">
+                      <span className="truncate">{n.title}</span>
+                      <span className="text-[10px] text-slate-400 font-normal shrink-0">{n.time}</span>
                     </div>
                     <p className="text-slate-600 text-[11px] leading-relaxed line-clamp-1">{n.desc}</p>
                   </div>
@@ -153,17 +153,17 @@ export default function DashboardOverview({
         </div>
 
         {/* PRODUCT CATALOG QUICK LIST */}
-        <div className="bg-white rounded-2xl p-5 sm:p-6 border border-slate-100 shadow-xs space-y-4">
-          <div className="flex items-center justify-between">
-            <h3 className="font-heading font-black text-base text-slate-900 flex items-center gap-2">
-              <Package className="w-4 h-4 text-purple-600" />
-              <span>Products Overview</span>
+        <div className="bg-white rounded-2xl p-4 sm:p-6 border border-slate-100 shadow-xs space-y-4">
+          <div className="flex items-center justify-between gap-3">
+            <h3 className="font-heading font-black text-sm sm:text-base text-slate-900 flex items-center gap-2 min-w-0">
+              <Package className="w-4 h-4 text-purple-600 shrink-0" />
+              <span className="truncate">Products Overview</span>
             </h3>
             <button 
               onClick={() => setActiveTab('products')}
-              className="text-xs font-extrabold text-purple-600 hover:text-purple-800 bg-purple-50 hover:bg-purple-100 px-3.5 py-1.5 rounded-xl transition-colors flex items-center gap-1"
+              className="text-xs font-extrabold text-purple-600 hover:text-purple-800 bg-purple-50 hover:bg-purple-100 px-3 py-1.5 rounded-xl transition-colors flex items-center gap-1 shrink-0 whitespace-nowrap"
             >
-              <span>Manage Products</span>
+              <span>Manage</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>
