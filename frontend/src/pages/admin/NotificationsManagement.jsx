@@ -356,25 +356,19 @@ export default function NotificationsManagement({ notifications = [], setNotific
               </div>
             </div>
 
-            <div className="flex items-center justify-end gap-3 pt-3 border-t border-slate-100">
-              {selectedNotification.unread && (
+            {selectedNotification.unread && (
+              <div className="flex items-center justify-end gap-3 pt-3 border-t border-slate-100">
                 <button
                   onClick={() => {
                     handleMarkAsRead(selectedNotification.id);
                     setSelectedNotification({ ...selectedNotification, unread: false });
                   }}
-                  className="px-4 py-2 bg-purple-100 text-purple-700 rounded-xl text-xs font-bold hover:bg-purple-200"
+                  className="px-4 py-2 bg-purple-100 text-purple-700 rounded-xl text-xs font-bold hover:bg-purple-200 transition-colors"
                 >
                   Mark as Read
                 </button>
-              )}
-              <button
-                onClick={() => setSelectedNotification(null)}
-                className="px-4 py-2 bg-slate-900 text-white rounded-xl text-xs font-bold"
-              >
-                Close
-              </button>
-            </div>
+              </div>
+            )}
           </div>
         </div>
       )}
