@@ -96,22 +96,6 @@ export default function CatalogManagement({
     }
   };
 
-  // Export Catalog CSV function
-  const handleExportCSV = () => {
-    const headers = ['ID,Name,Category,SKU,Price,Stock,Availability,Status'];
-    const rows = filteredProducts.map(p => 
-      `"${p.id}","${p.name}","${p.category}","${p.sku || 'SKE-001'}","${p.price}","${p.stockUnits || '15 Units'}","${p.availability || 'In Stock'}","${p.status || 'Active'}"`
-    );
-    const csvContent = "data:text/csv;charset=utf-8," + [headers, ...rows].join("\n");
-    const encodedUri = encodeURI(csvContent);
-    const link = document.createElement("a");
-    link.setAttribute("href", encodedUri);
-    link.setAttribute("download", `shahana_catalog_${new Date().toISOString().slice(0, 10)}.csv`);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
   // Reset Filters
   const handleResetFilters = () => {
     setSearchTerm('');
@@ -150,22 +134,6 @@ export default function CatalogManagement({
           >
             <Plus className="w-4 h-4" />
             <span>Add New Product</span>
-          </button>
-          
-          <button
-            onClick={() => alert('Import feature: Select CSV/Excel catalog file to upload.')}
-            className="flex items-center gap-2 px-3.5 py-2.5 bg-white hover:bg-slate-50 text-slate-700 rounded-xl text-xs font-bold border border-slate-200 shadow-xs transition-all"
-          >
-            <Upload className="w-4 h-4 text-slate-500" />
-            <span>Import Catalog</span>
-          </button>
-
-          <button
-            onClick={handleExportCSV}
-            className="flex items-center gap-2 px-3.5 py-2.5 bg-white hover:bg-slate-50 text-slate-700 rounded-xl text-xs font-bold border border-slate-200 shadow-xs transition-all"
-          >
-            <Download className="w-4 h-4 text-slate-500" />
-            <span>Export Catalog</span>
           </button>
         </div>
       </div>
