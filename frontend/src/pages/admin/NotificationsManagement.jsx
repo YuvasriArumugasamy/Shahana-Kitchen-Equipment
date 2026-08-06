@@ -215,11 +215,8 @@ export default function NotificationsManagement({ notifications = [], setNotific
         {[
           { id: 'all', label: 'All Notifications' },
           { id: 'unread', label: 'Unread Only' },
+          { id: 'quote', label: 'Quote Requests' },
           { id: 'read', label: 'Read' },
-          { id: 'stock', label: 'Stock Alerts' },
-          { id: 'quote', label: 'Quotes' },
-          { id: 'enquiry', label: 'Enquiries' },
-          { id: 'system', label: 'System' },
         ].map(t => (
           <button
             key={t.id}
