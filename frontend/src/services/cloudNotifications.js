@@ -18,9 +18,25 @@ const fetchWithTimeout = (url, options = {}, timeoutMs = 8000) => {
     .finally(() => clearTimeout(timer));
 };
 
+// Helper to reliably extract clean string ID
+const getCleanId = (val) => {
+  if (!val) return `id-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`;
+  if (typeof val === 'string') return val;
+  if (typeof val === 'number') return String(val);
+  if (typeof val === 'object') {
+    if (val._id) return getCleanId(val._id);
+    if (val.$oid) return String(val.$oid);
+    if (typeof val.toString === 'function') {
+      const str = val.toString();
+      if (str !== '[object Object]') return str;
+    }
+  }
+  return String(val);
+};
+
 // MongoDB quote → notification object format (English)
 const formatQuoteAsNotification = (q) => ({
-  id: q._id || q.id,
+  id: getCleanId(q._id || q.id),
   title: `Quote Request: ${q.name || 'Customer'}`,
   desc: `Product: ${q.product || 'Kitchen Equipment'} (Qty: ${q.quantity || '1'}) | Phone: ${q.phone || 'N/A'} | City: ${q.city || 'N/A'}`,
   time: q.createdAt
@@ -44,14 +60,18 @@ export const fetchCloudNotifications = async () => {
   let deletedIds = new Set();
   try {
     const rawDeleted = JSON.parse(localStorage.getItem('shahana_deleted_quote_ids') || '[]');
-    deletedIds = new Set(rawDeleted.map(String));
+    deletedIds = new Set(rawDeleted.map(getCleanId));
   } catch (e) {}
 
   // Start with whatever is saved in localStorage
   let combinedNotifs = [];
   try {
     const local = JSON.parse(localStorage.getItem(LS_KEY) || '[]');
-    if (Array.isArray(local)) combinedNotifs = local.filter(n => !deletedIds.has(String(n.id)));
+    if (Array.isArray(local)) {
+      combinedNotifs = local
+        .map(n => ({ ...n, id: getCleanId(n.id) }))
+        .filter(n => !deletedIds.has(getCleanId(n.id)));
+    }
   } catch (e) {}
 
   // Fetch fresh quotes from MongoDB backend
@@ -65,12 +85,12 @@ export const fetchCloudNotifications = async () => {
       if (Array.isArray(dbQuotes) && dbQuotes.length > 0) {
         const fromDB = dbQuotes
           .map(formatQuoteAsNotification)
-          .filter(n => !deletedIds.has(String(n.id)));
+          .filter(n => !deletedIds.has(getCleanId(n.id)));
 
         // Merge: DB quotes take precedence (they are the source of truth)
-        const dbIds = new Set(fromDB.map(n => String(n.id)));
+        const dbIds = new Set(fromDB.map(n => getCleanId(n.id)));
         // Keep any manual/system notifications that aren't from DB
-        const manualNotifs = combinedNotifs.filter(n => !dbIds.has(String(n.id)) && n.type !== 'quote');
+        const manualNotifs = combinedNotifs.filter(n => !dbIds.has(getCleanId(n.id)) && n.type !== 'quote');
         combinedNotifs = [...fromDB, ...manualNotifs];
       }
     }
@@ -89,21 +109,21 @@ export const fetchCloudNotifications = async () => {
 // Delete notification permanently across local cache, localStorage & MongoDB Backend
 export const deleteCloudNotification = async (idToDelete) => {
   if (!idToDelete) return;
-  const strId = String(idToDelete);
+  const strId = getCleanId(idToDelete);
+  if (!strId || strId === '[object Object]') return;
 
   // 1. Add to deleted IDs in localStorage
   try {
     const deleted = JSON.parse(localStorage.getItem('shahana_deleted_quote_ids') || '[]');
-    if (!deleted.map(String).includes(strId)) {
-      deleted.push(strId);
-      localStorage.setItem('shahana_deleted_quote_ids', JSON.stringify(deleted));
-    }
+    const deletedSet = new Set(deleted.map(getCleanId));
+    deletedSet.add(strId);
+    localStorage.setItem('shahana_deleted_quote_ids', JSON.stringify(Array.from(deletedSet)));
   } catch (e) {}
 
   // 2. Remove from active notifications in localStorage
   try {
     const current = JSON.parse(localStorage.getItem(LS_KEY) || '[]');
-    const updated = current.filter(n => String(n.id) !== strId);
+    const updated = current.filter(n => getCleanId(n.id) !== strId);
     localStorage.setItem(LS_KEY, JSON.stringify(updated));
   } catch (e) {}
 

@@ -43,14 +43,45 @@ export default function NotificationsManagement({ notifications = [], setNotific
     setNotifications(notifications.map(n => ({ ...n, unread: false })));
   };
 
-  const handleMarkAsRead = (id) => {
-    setNotifications(notifications.map(n => n.id === id ? { ...n, unread: false } : n));
+  const getCleanId = (val) => {
+    if (!val) return '';
+    if (typeof val === 'string') return val;
+    if (typeof val === 'number') return String(val);
+    if (typeof val === 'object') {
+      if (val._id) return getCleanId(val._id);
+      if (val.$oid) return String(val.$oid);
+      if (typeof val.toString === 'function') {
+        const str = val.toString();
+        if (str !== '[object Object]') return str;
+      }
+    }
+    return String(val);
   };
 
-  const handleDelete = (id) => {
-    setNotifications(notifications.filter(n => n.id !== id));
+  const handleMarkAsRead = (id, e) => {
+    if (e) {
+      e.stopPropagation();
+      e.preventDefault();
+    }
+    const cleanId = getCleanId(id);
+    setNotifications(prev => {
+      const list = Array.isArray(prev) ? prev : (notifications || []);
+      return list.map(n => getCleanId(n.id) === cleanId ? { ...n, unread: false } : n);
+    });
+  };
+
+  const handleDelete = (id, e) => {
+    if (e) {
+      e.stopPropagation();
+      e.preventDefault();
+    }
+    const cleanId = getCleanId(id);
     deleteCloudNotification(id);
-    if (selectedNotification?.id === id) {
+    setNotifications(prev => {
+      const list = Array.isArray(prev) ? prev : (notifications || []);
+      return list.filter(n => getCleanId(n.id) !== cleanId);
+    });
+    if (selectedNotification && getCleanId(selectedNotification.id) === cleanId) {
       setSelectedNotification(null);
     }
   };
@@ -264,7 +295,8 @@ export default function NotificationsManagement({ notifications = [], setNotific
               <div className="flex items-center gap-2 shrink-0" onClick={e => e.stopPropagation()}>
                 {n.unread && (
                   <button
-                    onClick={() => handleMarkAsRead(n.id)}
+                    type="button"
+                    onClick={(e) => handleMarkAsRead(n.id, e)}
                     className="p-2 text-purple-600 hover:bg-purple-100 rounded-lg text-xs font-bold transition-colors"
                     title="Mark as Read"
                   >
@@ -272,7 +304,8 @@ export default function NotificationsManagement({ notifications = [], setNotific
                   </button>
                 )}
                 <button
-                  onClick={() => handleDelete(n.id)}
+                  type="button"
+                  onClick={(e) => handleDelete(n.id, e)}
                   className="p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
                   title="Delete Notification"
                 >
