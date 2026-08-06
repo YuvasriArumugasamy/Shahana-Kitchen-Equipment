@@ -355,7 +355,7 @@ export default function AdminLayout({
         sidebarOpen ? 'lg:pl-64' : 'lg:pl-20'
       }`}>
         
-        {/* MOBILE MENU TOGGLE (Mobile only - Strictly Fixed Top Bar with Uiverse.io Hamburger) */}
+        {/* MOBILE MENU TOGGLE (Mobile only - Strictly Fixed Top Bar with Uiverse.io Hamburger & Right Logo) */}
         <div className="lg:hidden fixed top-0 left-0 right-0 z-40 h-14 px-4 bg-white/95 backdrop-blur-md border-b border-slate-200 flex items-center justify-between shadow-xs">
           <div className="uiverse-hamburger-container">
             <input 
@@ -370,6 +370,15 @@ export default function AdminLayout({
               <div className="uiverse-line2"></div>
               <div className="uiverse-line3"></div>
             </label>
+          </div>
+
+          {/* Shahana Kitchen Equipment Logo on Right Side */}
+          <div className="flex items-center">
+            <img 
+              src="/images/ChatGPT Image Jul 28, 2026, 01_18_49 PM.png" 
+              alt="Shahana Kitchen Equipment Logo" 
+              className="h-9 w-auto object-contain mix-blend-multiply" 
+            />
           </div>
         </div>
         
