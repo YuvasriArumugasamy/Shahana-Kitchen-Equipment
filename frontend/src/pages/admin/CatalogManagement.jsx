@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { 
   Package, FolderTree, CheckCircle, AlertTriangle, IndianRupee, 
   Plus, Upload, Download, Search, Filter, RotateCcw, Eye, Edit3, 
-  Trash2, Star, ChevronLeft, ChevronRight
+  Trash2, Star, ChevronLeft, ChevronRight, X
 } from 'lucide-react';
 import { PRODUCTS } from '../../data/siteData';
 
@@ -18,51 +18,30 @@ export default function CatalogManagement({
     let img = p.image || p.img || p.images?.[0];
     if (typeof img === 'object' && img !== null && img.default) img = img.default;
     if (typeof img === 'string') img = img.trim();
-
-    const pName = p.name ? p.name.toLowerCase() : '';
-    const real = PRODUCTS.find(r => r.id === p.id || (r.name && pName && r.name.toLowerCase() === pName));
-
-    if (!img || typeof img !== 'string' || img === '[object Object]' || img === 'undefined' || img === '') {
-      img = real?.image || 'https://images.unsplash.com/photo-1590794056226-77ef3a6c4743?auto=format&fit=crop&w=150&q=80';
-    }
+    if (!img) return 'https://images.unsplash.com/photo-1590794056226-77ef3a6c4743?auto=format&fit=crop&w=150&q=80';
     return img;
   };
+
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All Categories');
   const [selectedStatus, setSelectedStatus] = useState('All Status');
   const [selectedAvailability, setSelectedAvailability] = useState('All Availability');
   const [selectedProducts, setSelectedProducts] = useState([]);
-  const [currentPageNum, setCurrentPageNum] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
 
-  // Filtered products logic
+  // Filter products dynamically
   const filteredProducts = useMemo(() => {
-    return (productsList || []).filter((prod) => {
-      if (!prod || typeof prod !== 'object') return false;
-      const nameStr = String(prod.name || '').toLowerCase();
-      const idStr = String(prod.id || '').toLowerCase();
-      const skuStr = String(prod.sku || '').toLowerCase();
-      const searchStr = String(searchTerm || '').toLowerCase();
-
-      const matchesSearch = nameStr.includes(searchStr) || idStr.includes(searchStr) || skuStr.includes(searchStr);
-      const matchesCategory = selectedCategory === 'All Categories' || prod.category === selectedCategory;
-      const matchesStatus = selectedStatus === 'All Status' || (prod.status || 'Active') === selectedStatus;
-      
-      let availability = 'In Stock';
-      if (prod.stockCount !== undefined) {
-        if (prod.stockCount === 0) availability = 'Out of Stock';
-        else if (prod.stockCount <= 10) availability = 'Low Stock';
-      } else {
-        if (prod.availability) availability = prod.availability;
-      }
-
-      const matchesAvailability = selectedAvailability === 'All Availability' || availability === selectedAvailability;
-
-      return matchesSearch && matchesCategory && matchesStatus && matchesAvailability;
+    return (productsList || []).filter(p => {
+      const matchSearch = (p.name || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+                          (p.shortDesc || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+                          (p.description || '').toLowerCase().includes(searchTerm.toLowerCase());
+      const matchCategory = selectedCategory === 'All Categories' || p.category === selectedCategory;
+      const matchStatus = selectedStatus === 'All Status' || (p.status || 'Active') === selectedStatus;
+      const matchAvailability = selectedAvailability === 'All Availability' || p.availability === selectedAvailability;
+      return matchSearch && matchCategory && matchStatus && matchAvailability;
     });
   }, [productsList, searchTerm, selectedCategory, selectedStatus, selectedAvailability]);
 
-  // Select all handler
+  // Toggle selection
   const handleSelectAll = (e) => {
     if (e.target.checked) {
       setSelectedProducts(filteredProducts.map(p => p.id));
@@ -79,20 +58,14 @@ export default function CatalogManagement({
     }
   };
 
-  // Toggle Featured status
   const toggleFeatured = (id) => {
-    setProductsList(productsList.map(p => {
-      if (p.id === id) {
-        return { ...p, featured: !p.featured };
-      }
-      return p;
-    }));
+    setProductsList(prev => prev.map(p => p.id === id ? { ...p, featured: !p.featured } : p));
   };
 
-  // Delete product handler
   const handleDelete = (id) => {
     if (window.confirm('Are you sure you want to delete this product?')) {
-      setProductsList(productsList.filter(p => p.id !== id));
+      setProductsList(prev => prev.filter(p => p.id !== id));
+      setSelectedProducts(prev => prev.filter(item => item !== id));
     }
   };
 
@@ -115,11 +88,11 @@ export default function CatalogManagement({
   return (
     <div className="space-y-6 sm:space-y-8 animate-in fade-in duration-300">
       
-      {/* HEADER WITH TITLE & ACTION BUTTONS (Exact match to Image 3) */}
+      {/* TOP HEADER BAR */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-xl sm:text-2xl font-heading font-black text-slate-900 tracking-tight">
-            Catalog Management
+            Products Catalog
           </h1>
           <p className="text-xs sm:text-sm text-slate-500 font-medium mt-0.5">
             Manage all your products and catalog
@@ -140,7 +113,6 @@ export default function CatalogManagement({
 
       {/* DYNAMIC METRIC SUMMARY CARDS */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
-        {/* Total Products */}
         <div className="bg-white rounded-2xl p-4 border border-slate-100 shadow-xs space-y-2">
           <div className="flex items-center justify-between">
             <div className="w-9 h-9 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center">
@@ -153,8 +125,6 @@ export default function CatalogManagement({
             <div className="text-xl font-heading font-black text-slate-900">{productsList.length}</div>
           </div>
         </div>
-
-        {/* In Stock */}
         <div className="bg-white rounded-2xl p-4 border border-slate-100 shadow-xs space-y-2">
           <div className="flex items-center justify-between">
             <div className="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center">
@@ -169,8 +139,6 @@ export default function CatalogManagement({
             </div>
           </div>
         </div>
-
-        {/* Out of Stock */}
         <div className="bg-white rounded-2xl p-4 border border-slate-100 shadow-xs space-y-2">
           <div className="flex items-center justify-between">
             <div className="w-9 h-9 rounded-xl bg-orange-100 text-orange-700 flex items-center justify-center">
@@ -187,15 +155,35 @@ export default function CatalogManagement({
         </div>
       </div>
 
-      {/* SEARCH & FILTER CONTROLS BAR (Image 3 match) */}
-      <div className="bg-white rounded-2xl p-4 border border-slate-100 shadow-xs flex flex-wrap items-center justify-between gap-3">
-        <div className="flex flex-wrap items-center gap-3 flex-1 min-w-0">
-          
+      {/* SEARCH & FILTER CONTROLS BAR */}
+      <div className="bg-white rounded-2xl p-3.5 sm:p-4 border border-slate-100 shadow-xs space-y-3 sm:space-y-0 sm:flex sm:items-center sm:gap-3">
+        {/* Search Input Bar */}
+        <div className="relative flex-1 min-w-0">
+          <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="Search products by name or details..."
+            className="w-full pl-9 pr-8 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-800 placeholder-slate-400 outline-none focus:bg-white focus:border-[#6A1B9A] transition-all"
+          />
+          {searchTerm && (
+            <button 
+              onClick={() => setSearchTerm('')}
+              className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1"
+            >
+              <X className="w-3.5 h-3.5" />
+            </button>
+          )}
+        </div>
+
+        {/* Dropdowns & Reset Action Row */}
+        <div className="flex items-center gap-2.5 min-w-0">
           {/* Status Dropdown */}
           <select
             value={selectedStatus}
             onChange={(e) => setSelectedStatus(e.target.value)}
-            className="px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 outline-none focus:border-purple-500"
+            className="flex-1 sm:flex-initial px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 outline-none focus:border-[#6A1B9A] cursor-pointer"
           >
             <option>All Status</option>
             <option>Active</option>
@@ -207,7 +195,7 @@ export default function CatalogManagement({
           <select
             value={selectedAvailability}
             onChange={(e) => setSelectedAvailability(e.target.value)}
-            className="px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 outline-none focus:border-purple-500"
+            className="flex-1 sm:flex-initial px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 outline-none focus:border-[#6A1B9A] cursor-pointer"
           >
             <option>All Availability</option>
             <option>In Stock</option>
@@ -215,37 +203,16 @@ export default function CatalogManagement({
             <option>Out of Stock</option>
           </select>
 
-          {/* Search Input */}
-          <div className="relative flex-1 min-w-[200px]">
-            <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
-            <input
-              type="text"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder="Search products..."
-              className="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-800 placeholder-slate-400 outline-none focus:bg-white focus:border-purple-500"
-            />
-          </div>
-
-        </div>
-
-        {/* Filter & Reset Buttons */}
-        <div className="flex items-center gap-2 shrink-0">
-          <button 
-            className="flex items-center gap-1.5 px-4 py-2 bg-[#6A1B9A] hover:bg-[#5A1582] text-white rounded-xl text-xs font-bold transition-all shadow-xs"
-          >
-            <Filter className="w-3.5 h-3.5" />
-            <span>Filter</span>
-          </button>
+          {/* Reset Button */}
           <button 
             onClick={handleResetFilters}
-            className="flex items-center gap-1.5 px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold transition-all"
+            className="flex items-center justify-center gap-1.5 px-3.5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold transition-all shrink-0"
+            title="Reset filters"
           >
             <RotateCcw className="w-3.5 h-3.5" />
-            <span>Reset</span>
+            <span className="hidden sm:inline">Reset</span>
           </button>
         </div>
-
       </div>
 
       {/* PRODUCTS CARDS GRID SHOWCASE */}
