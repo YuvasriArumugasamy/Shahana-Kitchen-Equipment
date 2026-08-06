@@ -191,22 +191,6 @@ export default function CatalogManagement({
       <div className="bg-white rounded-2xl p-4 border border-slate-100 shadow-xs flex flex-wrap items-center justify-between gap-3">
         <div className="flex flex-wrap items-center gap-3 flex-1 min-w-0">
           
-          {/* Category Dropdown */}
-          <select
-            value={selectedCategory}
-            onChange={(e) => setSelectedCategory(e.target.value)}
-            className="px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 outline-none focus:border-purple-500"
-          >
-            <option>All Categories</option>
-            <option>Wet Grinders</option>
-            <option>Tilting Wet Grinders</option>
-            <option>Pulverizers</option>
-            <option>Dough Kneaders</option>
-            <option>Food Processing</option>
-            <option>Mixers</option>
-            <option>Extractors</option>
-          </select>
-
           {/* Status Dropdown */}
           <select
             value={selectedStatus}
@@ -279,7 +263,7 @@ export default function CatalogManagement({
                   />
                 </th>
                 <th className="py-3.5 px-4 min-w-[240px]">Product</th>
-                <th className="py-3.5 px-4">Category</th>
+                <th className="py-3.5 px-4">Stock</th>
                 <th className="py-3.5 px-4">Stock</th>
                 <th className="py-3.5 px-4">Availability</th>
                 <th className="py-3.5 px-4 text-center">Featured</th>
@@ -336,13 +320,6 @@ export default function CatalogManagement({
                             )}
                           </div>
                         </div>
-                      </td>
-
-                      {/* Category Pill */}
-                      <td className="py-3.5 px-4 whitespace-nowrap">
-                        <span className="px-2.5 py-1 rounded-md text-[11px] font-bold bg-purple-50 text-purple-700 border border-purple-100/80 inline-block whitespace-nowrap">
-                          {categoryTag}
-                        </span>
                       </td>
 
                       {/* Stock Units */}
