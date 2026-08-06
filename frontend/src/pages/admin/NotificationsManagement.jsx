@@ -32,10 +32,6 @@ export default function NotificationsManagement({ notifications = [], setNotific
 
   const unreadCount = notifications.filter(n => n.unread).length;
 
-  const handleMarkAllRead = () => {
-    setNotifications(notifications.map(n => ({ ...n, unread: false })));
-  };
-
   const getCleanId = (val) => {
     if (!val) return '';
     if (typeof val === 'string') return val;
@@ -160,19 +156,6 @@ export default function NotificationsManagement({ notifications = [], setNotific
           >
             <Bell className="w-4 h-4" />
             <span>{pushEnabled ? 'Push Alerts Enabled' : 'Enable Push Alerts'}</span>
-          </button>
-
-          <button
-            onClick={handleMarkAllRead}
-            disabled={unreadCount === 0}
-            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition-all ${
-              unreadCount > 0 
-                ? 'bg-purple-100 text-purple-700 hover:bg-purple-200' 
-                : 'bg-slate-100 text-slate-400 cursor-not-allowed'
-            }`}
-          >
-            <Check className="w-4 h-4" />
-            <span>Mark All as Read</span>
           </button>
         </div>
       </div>
