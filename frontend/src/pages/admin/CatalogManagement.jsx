@@ -77,14 +77,6 @@ export default function CatalogManagement({
     setSelectedAvailability('All Availability');
   };
 
-  // Pagination calculation
-  const totalItems = filteredProducts.length;
-  const totalPages = Math.ceil(totalItems / itemsPerPage) || 1;
-  const paginatedProducts = filteredProducts.slice(
-    (currentPageNum - 1) * itemsPerPage,
-    currentPageNum * itemsPerPage
-  );
-
   return (
     <div className="space-y-6 sm:space-y-8 animate-in fade-in duration-300">
       
