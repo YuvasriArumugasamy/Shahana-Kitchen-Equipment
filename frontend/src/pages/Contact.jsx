@@ -183,10 +183,18 @@ export default function Contact({ onOpenQuoteModal }) {
                     inputMode="numeric"
                     pattern="[0-9]{10}"
                     placeholder="Phone Number (10 Digits) *" 
-                    value={formData.phone}
+                    value={formData.phone || ''}
+                    onKeyDown={(e) => {
+                      if (!/[0-9]/.test(e.key) && e.key !== 'Backspace' && e.key !== 'Delete' && e.key !== 'ArrowLeft' && e.key !== 'ArrowRight' && e.key !== 'Tab') {
+                        e.preventDefault();
+                      }
+                    }}
+                    onInput={(e) => {
+                      e.target.value = e.target.value.replace(/\D/g, '').slice(0, 10);
+                    }}
                     onChange={(e) => {
                       const digitsOnly = e.target.value.replace(/\D/g, '').slice(0, 10);
-                      setFormData({ ...formData, phone: digitsOnly });
+                      setFormData(prev => ({ ...prev, phone: digitsOnly }));
                     }}
                     className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl border border-gray-300 text-xs outline-none focus:border-[#6A1B9A] font-mono tracking-wider" 
                   />
