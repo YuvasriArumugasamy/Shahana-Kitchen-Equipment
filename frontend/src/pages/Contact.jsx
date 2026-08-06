@@ -15,17 +15,23 @@ export default function Contact({ onOpenQuoteModal }) {
     e.preventDefault();
     if (!formData.name || !formData.phone || !formData.message) return;
 
+    const cleanPhone = (formData.phone || '').replace(/\D/g, '');
+    if (cleanPhone.length !== 10) {
+      alert("Please enter a valid 10-digit mobile number.");
+      return;
+    }
+
     // Create notification alert for Admin Dashboard
     const newEnquiryAlert = {
       id: Date.now(),
       title: `Enquiry from ${formData.name}`,
-      desc: `Phone: ${formData.phone} | Subject: ${formData.subject} | Message: ${formData.message}`,
+      desc: `Phone: ${cleanPhone} | Subject: ${formData.subject} | Message: ${formData.message}`,
       time: 'Just now',
       unread: true,
       type: 'enquiry',
       priority: 'High',
       senderName: formData.name,
-      senderPhone: formData.phone,
+      senderPhone: cleanPhone,
       subject: formData.subject,
       fullMessage: formData.message
     };
@@ -173,10 +179,16 @@ export default function Contact({ onOpenQuoteModal }) {
                   <input 
                     type="tel" 
                     required 
-                    placeholder="Phone Number *" 
+                    maxLength={10}
+                    inputMode="numeric"
+                    pattern="[0-9]{10}"
+                    placeholder="Phone Number (10 Digits) *" 
                     value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl border border-gray-300 text-xs outline-none focus:border-[#6A1B9A]" 
+                    onChange={(e) => {
+                      const digitsOnly = e.target.value.replace(/\D/g, '').slice(0, 10);
+                      setFormData({ ...formData, phone: digitsOnly });
+                    }}
+                    className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl border border-gray-300 text-xs outline-none focus:border-[#6A1B9A] font-mono tracking-wider" 
                   />
                 </div>
                 

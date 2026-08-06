@@ -48,16 +48,22 @@ export default function QuoteModal({ isOpen, onClose, selectedProduct }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const cleanPhone = (formData.phone || '').replace(/\D/g, '');
+    if (cleanPhone.length !== 10) {
+      alert("Please enter a valid 10-digit mobile number.");
+      return;
+    }
+
     const newQuoteAlert = {
       id: Date.now(),
       title: `Quote Request: ${formData.name || 'Customer'}`,
-      desc: `Product: ${formData.product} (Qty: ${formData.quantity}) | Phone: ${formData.phone} | City: ${formData.city || 'N/A'}`,
+      desc: `Product: ${formData.product} (Qty: ${formData.quantity}) | Phone: ${cleanPhone} | City: ${formData.city || 'N/A'}`,
       time: 'Just now',
       unread: true,
       type: 'quote',
       priority: 'High',
       senderName: formData.name,
-      senderPhone: formData.phone,
+      senderPhone: cleanPhone,
       senderEmail: formData.email,
       product: formData.product,
       company: formData.company,
@@ -139,14 +145,20 @@ export default function QuoteModal({ isOpen, onClose, selectedProduct }) {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-gray-700 uppercase mb-1">Phone Number *</label>
+                  <label className="block text-xs font-semibold text-gray-700 uppercase mb-1">Phone Number * (10 Digits)</label>
                   <input
                     type="tel"
                     required
+                    maxLength={10}
+                    inputMode="numeric"
+                    pattern="[0-9]{10}"
                     value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:border-[#6A1B9A] focus:ring-2 focus:ring-purple-200 outline-none text-sm"
-                    placeholder="Enter Phone Number"
+                    onChange={(e) => {
+                      const digitsOnly = e.target.value.replace(/\D/g, '').slice(0, 10);
+                      setFormData({ ...formData, phone: digitsOnly });
+                    }}
+                    className="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:border-[#6A1B9A] focus:ring-2 focus:ring-purple-200 outline-none text-sm font-mono tracking-wider"
+                    placeholder="10-Digit Mobile Number"
                   />
                 </div>
                 <div>
