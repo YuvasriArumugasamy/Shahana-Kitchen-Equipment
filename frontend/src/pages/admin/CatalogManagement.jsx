@@ -263,11 +263,8 @@ export default function CatalogManagement({
                   />
                 </th>
                 <th className="py-3.5 px-4 min-w-[240px]">Product</th>
-                <th className="py-3.5 px-4">Stock</th>
-                <th className="py-3.5 px-4">Stock</th>
                 <th className="py-3.5 px-4">Availability</th>
-                <th className="py-3.5 px-4 text-center">Featured</th>
-                <th className="py-3.5 px-4">Last Updated</th>
+                <th className="py-3.5 px-4 text-center">Status</th>
                 <th className="py-3.5 px-4 text-center">Actions</th>
               </tr>
             </thead>
@@ -279,10 +276,7 @@ export default function CatalogManagement({
                   const stockCount = p.stockCount !== undefined ? p.stockCount : (p.rating >= 4.9 ? 25 : 18);
                   const isOutOfStock = p.availability === 'Out of Stock' || stockCount === 0;
                   const isLowStock = p.availability === 'Low Stock' || (stockCount > 0 && stockCount <= 5);
-                  const stockText = isOutOfStock ? '0 Units' : (p.stockUnits || `${stockCount} Units`);
                   const availabilityBadge = isOutOfStock ? 'Out of Stock' : (isLowStock ? 'Low Stock' : 'In Stock');
-                  const categoryTag = p.category || 'Wet Grinders';
-                  const skuCode = p.sku || `SKE-${(p.category || 'GEN').slice(0, 2).toUpperCase()}-0${idx + 1}`;
 
                   return (
                     <tr key={p.id} className={`hover:bg-purple-50/30 transition-colors ${isChecked ? 'bg-purple-50/50' : ''}`}>
@@ -322,13 +316,6 @@ export default function CatalogManagement({
                         </div>
                       </td>
 
-                      {/* Stock Units */}
-                      <td className="py-3.5 px-4 whitespace-nowrap font-bold text-xs">
-                        <span className={isOutOfStock ? 'text-rose-600' : (isLowStock ? 'text-amber-600' : 'text-emerald-600')}>
-                          {stockText}
-                        </span>
-                      </td>
-
                       {/* Availability Badge */}
                       <td className="py-3.5 px-4 whitespace-nowrap">
                         <span className={`px-2.5 py-1 rounded-full text-[10px] font-extrabold flex items-center gap-1.5 w-max ${
@@ -343,22 +330,11 @@ export default function CatalogManagement({
                         </span>
                       </td>
 
-                      {/* Featured Star */}
-                      <td className="py-3.5 px-4 text-center whitespace-nowrap">
-                        <button
-                          onClick={() => toggleFeatured(p.id)}
-                          className={`p-1.5 rounded-lg transition-colors ${
-                            isFeatured ? 'text-purple-600 hover:bg-purple-100' : 'text-slate-300 hover:text-slate-400 hover:bg-slate-100'
-                          }`}
-                          title="Toggle Featured status"
-                        >
-                          <Star className={`w-4 h-4 ${isFeatured ? 'fill-purple-600' : ''}`} />
-                        </button>
-                      </td>
-
-                      {/* Last Updated */}
-                      <td className="py-3.5 px-4 text-slate-500 text-[11px] font-bold whitespace-nowrap">
-                        {p.lastUpdated || 'Active'}
+                      {/* Status */}
+                      <td className="py-3.5 px-4 text-center text-slate-500 text-[11px] font-bold whitespace-nowrap">
+                        <span className="px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 border border-slate-200 font-extrabold text-[10px]">
+                          {p.status || p.lastUpdated || 'Active'}
+                        </span>
                       </td>
 
                       {/* Actions */}
