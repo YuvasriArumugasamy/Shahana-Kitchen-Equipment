@@ -169,20 +169,20 @@ export default function Home({ setCurrentPage, onOpenQuoteModal, onSelectProduct
 
       {/* STATS COUNTER BAR - 3D GLASSMORPHISM */}
       <section className="max-w-container mx-auto px-4">
-        <div className="glass-card-purple rounded-3xl p-6 sm:p-8 shadow-xl border border-purple-200 grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-x divide-purple-200/50">
-          <div className="space-y-1">
+        <div className="glass-card-purple rounded-3xl p-6 sm:p-8 shadow-xl border border-purple-200 grid grid-cols-2 md:grid-cols-4 gap-y-6 gap-x-0 text-center">
+          <div className="space-y-1 px-2 sm:px-4">
             <div className="text-2xl sm:text-4xl font-extrabold text-[#6A1B9A]">1000+</div>
             <div className="text-xs sm:text-sm font-semibold text-gray-700">Satisfied Clients</div>
           </div>
-          <div className="space-y-1 pl-4">
+          <div className="space-y-1 px-2 sm:px-4 border-l border-purple-200/50">
             <div className="text-2xl sm:text-4xl font-extrabold text-[#6A1B9A]">100%</div>
             <div className="text-xs sm:text-sm font-semibold text-gray-700">Food Grade 304 SS</div>
           </div>
-          <div className="space-y-1 pl-4">
+          <div className="space-y-1 px-2 sm:px-4 md:border-l border-purple-200/50">
             <div className="text-2xl sm:text-4xl font-extrabold text-[#6A1B9A]">50+</div>
             <div className="text-xs sm:text-sm font-semibold text-gray-700">Machine Categories</div>
           </div>
-          <div className="space-y-1 pl-4">
+          <div className="space-y-1 px-2 sm:px-4 border-l border-purple-200/50">
             <div className="text-2xl sm:text-4xl font-extrabold text-[#6A1B9A]">24/7</div>
             <div className="text-xs sm:text-sm font-semibold text-gray-700">Technical Service</div>
           </div>
