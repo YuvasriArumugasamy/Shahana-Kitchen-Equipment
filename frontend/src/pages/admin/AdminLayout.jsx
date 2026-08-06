@@ -251,18 +251,64 @@ export default function AdminLayout({
             <nav className="space-y-1.5 flex-1">
               {navItems.map((item) => {
                 const IconComp = item.icon;
+                const isSubActive = item.hasSub && (activeTab === 'products' || activeTab === 'edit-product' || activeTab === 'categories');
+                const isItemActive = activeTab === item.id || (item.id === 'products-parent' && isSubActive);
+
+                if (item.hasSub) {
+                  return (
+                    <div key={item.id} className="space-y-1">
+                      <button
+                        onClick={() => setProductsMenuOpen(!productsMenuOpen)}
+                        className={`w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-xs font-bold transition-all ${
+                          isItemActive ? 'bg-[#6A1B9A] text-white shadow-md' : 'text-slate-600 hover:bg-purple-50'
+                        }`}
+                      >
+                        <div className="flex items-center gap-3">
+                          <IconComp className="w-4 h-4" />
+                          <span>{item.label}</span>
+                        </div>
+                        <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${productsMenuOpen ? 'rotate-180' : ''}`} />
+                      </button>
+
+                      {productsMenuOpen && (
+                        <div className="pl-8 pr-2 space-y-1 pt-1 pb-1">
+                          {item.subItems.map((sub) => {
+                            const isSubSelected = (sub.id === 'edit-product-new' && activeTab === 'edit-product' && !editingProduct?.id) || activeTab === sub.id;
+                            return (
+                              <button
+                                key={sub.id}
+                                onClick={() => {
+                                  if (sub.id === 'edit-product-new') {
+                                    setActiveTab('edit-product');
+                                  } else {
+                                    setActiveTab(sub.id);
+                                  }
+                                  setMobileMenuOpen(false);
+                                }}
+                                className={`w-full text-left px-3 py-2 rounded-lg text-[11px] font-bold transition-colors ${
+                                  isSubSelected
+                                    ? 'bg-purple-100 text-[#6A1B9A] border-l-2 border-[#6A1B9A]'
+                                    : 'text-slate-500 hover:text-[#6A1B9A] hover:bg-purple-50/50'
+                                }`}
+                              >
+                                • {sub.label}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+
                 return (
                   <button
                     key={item.id}
                     onClick={() => {
-                      if (item.id === 'products-parent') {
-                        setActiveTab('products');
-                      } else {
-                        setActiveTab(item.id);
-                      }
+                      setActiveTab(item.id);
                       setMobileMenuOpen(false);
                     }}
-                    className={`w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-xs font-bold ${
+                    className={`w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-xs font-bold transition-all ${
                       activeTab === item.id ? 'bg-[#6A1B9A] text-white shadow-md' : 'text-slate-600 hover:bg-purple-50'
                     }`}
                   >
@@ -270,6 +316,11 @@ export default function AdminLayout({
                       <IconComp className="w-4 h-4" />
                       <span>{item.label}</span>
                     </div>
+                    {item.badge && (
+                      <span className="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-purple-100 text-[#6A1B9A] border border-purple-200">
+                        {item.badge}
+                      </span>
+                    )}
                   </button>
                 );
               })}
