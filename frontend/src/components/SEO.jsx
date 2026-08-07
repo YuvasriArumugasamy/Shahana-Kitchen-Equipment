@@ -1,106 +1,147 @@
 import React, { useEffect } from 'react';
 
+const BASE_URL = 'https://www.shahanakitchenequipment.shop';
+
 const PAGE_SEO_MAP = {
   home: {
-    title: 'Shahana Kitchen Equipment | Commercial Kitchen Equipment & Wet Grinder Manufacturer Tamil Nadu',
-    description: 'Shahana Kitchen Equipment is Tamil Nadu\'s #1 commercial kitchen machinery manufacturer & direct supplier of instant wet grinders, commercial wet grinders, dough kneaders, pulverizers & vegetable cutters in Tirunelveli, Madurai, Chennai, Coimbatore.',
-    keywords: 'Shahana Kitchen Equipment, commercial kitchen equipment manufacturer, commercial wet grinder price, instant wet grinder Tirunelveli, commercial wet grinder manufacturer Tamil Nadu, atta kneader machine 10kg 25kg, commercial vegetable cutter 0.5 hp, pulverizer machine for hotel, hotel kitchen equipment supplier near me, catering kitchen machinery Madurai Coimbatore Chennai'
+    title: 'Shahana Kitchen Equipment | Commercial Wet Grinder & Kitchen Machinery Manufacturer Tamil Nadu',
+    description: 'Buy commercial wet grinders, instant wet grinders, atta kneaders, pulverizers & vegetable cutters direct from manufacturer. 304 food-grade SS. Doorstep delivery across Tamil Nadu. Call +91 99949 44123.',
+    keywords: 'commercial wet grinder manufacturer Tamil Nadu, instant wet grinder Tirunelveli, commercial kitchen equipment manufacturer, atta kneader machine price, hotel kitchen machinery supplier, commercial vegetable cutter, tilting wet grinder 25L, Shahana Kitchen Equipment',
+    canonical: `${BASE_URL}/`,
+    ogImage: `${BASE_URL}/images/home bg.webp`
   },
   about: {
-    title: 'About Shahana Kitchen Equipment | Leading Machinery Manufacturer Tirunelveli',
-    description: '15+ years of trusted engineering in commercial wet grinders, stainless steel hotel equipment, food processing machinery & custom catering equipment in Tirunelveli, Tamil Nadu.',
-    keywords: 'Shahana Kitchen Equipment factory Tirunelveli, commercial wet grinder manufacturer profile, stainless steel 304 food machinery factory Tamil Nadu, heavy duty kitchen equipment manufacturer'
+    title: 'About Shahana Kitchen Equipment | Commercial Kitchen Machinery Manufacturer Tirunelveli Tamil Nadu',
+    description: 'Shahana Kitchen Equipment – trusted commercial kitchen machinery manufacturer in Tirunelveli, Tamil Nadu. 304 food-grade stainless steel machines, expert technicians, doorstep installation & AMC support.',
+    keywords: 'Shahana Kitchen Equipment manufacturer profile, commercial kitchen equipment factory Tirunelveli, 304 SS kitchen machinery manufacturer Tamil Nadu, wet grinder manufacturer about us',
+    canonical: `${BASE_URL}/about`,
+    ogImage: `${BASE_URL}/images/about bg.webp`
   },
   products: {
-    title: 'Commercial Kitchen Machines & Wet Grinders Catalog | Shahana Kitchen Equipment',
-    description: 'Browse our heavy duty 304 food-grade stainless steel commercial wet grinders, instant batter grinders, tilting wet grinders, atta kneaders, pulverizers, coconut scrapers & potato peelers.',
-    keywords: 'commercial wet grinder catalog, instant wet grinder 2hp 3hp price, commercial dough kneader 10kg to 50kg, vegetable cutting machine price Tamil Nadu, heavy duty flour mill pulverizer, commercial coconut scraper machine, popcorn machine commercial'
+    title: 'Commercial Kitchen Equipment Price List & Catalog | Shahana Kitchen Equipment Tamil Nadu',
+    description: 'Browse complete catalog of commercial wet grinders (₹24,000+), instant grinders (₹36,000+), tilting wet grinders, atta kneaders, pulverizers, coconut scrapers, vegetable cutters & more. Factory direct pricing.',
+    keywords: 'commercial wet grinder price Tamil Nadu, instant wet grinder price list, atta kneader machine price, commercial vegetable cutting machine price, tilting wet grinder 15L 25L price, pulverizer machine price, commercial kitchen equipment catalog',
+    canonical: `${BASE_URL}/products`,
+    ogImage: `${BASE_URL}/images/product bg.webp`
   },
   services: {
-    title: 'Commercial Kitchen Equipment Repair, Motor Rewinding & AMC | Shahana Kitchen Equipment',
-    description: 'Fast doorstep repair, Lakshmi copper motor rewinding, granite stone dressing, spare parts replacement and annual maintenance contracts (AMC) for commercial kitchens across Tamil Nadu.',
-    keywords: 'commercial wet grinder repair near me, hotel kitchen machinery service Tirunelveli, wet grinder stone dressing, copper motor replacement, catering equipment maintenance contract AMC Tamil Nadu'
+    title: 'Commercial Kitchen Equipment Repair, Motor Rewinding & AMC Service | Shahana Kitchen Equipment',
+    description: 'Expert repair, motor rewinding, granite stone dressing, spare parts replacement & Annual Maintenance Contracts (AMC) for commercial kitchen machines across Tamil Nadu. Call +91 99949 44123.',
+    keywords: 'commercial wet grinder repair Tamil Nadu, kitchen equipment service Tirunelveli, wet grinder motor rewinding, granite stone dressing, kitchen equipment AMC Tamil Nadu, catering equipment maintenance',
+    canonical: `${BASE_URL}/services`,
+    ogImage: `${BASE_URL}/images/machine repair.webp`
   },
   'spare-parts': {
-    title: 'Genuine Commercial Kitchen Machine Spare Parts | Shahana Kitchen Equipment',
-    description: 'Order genuine heavy duty V-belts, SKF ball bearings, hardened SS cutter blades, granite grinding stones, 304 SS drums, copper electric motors & switches with door delivery.',
-    keywords: 'wet grinder granite stones, commercial kitchen spare parts supplier, 1.5hp 2hp 3hp copper motor, commercial cutter blades, V-belt drive, kitchen machinery spare parts Tirunelveli Tamil Nadu'
+    title: 'Genuine Commercial Kitchen Machine Spare Parts | V-Belt, Bearings, Motors | Shahana Kitchen Equipment',
+    description: 'Buy genuine V-belts, SKF ball bearings, SS cutter blades, granite grinding stones, 304 SS drums, copper electric motors, gear sets & kitchen machine spare parts. Fast delivery Tamil Nadu.',
+    keywords: 'wet grinder spare parts Tamil Nadu, commercial kitchen machine parts, V-belt drive replacement, SKF ball bearing kitchen equipment, copper motor 1HP 2HP 3HP price, granite grinding stone wet grinder, cutter blade replacement',
+    canonical: `${BASE_URL}/spare-parts`,
+    ogImage: `${BASE_URL}/images/spare parts stock.webp`
   },
   gallery: {
-    title: 'Factory Video & Photo Gallery | Shahana Kitchen Equipment',
-    description: 'Watch video demos and view real factory photos of our instant wet grinders, tilting wet grinders, dough kneaders, pulverizers & client hotel kitchen installations.',
-    keywords: 'commercial wet grinder demo video, instant wet grinder working video, commercial kitchen machinery photos, hotel kitchen setup pictures Tamil Nadu'
+    title: 'Commercial Kitchen Equipment Photos & Installation Gallery | Shahana Kitchen Equipment',
+    description: 'View real factory photos, video demos and client hotel kitchen installation images of our commercial wet grinders, dough kneaders, tilting grinders, pulverizers and catering kitchen setups.',
+    keywords: 'commercial wet grinder photos, kitchen equipment factory gallery, hotel kitchen setup photos, commercial machinery installation images Tamil Nadu, Shahana Kitchen Equipment gallery',
+    canonical: `${BASE_URL}/gallery`,
+    ogImage: `${BASE_URL}/images/gallery.webp`
   },
   industries: {
-    title: 'Commercial Kitchen Setup for Hotels, Caterers & Cloud Kitchens | Shahana Kitchen Equipment',
-    description: 'Turnkey commercial kitchen equipment setup for hotels, vegetarian & non-veg restaurants, marriage caterers, cloud kitchens, hostel mess, batter units & sweet shops.',
-    keywords: 'hotel kitchen machinery setup, marriage catering kitchen equipment, cloud kitchen setup Tamil Nadu, batter manufacturing unit machinery, commercial restaurant kitchen equipment'
+    title: 'Commercial Kitchen Setup for Hotels, Restaurants, Caterers & Cloud Kitchens | Shahana Kitchen Equipment',
+    description: 'Complete commercial kitchen equipment solutions for hotels, restaurants, marriage caterers, cloud kitchens, hostels, batter units, bakeries & sweet shops. Turnkey installation across Tamil Nadu.',
+    keywords: 'hotel kitchen equipment Tamil Nadu, catering kitchen setup, commercial kitchen machinery for restaurants, cloud kitchen equipment supplier, hostel kitchen machinery, bakery equipment manufacturer Tamil Nadu',
+    canonical: `${BASE_URL}/industries`,
+    ogImage: `${BASE_URL}/images/industries bg.webp`
   },
   reviews: {
-    title: 'Customer Reviews & Ratings | Shahana Kitchen Equipment Tirunelveli',
-    description: 'Read 500+ genuine customer reviews from top hotel owners, marriage caterers & cloud kitchens across Tirunelveli, Madurai, Chennai, Coimbatore & Kerala.',
-    keywords: 'Shahana Kitchen Equipment customer reviews, best commercial wet grinder brand Tamil Nadu, top rated hotel kitchen machinery manufacturer'
+    title: 'Customer Reviews & Testimonials | Shahana Kitchen Equipment Tirunelveli',
+    description: 'Read 500+ verified reviews from hotels, marriage caterers, cloud kitchens and restaurants across Tamil Nadu. Top-rated commercial kitchen equipment manufacturer with 4.9★ rating.',
+    keywords: 'Shahana Kitchen Equipment reviews, best commercial wet grinder Tamil Nadu reviews, kitchen equipment manufacturer customer testimonials, hotel kitchen machinery ratings',
+    canonical: `${BASE_URL}/reviews`,
+    ogImage: `${BASE_URL}/images/our team.webp`
   },
   contact: {
-    title: 'Contact Shahana Kitchen Equipment | Phone, Address & Google Location Tirunelveli',
-    description: 'Contact Shahana Kitchen Equipment at +91 99949 44123. Location: 5/120 G, Shop No.7, M.S.K. Building, Sankaran Kovil Road, Ramayanpatti, Tirunelveli - 627358.',
-    keywords: 'Shahana Kitchen Equipment contact number +91 99949 44123, kitchen equipment manufacturer address Tirunelveli, wet grinder price quote request'
+    title: 'Contact Shahana Kitchen Equipment | +91 99949 44123 | Tirunelveli Tamil Nadu',
+    description: 'Contact Shahana Kitchen Equipment for price quotes, installation, AMC service. Phone: +91 99949 44123. Address: 5/120 G, Sankaran Kovil Road, Ramayanpatti, Tirunelveli – 627358.',
+    keywords: 'Shahana Kitchen Equipment contact number, kitchen equipment manufacturer Tirunelveli address, commercial wet grinder price quote, +91 99949 44123',
+    canonical: `${BASE_URL}/contact`,
+    ogImage: `${BASE_URL}/images/our workshop.webp`
   },
   faq: {
-    title: 'Commercial Wet Grinder & Kitchen Machinery FAQ | Shahana Kitchen Equipment',
-    description: 'Frequently asked questions on commercial wet grinder capacity selection, 304 SS grade benefits, warranty terms, shipping across India & maintenance tips.',
-    keywords: 'commercial wet grinder buying guide, instant wet grinder vs traditional wet grinder, kitchen equipment warranty, commercial kitchen machinery FAQ'
+    title: 'Commercial Kitchen Equipment FAQ – Wet Grinder, Atta Kneader, Pulverizer | Shahana Kitchen Equipment',
+    description: 'Answers to common questions about commercial wet grinder pricing, capacity selection, 304 SS grade, warranty, delivery across India, installation & AMC maintenance.',
+    keywords: 'commercial wet grinder buying guide FAQ, kitchen equipment capacity selection, 304 SS food grade benefits, wet grinder warranty Tamil Nadu, commercial kitchen machinery FAQ',
+    canonical: `${BASE_URL}/faq`,
+    ogImage: `${BASE_URL}/images/product bg.webp`
   }
+};
+
+const setMeta = (selector, attribute, value) => {
+  let el = document.querySelector(selector);
+  if (el) el.setAttribute(attribute, value);
+};
+
+const setOrCreateMeta = (name, content, isProperty = false) => {
+  const attr = isProperty ? 'property' : 'name';
+  let el = document.querySelector(`meta[${attr}="${name}"]`);
+  if (!el) {
+    el = document.createElement('meta');
+    el.setAttribute(attr, name);
+    document.head.appendChild(el);
+  }
+  el.setAttribute('content', content);
+};
+
+const setCanonical = (href) => {
+  let el = document.querySelector('link[rel="canonical"]');
+  if (!el) {
+    el = document.createElement('link');
+    el.setAttribute('rel', 'canonical');
+    document.head.appendChild(el);
+  }
+  el.setAttribute('href', href);
 };
 
 export default function SEO({ currentPage, selectedProduct }) {
   useEffect(() => {
-    let seoData = PAGE_SEO_MAP[currentPage] || PAGE_SEO_MAP['home'];
+    let seo = PAGE_SEO_MAP[currentPage] || PAGE_SEO_MAP['home'];
 
-    // Dynamic SEO for Product Detail page with super high keyword density
+    // Dynamic product detail page SEO
     if (currentPage === 'product-detail' && selectedProduct) {
-      seoData = {
-        title: `${selectedProduct.name} - Commercial Kitchen Equipment | Shahana Kitchen Equipment`,
-        description: selectedProduct.description || `${selectedProduct.name} with ${selectedProduct.motor || 'Lakshmi Copper Motor'} and 304 Food Grade Stainless Steel build for commercial hotels, caterers & food processing units in Tamil Nadu.`,
-        keywords: `${selectedProduct.name}, commercial ${selectedProduct.name}, ${selectedProduct.name} price, ${selectedProduct.category}, ${selectedProduct.name} manufacturer Tirunelveli Madurai Chennai Coimbatore Tamil Nadu`
+      const productSlug = selectedProduct.id || selectedProduct.name?.toLowerCase().replace(/\s+/g, '-');
+      seo = {
+        title: `${selectedProduct.name} – Price, Specs & Quote | Shahana Kitchen Equipment Tamil Nadu`,
+        description: `Buy ${selectedProduct.name} at factory price. ${selectedProduct.specs || ''} ${selectedProduct.motor || 'Lakshmi Copper Motor'}. 304 Food Grade SS. Doorstep delivery Tamil Nadu. Get free quote now.`,
+        keywords: `${selectedProduct.name} price Tamil Nadu, buy ${selectedProduct.name}, ${selectedProduct.category} manufacturer, ${selectedProduct.name} commercial, kitchen equipment Tirunelveli`,
+        canonical: `${BASE_URL}/products/${productSlug}`,
+        ogImage: selectedProduct.image || `${BASE_URL}/images/product bg.webp`
       };
     }
 
-    // Update document title
-    document.title = seoData.title;
+    // Title
+    document.title = seo.title;
 
-    // Update Meta Description
-    let metaDescription = document.querySelector('meta[name="description"]');
-    if (!metaDescription) {
-      metaDescription = document.createElement('meta');
-      metaDescription.name = 'description';
-      document.head.appendChild(metaDescription);
+    // Standard meta
+    setOrCreateMeta('title', seo.title);
+    setOrCreateMeta('description', seo.description);
+    setOrCreateMeta('keywords', seo.keywords);
+
+    // Canonical
+    setCanonical(seo.canonical || `${BASE_URL}/`);
+
+    // Open Graph
+    setOrCreateMeta('og:title', seo.title, true);
+    setOrCreateMeta('og:description', seo.description, true);
+    setOrCreateMeta('og:url', seo.canonical || `${BASE_URL}/`, true);
+    if (seo.ogImage) {
+      setOrCreateMeta('og:image', seo.ogImage, true);
+      setOrCreateMeta('og:image:alt', seo.title, true);
     }
-    metaDescription.setAttribute('content', seoData.description);
 
-    // Update Meta Keywords
-    let metaKeywords = document.querySelector('meta[name="keywords"]');
-    if (!metaKeywords) {
-      metaKeywords = document.createElement('meta');
-      metaKeywords.name = 'keywords';
-      document.head.appendChild(metaKeywords);
-    }
-    metaKeywords.setAttribute('content', seoData.keywords);
-
-    // Update OG Title
-    let ogTitle = document.querySelector('meta[property="og:title"]');
-    if (ogTitle) ogTitle.setAttribute('content', seoData.title);
-
-    // Update OG Description
-    let ogDesc = document.querySelector('meta[property="og:description"]');
-    if (ogDesc) ogDesc.setAttribute('content', seoData.description);
-
-    // Update Twitter Title & Description
-    let twitterTitle = document.querySelector('meta[name="twitter:title"]');
-    if (twitterTitle) twitterTitle.setAttribute('content', seoData.title);
-
-    let twitterDesc = document.querySelector('meta[name="twitter:description"]');
-    if (twitterDesc) twitterDesc.setAttribute('content', seoData.description);
+    // Twitter
+    setOrCreateMeta('twitter:title', seo.title);
+    setOrCreateMeta('twitter:description', seo.description);
+    setOrCreateMeta('twitter:url', seo.canonical || `${BASE_URL}/`);
+    if (seo.ogImage) setOrCreateMeta('twitter:image', seo.ogImage);
 
   }, [currentPage, selectedProduct]);
 
