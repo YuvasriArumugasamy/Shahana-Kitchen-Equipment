@@ -146,7 +146,7 @@ export default function Footer({ setCurrentPage, onOpenQuoteModal }) {
             >
               🔐 Admin Login
             </a>
-            <span className="hover:underline cursor-pointer">Designed with <span className="text-red-400">❤️</span> by YuvaTech Solutions</span>
+            <span className="hover:underline cursor-pointer">Website Designed by <span className="text-red-400">❤️</span> YuvaTech Solutions</span>
           </div>
         </div>
 
