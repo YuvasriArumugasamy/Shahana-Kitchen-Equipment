@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { PRODUCTS } from '../../data/siteData';
 import { fetchCloudProducts, saveCloudProducts } from '../../services/cloudProducts';
 import { fetchCloudNotifications, updateCloudNotifications } from '../../services/cloudNotifications';
+import { requestPushPermission, showBrowserNotification } from '../../services/firebaseConfig';
 
 import AdminLayout from './AdminLayout';
 import DashboardOverview from './DashboardOverview';
@@ -72,11 +73,26 @@ export default function AdminDashboard({ onLogout, setCurrentPage }) {
   // Real-time synchronization for Admin Notifications across ALL devices (Mobile, Laptop, Cloud)
   useEffect(() => {
     let isMounted = true;
+    let knownIds = new Set();
+
+    // Auto-request Phone Push Notification Permission on Admin Login
+    requestPushPermission();
 
     const syncNotifs = async () => {
       try {
         const cloudData = await fetchCloudNotifications();
         if (isMounted && cloudData && Array.isArray(cloudData)) {
+          // Detect brand new unread quotes that arrived since last sync
+          if (knownIds.size > 0) {
+            const newNotif = cloudData.find(n => n.unread && !knownIds.has(String(n.id)));
+            if (newNotif) {
+              showBrowserNotification(
+                newNotif.title || 'New Quote Alert 🔔',
+                newNotif.desc || 'புதிய வாடிக்கையாளர் விலை கோரிக்கை வந்துள்ளது!'
+              );
+            }
+          }
+          knownIds = new Set(cloudData.map(n => String(n.id)));
           setNotifications(cloudData);
         }
       } catch (e) {

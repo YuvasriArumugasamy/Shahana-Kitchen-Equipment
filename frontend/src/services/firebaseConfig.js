@@ -31,18 +31,54 @@ export const requestPushPermission = async () => {
   return false;
 };
 
-// Trigger Local Browser Push Notification (when quote / enquiry arrives)
-export const showBrowserNotification = (title, body, icon = '/favicon.ico') => {
-  if (typeof window !== 'undefined' && 'Notification' in window && Notification.permission === 'granted') {
-    try {
-      new Notification(title, {
-        body,
-        icon,
-        badge: icon,
-        vibrate: [200, 100, 200]
+// Helper sound alert when quote arrives
+const playAlertChime = () => {
+  try {
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(587.33, audioCtx.currentTime); // D5
+    osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.15); // A5
+    gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start();
+    osc.stop(audioCtx.currentTime + 0.3);
+  } catch (e) {
+    // Audio context may require user interaction
+  }
+};
+
+// Trigger Phone Top Pop-Up Banner & Vibration Notification (WhatsApp / Instagram style)
+export const showBrowserNotification = (title, body, icon = '/src/assets/ChatGPT Image Aug 2, 2026, 10_28_47 PM.png') => {
+  if (typeof window === 'undefined') return;
+
+  // Play audio chime tone
+  playAlertChime();
+
+  if ('Notification' in window && Notification.permission === 'granted') {
+    // Try Service Worker Push Notification first (for mobile top phone pop-up banner)
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.ready.then(reg => {
+        reg.showNotification(title, {
+          body,
+          icon,
+          badge: icon,
+          vibrate: [250, 100, 250, 100, 250],
+          tag: 'shahana-quote-notification',
+          renotify: true,
+          data: { url: '/admin' }
+        }).catch(() => {
+          // Fallback to Window Notification
+          new Notification(title, { body, icon, vibrate: [200, 100, 200] });
+        });
+      }).catch(() => {
+        new Notification(title, { body, icon, vibrate: [200, 100, 200] });
       });
-    } catch (e) {
-      console.warn('Could not trigger native browser notification:', e);
+    } else {
+      new Notification(title, { body, icon, vibrate: [200, 100, 200] });
     }
   }
 };
