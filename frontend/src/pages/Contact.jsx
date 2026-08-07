@@ -60,7 +60,7 @@ export default function Contact({ onOpenQuoteModal }) {
           muted
           loop
           playsInline
-        />
+        / preload="metadata">
         <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-purple-950/80 to-black/75 pointer-events-none"></div>
         <div className="max-w-container mx-auto px-4 relative z-10 w-full">
           <div className="max-w-3xl space-y-4 sm:space-y-5">

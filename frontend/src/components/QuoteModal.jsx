@@ -56,7 +56,7 @@ export default function QuoteModal({ isOpen, onClose, selectedProduct }) {
 
     const newQuoteAlert = {
       id: Date.now(),
-      title: `Quote Request: ${formData.name || 'Customer'}`,
+      title: `New Quote Request from ${formData.name || 'Customer'}`,
       desc: `Product: ${formData.product} (Qty: ${formData.quantity}) | Phone: ${cleanPhone} | City: ${formData.city || 'N/A'}`,
       time: 'Just now',
       unread: true,
@@ -70,7 +70,7 @@ export default function QuoteModal({ isOpen, onClose, selectedProduct }) {
       city: formData.city,
       businessType: formData.businessType,
       quantity: formData.quantity,
-      fullMessage: `Customer requested a price quote for ${formData.product} (${formData.quantity} unit(s)). Business Type: ${formData.businessType}. City: ${formData.city || 'N/A'}. Company: ${formData.company || 'N/A'}. Additional Notes: ${formData.message || 'None'}`
+      fullMessage: `Customer requested a price quote for ${formData.product} (${formData.quantity} unit(s)). Business Type: ${formData.businessType || 'N/A'}. City: ${formData.city || 'N/A'}. Company: ${formData.company || 'N/A'}. Additional Notes: ${formData.message || 'None'}`
     };
 
     // Push to Render MongoDB Backend & Cloud API so Admin receives it across ALL devices

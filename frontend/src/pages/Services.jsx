@@ -47,7 +47,7 @@ export default function Services({ onOpenQuoteModal }) {
           muted
           loop
           playsInline
-        />
+        / preload="metadata">
         <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-purple-950/75 to-black/90 pointer-events-none"></div>
         <div className="max-w-container mx-auto px-4 text-center max-w-3xl space-y-4 sm:space-y-5 relative z-10">
           

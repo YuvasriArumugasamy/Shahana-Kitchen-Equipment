@@ -132,7 +132,7 @@ export default function Products({ setCurrentPage, onOpenQuoteModal, onSelectPro
           muted
           loop
           playsInline
-        />
+        / preload="metadata">
         <div className="absolute inset-0 bg-gradient-to-br from-black/90 via-purple-950/60 to-black/85 pointer-events-none"></div>
         <div className="max-w-container mx-auto px-4 relative z-10">
           <div className="max-w-3xl space-y-5 sm:space-y-6">

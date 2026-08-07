@@ -30,7 +30,7 @@ export default function Reviews({ onOpenQuoteModal }) {
           muted
           loop
           playsInline
-        />
+        / preload="metadata">
         <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-purple-950/75 to-black/85 pointer-events-none"></div>
         <div className="max-w-container mx-auto px-4 grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center relative z-10 w-full">
           <div className="lg:col-span-8 space-y-4 sm:space-y-5">

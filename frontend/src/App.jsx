@@ -24,15 +24,29 @@ import SEO from './components/SEO';
 const getInitialPage = () => {
   if (typeof window === 'undefined') return 'home';
   const path = window.location.pathname.toLowerCase();
-  if (path.includes('/admin')) {
-    return 'admin';
-  }
+  if (path.includes('/admin')) return 'admin';
   const validPages = [
     'home', 'about', 'products', 'product-detail', 'services',
     'spare-parts', 'gallery', 'industries', 'reviews', 'contact', 'faq'
   ];
   const route = path.replace(/^\//, '').split('/')[0];
   return validPages.includes(route) ? route : 'home';
+};
+
+// Page → URL path map
+const PAGE_URL_MAP = {
+  home: '/',
+  about: '/about',
+  products: '/products',
+  'product-detail': '/products',
+  services: '/services',
+  'spare-parts': '/spare-parts',
+  gallery: '/gallery',
+  industries: '/industries',
+  reviews: '/reviews',
+  contact: '/contact',
+  faq: '/faq',
+  admin: '/admin'
 };
 
 export default function App() {
@@ -56,6 +70,25 @@ export default function App() {
     setIsAdminLoggedIn(false);
     setCurrentPage('home');
   };
+
+  // Sync URL with current page state
+  useEffect(() => {
+    const url = PAGE_URL_MAP[currentPage] || '/';
+    if (window.location.pathname !== url) {
+      window.history.pushState({ page: currentPage }, '', url);
+    }
+    document.title = document.title; // SEO component handles title
+  }, [currentPage]);
+
+  // Handle browser back / forward button
+  useEffect(() => {
+    const handlePopState = (e) => {
+      const page = e.state?.page || getInitialPage();
+      setCurrentPage(page);
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
   // Smooth Scroll Reveal Animations across ALL Pages
   useEffect(() => {
