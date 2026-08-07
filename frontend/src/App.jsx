@@ -19,6 +19,7 @@ import FAQ from './pages/FAQ';
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import { ErrorBoundary } from './components/ErrorBoundary';
+import SEO from './components/SEO';
 
 const getInitialPage = () => {
   if (typeof window === 'undefined') return 'home';
@@ -138,6 +139,9 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#F7F7F7] flex flex-col justify-between selection:bg-[#6A1B9A] selection:text-white overflow-x-hidden w-full max-w-full">
+      {/* Dynamic SEO Meta Tags & Document Title Handler */}
+      <SEO currentPage={currentPage} selectedProduct={selectedProduct} />
+
       {/* Dynamic Header Navbar */}
       <Header 
         currentPage={currentPage} 

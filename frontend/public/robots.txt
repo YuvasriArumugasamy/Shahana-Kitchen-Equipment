@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /admin/*
+
+# Host & Sitemap
+Host: https://shahanakitchenequipment.com
+Sitemap: https://shahanakitchenequipment.com/sitemap.xml
