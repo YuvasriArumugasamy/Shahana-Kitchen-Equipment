@@ -131,42 +131,42 @@ export const installationsGallery = [
     id: 1,
     title: "Hotel Installation",
     location: "Madurai",
-    img: "/images/institution installation.png",
+    img: "/images/institution installation.webp",
     description: "Complete commercial hotel kitchen setup"
   },
   {
     id: 2,
     title: "Restaurant Installation",
     location: "Coimbatore",
-    img: "/images/hostel installation.png",
+    img: "/images/hostel installation.webp",
     description: "Modern restaurant stainless steel layout"
   },
   {
     id: 3,
     title: "Catering Unit Installation",
     location: "Tirunelveli",
-    img: "/images/caterin unit installation.png",
+    img: "/images/caterin unit installation.webp",
     description: "Heavy-duty bulk catering equipment installation"
   },
   {
     id: 4,
     title: "Bakery Installation",
     location: "Chennai",
-    img: "/images/bakery installation.png",
+    img: "/images/bakery installation.webp",
     description: "Commercial bakery dough kneader & ovens"
   },
   {
     id: 5,
     title: "Institution Installation",
     location: "Trichy",
-    img: "/images/institution installation.png",
+    img: "/images/institution installation.webp",
     description: "College canteen & hospital kitchen equipment"
   },
   {
     id: 6,
     title: "Cloud Kitchen Setup",
     location: "Salem",
-    img: "/images/hostel installation.png",
+    img: "/images/hostel installation.webp",
     description: "Compact multi-brand cloud kitchen installation"
   }
 ];
@@ -175,37 +175,37 @@ export const workshopGallery = [
   {
     id: 1,
     title: "Our Factory Workshop",
-    img: "/images/our workshop.png",
+    img: "/images/our workshop.webp",
     description: "Manufacturing & SS fabrication facility"
   },
   {
     id: 2,
     title: "Spare Parts Stock",
-    img: "/images/spare parts stock.png",
+    img: "/images/spare parts stock.webp",
     description: "Genuine copper motors, bearings & gear sets"
   },
   {
     id: 3,
     title: "Machine Repair & Service",
-    img: "/images/machine repair.png",
+    img: "/images/machine repair.webp",
     description: "Expert technician maintenance & servicing"
   },
   {
     id: 4,
     title: "Testing & Quality Check",
-    img: "/images/testing .png",
+    img: "/images/testing .webp",
     description: "Rigorous quality check before dispatch"
   },
   {
     id: 5,
     title: "Our Engineering Team",
-    img: "/images/our team.png",
+    img: "/images/our team.webp",
     description: "Experienced engineers and fabricators"
   },
   {
     id: 6,
     title: "Safe Delivery & Packing",
-    img: "/images/delivery .png",
+    img: "/images/delivery .webp",
     description: "Heavy wooden box packing for safe transit"
   }
 ];
@@ -215,21 +215,21 @@ export const happyCustomersGallery = [
     id: 1,
     title: "Hotel Sri Balaji",
     location: "Tirunelveli",
-    img: "/images/institution installation.png",
+    img: "/images/institution installation.webp",
     testimonial: "Excellent wet grinder performance!"
   },
   {
     id: 2,
     title: "Anandha Bhavan",
     location: "Madurai",
-    img: "/images/bakery installation.png",
+    img: "/images/bakery installation.webp",
     testimonial: "Reliable commercial kitchen setup."
   },
   {
     id: 3,
     title: "Sree Catering",
     location: "Kovilpatti",
-    img: "/images/caterin unit installation.png",
+    img: "/images/caterin unit installation.webp",
     testimonial: "Prompt delivery and great service."
   }
 ];

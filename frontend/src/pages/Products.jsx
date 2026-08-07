@@ -30,7 +30,7 @@ export default function Products({ setCurrentPage, onOpenQuoteModal, onSelectPro
       { name: "Commercial Meat Mincing Machine", category: "Processing Machines", specs: "1.5 HP SS Gear Drive", badge: "Commercial", img: productAssets.meatMincer },
       { name: "Heavy Duty Flour Mill", category: "Pulverizers", specs: "3 HP - 7.5 HP Blower", badge: "High Capacity", img: productAssets.flourMill },
       { name: "Commercial Coconut Scraper", category: "Coconut Scrapers", specs: "Multi Station SS", badge: "304 SS Food Grade", img: productAssets.coconutMilkExtractor },
-      { name: "Spare Parts", category: "Parts", specs: "All Types Available", badge: "", img: "/images/spare part.png" }
+      { name: "Spare Parts", category: "Parts", specs: "All Types Available", badge: "", img: "/images/spare part.webp" }
     ];
     try {
       const saved = localStorage.getItem('shahana_admin_products');
@@ -254,7 +254,7 @@ export default function Products({ setCurrentPage, onOpenQuoteModal, onSelectPro
               {/* Right Side Image (Man with Headset) */}
               <div className="absolute right-0 bottom-0 top-0 h-full w-[45%] sm:w-[48%] overflow-hidden pointer-events-none">
                 <img 
-                  src="/images/ChatGPT Image Jul 27, 2026, 03_41_42 PM.png" 
+                  src="/images/ChatGPT Image Jul 27, 2026, 03_41_42 PM.webp" 
                   alt="Customer Support Representative" 
                   className="w-full h-full object-cover object-top sm:object-center transform group-hover:scale-105 transition-transform duration-300"
                 />

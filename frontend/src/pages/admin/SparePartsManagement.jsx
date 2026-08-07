@@ -15,7 +15,7 @@ export default function SparePartsManagement() {
       category: newPart.category,
       price: newPart.price,
       compatibility: newPart.compatibility || 'Universal Fit',
-      image: '/images/v belt.png'
+      image: '/images/v belt.webp'
     };
     setParts([item, ...parts]);
     setShowAddModal(false);

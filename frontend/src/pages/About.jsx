@@ -6,7 +6,7 @@ export default function About({ setCurrentPage, onOpenQuoteModal }) {
     <div className="space-y-10 sm:space-y-16">
 
       {/* ABOUT HERO BANNER - STUNNING ANIMATED OVERLAY */}
-      <section className="relative text-white py-14 sm:py-20 lg:py-24 bg-cover bg-center bg-no-repeat overflow-hidden" style={{ backgroundImage: "url('/images/about bg.png')" }}>
+      <section className="relative text-white py-14 sm:py-20 lg:py-24 bg-cover bg-center bg-no-repeat overflow-hidden" style={{ backgroundImage: "url('/images/about bg.webp')" }}>
         <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-purple-950/75 to-black/75 pointer-events-none"></div>
         <div className="max-w-container mx-auto px-4 relative z-10">
           <div className="max-w-3xl space-y-4 sm:space-y-5">
@@ -102,10 +102,10 @@ export default function About({ setCurrentPage, onOpenQuoteModal }) {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {[
-            { title: "Premium Quality Machines", img: "/images/ChatGPT Image Jul 27, 2026, 03_00_07 PM.png" },
-            { title: "Expert Technicians", img: "/images/our team.png" },
-            { title: "Well Equipped Workshop", img: "/images/our workshop.png" },
-            { title: "Genuine Spare Parts Stock", img: "/images/spare parts stock.png" }
+            { title: "Premium Quality Machines", img: "/images/ChatGPT Image Jul 27, 2026, 03_00_07 PM.webp" },
+            { title: "Expert Technicians", img: "/images/our team.webp" },
+            { title: "Well Equipped Workshop", img: "/images/our workshop.webp" },
+            { title: "Genuine Spare Parts Stock", img: "/images/spare parts stock.webp" }
           ].map((item, idx) => (
             <div key={idx} className="bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-sm group">
               <div className="w-full h-52 sm:h-56 md:h-60 bg-gray-50 overflow-hidden">

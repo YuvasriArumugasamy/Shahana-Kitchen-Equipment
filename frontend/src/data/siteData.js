@@ -437,18 +437,18 @@ export const PRODUCTS = [
 ];
 
 export const SPARE_PARTS = [
-  { id: "sp-1", name: "Heavy Duty V-Belt Drive", category: "Belts", price: "₹650", compatibility: "Universal Fit for All Machines", image: "/images/v belt.png" },
-  { id: "sp-2", name: "High Speed Ball Bearings", category: "Bearings", price: "₹850", compatibility: "SKF Heavy Duty Grade", image: "/images/ball bearing.png" },
-  { id: "sp-3", name: "Hardened SS Cutter Blade Set", category: "Blades", price: "₹1,200", compatibility: "Vegetable Cutters & Pulverizers", image: "/images/cutter blade.png" },
-  { id: "sp-4", name: "Grinding Stone Set", category: "Stones", price: "₹3,500", compatibility: "Wet Grinders (10L - 30L)", image: "/images/spare part.png" },
-  { id: "sp-5", name: "Stainless Steel Drum Unit", category: "Drum Parts", price: "₹5,800", compatibility: "15L & 25L Wet Grinders", image: "/images/ss drum.png" },
-  { id: "sp-6", name: "Heavy Duty Copper Electric Motor", category: "Motors", price: "₹8,500", compatibility: "1 HP to 5 HP 3-Phase / Single Phase", image: "/images/electric motor.png" },
-  { id: "sp-7", name: "Heavy Duty ON/OFF Switch", category: "Switches", price: "₹450", compatibility: "Waterproof IP65 Grade", image: "/images/on off switch.png" },
-  { id: "sp-8", name: "Precision Gear Set", category: "Gear Parts", price: "₹2,400", compatibility: "Tilting Wet Grinders & Kneaders", image: "/images/gear set.png" },
-  { id: "sp-9", name: "Drive Shaft Coupling", category: "Couplings", price: "₹950", compatibility: "Commercial Mixers & Cutters", image: "/images/coupling.png" },
-  { id: "sp-10", name: "Machine Pulley Wheel", category: "Pulleys", price: "₹750", compatibility: "Motor & Drum Transmission", image: "/images/pulley.png" },
-  { id: "sp-11", name: "Motor Carbon Brush Set", category: "Brushes", price: "₹350", compatibility: "Commercial Mixers & Peelers", image: "/images/carbon brush.png" },
-  { id: "sp-12", name: "Industrial Oil Seal Ring", category: "Seals", price: "₹280", compatibility: "Waterproof Bearing Housing", image: "/images/oil seai.png" }
+  { id: "sp-1", name: "Heavy Duty V-Belt Drive", category: "Belts", price: "₹650", compatibility: "Universal Fit for All Machines", image: "/images/v belt.webp" },
+  { id: "sp-2", name: "High Speed Ball Bearings", category: "Bearings", price: "₹850", compatibility: "SKF Heavy Duty Grade", image: "/images/ball bearing.webp" },
+  { id: "sp-3", name: "Hardened SS Cutter Blade Set", category: "Blades", price: "₹1,200", compatibility: "Vegetable Cutters & Pulverizers", image: "/images/cutter blade.webp" },
+  { id: "sp-4", name: "Grinding Stone Set", category: "Stones", price: "₹3,500", compatibility: "Wet Grinders (10L - 30L)", image: "/images/spare part.webp" },
+  { id: "sp-5", name: "Stainless Steel Drum Unit", category: "Drum Parts", price: "₹5,800", compatibility: "15L & 25L Wet Grinders", image: "/images/ss drum.webp" },
+  { id: "sp-6", name: "Heavy Duty Copper Electric Motor", category: "Motors", price: "₹8,500", compatibility: "1 HP to 5 HP 3-Phase / Single Phase", image: "/images/electric motor.webp" },
+  { id: "sp-7", name: "Heavy Duty ON/OFF Switch", category: "Switches", price: "₹450", compatibility: "Waterproof IP65 Grade", image: "/images/on off switch.webp" },
+  { id: "sp-8", name: "Precision Gear Set", category: "Gear Parts", price: "₹2,400", compatibility: "Tilting Wet Grinders & Kneaders", image: "/images/gear set.webp" },
+  { id: "sp-9", name: "Drive Shaft Coupling", category: "Couplings", price: "₹950", compatibility: "Commercial Mixers & Cutters", image: "/images/coupling.webp" },
+  { id: "sp-10", name: "Machine Pulley Wheel", category: "Pulleys", price: "₹750", compatibility: "Motor & Drum Transmission", image: "/images/pulley.webp" },
+  { id: "sp-11", name: "Motor Carbon Brush Set", category: "Brushes", price: "₹350", compatibility: "Commercial Mixers & Peelers", image: "/images/carbon brush.webp" },
+  { id: "sp-12", name: "Industrial Oil Seal Ring", category: "Seals", price: "₹280", compatibility: "Waterproof Bearing Housing", image: "/images/oil seai.webp" }
 ];
 
 export const REVIEWS = [

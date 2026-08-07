@@ -272,11 +272,11 @@ export default function Home({ setCurrentPage, onOpenQuoteModal, onSelectProduct
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-4">
           {[
-            { img: "/images/caterin unit installation.png", title: "Catering Unit" },
-            { img: "/images/bakery installation.png", title: "Bakery Setup" },
-            { img: "/images/institution installation.png", title: "Institution Canteen" },
-            { img: "/images/hostel installation.png", title: "Hotel & Hostel" },
-            { img: "/images/our workshop.png", title: "Our Workshop" }
+            { img: "/images/caterin unit installation.webp", title: "Catering Unit" },
+            { img: "/images/bakery installation.webp", title: "Bakery Setup" },
+            { img: "/images/institution installation.webp", title: "Institution Canteen" },
+            { img: "/images/hostel installation.webp", title: "Hotel & Hostel" },
+            { img: "/images/our workshop.webp", title: "Our Workshop" }
           ].map((item, i) => (
             <div key={i} className="rounded-2xl overflow-hidden border border-purple-100 shadow-sm aspect-square bg-gray-50 p-1.5 group relative card-3d-hover">
               <img src={item.img} alt={item.title} className="w-full h-full object-cover object-center rounded-xl img-3d-pop transition-transform duration-500" />

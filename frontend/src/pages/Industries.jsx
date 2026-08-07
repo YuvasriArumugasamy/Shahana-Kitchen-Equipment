@@ -3,14 +3,14 @@ import { Building2, Utensils, Hotel, GraduationCap, Flame, ArrowRight, ShieldChe
 
 export default function Industries({ setCurrentPage, onOpenQuoteModal }) {
   const industriesList = [
-    { title: "HOTELS", desc: "Reliable and efficient equipment for hotel kitchens of all sizes.", img: "/images/institution installation.png" },
-    { title: "RESTAURANTS", desc: "High performance kitchen machines to ensure smooth operations.", img: "/images/bakery installation.png" },
-    { title: "CATERING SERVICES", desc: "Bulk cooking made easy with our durable equipment.", img: "/images/caterin unit installation.png" },
-    { title: "BAKERIES", desc: "Advanced machines for baking, mixing, and food processing.", img: "/images/bakery installation.png" },
-    { title: "HOSPITALS", desc: "Hygienic and safe equipment for hospital kitchens.", img: "/images/institution installation.png" },
-    { title: "COLLEGES & INSTITUTIONS", desc: "Perfect solutions for canteens and large scale food preparation.", img: "/images/institution installation.png" },
-    { title: "HOSTELS", desc: "Cost effective and reliable equipment for hostel mess.", img: "/images/hostel installation.png" },
-    { title: "CLOUD KITCHENS", desc: "Compact, efficient and modern solutions for cloud kitchens.", img: "/images/hostel installation.png" }
+    { title: "HOTELS", desc: "Reliable and efficient equipment for hotel kitchens of all sizes.", img: "/images/institution installation.webp" },
+    { title: "RESTAURANTS", desc: "High performance kitchen machines to ensure smooth operations.", img: "/images/bakery installation.webp" },
+    { title: "CATERING SERVICES", desc: "Bulk cooking made easy with our durable equipment.", img: "/images/caterin unit installation.webp" },
+    { title: "BAKERIES", desc: "Advanced machines for baking, mixing, and food processing.", img: "/images/bakery installation.webp" },
+    { title: "HOSPITALS", desc: "Hygienic and safe equipment for hospital kitchens.", img: "/images/institution installation.webp" },
+    { title: "COLLEGES & INSTITUTIONS", desc: "Perfect solutions for canteens and large scale food preparation.", img: "/images/institution installation.webp" },
+    { title: "HOSTELS", desc: "Cost effective and reliable equipment for hostel mess.", img: "/images/hostel installation.webp" },
+    { title: "CLOUD KITCHENS", desc: "Compact, efficient and modern solutions for cloud kitchens.", img: "/images/hostel installation.webp" }
   ];
 
   return (

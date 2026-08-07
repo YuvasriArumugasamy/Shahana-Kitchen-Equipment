@@ -4,18 +4,18 @@ import { Settings, ShieldCheck, CheckCircle2, Phone, Search } from 'lucide-react
 export default function SpareParts({ onOpenQuoteModal }) {
   const [selectedCategory, setSelectedCategory] = useState('All Spare Parts');
   const partsList = [
-    { name: "V Belt", category: "Belts", specs: "All Models Available", img: "/images/v belt.png" },
-    { name: "Ball Bearing", category: "Bearings", specs: "All Models Available", img: "/images/ball bearing.png" },
-    { name: "Cutter Blade", category: "Blades", specs: "All Models Available", img: "/images/cutter blade.png" },
-    { name: "Wet Grinder Stone", category: "Stones", specs: "All Models Available", img: "/images/spare part.png" },
-    { name: "SS Drum", category: "Drums", specs: "All Models Available", img: "/images/ss drum.png" },
-    { name: "Electric Motor", category: "Motors", specs: "1HP | 2HP | 3HP Available", img: "/images/electric motor.png" },
-    { name: "ON / OFF Switch", category: "Switches", specs: "All Models Available", img: "/images/on off switch.png" },
-    { name: "Gear Set", category: "Gears", specs: "All Models Available", img: "/images/gear set.png" },
-    { name: "Coupling", category: "Couplings", specs: "All Models Available", img: "/images/coupling.png" },
-    { name: "Carbon Brush", category: "Brushes", specs: "All Models Available", img: "/images/carbon brush.png" },
-    { name: "Pulley", category: "Pulleys", specs: "All Models Available", img: "/images/pulley.png" },
-    { name: "Oil Seal", category: "Seals", specs: "All Models Available", img: "/images/oil seai.png" }
+    { name: "V Belt", category: "Belts", specs: "All Models Available", img: "/images/v belt.webp" },
+    { name: "Ball Bearing", category: "Bearings", specs: "All Models Available", img: "/images/ball bearing.webp" },
+    { name: "Cutter Blade", category: "Blades", specs: "All Models Available", img: "/images/cutter blade.webp" },
+    { name: "Wet Grinder Stone", category: "Stones", specs: "All Models Available", img: "/images/spare part.webp" },
+    { name: "SS Drum", category: "Drums", specs: "All Models Available", img: "/images/ss drum.webp" },
+    { name: "Electric Motor", category: "Motors", specs: "1HP | 2HP | 3HP Available", img: "/images/electric motor.webp" },
+    { name: "ON / OFF Switch", category: "Switches", specs: "All Models Available", img: "/images/on off switch.webp" },
+    { name: "Gear Set", category: "Gears", specs: "All Models Available", img: "/images/gear set.webp" },
+    { name: "Coupling", category: "Couplings", specs: "All Models Available", img: "/images/coupling.webp" },
+    { name: "Carbon Brush", category: "Brushes", specs: "All Models Available", img: "/images/carbon brush.webp" },
+    { name: "Pulley", category: "Pulleys", specs: "All Models Available", img: "/images/pulley.webp" },
+    { name: "Oil Seal", category: "Seals", specs: "All Models Available", img: "/images/oil seai.webp" }
   ];
 
   const filteredParts = selectedCategory === 'All Spare Parts'
