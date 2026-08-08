@@ -52,7 +52,7 @@ const playAlertChime = () => {
 };
 
 // Trigger Phone Top Pop-Up Banner & Vibration Notification (WhatsApp / Instagram style)
-export const showBrowserNotification = (title, body, icon = '/src/assets/ChatGPT Image Aug 2, 2026, 10_28_47 PM.png') => {
+export const showBrowserNotification = (title, body, icon = '/favicon.ico') => {
   if (typeof window === 'undefined') return;
 
   // Play audio chime tone

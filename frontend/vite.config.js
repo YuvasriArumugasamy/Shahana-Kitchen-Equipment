@@ -8,7 +8,7 @@ function copyLogoPlugin() {
     name: 'copy-logo',
     buildStart() {
       try {
-        const src = path.resolve(__dirname, 'src/assets/ChatGPT Image Aug 2, 2026, 10_28_47 PM.png')
+        const src = path.resolve(__dirname, 'public/images/shahana-logo.png')
         const destPublic = path.resolve(__dirname, 'public/images/logo.png')
         const destFavicon = path.resolve(__dirname, 'public/favicon.ico')
         const destFaviconPng = path.resolve(__dirname, 'public/favicon.png')

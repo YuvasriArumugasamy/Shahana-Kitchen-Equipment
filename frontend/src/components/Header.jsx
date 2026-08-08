@@ -122,7 +122,7 @@ export default function Header({ currentPage, setCurrentPage, onOpenQuoteModal }
           >
             <div className="flex items-center shrink-0 py-0.5">
               <img 
-                src="/images/ChatGPT Image Jul 28, 2026, 01_18_49 PM.webp" 
+                src="/images/shahana-logo.png" 
                 alt="Shahana Kitchen Equipment" 
                 className="h-11 xs:h-12 sm:h-14 md:h-16 lg:h-16 w-auto object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-300 origin-left" 
               />

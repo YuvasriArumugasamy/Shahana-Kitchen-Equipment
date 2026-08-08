@@ -60,10 +60,7 @@ export default function AdminLogin({ onLoginSuccess }) {
         <div className="flex items-center justify-center cursor-pointer group" onClick={autoFillDemo}>
           <div className="p-2 rounded-2xl bg-white/80 backdrop-blur-md shadow-md border border-purple-100 group-hover:scale-105 group-hover:shadow-purple-900/15 transition-all duration-300">
             <img 
-              src="/images/ChatGPT Image Jul 28, 2026, 01_18_49 PM.webp" 
-              alt="Shahana Kitchen Equipment Logo" 
-              className="h-12 sm:h-14 w-auto object-contain mix-blend-multiply drop-shadow-xs" 
-            />
+              src="/images/shahana-logo.png" 
           </div>
         </div>
 
