@@ -131,7 +131,7 @@ export default function Header({ currentPage, setCurrentPage, onOpenQuoteModal }
               />
               {/* Shahana Wordmark - ChatGPT Image Jul 28 */}
               <img 
-                src="/images/ChatGPT Image Jul 28, 2026, 01_18_49 PM.webp" 
+                src="/images/shahana-wordmark.webp" 
                 alt="Shahana Kitchen Equipment" 
                 width="220"
                 height="107"

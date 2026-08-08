@@ -94,7 +94,7 @@ export default function AdminLayout({
                 className="h-12 w-auto object-contain rounded-full shrink-0" 
               />
               <img 
-                src="/images/ChatGPT Image Jul 28, 2026, 01_18_49 PM.webp" 
+                src="/images/shahana-wordmark.webp" 
                 alt="Shahana Kitchen Equipment" 
                 width="220" height="107"
                 className="h-12 w-auto object-contain" 
@@ -252,7 +252,7 @@ export default function AdminLayout({
                   className="h-10 w-auto object-contain rounded-full shrink-0" 
                 />
                 <img 
-                  src="/images/ChatGPT Image Jul 28, 2026, 01_18_49 PM.webp" 
+                  src="/images/shahana-wordmark.webp" 
                   alt="Shahana Kitchen Equipment" 
                   width="180" height="88"
                   className="h-10 w-auto object-contain" 
@@ -395,7 +395,7 @@ export default function AdminLayout({
               className="h-10 w-auto object-contain rounded-full shrink-0" 
             />
             <img 
-              src="/images/ChatGPT Image Jul 28, 2026, 01_18_49 PM.webp" 
+              src="/images/shahana-wordmark.webp" 
               alt="Shahana Kitchen Equipment" 
               width="160" height="78"
               className="h-10 w-auto object-contain" 
