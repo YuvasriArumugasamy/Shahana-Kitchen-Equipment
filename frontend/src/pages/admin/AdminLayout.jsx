@@ -401,7 +401,6 @@ export default function AdminLayout({
               className="h-10 w-auto object-contain" 
             />
           </div>
-          </div>
         </div>
         
         {/* Spacer for fixed top bar on mobile */}
