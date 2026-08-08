@@ -129,7 +129,7 @@ export default function Header({ currentPage, setCurrentPage, onOpenQuoteModal }
               <img 
                 src="/images/shahana-wordmark.png" 
                 alt="Shahana Kitchen Equipment wordmark" 
-                className="hidden xs:inline-block h-10 sm:h-12 w-auto object-contain group-hover:scale-105 transition-transform duration-300" 
+                className="h-10 sm:h-12 w-auto object-contain group-hover:scale-105 transition-transform duration-300" 
               />
             </div>
           </div>
