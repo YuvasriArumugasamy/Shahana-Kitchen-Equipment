@@ -88,7 +88,7 @@ export default function AdminLayout({
           <div className="px-2.5 py-3 sm:px-3.5 sm:py-4 shrink-0 border-b border-slate-100 bg-white">
             <div className="flex items-center justify-center w-full">
               <img 
-                src="/images/shahana-logo-combined.png" 
+                src="/images/logo.png" 
                 alt="Shahana Kitchen Equipment Logo" 
                 className="w-full h-16 sm:h-20 object-contain" 
               />
@@ -239,7 +239,7 @@ export default function AdminLayout({
             <div className="flex items-center justify-between pb-3 border-b border-slate-100 mb-4">
               <div className="bg-white flex items-center justify-center flex-1 mr-2">
                 <img 
-                  src="/images/shahana-logo-combined.png" 
+                  src="/images/logo.png" 
                   alt="Shahana Kitchen Equipment Logo" 
                   className="w-full h-14 sm:h-16 object-contain" 
                 />
@@ -375,7 +375,7 @@ export default function AdminLayout({
           {/* Shahana Kitchen Equipment Logo on Right Side (Enlarged) */}
           <div className="flex items-center">
             <img 
-              src="/images/shahana-logo-combined.png" 
+              src="/images/logo.png" 
               alt="Shahana Kitchen Equipment Logo" 
               className="h-12 sm:h-14 w-auto object-contain scale-125 origin-right pr-2" 
             />

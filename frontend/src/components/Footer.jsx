@@ -49,7 +49,7 @@ export default function Footer({ setCurrentPage, onOpenQuoteModal }) {
           <div>
             <div className="inline-flex items-center mb-4 bg-white p-2.5 sm:p-3 rounded-2xl shadow-md border border-gray-100 max-w-xs">
               <img 
-                src="/images/shahana-logo-combined.png" 
+                src="/images/logo.png" 
                 alt="Shahana Kitchen Equipment" 
                 className="h-12 sm:h-14 w-auto object-contain" 
               />

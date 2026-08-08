@@ -122,7 +122,7 @@ export default function Header({ currentPage, setCurrentPage, onOpenQuoteModal }
           >
             <div className="flex items-center shrink-0 py-0.5">
               <img 
-                src="/images/shahana-logo-combined.png" 
+                src="/images/logo.png" 
                 alt="Shahana Kitchen Equipment" 
                 className="h-11 xs:h-12 sm:h-14 md:h-16 lg:h-16 w-auto object-contain group-hover:scale-105 transition-transform duration-300 origin-left" 
               />
