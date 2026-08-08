@@ -47,15 +47,21 @@ export default function Footer({ setCurrentPage, onOpenQuoteModal }) {
           
           {/* Col 1: Brand Info with Circular Logo */}
           <div>
-            <div className="inline-flex flex-col sm:flex-row items-center gap-3 mb-4 bg-white p-2.5 sm:p-3 rounded-2xl shadow-md border border-gray-100 max-w-xs">
+            <div className="inline-flex flex-row items-center gap-2 mb-4 bg-white p-2.5 rounded-2xl shadow-md border border-gray-100 max-w-xs">
+              {/* SK Circle Logo */}
               <img 
-                src="/images/shahana-icon.png" 
-                alt="Shahana Kitchen Equipment icon" 
-                className="h-12 w-auto object-contain" 
+                src="/images/shahana-logo-new.webp" 
+                alt="Shahana SK Logo" 
+                width="56"
+                height="56"
+                className="h-12 w-auto object-contain rounded-full shrink-0" 
               />
+              {/* Shahana Wordmark */}
               <img 
-                src="/images/shahana-wordmark.png" 
-                alt="Shahana Kitchen Equipment wordmark" 
+                src="/images/ChatGPT Image Jul 28, 2026, 01_18_49 PM.webp" 
+                alt="Shahana Kitchen Equipment" 
+                width="220"
+                height="107"
                 className="h-12 w-auto object-contain" 
               />
             </div>
