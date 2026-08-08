@@ -120,20 +120,12 @@ export default function Header({ currentPage, setCurrentPage, onOpenQuoteModal }
             onClick={() => handleNavClick('home')}
             className="cursor-pointer flex items-center shrink-0 pr-2 group"
           >
-            <div className="flex items-center shrink-0 py-0.5 gap-2.5">
-              {/* Circle Logo */}
-              <div className="w-11 h-11 sm:w-13 sm:h-13 rounded-full overflow-hidden border-2 border-[#6A1B9A] shadow-md group-hover:scale-105 transition-transform duration-300 shrink-0 bg-white flex items-center justify-center">
-                <img 
-                  src="/images/shahana-logo-new.webp" 
-                  alt="Shahana Kitchen Equipment Logo" 
-                  className="w-full h-full object-cover" 
-                />
-              </div>
-              {/* Brand Text */}
-              <div className="flex flex-col leading-tight">
-                <span className="font-heading font-black text-[#6A1B9A] text-sm sm:text-base tracking-tight uppercase leading-none">SHAHANA</span>
-                <span className="font-heading font-bold text-gray-600 text-[10px] sm:text-xs tracking-widest uppercase leading-tight">Kitchen Equipment</span>
-              </div>
+            <div className="flex items-center shrink-0 py-0.5">
+              <img 
+                src="/images/ChatGPT Image Jul 28, 2026, 01_18_49 PM.webp" 
+                alt="Shahana Kitchen Equipment Logo" 
+                className="h-11 xs:h-12 sm:h-14 w-auto object-contain group-hover:scale-105 transition-transform duration-300 mix-blend-multiply drop-shadow-sm" 
+              />
             </div>
           </div>
 
