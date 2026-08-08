@@ -48,7 +48,8 @@ export default function Home({ setCurrentPage, onOpenQuoteModal, onSelectProduct
           muted
           loop
           playsInline
-        / preload="metadata">
+          preload="metadata"
+        />
         
         {/* Rich 3D gradient overlay for text readability */}
         <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 sm:via-white/70 to-transparent pointer-events-none"></div>
