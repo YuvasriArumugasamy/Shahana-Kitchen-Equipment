@@ -86,11 +86,18 @@ export default function AdminLayout({
           
           {/* Official Company Logo Header - Large & Clear */}
           <div className="px-2.5 py-3 sm:px-3.5 sm:py-4 shrink-0 border-b border-slate-100 bg-white">
-            <div className="flex items-center justify-center w-full">
+            <div className="flex items-center justify-center gap-2 w-full">
               <img 
-                src="/images/logo.png" 
-                alt="Shahana Kitchen Equipment Logo" 
-                className="w-full h-16 sm:h-20 object-contain" 
+                src="/images/shahana-logo-new.webp" 
+                alt="Shahana SK Logo" 
+                width="56" height="56"
+                className="h-12 w-auto object-contain rounded-full shrink-0" 
+              />
+              <img 
+                src="/images/ChatGPT Image Jul 28, 2026, 01_18_49 PM.webp" 
+                alt="Shahana Kitchen Equipment" 
+                width="220" height="107"
+                className="h-12 w-auto object-contain" 
               />
             </div>
           </div>
@@ -237,11 +244,18 @@ export default function AdminLayout({
         <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm lg:hidden flex">
           <div className="w-72 bg-white text-slate-800 flex flex-col h-full p-4 overflow-y-auto border-r border-slate-200 shadow-2xl">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100 mb-4">
-              <div className="bg-white flex items-center justify-center flex-1 mr-2">
+              <div className="bg-white flex items-center justify-center gap-1.5 flex-1 mr-2">
                 <img 
-                  src="/images/logo.png" 
-                  alt="Shahana Kitchen Equipment Logo" 
-                  className="w-full h-14 sm:h-16 object-contain" 
+                  src="/images/shahana-logo-new.webp" 
+                  alt="Shahana SK Logo" 
+                  width="48" height="48"
+                  className="h-10 w-auto object-contain rounded-full shrink-0" 
+                />
+                <img 
+                  src="/images/ChatGPT Image Jul 28, 2026, 01_18_49 PM.webp" 
+                  alt="Shahana Kitchen Equipment" 
+                  width="180" height="88"
+                  className="h-10 w-auto object-contain" 
                 />
               </div>
               <button onClick={() => setMobileMenuOpen(false)} className="p-1 text-slate-400 hover:text-slate-700">
@@ -373,12 +387,20 @@ export default function AdminLayout({
           </div>
 
           {/* Shahana Kitchen Equipment Logo on Right Side (Enlarged) */}
-          <div className="flex items-center">
+          <div className="flex items-center gap-1.5">
             <img 
-              src="/images/logo.png" 
-              alt="Shahana Kitchen Equipment Logo" 
-              className="h-12 sm:h-14 w-auto object-contain scale-125 origin-right pr-2" 
+              src="/images/shahana-logo-new.webp" 
+              alt="Shahana SK Logo" 
+              width="44" height="44"
+              className="h-10 w-auto object-contain rounded-full shrink-0" 
             />
+            <img 
+              src="/images/ChatGPT Image Jul 28, 2026, 01_18_49 PM.webp" 
+              alt="Shahana Kitchen Equipment" 
+              width="160" height="78"
+              className="h-10 w-auto object-contain" 
+            />
+          </div>
           </div>
         </div>
         
