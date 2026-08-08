@@ -120,11 +120,16 @@ export default function Header({ currentPage, setCurrentPage, onOpenQuoteModal }
             onClick={() => handleNavClick('home')}
             className="cursor-pointer flex items-center shrink-0 pr-2 group"
           >
-            <div className="flex items-center shrink-0 py-0.5">
+            <div className="flex items-center shrink-0 py-0.5 gap-2">
               <img 
-                src="/images/logo.png" 
-                alt="Shahana Kitchen Equipment" 
-                className="h-11 xs:h-12 sm:h-14 md:h-16 lg:h-16 w-auto object-contain group-hover:scale-105 transition-transform duration-300 origin-left" 
+                src="/images/shahana-icon.png" 
+                alt="Shahana Kitchen Equipment icon" 
+                className="h-11 xs:h-12 sm:h-14 w-auto object-contain group-hover:scale-105 transition-transform duration-300" 
+              />
+              <img 
+                src="/images/shahana-wordmark.png" 
+                alt="Shahana Kitchen Equipment wordmark" 
+                className="hidden xs:inline-block h-10 sm:h-12 w-auto object-contain group-hover:scale-105 transition-transform duration-300" 
               />
             </div>
           </div>
