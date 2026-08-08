@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+  <!-- Home Page -->
+  <url>
+    <loc>https://www.shahanakitchenequipment.shop/</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.shahanakitchenequipment.shop/images/home bg.webp</image:loc>
+      <image:title>Shahana Kitchen Equipment - Commercial Kitchen Machinery Tamil Nadu</image:title>
+    </image:image>
+  </url>
+
+  <!-- Products Catalog -->
+  <url>
+    <loc>https://www.shahanakitchenequipment.shop/products</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://www.shahanakitchenequipment.shop/images/instant wet grinder.webp</image:loc>
+      <image:title>Commercial Kitchen Equipment Catalog - Shahana Kitchen Equipment</image:title>
+    </image:image>
+  </url>
+
+  <!-- Services Page -->
+  <url>
+    <loc>https://www.shahanakitchenequipment.shop/services</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Spare Parts -->
+  <url>
+    <loc>https://www.shahanakitchenequipment.shop/spare-parts</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://www.shahanakitchenequipment.shop/images/spare parts stock.webp</image:loc>
+      <image:title>Commercial Kitchen Machine Spare Parts - Shahana Kitchen Equipment</image:title>
+    </image:image>
+  </url>
+
+  <!-- Industries -->
+  <url>
+    <loc>https://www.shahanakitchenequipment.shop/industries</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- About Us -->
+  <url>
+    <loc>https://www.shahanakitchenequipment.shop/about</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://www.shahanakitchenequipment.shop/images/about bg.webp</image:loc>
+      <image:title>About Shahana Kitchen Equipment Manufacturer Tirunelveli</image:title>
+    </image:image>
+  </url>
+
+  <!-- Gallery -->
+  <url>
+    <loc>https://www.shahanakitchenequipment.shop/gallery</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.72</priority>
+    <image:image>
+      <image:loc>https://www.shahanakitchenequipment.shop/images/gallery.webp</image:loc>
+      <image:title>Shahana Kitchen Equipment - Factory & Installation Gallery</image:title>
+    </image:image>
+  </url>
+
+  <!-- Customer Reviews -->
+  <url>
+    <loc>https://www.shahanakitchenequipment.shop/reviews</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.72</priority>
+  </url>
+
+  <!-- FAQ -->
+  <url>
+    <loc>https://www.shahanakitchenequipment.shop/faq</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.68</priority>
+  </url>
+
+  <!-- Contact Us -->
+  <url>
+    <loc>https://www.shahanakitchenequipment.shop/contact</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.82</priority>
+  </url>
+
+</urlset>
