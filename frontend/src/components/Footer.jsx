@@ -47,7 +47,7 @@ export default function Footer({ setCurrentPage, onOpenQuoteModal }) {
           
           {/* Col 1: Brand Info with Circular Logo */}
           <div>
-            <div className="inline-flex flex-row items-center gap-3 mb-4">
+            <div className="inline-flex flex-row items-center gap-3 mb-4 bg-white p-2.5 rounded-2xl shadow-md border border-gray-100 max-w-xs">
               {/* SK Circle Logo */}
               <img 
                 src="/images/shahana-logo-new.webp" 
