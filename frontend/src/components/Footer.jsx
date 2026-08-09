@@ -149,14 +149,6 @@ export default function Footer({ setCurrentPage, onOpenQuoteModal }) {
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-500 text-center sm:text-left">
           <p>© {new Date().getFullYear()} Shahana Kitchen Equipment. All Rights Reserved.</p>
           <div className="flex items-center gap-4">
-            <a 
-              href="/admin" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="text-purple-400 hover:text-white font-bold hover:underline transition-colors flex items-center gap-1"
-            >
-              🔐 Admin Login
-            </a>
             <span className="hover:underline cursor-pointer">Website Designed by <span className="text-red-400">❤️</span> YuvaTech Solutions</span>
           </div>
         </div>
