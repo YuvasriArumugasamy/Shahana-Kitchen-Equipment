@@ -189,11 +189,33 @@ export default function Header({ currentPage, setCurrentPage, onOpenQuoteModal }
       {/* Spacer to prevent layout jump when navbar is fixed */}
       {isScrolled && <div className="h-[64px] sm:h-[72px]" />}
 
-      {/* FULL-WIDTH PROFESSIONAL MOBILE NAVIGATION MENU (NATURAL SCROLL, NO FIXED BOTTOM BAR) */}
+      {/* FULL-WIDTH PROFESSIONAL MOBILE NAVIGATION MENU - FULL SCREEN FROM TOP */}
       {mobileMenuOpen && (
-        <div className={`lg:hidden fixed left-0 right-0 w-full bottom-0 z-[100] bg-white flex flex-col justify-between overflow-hidden animate-fade-in ${
-          isScrolled ? 'top-[60px] sm:top-[68px]' : 'top-[102px] sm:top-[112px]'
-        }`}>
+        <div className="lg:hidden fixed inset-0 top-0 left-0 right-0 bottom-0 w-full z-[100] bg-white flex flex-col overflow-hidden animate-fade-in">
+          
+          {/* Header bar with logo + close button */}
+          <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200 bg-white shrink-0">
+            <div className="flex items-center gap-2">
+              <img 
+                src="/images/shahana-logo-new.webp" 
+                alt="Shahana SK Logo" 
+                width="44" height="44"
+                className="h-10 w-auto object-contain rounded-full shrink-0" 
+              />
+              <img 
+                src="/images/shahana-wordmark.webp" 
+                alt="Shahana Kitchen Equipment" 
+                width="160" height="78"
+                className="h-10 w-auto object-contain" 
+              />
+            </div>
+            <button
+              onClick={() => setMobileMenuOpen(false)}
+              className="p-2 rounded-full bg-purple-50 border border-purple-200 text-[#6A1B9A]"
+            >
+              <X className="w-6 h-6" />
+            </button>
+          </div>
           
           {/* Full Scrollable Nav List Items */}
           <div className="flex-1 overflow-y-auto p-3.5 sm:p-4 space-y-2 pb-8 bg-gray-50/50">
