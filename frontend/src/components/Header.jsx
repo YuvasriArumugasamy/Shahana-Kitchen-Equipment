@@ -120,7 +120,7 @@ export default function Header({ currentPage, setCurrentPage, onOpenQuoteModal }
             onClick={() => handleNavClick('home')}
             className="cursor-pointer flex items-center shrink-0 pr-2 group"
           >
-            <div className="flex items-center shrink-0 py-0.5 gap-3 bg-white rounded-full px-2 py-1 shadow-sm border border-purple-100">
+            <div className="flex items-center shrink-0 gap-1.5">
               {/* SK Circle Logo - WhatsApp Image 2026-08-07 */}
               <img 
                 src="/images/shahana-logo-new.webp" 
