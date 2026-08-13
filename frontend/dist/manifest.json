@@ -1,0 +1,24 @@
+{
+  "name": "Shahana Kitchen Equipment",
+  "short_name": "Shahana KE",
+  "description": "Commercial Kitchen Equipment Manufacturer - Tirunelveli",
+  "start_url": "/admin",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#6A1B9A",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/images/shahana-logo-new.webp",
+      "sizes": "192x192",
+      "type": "image/webp",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/shahana-logo-new.webp",
+      "sizes": "512x512",
+      "type": "image/webp",
+      "purpose": "any maskable"
+    }
+  ]
+}
