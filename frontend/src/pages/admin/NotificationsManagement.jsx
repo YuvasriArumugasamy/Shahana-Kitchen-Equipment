@@ -4,11 +4,11 @@ import {
   Trash2, Check, Filter, Plus, Info, X, Clock, AlertCircle, ShieldAlert
 } from 'lucide-react';
 
-import { requestPushPermission } from '../../services/firebaseConfig';
+import { requestPushPermission, showBrowserNotification } from '../../services/firebaseConfig';
 import { deleteCloudNotification } from '../../services/cloudNotifications';
 
 export default function NotificationsManagement({ notifications = [], setNotifications }) {
-  const [filter, setFilter] = useState('all'); // all, unread, quote, enquiry, stock, system
+  const [filter, setFilter] = useState('all');
   const [selectedNotification, setSelectedNotification] = useState(null);
   const [pushEnabled, setPushEnabled] = useState(() => typeof window !== 'undefined' && 'Notification' in window && Notification.permission === 'granted');
 
@@ -20,6 +20,13 @@ export default function NotificationsManagement({ notifications = [], setNotific
     } else {
       alert('Push Notifications permission was denied or not supported by browser.');
     }
+  };
+
+  const handleTestNotification = () => {
+    showBrowserNotification(
+      '🔔 Test - New Quote Request!',
+      'Product: Commercial Wet Grinder | Phone: 99999 99999 | City: Tirunelveli'
+    );
   };
 
   const safeNotifs = Array.isArray(notifications) ? notifications : [];
@@ -159,6 +166,14 @@ export default function NotificationsManagement({ notifications = [], setNotific
           >
             <Bell className="w-4 h-4" />
             <span>{pushEnabled ? 'Push Alerts Enabled' : 'Enable Push Alerts'}</span>
+          </button>
+
+          <button
+            onClick={handleTestNotification}
+            className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition-all border bg-rose-50 text-rose-700 border-rose-200 hover:bg-rose-100"
+          >
+            <Bell className="w-4 h-4" />
+            <span>Test Notification</span>
           </button>
         </div>
       </div>
