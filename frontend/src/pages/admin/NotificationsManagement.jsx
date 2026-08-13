@@ -24,8 +24,9 @@ export default function NotificationsManagement({ notifications = [], setNotific
 
   const handleTestNotification = () => {
     showBrowserNotification(
-      '🔔 Test - New Quote Request!',
-      'Product: Commercial Wet Grinder | Phone: 99999 99999 | City: Tirunelveli'
+      'Shahana Kitchen Equipment 🔔',
+      'Test Notification Active! Real-time alerts enabled.',
+      '/images/shahana-logo-new.webp'
     );
   };
 

@@ -21,8 +21,8 @@ self.addEventListener('push', (event) => {
 
   const options = {
     body: data.body || data.desc || 'New quote request received',
-    icon: '/favicon.ico',
-    badge: '/favicon.ico',
+    icon: '/images/shahana-logo-new.webp',
+    badge: '/images/shahana-logo-new.webp',
     vibrate: [200, 100, 200, 100, 200],
     data: { url: '/admin' },
     actions: [

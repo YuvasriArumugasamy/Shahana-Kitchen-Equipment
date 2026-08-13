@@ -52,7 +52,7 @@ const playAlertChime = () => {
 };
 
 // Trigger Phone Top Pop-Up Banner & Vibration Notification (WhatsApp / Instagram style)
-export const showBrowserNotification = (title, body, icon = '/favicon.ico') => {
+export const showBrowserNotification = (title, body, icon = '/images/shahana-logo-new.webp') => {
   if (typeof window === 'undefined') return;
 
   // Play audio chime tone
