@@ -10,28 +10,30 @@ self.addEventListener('activate', (event) => {
 
 // Handle Background Push Event
 self.addEventListener('push', (event) => {
-  let data = { title: 'Shahana Kitchen Equipment', body: 'புதிய வாடிக்கையாளர் விலை கோரிக்கை வந்துள்ளது!' };
+  let data = { title: 'Shahana Kitchen Equipment', body: 'புதிய வாடிக்கையாளர் விலை கோரிக்கை வந்துள்ளது!', url: '/admin' };
+  
   if (event.data) {
     try {
-      data = event.data.json();
+      const payload = event.data.json();
+      data = { ...data, ...payload };
     } catch (e) {
       data.body = event.data.text();
     }
   }
 
   const options = {
-    body: data.body || data.desc || 'New quote request received',
+    body: data.body,
     icon: '/images/shahana-logo-new.webp',
     badge: '/images/shahana-logo-new.webp',
     vibrate: [200, 100, 200, 100, 200],
-    data: { url: '/admin' },
+    data: { url: data.url || '/admin' },
     actions: [
       { action: 'open', title: 'View Quote 📋' }
     ]
   };
 
   event.waitUntil(
-    self.registration.showNotification(data.title || 'New Quote Alert 🔔', options)
+    self.registration.showNotification(data.title, options)
   );
 });
 

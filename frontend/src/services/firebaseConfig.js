@@ -12,23 +12,72 @@ export const FIREBASE_CONFIG = {
   measurementId: "G-LGGXVTGLXZ"
 };
 
-// Request Web Push Notification Permission
+// Base64 to Uint8Array converter
+function urlBase64ToUint8Array(base64String) {
+  const padding = '='.repeat((4 - base64String.length % 4) % 4);
+  const base64 = (base64String + padding)
+    .replace(/\-/g, '+')
+    .replace(/_/g, '/');
+
+  const rawData = window.atob(base64);
+  const outputArray = new Uint8Array(rawData.length);
+
+  for (let i = 0; i < rawData.length; ++i) {
+    outputArray[i] = rawData.charCodeAt(i);
+  }
+  return outputArray;
+}
+
+// Request Web Push Notification Permission and Subscribe
 export const requestPushPermission = async () => {
-  if (typeof window === 'undefined' || !('Notification' in window)) {
-    console.warn('Browser does not support desktop notifications');
+  if (typeof window === 'undefined' || !('Notification' in window) || !('serviceWorker' in navigator)) {
+    console.warn('Browser does not support desktop notifications or service workers');
     return false;
   }
 
   try {
     const permission = await Notification.requestPermission();
-    if (permission === 'granted') {
-      console.log('Notification permission granted.');
-      return true;
+    if (permission !== 'granted') {
+      return false;
     }
+
+    // Register service worker if not already registered
+    const registration = await navigator.serviceWorker.register('/sw.js');
+    await navigator.serviceWorker.ready;
+
+    // Fetch VAPID public key from backend
+    const response = await fetch('https://shahana-kitchen-equipment.onrender.com/api/push/vapidPublicKey');
+    const vapidData = await response.json();
+
+    if (!vapidData.publicKey) {
+      console.warn('No VAPID key found from server');
+      return false;
+    }
+
+    const convertedVapidKey = urlBase64ToUint8Array(vapidData.publicKey);
+
+    // Subscribe to push service
+    const subscription = await registration.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: convertedVapidKey
+    });
+
+    // Send subscription to backend
+    await fetch('https://shahana-kitchen-equipment.onrender.com/api/push/subscribe', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(subscription)
+    });
+
+    console.log('Push subscription successful and saved to server.');
+    return true;
+
   } catch (err) {
-    console.error('Error requesting notification permission:', err);
+    console.error('Error requesting notification permission or subscribing:', err);
+    return false;
   }
-  return false;
 };
 
 // Helper sound alert when quote arrives

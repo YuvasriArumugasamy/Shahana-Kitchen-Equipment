@@ -7,6 +7,7 @@ import connectDB from './config/db.js';
 import productRoutes from './routes/products.js';
 import quoteRoutes from './routes/quotes.js';
 import authRoutes from './routes/auth.js';
+import pushRoutes from './routes/push.js';
 
 dotenv.config();
 
@@ -24,6 +25,7 @@ connectDB();
 app.use('/api/products', productRoutes);
 app.use('/api/quotes', quoteRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/push', pushRoutes);
 
 // Root Health Check Route
 app.get('/', (req, res) => {
