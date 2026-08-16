@@ -8,8 +8,8 @@ const router = express.Router();
 if (process.env.VAPID_PUBLIC_KEY && process.env.VAPID_PRIVATE_KEY) {
   webpush.setVapidDetails(
     'mailto:contact@shahanakitchenequipment.shop',
-    process.env.VAPID_PUBLIC_KEY,
-    process.env.VAPID_PRIVATE_KEY
+    process.env.VAPID_PUBLIC_KEY.trim(),
+    process.env.VAPID_PRIVATE_KEY.trim()
   );
 }
 
@@ -18,7 +18,7 @@ router.get('/vapidPublicKey', (req, res) => {
   if (!process.env.VAPID_PUBLIC_KEY) {
     return res.status(500).json({ error: 'VAPID public key not configured on server' });
   }
-  res.json({ publicKey: process.env.VAPID_PUBLIC_KEY });
+  res.json({ publicKey: process.env.VAPID_PUBLIC_KEY.trim() });
 });
 
 // Route to save Push Subscription
